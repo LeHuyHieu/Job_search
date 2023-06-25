@@ -1,0 +1,235 @@
+.footer {
+    .footer__block {
+        background: url(../../images/banner-footer.jpg) no-repeat;
+        background-size: cover;
+        background-position: top;
+        position: relative;
+        min-height: 180px;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            background-color: rgba($color: $dark, $alpha: .7);
+            inset: 0;
+            position: absolute;
+            transition: .3s;
+        }
+
+        &--title {
+            position: absolute;
+            z-index: 1;
+            height: 100%;
+            width: 100%;
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 500;
+            color: $white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .3s;
+        }
+
+        &--title:last-child {
+            transform: translateY(100%);
+
+            & i {
+                padding-left: 2rem;
+            }
+        }
+
+        &:hover {
+            & .footer__block--title:last-child {
+                transform: translateY(0%);
+            }
+
+            & .footer__block--title:first-child {
+                transform: translateY(-100%);
+            }
+
+            &::before {
+                background-color: rgba($color: $dark, $alpha: .85);
+            }
+        }
+    }
+
+    .footer__bg {
+        background-color: $dark;
+
+        &--flex {
+            padding-inline: 10rem;
+            border-bottom: 1px solid $gray;
+            @include flex-sp(row);
+
+            & .footer__bg--logo {
+                padding: 3rem;
+                display: flex;
+                justify-content: left;
+
+                & img {
+                    width: 200px !important;
+                }
+            }
+
+            & .footer__bg--icon {
+                color: $light;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 3rem;
+                border-left: 1px solid $gray;
+
+                &:hover {
+                    & span i {
+                        background-color: $white;
+                        color: $dark;
+                    }
+                }
+
+                & span i {
+                    font-size: 2.5rem;
+                    width: 40px;
+                    height: 40px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: $gray;
+                    border-radius: 3px;
+                    transition: .3s;
+                }
+
+                & .bg__icon--text {
+                    font-size: 1.8rem;
+                    margin-left: 1rem;
+                    margin-bottom: 0;
+
+                    & span {
+                        display: block;
+                        font-size: 1.6rem;
+                        color: $gray;
+                    }
+                }
+            }
+        }
+
+        & .footer__title {
+            padding-top: 7rem;
+            color: $white;
+            font-size: 1.6rem;
+            margin-bottom: 2rem;
+        }
+
+        & .footer__list {
+            list-style: none;
+            padding: 0;
+
+            & .footer__list--link {
+                padding-block: .5rem;
+                font-size: 1.4rem;
+                color: $gray;
+                text-decoration: none;
+                display: inline-block;
+                position: relative;
+                transition: .3s;
+
+                &::before {
+                    position: absolute;
+                    content: '';
+                    left: 0;
+                    bottom: 0;
+                    height: 1.5px;
+                    width: 0;
+                    background-color: $green;
+                    transition: .3s;
+                }
+
+                &:hover {
+                    color: $light;
+
+                    &::before {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        & .footer__text {
+            color: $gray;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        & .footer__form {
+            & .d-flex {
+                justify-content: space-between;
+
+                & input:first-child {
+                    width: 70%;
+                    border: 1px solid $gray;
+                    outline: none;
+                    border-radius: 5px;
+                    padding-left: 10px;
+                    color: $gray;
+                    font-size: 1.4rem;
+                    background-color: $dark;
+                }
+
+                & input[type=submit] {
+                    background-color: $green;
+                    color: $white;
+                    border: none;
+                    outline: none;
+                    border-radius: 5px;
+                    padding: 1.5rem 1rem;
+                    font-size: 1.4rem;
+                    width: clamp(70px, 28%, 150px) !important;
+                    width: clamp(40px, 45px, 50px);
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+    .footer__bottom {
+        @include flex-sp(row);
+        padding-block: 2rem;
+
+        &--left {
+            color: $gray;
+            font-size: 1.5rem;
+        }
+
+        &--right {
+
+            & .icon--fb,
+            .icon--tw {
+                display: inline-block;
+                color: $gray;
+                font-size: 2.5rem;
+                margin-left: 1.5rem;
+                transition: .3s ease;
+
+                &:hover {
+                    color: $white;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .footer__bg--flex {
+        padding-inline: 0 !important;
+
+        & .footer__bg--logo {
+            padding: 3rem 0 !important;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .footer__bg--logo {
+        border-bottom: 1px solid $gray;
+        justify-content: center !important;
+    }
+}

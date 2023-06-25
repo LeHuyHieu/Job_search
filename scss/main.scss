@@ -1,0 +1,20 @@
+@import './base/all';
+@import './layout/all';
+@import './modules/all';
+@import './pages/all';
+@import './state/all';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    font-size: 62.5%;
+}
+body {
+    font-family: "Poppins", Sans-serif;
+}
+
