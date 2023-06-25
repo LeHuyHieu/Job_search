@@ -57,7 +57,7 @@
         }
 
         & .navbar__logo::after {
-            background-color: $gray-light !important;
+            background-color: $light !important;
         }
 
         & .navbar__logo {
@@ -71,7 +71,7 @@
         }
 
         .login--register::before {
-            background-color: $gray-light !important;
+            background-color: $light !important;
         }
     }
 
@@ -259,16 +259,16 @@
                 font-size: 1.5rem;
 
                 &::after {
-                    content: '';
+                    content: "";
                     position: absolute;
-                    border: 2px solid rgba($color: $white, $alpha: .5);
+                    border: 1px solid rgba(255, 255, 255, 0.5);
                     width: 7px;
                     height: 7px;
                     border-top: none;
                     border-left: none;
                     transform: rotate(45deg) translateY(-50%);
                     right: 0px;
-                    top: 50%;
+                    top: 40%;
                 }
 
                 &:hover {

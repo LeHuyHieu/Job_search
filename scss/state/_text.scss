@@ -3,53 +3,135 @@
         &.-bold-300 {
             font-weight: 300;
         }
+
         &.-bold-400 {
             font-weight: 400;
         }
+
         &.-bold-500 {
             font-weight: 500;
         }
+
         &.-bold-600 {
             font-weight: 600;
         }
+
         &.-bold-700 {
             font-weight: 700;
         }
+
         &.-size-14 {
             font-size: 1.4rem;
         }
+
         &.-size-15 {
             font-size: 1.5rem;
         }
+
         &.-size-16 {
             font-size: 1.6rem;
         }
+
         &.-size-20 {
             font-size: 2.0rem;
         }
+
         &.-size-25 {
             font-size: 2.5rem;
         }
+
         &.-size-30 {
             font-size: 3.0rem;
         }
+
         &.-size-32 {
             font-size: 3.2rem;
         }
+
         &.-size-40 {
             font-size: 4.0rem;
         }
+
         &.-size-50 {
             font-size: 5.0rem;
         }
+
         &.-light {
             color: $light;
         }
+
         &.-gray {
             color: $gray;
         }
+
         &.-dark {
             color: $dark;
         }
     }
+}
+
+/* Icons Fix */
+.fa-calendar:before,
+.fa-calendar:before,
+.fa-map-marker:before,
+.fa-map-marker:before,
+.fa-user:before,
+.fa-user:before,
+.fa-clock-o:before,
+.fa-clock-o:before,
+.fa-money:before,
+.fa-money:before,
+.fa-briefcase:before,
+.fa-briefcase:before {
+    font-family: "linearicons";
+    font-size: 18px;
+    position: relative;
+    top: 2px;
+}
+.fa-map-marker:before,
+.fa-user:before,
+.fa-clock-o:before,
+.fa-money:before,
+.fa-briefcase:before {
+    font-family: "linearicons";
+    font-size: 19px;
+    position: relative;
+    top: 1px;
+}
+.fa-calendar:before,
+.fa-calendar:before {
+    content: "\e770";
+}
+.fa-map-marker:before,
+.fa-map-marker:before {
+    content: "\ea9c";
+}
+.fa-user:before,
+.fa-user:before {
+    content: "\e6fe";
+}
+.fa-clock-o:before,
+.fa-clock-o:before {
+    content: "\ed51";
+}
+.fa-money:before,
+.fa-money:before {
+    content: "\eac6";
+}
+.fa-briefcase:before,
+.fa-briefcase:before {
+    content: "\ea95";
+}
+.fa-calendar:before,
+.fa-calendar:before {
+    content: "\e770";
+}
+ul li.content__description--item--flex:first-child .content__description--icon .fa-calendar:before {
+    content: "\e70b";
+}
+/* Icons Fix - End */
+.spinner {
+    width: 40px;
+    height: 40px;
+    position: relative;
 }

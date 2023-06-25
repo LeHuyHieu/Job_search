@@ -1,0 +1,90 @@
+.content.categories {
+    .bg-light {
+        padding: 5rem 0;
+
+        .categories__block {
+            & .categories__text {
+                font-size: 1.4rem;
+
+                & .categories__link {
+                    text-decoration: none;
+                    color: $gray-light;
+                }
+
+                & span {
+                    color: $gray-light;
+                }
+            }
+        }
+    }
+
+    .categories__list {
+        & .jobs {
+            &__item {
+                &--img {
+                    min-width: 60px;
+                }
+
+                &--text {
+                    padding-left: 2rem;
+                }
+
+                &--btn {
+                    text-align: end;
+
+                    & .btn {
+                        margin: 0 0 .5rem .2rem;
+                    }
+                }
+            }
+
+            & .border--left__yellow {
+                @include border-l(4px, $yellow);
+            }
+
+            & .border--left__green {
+                @include border-l(4px, $green);
+            }
+
+            & .border--left__blue {
+                @include border-l(4px, $blue);
+            }
+
+            & .border--left__red {
+                @include border-l(4px, $red);
+            }
+        }
+
+        &--page {
+            margin-top: 4rem;
+            @include flex-center(row);
+
+            .btn--page {
+                display: inline-block;
+                margin-right: .5rem;
+                background-color: $light;
+                font-size: 1.4rem;
+                padding: 1rem 1.5rem;
+                width: 4rem;
+
+                &:first-child {
+                    margin-left: auto;
+                }
+                &:hover {
+                    background-color: $green;
+                    color: $white;
+                }
+            }
+
+            .btn--next {
+                margin-left: auto;
+                width: 6rem;
+            }
+
+            .btn--page--active {
+                background-color: $green;
+                color: $white;
+            }
+        }
+    }
+}

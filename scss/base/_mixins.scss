@@ -1,8 +1,16 @@
+@mixin border-l($left: 0, $color) {
+    border-left: $left solid $color;
+
+    @if $left !=0 {
+        border-left-width: $left;
+    }
+}
+
 @mixin square($size, $radius: 0) {
     width: $size;
     height: $size;
 
-    @if $radius != 0 {
+    @if $radius !=0 {
         border-radius: $radius;
     }
 }

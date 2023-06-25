@@ -1,0 +1,195 @@
+.chosen-single {
+    border: none !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    display: inline-block;
+    font-size: 1.6rem;
+    color: $gray !important;
+}
+
+.chosen-drop {
+    border: none !important;
+    box-shadow: 0px 0px 5px $gray-light;
+    font-size: 1.4rem;
+
+    & .chosen-results {
+        max-height: 200px;
+
+        &::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $light;
+            border-radius: 10px;
+            transition: .3s;
+        }
+    }
+}
+
+.highlighted {
+    background: $green !important;
+}
+
+.scroll {
+    position: relative;
+    font-size: 1.4rem;
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    transition: opacity .3s ease;
+
+    & input.wage__range {
+        border: none;
+        background-color: transparent;
+        outline: none;
+        width: 45px;
+        text-align: center;
+    }
+
+    & #slider {
+        position: relative;
+        height: 5px;
+        background-color: $light;
+        margin: 2rem 0;
+
+        & .ui-slider-handle {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: $white;
+            box-shadow: 0px 0px 0px 3px $green;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        & .ui-slider-handle:nth-child(2) {
+            left: 100%;
+        }
+    }
+}
+
+.search__category {
+    & h5 {
+        margin-bottom: 1.5rem;
+    }
+
+    &--keywords {
+        height: 50px;
+        font-size: 1.4rem;
+        padding-left: 2.5rem;
+    }
+
+    & .check__box {
+        position: relative;
+
+        & input[type=checkbox] {
+            display: none;
+        }
+
+        & label {
+            font-size: 1.4rem;
+            color: $gray;
+            padding-left: 4rem;
+            position: relative;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+
+            & span.check {
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 20px;
+                height: 20px;
+                border: 2px solid $gray-light;
+                border-radius: 3px;
+                display: block;
+                transition: .3s;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    inset: 2px 6px;
+                    border: 3px solid #fff;
+                    border-left: none;
+                    border-top: none;
+                    width: 7px;
+                    height: 13px;
+                    transform: rotate(45deg);
+                }
+            }
+        }
+
+        & input[type=checkbox]:checked~label span.check {
+            background-color: $green;
+            border: none;
+        }
+    }
+
+    .check__box.fiter {
+        position: relative;
+
+        & label {
+            font-size: 1.4rem;
+            color: $gray;
+            padding-left: 4rem;
+            position: relative;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+
+            & span.check {
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 40px;
+                height: 35px;
+                border-radius: 3px;
+                display: block;
+                transition: .1s;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: none;
+                background-color: $light;
+                margin-top: 3rem;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    inset: 9px 8px;
+                    border: 3px solid #fff;
+                    border-left: none;
+                    border-top: none;
+                    width: 7px;
+                    height: 13px;
+                    transform: rotate(45deg);
+                    display: none;
+                }
+                &:hover {
+                    background-color: $green;
+                    color: $white;
+                }
+            }
+        }
+
+        & input[type=checkbox]:checked~label span.check {
+            background-color: $green;
+            border: none;
+            width: 60px;
+            justify-content: end;
+            color: $white;
+            padding: 0 1rem;
+            &::before {
+                display: block;
+            }
+        }
+    }
+}

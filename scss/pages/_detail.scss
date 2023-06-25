@@ -1,0 +1,274 @@
+.header {
+    .bg-white.navbar {
+        border-color: $light;
+        position: relative;
+
+        .navbar__logo {
+            &::after {
+                background-color: $light;
+            }
+        }
+
+        .navbar__list {
+            .navbar__list--link {
+                color: $dark;
+
+                &::after {
+                    border-color: $dark;
+                }
+
+                &:hover {
+                    color: $green;
+
+                    &::after {
+                        border-color: $green;
+                    }
+                }
+            }
+        }
+
+        .login--register {
+            &::before {
+                background-color: $light;
+            }
+
+            .btn--login,
+            .btn--register {
+                color: $dark;
+
+                &:hover {
+                    color: $green;
+                }
+            }
+        }
+    }
+}
+
+.content.page_detail {
+    padding-top: 5rem;
+
+    .content__flex {
+        @include flex-sp(row);
+
+        .content__title {
+            &--link {
+                color: $gray-light;
+                font-size: 1.6rem;
+                text-decoration: none;
+                margin-bottom: 1rem;
+                display: inline-block;
+            }
+
+            &--title {
+                font-size: 2.5rem;
+                font-weight: 400;
+                @include flex-center(row);
+
+                & span {
+                    font-size: 1.2rem;
+                    background-color: $yellow;
+                    padding: .5rem;
+                    border-radius: 2px;
+                    color: $white;
+                    margin-left: 1rem;
+                }
+            }
+        }
+
+        .content__bookmark {
+            font-size: 1.5rem;
+            background-color: $skin;
+            color: $brown;
+            display: inline-block;
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+    }
+
+    .content__company {
+        @include flex-center(row);
+        padding: 3.5rem;
+        border-radius: 5px;
+        box-shadow: 0px 0px 15px $dark-light;
+        margin-top: 4rem;
+
+        &--logo {
+            max-width: 108px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        &--content {
+            margin-left: 2.5rem;
+
+            .content__company--flex {
+                @include flex-l(row);
+
+                .content__company--website,
+                .content__company--email {
+                    background-color: $light;
+                    font-size: 1.2rem;
+                    padding: .5rem;
+                    display: inline-block;
+                    text-decoration: none;
+                    margin-left: 1rem;
+                    margin-bottom: 1rem;
+                    color: $gray;
+                    border-radius: 5px;
+                }
+
+                .content__company--website {
+                    margin-left: 0;
+                }
+            }
+        }
+
+        &--title {
+            color: $dark;
+            margin-bottom: .5rem;
+            font-weight: 500;
+            display: inline-block;
+            text-decoration: none;
+            font-size: 1.8rem;
+        }
+
+        &--login {
+            color: $green;
+            font-size: 1.3rem;
+            background-color: $light;
+            text-decoration: none;
+            padding: .8rem 1rem;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .btn {
+            margin-right: 0;
+            margin-top: 0;
+            font-weight: 500;
+        }
+    }
+
+    .content__description {
+        &--youtube {
+            margin-block: 5rem;
+
+            & iframe {
+                display: block;
+            }
+
+            .content__description--youtube--text {
+                line-height: 30px;
+            }
+        }
+
+        &--title {
+            margin-bottom: 3rem;
+        }
+
+        &--list {
+            .content__description--item {
+                font-size: 1.4rem;
+                color: $gray;
+                list-style: square;
+                margin-bottom: 1.5rem;
+            }
+
+            & .content__description--item::marker {
+                color: $green;
+                font-size: 2rem;
+            }
+        }
+
+        .content__description--right {
+            .content__description--list.bg-light {
+                list-style: none;
+                padding: 4rem;
+                border-radius: 5px;
+
+                .content__description--item--flex {
+                    @include flex-l(row);
+                    margin-bottom: 3rem;
+
+                    .content__description--icon {
+                        padding: 1rem;
+                        border-radius: 5px;
+                        background-color: rgba($color: $green, $alpha: .1);
+
+                        & i {
+                            color: $green;
+                        }
+                    }
+
+                    .content__description--text {
+                        margin-left: 1rem;
+
+                        .content__description--item--title {
+                            font-size: 1.4rem;
+                            font-weight: 600;
+                            color: $gray;
+                        }
+
+                        .content__description--item--txt {
+                            font-size: 1.4rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        &--flex.jobs {
+            & .jobs__item {
+                margin-bottom: 2rem;
+                border: none;
+                padding: 0 1rem;
+
+                &:hover {
+                    background-color: transparent;
+                }
+
+                & a {
+                    border: 1px solid $light;
+                    padding: 3rem;
+                    transition: .3s ease;
+
+                    &:hover {
+                        background-color: $light;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .content.page_detail {
+        .content__description {
+            &--youtube {
+                & iframe {
+                    height: 300px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 786px) {
+    .content.page_detail {
+        .content__company {
+            flex-direction: column;
+            align-items: start;
+
+            &--content {
+                margin-left: 0;
+            }
+
+            & .btn--all {
+                width: 100%;
+                margin-top: 1rem;
+            }
+        }
+    }
+}

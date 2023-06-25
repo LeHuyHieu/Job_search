@@ -4,3 +4,37 @@
 .hr {
     background-color: $white;
 }
+.-m {
+    &.-m-5 {
+        margin: 5rem;
+    }
+    &.-mt-5 {
+        margin-top: 5rem;
+    }
+    &.-ml-5 {
+        margin-left: 5rem;
+    }
+    &.-mr-5{
+        margin-right: 5rem;
+    }
+    &.-mb-5 {
+        margin-bottom: 5rem;
+    }
+}
+.-p {
+    &.-p-5 {
+        padding: 5rem;
+    }
+    &.-pt-5 {
+        padding-top: 5rem;
+    }
+    &.-pl-5 {
+        padding-left: 5rem;
+    }
+    &.-pr-5{
+        padding-right: 5rem;
+    }
+    &.-pb-5 {
+        padding-bottom: 5rem;
+    }
+}

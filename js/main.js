@@ -41,6 +41,27 @@ $(document).ready(function () {
     $(".click__item--navbar4").click(function () {
         $(".show_megamenu4, .show_megamenu1").toggleClass("h100");
     });
+
+    $("#wage").click(function () {
+        $(".scroll").toggleClass("h100");
+    });
+
+    $("#slider").slider({
+        min: 15000,
+        max: 75000,
+        step: 1000,
+        values: [15000, 75000],
+        slide: function(event, ui) {
+            for (var i = 0; i < ui.values.length; ++i) {
+                $("input.sliderValue[data-index=" + i + "]").val(ui.values[i]);
+            }
+        }
+    });
+
+    $("input.sliderValue").change(function() {
+        var $this = $(this);
+        $("#slider").slider("values", $this.data("index"), $this.val());
+    });
 });
 
 var typed2 = new Typed('.typed', {
@@ -81,5 +102,4 @@ $('.center').slick({
         }
     ]
 });
-
 

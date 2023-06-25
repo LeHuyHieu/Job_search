@@ -16,7 +16,60 @@
     }
 }
 
+.btn--0 {
+    border: none;
+    outline: none;
+}
+
 .btn--transparent {
-    background-color: transparent;
+    background-color: transparent;   
     padding: .5rem 1rem;
+
+    &.-yellow {
+        background-color: rgba($color: $yellow, $alpha: .1) !important;
+        color: $yellow !important;
+        border: 1px solid $yellow !important;
+    }
+
+    &.-blue {
+        background-color: rgba($color: $blue, $alpha: .1) !important;
+        color: $blue !important;
+        border: 1px solid $blue !important;
+    }
+
+    &.-green {
+        background-color: rgba($color: $green, $alpha: .1) !important;
+        color: $green !important;
+        border: 1px solid $green !important;
+    }
+}
+
+.btn--primary {
+    background-color: $blue-dark;
+    color: $white;
+    padding: 1rem 1.5rem;
+    font-size: 1.2rem;
+    border: none;
+    outline: none;
+    transition: .3s ease;
+
+    &:hover {
+        color: $white;
+        background-color: rgba($color: $blue-dark, $alpha: .8);
+    }
+}
+
+.btn--info {
+    background-color: $info;
+    color: $white;
+    padding: 1rem 1.5rem;
+    font-size: 1.2rem;
+    border: none;
+    outline: none;
+    transition: .3s ease;
+
+    &:hover {
+        color: $white;
+        background-color: rgba($color: $info, $alpha: .8);
+    }
 }

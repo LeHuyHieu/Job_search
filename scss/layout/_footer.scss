@@ -233,3 +233,12 @@
         justify-content: center !important;
     }
 }
+
+@media (max-width: 576px) {
+    .footer__bottom--left {
+        text-align: center;
+    }
+    .footer__bottom--right {
+        text-align: center;
+    }
+}
