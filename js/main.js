@@ -62,6 +62,8 @@ $(document).ready(function () {
         var $this = $(this);
         $("#slider").slider("values", $this.data("index"), $this.val());
     });
+
+    $(".chosen-select").chosen({ allow_single_deselect: true, width: "100%" });
 });
 
 var typed2 = new Typed('.typed', {
@@ -71,8 +73,6 @@ var typed2 = new Typed('.typed', {
     fadeOut: true,
     loop: true
 });
-
-$(".chosen-select").chosen({ allow_single_deselect: true, width: "70%" });
 
 $('.single-item').slick();
 

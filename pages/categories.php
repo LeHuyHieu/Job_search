@@ -140,7 +140,7 @@ require_once('../head.php');
                                 <label for="temporary"><span class="check"></span> Temporary</label>
                             </div>
                         </div>
-                        <div class="mb-5">
+                        <div class="mb-5 search__category--select">
                             <h5 class="text__headline -size-20 -bold-400">Categories</h5>
                             <select class="form-select select__box chosen-select" data-placeholder="Choose a country...">
                                 <option value="0">

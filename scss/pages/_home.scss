@@ -330,6 +330,11 @@
                 color: $dark;
             }
 
+            .jobs__item--icon~p {
+                font-size: 1.4rem;
+                color: $gray;
+            }
+
             &--img {
                 width: 60px;
                 height: 60px;
@@ -601,6 +606,7 @@
             text-decoration: none;
             color: $gray;
             border: 1px solid $light;
+            min-height: 600px;
 
             & .btn--all {
                 width: 100px;

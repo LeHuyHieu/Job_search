@@ -19,7 +19,7 @@
                     <i class="ln ln-icon-Management"></i>
                 </span>
                 <h6 class="bg__icon--text">
-                    1124
+                    <span class='numscroller text-white' data-min='1' data-max='1124' data-delay='5' data-increment='5'>1124</span>
                     <span>
                         Job Listings
                     </span>
@@ -30,7 +30,7 @@
                     <i class="ln ln-icon-Business-Man"></i>
                 </span>
                 <h6 class="bg__icon--text">
-                    421
+                    <span class='numscroller text-white' data-min='1' data-max='421' data-delay='5' data-increment='5'>421</span>
                     <span>
                         Resumes Posted
                     </span>
@@ -191,6 +191,7 @@
 <!-- jquery -->
 <script src="/js/jquery-3.7.0.min.js"></script>
 <script src="/js/code.jquery.com_ui_1.12.1_jquery-ui.js"></script>
+<script src="/js/numscroller-1.0.js"></script>
 <!-- bootstrap 5 -->
 <script src="/js/bootstrap.bundle.min.js"></script>
 <script src="/js/popper.min.js"></script>

@@ -1203,6 +1203,10 @@
   text-decoration: none;
   color: #222;
 }
+.content .jobs .jobs__item .jobs__item--icon ~ p {
+  font-size: 1.4rem;
+  color: #555555;
+}
 .content .jobs .jobs__item--img {
   width: 60px;
   height: 60px;
@@ -1426,6 +1430,7 @@
   text-decoration: none;
   color: #555555;
   border: 1px solid #ebebeb;
+  min-height: 600px;
 }
 .content .our__block--border .btn--all {
   width: 100px;
@@ -1792,6 +1797,37 @@
 .content.categories .categories__list--page .btn--page--active {
   background-color: #26ae61;
   color: #fff;
+}
+.content.categories .categories__list .search__job .search__category .search__category--select .chosen-container-single {
+  border: 1px solid #ebebeb;
+  min-height: 50px;
+  background-color: rgba(235, 235, 235, 0.4);
+  border-radius: 5px;
+}
+.content.categories .categories__list .search__job .search__category .search__category--select .chosen-container-single .chosen-single {
+  font-size: 1.4rem;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+.content.categories .categories__list .search__job .search__category .search__category--select .chosen-container-single .chosen-single div {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 10px;
+}
+.content.categories .categories__list .search__job .search__category .search__category--select .chosen-container-single .chosen-single div b {
+  background-image: none;
+  border: 1px solid #222;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+  width: 7px;
+  height: 7px;
+  transition: 0.3s;
+}
+.content.categories .categories__list .search__job .search__category .search__category--select .chosen-with-drop .chosen-single div b {
+  transform: rotate(224deg);
 }
 
 .pb-7 {
