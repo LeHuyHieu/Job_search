@@ -1,0 +1,179 @@
+.section.section__admin {
+    .job__title {
+        font-size: 4rem;
+        padding-top: 1rem;
+    }
+
+    & .menu__left {
+        width: 0;
+        transition: .3s;
+
+        .menu__admin {
+            list-style: none;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #030b55;
+            height: 100vh;
+            padding: 2rem;
+            border-radius: 0 10px 10px 0;
+            transform: translateX(-100%);
+            transition: .3s ease;
+
+            &--link {
+                padding: 1rem 0;
+                display: inline-block;
+                text-decoration: none;
+                font-size: 1.4rem;
+                color: $light;
+                position: relative;
+                width: 100%;
+                letter-spacing: 1px;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 0;
+                    height: 2px;
+                    background-color: $green;
+                    transition: .3s;
+                }
+
+                &:hover {
+                    color: $white;
+                }
+
+                &:hover::before {
+                    width: 100%;
+                }
+            }
+
+            .close {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                right: -2rem;
+                color: #000;
+                font-size: 2rem;
+            }
+        }
+    }
+
+    & .content__right {
+        width: 100%;
+        transition: .3s;
+        font-size: 1.4rem;
+        margin: 5rem 0;
+
+        &::-webkit-scrollbar {
+            height: 7px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: $light;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $gray-light;
+        }
+
+        .table.table-hover {
+            & th {
+                text-align: center;
+            }
+
+            & tr {
+                .btn--action {
+                    font-size: 1.4rem;
+                }
+            }
+        }
+
+        .form__block {
+            margin-bottom: 5rem;
+
+            .btn--submit {
+                border: 1px solid $gray;
+                font-size: 1.4rem;
+                max-width: 150px;
+                max-height: 45px;
+                padding: 10px 50px;
+                margin: 0 auto;
+                display: block;
+                background-color: $blue-dark;
+                color: $white;
+            }
+
+            .input__box {
+                & input,
+                textarea {
+                    min-height: 50px;
+                    font-size: 1.4rem;
+                }
+
+                .input__box--img {
+                    display: flex;
+                    border: 1px solid $light;
+                    border-radius: .25rem;
+                    align-items: center;
+                    padding: 2rem;
+
+                    & input[type=file] {
+                        display: none;
+                    }
+
+                    & label {
+                        width: 130px;
+                        height: 40px;
+                        margin: 0 5rem 0 0;
+                        background-color: $blue-dark;
+                        color: $white;
+                        font-size: 1.4rem;
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 100rem;
+                    }
+                }
+            }
+
+            .input__box--check {
+                display: flex;
+                align-items: center;
+
+                & span {
+
+                    & label,
+                    input {
+                        cursor: pointer;
+                    }
+                }
+
+                .select__admin~.chosen-container-single {
+                    height: 50px;
+                    width: 300px !important;
+                    margin-left: auto;
+                    display: flex;
+                    align-items: center;
+                    border: 1px solid $gray-light;
+                    border-radius: .25rem;
+                    & .chosen-single {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.w-16 {
+    width: 16.66666667% !important;
+}
+
+.w-83 {
+    width: 83.33333333% !important;
+}

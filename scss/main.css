@@ -747,6 +747,19 @@
   background-color: rgba(51, 188, 243, 0.8);
 }
 
+.btn--admin {
+  font-size: 1.4rem;
+  color: #ebebeb;
+  display: block;
+  max-width: 130px;
+  max-height: 45px;
+  padding: 1rem 3rem;
+}
+
+.btn {
+  font-size: 1.4rem;
+}
+
 .chosen-single {
   border: none !important;
   background-image: none !important;
@@ -1505,6 +1518,153 @@
     margin-bottom: 5rem;
   }
 }
+.section.section__admin .job__title {
+  font-size: 4rem;
+  padding-top: 1rem;
+}
+.section.section__admin .menu__left {
+  width: 0;
+  transition: 0.3s;
+}
+.section.section__admin .menu__left .menu__admin {
+  list-style: none;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #030b55;
+  height: 100vh;
+  padding: 2rem;
+  border-radius: 0 10px 10px 0;
+  transform: translateX(-100%);
+  transition: 0.3s ease;
+}
+.section.section__admin .menu__left .menu__admin--link {
+  padding: 1rem 0;
+  display: inline-block;
+  text-decoration: none;
+  font-size: 1.4rem;
+  color: #ebebeb;
+  position: relative;
+  width: 100%;
+  letter-spacing: 1px;
+}
+.section.section__admin .menu__left .menu__admin--link::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #26ae61;
+  transition: 0.3s;
+}
+.section.section__admin .menu__left .menu__admin--link:hover {
+  color: #fff;
+}
+.section.section__admin .menu__left .menu__admin--link:hover::before {
+  width: 100%;
+}
+.section.section__admin .menu__left .menu__admin .close {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  right: -2rem;
+  color: #000;
+  font-size: 2rem;
+}
+.section.section__admin .content__right {
+  width: 100%;
+  transition: 0.3s;
+  font-size: 1.4rem;
+  margin: 5rem 0;
+}
+.section.section__admin .content__right::-webkit-scrollbar {
+  height: 7px;
+}
+.section.section__admin .content__right::-webkit-scrollbar-track {
+  background: #ebebeb;
+}
+.section.section__admin .content__right::-webkit-scrollbar-thumb {
+  background: #aaaaaa;
+}
+.section.section__admin .content__right .table.table-hover th {
+  text-align: center;
+}
+.section.section__admin .content__right .table.table-hover tr .btn--action {
+  font-size: 1.4rem;
+}
+.section.section__admin .content__right .form__block {
+  margin-bottom: 5rem;
+}
+.section.section__admin .content__right .form__block .btn--submit {
+  border: 1px solid #555555;
+  font-size: 1.4rem;
+  max-width: 150px;
+  max-height: 45px;
+  padding: 10px 50px;
+  margin: 0 auto;
+  display: block;
+  background-color: #3b5998;
+  color: #fff;
+}
+.section.section__admin .content__right .form__block .input__box input,
+.section.section__admin .content__right .form__block .input__box textarea {
+  min-height: 50px;
+  font-size: 1.4rem;
+}
+.section.section__admin .content__right .form__block .input__box .input__box--img {
+  display: flex;
+  border: 1px solid #ebebeb;
+  border-radius: 0.25rem;
+  align-items: center;
+  padding: 2rem;
+}
+.section.section__admin .content__right .form__block .input__box .input__box--img input[type=file] {
+  display: none;
+}
+.section.section__admin .content__right .form__block .input__box .input__box--img label {
+  width: 130px;
+  height: 40px;
+  margin: 0 5rem 0 0;
+  background-color: #3b5998;
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100rem;
+}
+.section.section__admin .content__right .form__block .input__box--check {
+  display: flex;
+  align-items: center;
+}
+.section.section__admin .content__right .form__block .input__box--check span label,
+.section.section__admin .content__right .form__block .input__box--check span input {
+  cursor: pointer;
+}
+.section.section__admin .content__right .form__block .input__box--check .select__admin ~ .chosen-container-single {
+  height: 50px;
+  width: 300px !important;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  border: 1px solid #aaaaaa;
+  border-radius: 0.25rem;
+}
+.section.section__admin .content__right .form__block .input__box--check .select__admin ~ .chosen-container-single .chosen-single {
+  width: 100%;
+}
+
+.w-16 {
+  width: 16.66666667% !important;
+}
+
+.w-83 {
+  width: 83.33333333% !important;
+}
+
 .header .bg-white.navbar {
   border-color: #ebebeb;
   position: relative;

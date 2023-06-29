@@ -50,21 +50,20 @@ require_once('../head.php');
                         Primary Responsibilities:
                     </h4>
                     <ul class="content__description--list">
+                    <?php $content = 'Two-Way Radio and Broadband Wireless Communications Systems, including P25 Land Mobile Radio (LMR) System and 4G LTE systems.
+IP based large scale network deployments, integration, operations and support.
+Voice (including voice messaging), video, and data communications systems, performance capabilities, and evaluative techniques used to determine telephone, video, and data communications service requirements.
+Trends and current developments in the wireless communications field, including methods, procedures, systems, and equipment.
+Rules, codes, regulations, and laws applicable to the wireless telecommunications sector.
+Rate structures and billing procedures of communications common carriers.
+Report preparation.';
+$content = explode(PHP_EOL, $content);
+?>
+                        <?php foreach($content as $li){?>
                         <li class="content__description--item">
-                            Take action to avoid potential hazards and obstructions, such as utility lines, other equipment, other workers, and falling objects.
+                            <?php echo $li;?>
                         </li>
-                        <li class="content__description--item">
-                            Start engines, move throttles, switches, and levers, and depress pedals to operate such stated machines
-                        </li>
-                        <li class="content__description--item">
-                            Align machines with reference stakes and guidelines or ground or position equipment, following hand signals of other workers.
-                        </li>
-                        <li class="content__description--item">
-                            Load and move dirt, rocks, equipment, and materials, using trucks, crawler tractors, shovels, graders, or related equipment.
-                        </li>
-                        <li class="content__description--item">
-                            Coordinate machine actions with other activities, positioning or moving loads in response to hand or audio signals from crew members
-                        </li>
+                        <?php } ?>
                     </ul>
                     <h4 class="content__description--title text__headline -dark -bold-600 -size-14">
                         Requirments:

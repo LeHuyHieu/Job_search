@@ -18,6 +18,8 @@
     <link rel="stylesheet" type="text/css" href="/css/font-awesome_6.4.0_css_all.min.css" />
     <!-- bootstrap5 -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+    <!-- include summernote css -->
+    <link rel="stylesheet" type="text/css" href="/css/cdnjs.cloudflare.com_ajax_libs_summernote_0.8.20_summernote-bs5.min.css" />
     <!-- main css -->
     <link rel="stylesheet" type="text/css" href="/scss/main.css?v=<?php echo time(); ?>" />
 </head>

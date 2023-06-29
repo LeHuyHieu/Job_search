@@ -9,14 +9,15 @@ require_once('../head.php');
 ?>
 
 <?php
-$sql = "SELECT * FROM city";
-$city_table = getData($sql);
+$sql = "SELECT company.name as company_name , jobs.* FROM jobs LEFT JOIN company ON jobs.company_id = company.job_id";
+$jobs = getData($sql);
+// print_r($jobs);die;
 ?>
 
 <body>
     <div class="section section__admin">
-        <h1 class="text-center job__title">Categories Admin</h1>
-        <a href="./city_edit_add.php" class="btn btn-primary btn--admin ms-auto me-5"><i class="fas fa-plus-circle"></i> Add</a>
+        <h1 class="text-center job__title">Job Admin</h1>
+        <a href="./job_add.php" class="btn btn-primary btn--admin ms-auto me-5"><i class="fas fa-plus-circle"></i> Add</a>
         <div class="container">
             <div class="row">
                 <div class="col-4 menu__left">
@@ -33,25 +34,39 @@ $city_table = getData($sql);
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th width="60px">Id</th>
-                                            <th>City Name</th>
-                                            <th width="200px">Action</th>
+                                            <th>Id</th>
+                                            <th>Title</th>
+                                            <th>Company</th>
+                                            <th>Salary from</th>
+                                            <th>Salary to</th>
+                                            <th>Expiration date</th>
+                                            <th>Public</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($city_table as $city) { ?>
+                                        <?php foreach ($jobs as $job) { ?>
                                             <tr>
-                                                <td><?php echo $city['id']; ?></td>
+                                                <td><?php echo $job['id']; ?></td>
+                                                <td><?php echo $job['title']; ?></td>
+                                                <td><?php echo $job['company_name']; ?></td>
+                                                <td><?php echo $job['salary_from']; ?></td>
+                                                <td><?php echo $job['salary_to']; ?></td>
+                                                <td><?php echo $job['expiration_date']; ?></td>
                                                 <td>
                                                     <?php
-                                                    echo $city['city_name'];
+                                                    if ($job['is_public'] == 1) {
+                                                        echo "<button class='btn btn-success'>Còn hạn</button>";
+                                                    } else {
+                                                        echo "<button class='btn btn-danger'>Hết hạn</button>";
+                                                    }
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    <a href="./city_delete.php" class="btn btn--action btn-danger" onclick="confirm('Bạn chắc chắn muốn xóa');">
+                                                    <a href="./job_delete.php" class="btn btn--action btn-danger" onclick="confirm('Bạn chắc chắn muốn xóa');">
                                                         <i class="fa-solid fa-trash"></i> Delete
                                                     </a>
-                                                    <a href="./city_edit_add.php?id=<?php echo $city['id']; ?>" class="btn btn--action btn-primary">
+                                                    <a href="./job_edit.php?id=<?php echo $job['id']; ?>&category_id=<?php echo $job['category_id']; ?>" class="btn btn--action btn-primary">
                                                         <i class="fa-solid fa-file-pen"></i> Edit
                                                     </a>
                                                 </td>

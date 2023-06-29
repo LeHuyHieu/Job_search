@@ -73,3 +73,14 @@
         background-color: rgba($color: $info, $alpha: .8);
     }
 }
+.btn--admin {
+    font-size: 1.4rem;
+    color: $light;
+    display: block;
+    max-width: 130px;
+    max-height: 45px;
+    padding: 1rem 3rem;
+}
+.btn {
+    font-size: 1.4rem;
+}
