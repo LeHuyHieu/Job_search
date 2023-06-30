@@ -1602,11 +1602,17 @@
   font-size: 1.4rem;
   max-width: 150px;
   max-height: 45px;
-  padding: 10px 50px;
+  padding: 10px 30px;
   margin: 0 auto;
-  display: block;
+  display: inline-block;
   background-color: #3b5998;
   color: #fff;
+  width: 100%;
+}
+.section.section__admin .content__right .form__block .flex__grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  gap: 5px;
 }
 .section.section__admin .content__right .form__block .input__box input,
 .section.section__admin .content__right .form__block .input__box textarea {
@@ -1646,7 +1652,7 @@
 }
 .section.section__admin .content__right .form__block .input__box--check .select__admin ~ .chosen-container-single {
   height: 50px;
-  width: 300px !important;
+  width: 25% !important;
   margin-left: auto;
   display: flex;
   align-items: center;
@@ -1655,6 +1661,16 @@
 }
 .section.section__admin .content__right .form__block .input__box--check .select__admin ~ .chosen-container-single .chosen-single {
   width: 100%;
+}
+.section.section__admin .content__right .form__block .input__box--left .chosen-container-single {
+  height: 50px;
+  border-radius: 0.25rem;
+  border: 1px solid #aaaaaa;
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
 }
 
 .w-16 {

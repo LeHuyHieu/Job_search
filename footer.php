@@ -201,6 +201,8 @@
 <!-- chosen -->
 <script src="/js/chosen.jquery.min.js"></script>
 <script src="/js/chosen.proto.min.js"></script>
+<!-- sweetalert2 -->
+<script src="/js/cdnjs.cloudflare.com_ajax_libs_limonte-sweetalert2_11.7.12_sweetalert2.all.min.js"></script>
 <!-- typed js -->
 <script src="/js/cdnjs.cloudflare.com_ajax_libs_typed.js_2.0.10_typed.min.js"></script>
 <!-- scrollreveal js -->

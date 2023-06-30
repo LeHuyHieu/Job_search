@@ -9,9 +9,9 @@ require_once('../head.php');
 ?>
 
 <?php
-$sql = "SELECT company.name as company_name , jobs.* FROM jobs LEFT JOIN company ON jobs.company_id = company.job_id";
+$sql = "SELECT city.city_name, company.name AS company_name ,jobs.* FROM jobs LEFT JOIN company on company.id = jobs.company_id LEFT JOIN city on city.id = jobs.city_id ORDER BY id DESC";
 $jobs = getData($sql);
-// print_r($jobs);die;
+// $jobs2 = getData($sql2);
 ?>
 
 <body>
@@ -34,14 +34,14 @@ $jobs = getData($sql);
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
+                                            <th width="30px">Id</th>
                                             <th>Title</th>
                                             <th>Company</th>
-                                            <th>Salary from</th>
-                                            <th>Salary to</th>
-                                            <th>Expiration date</th>
-                                            <th>Public</th>
-                                            <th>Action</th>
+                                            <th width="100px">Salary from</th>
+                                            <th width="90px">Salary to</th>
+                                            <th>City</th>
+                                            <th width="90px">Public</th>
+                                            <th width="160px">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -50,9 +50,9 @@ $jobs = getData($sql);
                                                 <td><?php echo $job['id']; ?></td>
                                                 <td><?php echo $job['title']; ?></td>
                                                 <td><?php echo $job['company_name']; ?></td>
-                                                <td><?php echo $job['salary_from']; ?></td>
-                                                <td><?php echo $job['salary_to']; ?></td>
-                                                <td><?php echo $job['expiration_date']; ?></td>
+                                                <td>$<?php echo $job['salary_from']; ?></td>
+                                                <td>$<?php echo $job['salary_to']; ?></td>
+                                                <td><?php echo $job['city_name']; ?></td>
                                                 <td>
                                                     <?php
                                                     if ($job['is_public'] == 1) {
@@ -63,10 +63,10 @@ $jobs = getData($sql);
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    <a href="./job_delete.php" class="btn btn--action btn-danger" onclick="confirm('Bạn chắc chắn muốn xóa');">
+                                                    <a href="./job_delete.php?delete_id=<?php echo $job['id']; ?>" class="btn btn--action btn-danger" onclick="if (confirm('Bạn chắc chắc muốn xóa?')){return true;}else{event.stopPropagation(); event.preventDefault();};">
                                                         <i class="fa-solid fa-trash"></i> Delete
                                                     </a>
-                                                    <a href="./job_edit.php?id=<?php echo $job['id']; ?>&category_id=<?php echo $job['category_id']; ?>" class="btn btn--action btn-primary">
+                                                    <a href="./job_edit.php?id=<?php echo $job['id']; ?>&category_id=<?php echo $job['category_id']; ?>&company_id=<?php echo $job['company_id']; ?>&city_id=<?php echo $job['city_id']; ?>" class="btn btn--action btn-primary">
                                                         <i class="fa-solid fa-file-pen"></i> Edit
                                                     </a>
                                                 </td>
@@ -97,6 +97,8 @@ $jobs = getData($sql);
     <!-- chosen -->
     <script src="/js/chosen.jquery.min.js"></script>
     <script src="/js/chosen.proto.min.js"></script>
+    <!-- sweetalert2 -->
+    <script src="/js/cdnjs.cloudflare.com_ajax_libs_limonte-sweetalert2_11.7.12_sweetalert2.all.min.js"></script>
     <!-- typed js -->
     <script src="/js/cdnjs.cloudflare.com_ajax_libs_typed.js_2.0.10_typed.min.js"></script>
     <!-- scrollreveal js -->

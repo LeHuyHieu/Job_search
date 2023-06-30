@@ -47,7 +47,7 @@ require_once('../head.php');
                             $sql = "SELECT * FROM categories";
                             $categories = getData($sql);
                             ?>
-                            <select name="job_category_id" id="" class="chosen-select select__admin">
+                            <select name="job_category_id" id="" class="chosen-select select__admin w-25">
                                 <option value="0">Vui lòng chọn!</option>
                                 <?php foreach ($categories as $category) { ?>
                                     <?php if ($category['parent_id'] != 0) { ?>
@@ -58,13 +58,35 @@ require_once('../head.php');
                                 <?php } ?>
                             </select>
                         </div>
-                        <div class="input__box mb-5">
-                            <label for="" class="form-label">Title</label>
-                            <input type="text" class="form-control" name="title" value="" id="" />
-                        </div>
-                        <div class="input__box mb-5">
-                            <label for="" class="form-label">Company</label>
-                            <input type="text" class="form-control" name="company_id" value="" id="" />
+                        <div class="d-flex mb-5">
+                            <div class="input__box w-50 me-4">
+                                <label for="" class="form-label">Title</label>
+                                <input type="text" class="form-control" name="title" value="" id="" />
+                            </div>
+                            <?php
+                            $sql3 = "SELECT * FROM city";
+                            $city_table = getData($sql3);
+                            ?>
+                            <div class="input__box input__box--left me-4 w-25">
+                                <select name="city_id" class="chosen-select select__admin" id="">
+                                    <option value="0">Vui lòng chọn !</option>
+                                    <?php foreach ($city_table as $city) { ?>
+                                        <option value="<?php echo $city['id']; ?>"><?php echo $city['city_name']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <?php
+                            $sql2 = "SELECT * FROM company";
+                            $company = getData($sql2);
+                            ?>
+                            <div class="input__box input__box--left w-25">
+                                <select name="company_id" class="chosen-select select__admin" id="">
+                                    <option value="0">Vui lòng chọn !</option>
+                                    <?php foreach ($company as $company_item) { ?>
+                                        <option value="<?php echo $company_item['id']; ?>"><?php echo $company_item['name']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
                         </div>
                         <div class="d-flex mb-5">
                             <div class="input__box w-50 me-3">
@@ -96,7 +118,8 @@ require_once('../head.php');
                                 <img id="blah" alt="your image" src="/images/1x1.png" width="100" height="100" />
                             </div>
                         </div>
-                        <button class="btn btn--submit" type="submit">Submit</button>
+                        <button class="btn btn--submit" type="submit"><i class="fas fa-save"></i> Thêm </button>
+                        <button class="btn btn--submit ms-5" onclick="history.back()"><i class="fas fa-reply"></i> Quay lại </button>
                     </form>
                 </div>
             </div>
@@ -118,6 +141,8 @@ require_once('../head.php');
     <!-- chosen -->
     <script src="/js/chosen.jquery.min.js"></script>
     <script src="/js/chosen.proto.min.js"></script>
+    <!-- sweetalert2 -->
+    <script src="/js/cdnjs.cloudflare.com_ajax_libs_limonte-sweetalert2_11.7.12_sweetalert2.all.min.js"></script>
     <!-- typed js -->
     <script src="/js/cdnjs.cloudflare.com_ajax_libs_typed.js_2.0.10_typed.min.js"></script>
     <!-- scrollreveal js -->

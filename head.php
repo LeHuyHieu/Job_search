@@ -14,6 +14,8 @@
     <link rel="stylesheet" type="text/css" href="/css/slick-theme.css" />
     <!-- chosen -->
     <link rel="stylesheet" type="text/css" href="/css/chosen.min.css" />
+    <!-- sweetalert2 -->
+    <link rel="stylesheet" type="text/css" href="/css/cdnjs.cloudflare.com_ajax_libs_limonte-sweetalert2_11.7.12_sweetalert2.min.css">
     <!-- fontawesome -->
     <link rel="stylesheet" type="text/css" href="/css/font-awesome_6.4.0_css_all.min.css" />
     <!-- bootstrap5 -->

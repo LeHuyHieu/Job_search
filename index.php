@@ -1,8 +1,9 @@
+<?php require_once('./lib/connect.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
-<?php 
-require_once ('./head.php');
+<?php
+require_once('./head.php');
 ?>
 
 <body>
@@ -22,7 +23,7 @@ require_once ('./head.php');
                     Hire Experts or be hirded in <span class="typed">sales &
                         marketing</span>
                 </h3>
-                <form action="#" class="row banner__search banner__btn">
+                <form action="#" method="post" class="row banner__search banner__btn">
                     <div class="col-md-4 col-sm-12 col-12 banner__search--box">
                         <button class="banner__btn--item">
                             What job are you looking for?
@@ -40,47 +41,23 @@ require_once ('./head.php');
                             <i class="fas fa-map-marker-alt box__item"></i>
                         </label>
                     </div>
+                    <?php
+                    $sql = "SELECT * FROM categories";
+                    $categories = getData($sql);
+                    ?>
                     <div class="col-md-4 col-sm-12 col-12 banner__search--box">
                         <button class="banner__btn--item">
                             Categories
                         </button>
-                        <select class="form-select select__box chosen-select" name id data-placeholder="Choose a country...">
+                        <select class="form-select select__box chosen-select" name="" id="" data-placeholder="Choose a country...">
                             <option value="0">
                                 All categories
                             </option>
-                            <option value="1">
-                                Accounting / Finance
-                            </option>
-                            <option value="2">
-                                Automotive Jobs
-                            </option>
-                            <option value="3">
-                                Construction / Facilities
-                            </option>
-                            <option value="4">
-                                Automotive Jobs
-                            </option>
-                            <option value="5">
-                                Education Training
-                            </option>
-                            <option value="6">
-                                Healthcare
-                            </option>
-                            <option value="7">
-                                Restaurant / Food Service
-                            </option>
-                            <option value="8">
-                                Sales & Marketing
-                            </option>
-                            <option value="9">
-                                - Market & Customer Research
-                            </option>
-                            <option value="10">
-                                Telecommunications
-                            </option>
-                            <option value="11">
-                                Transportation / Logistics
-                            </option>
+                            <?php
+                            foreach ($categories as $category) {
+                                echo '<option value="' . $category['id'] . '" >' . $category['name'] . '</option>';
+                            }
+                            ?>
                         </select>
                         <button type="submit" class="btn btn--search">
                             <span class="btn__search">Search</span>
@@ -124,8 +101,7 @@ require_once ('./head.php');
                     <a href="#" class="item__flex">
                         <div class="item__flex--left">
                             <i class="ln ln-icon-Worker"></i>
-                            <p class="-dark -size-20">Construction /
-                                Facilities</p>
+                            <p class="-dark -size-20">Construction / Facilities</p>
                         </div>
                         <div class="item__flex--right">
                             <span class="-size-32">3</span>
@@ -136,8 +112,7 @@ require_once ('./head.php');
                     <a href="#" class="item__flex">
                         <div class="item__flex--left">
                             <i class="ln ln-icon-Brush"></i>
-                            <p class="-dark -size-20">Design, Art &
-                                Multimedia</p>
+                            <p class="-dark -size-20">Design, Art & Multimedia</p>
                         </div>
                         <div class="item__flex--right">
                             <span class="-size-32">3</span>
@@ -202,146 +177,52 @@ require_once ('./head.php');
                     <h2 class="pt-5 mt-5 text__headline -bold-400 -dark -size-25 mb-5">
                         Recent Jobs
                     </h2>
-                    <div class="jobs__item">
-                        <a href="#" class="d-flex">
-                            <div class="jobs__item--img">
-                                <img src="./images/company-logo-06-150x150.png" class="w-100" alt>
-                            </div>
-                            <div class="jobs__item--text">
-                                <h6 class="-size-15 -dark">Senior Health and
-                                    Nutrition Advisor</h6>
-                                <ul class="d-flex jobs__item--icon">
-                                    <li class="jobs__itemsub">
-                                        <i class="ln ln-icon-Management"></i>
-                                        Telimed
-                                    </li>
-                                    <li class="jobs__itemsub">
-                                        <i class="ln ln-icon-Map2"></i>
-                                        Paris, France
-                                    </li>
-                                    <li class="jobs__itemsub">
-                                        <i class="ln ln-icon-Money-2"></i>
-                                        $30,000.00 - $35,000.00
-                                    </li>
-                                </ul>
-                            </div>
-                            <button class="btn btn--transparent">
-                                Full time
-                            </button>
-                        </a>
-                    </div>
-                    <div class="jobs__item">
-                        <a href="#" class="d-flex">
-                            <div class="jobs__item--img">
-                                <img src="./images/company-logo-02-1-150x150.png" class="w-100" alt>
-                            </div>
-                            <div class="jobs__item--text">
-                                <h6 class="-size-15 -dark">Senior Health and
-                                    Nutrition Advisor</h6>
-                                <ul class="d-flex jobs__item--icon">
-                                    <li class="jobs__itemsub">
-                                        <i class="ln ln-icon-Management"></i>
-                                        Telimed
-                                    </li>
-                                    <li class="jobs__itemsub">
-                                        <i class="ln ln-icon-Map2"></i>
-                                        Paris, France
-                                    </li>
-                                    <li class="jobs__itemsub">
-                                        <i class="ln ln-icon-Money-2"></i>
-                                        $30,000.00 - $35,000.00
-                                    </li>
-                                </ul>
-                            </div>
-                            <button class="btn btn--transparent">
-                                Full time
-                            </button>
-                        </a>
-                    </div>
-                    <div class="jobs__item">
-                        <a href="#" class="d-flex">
-                            <div class="jobs__item--img">
-                                <img src="./images/placeholder.png" class="w-100" alt>
-                            </div>
-                            <div class="jobs__item--text">
-                                <h6 class="-size-15 -dark">Senior Health and
-                                    Nutrition Advisor</h6>
-                                <ul class="d-flex jobs__item--icon">
-                                    <li class="jobs__itemsub">
-                                        <i class="ln ln-icon-Management"></i>
-                                        Telimed
-                                    </li>
-                                    <li class="jobs__itemsub">
-                                        <i class="ln ln-icon-Map2"></i>
-                                        Paris, France
-                                    </li>
-                                    <li class="jobs__itemsub">
-                                        <i class="ln ln-icon-Money-2"></i>
-                                        $30,000.00 - $35,000.00
-                                    </li>
-                                </ul>
-                            </div>
-                            <button class="btn btn--transparent">
-                                Full time
-                            </button>
-                        </a>
-                    </div>
-                    <div class="jobs__item">
-                        <a href="#" class="d-flex">
-                            <div class="jobs__item--img">
-                                <img src="./images/placeholder.png" class="w-100" alt>
-                            </div>
-                            <div class="jobs__item--text">
-                                <h6 class="-size-15 -dark">Senior Health and
-                                    Nutrition Advisor</h6>
-                                <ul class="d-flex jobs__item--icon">
-                                    <li class="jobs__itemsub">
-                                        <i class="ln ln-icon-Management"></i>
-                                        Telimed
-                                    </li>
-                                    <li class="jobs__itemsub">
-                                        <i class="ln ln-icon-Map2"></i>
-                                        Paris, France
-                                    </li>
-                                    <li class="jobs__itemsub">
-                                        <i class="ln ln-icon-Money-2"></i>
-                                        $30,000.00 - $35,000.00
-                                    </li>
-                                </ul>
-                            </div>
-                            <button class="btn btn--transparent">
-                                Full time
-                            </button>
-                        </a>
-                    </div>
-                    <div class="jobs__item">
-                        <a href="#" class="d-flex">
-                            <div class="jobs__item--img">
-                                <img src="./images/company-logo-01-2-150x150.png" class="w-100" alt>
-                            </div>
-                            <div class="jobs__item--text">
-                                <h6 class="-size-15 -dark">Senior Health and
-                                    Nutrition Advisor</h6>
-                                <ul class="d-flex jobs__item--icon">
-                                    <li class="jobs__itemsub">
-                                        <i class="ln ln-icon-Management"></i>
-                                        Telimed
-                                    </li>
-                                    <li class="jobs__itemsub">
-                                        <i class="ln ln-icon-Map2"></i>
-                                        Paris, France
-                                    </li>
-                                    <li class="jobs__itemsub">
-                                        <i class="ln ln-icon-Money-2"></i>
-                                        $30,000.00 - $35,000.00
-                                    </li>
-                                </ul>
-                            </div>
-                            <button class="btn btn--transparent">
-                                Full time
-                            </button>
-                        </a>
-                    </div>
+                    <?php
+                    $sql2 = "SELECT jobs.*, city.city_name as name_city, company.name as name_company FROM jobs LEFT JOIN city ON city.id = jobs.city_id LEFT JOIN company ON company.id = jobs.company_id LIMIT 5";
+                    $jobs = getData($sql2);
+                    ?>
+                    <?php foreach ($jobs as $job) { ?>
+                        <div class="jobs__item">
+                            <a href="pages/page_detail.php?job_id=<?php echo $job['id']; ?>" class="d-flex">
+                                <div class="jobs__item--img">
+                                    <img src="<?php echo $job['images']; ?>" class="w-100" alt>
+                                </div>
+                                <div class="jobs__item--text">
+                                    <h6 class="-size-15 -dark"><?php echo $job['title']; ?></h6>
+                                    <ul class="d-flex jobs__item--icon">
+                                        <li class="jobs__itemsub">
+                                            <i class="ln ln-icon-Management"></i>  <?php echo $job['name_company']; ?>
+                                        </li>
+                                        <li class="jobs__itemsub">
+                                            <i class="ln ln-icon-Map2"></i> <?php echo $job['name_city']; ?>
+                                        </li>
+                                        <li class="jobs__itemsub">
+                                            <i class="ln ln-icon-Money-2"></i> $<?php echo number_format($job['salary_from']); ?> - $<?php echo number_format($job['salary_to']); ?>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <button class="btn btn--transparent">
+                                    <?php
+                                    if ($job['full_time'] == 1) {
+                                        echo "Full Time";
+                                    }
+                                    if ($job['internship'] == 1) {
+                                        echo "Internship";
+                                    }
+                                    if ($job['temporary'] == 1) {
+                                        echo "Temporary";
+                                    }
+                                    if ($job['freelance'] == 1) {
+                                        echo "Freelance";
+                                    }
+                                    if ($job['part_time'] == 1) {
+                                        echo "Part time";
+                                    }
+                                    ?>
+                                </button>
+                            </a>
+                        </div>
+                    <?php } ?>
                     <a href="#" class="btn btn--all"><i class="fas fa-plus-circle pe-2"></i> Browse Jobs</a>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12 col-12 slider">
@@ -349,114 +230,54 @@ require_once ('./head.php');
                         Featured Jobs
                     </h2>
                     <div class="single-item jobs" data-slick='{"slidesToShow": 1, "slidesToScroll": 1}'>
-                        <div class="jobs__item">
-                            <a href="#" class="d-flex flex-column">
-                                <div class="w-100 jobs__item--text">
-                                    <h6 class="-size-15 -dark">
-                                        Senior Health and Nutrition Advisor
-                                        <button class="btn btn--transparent">
-                                            Full time
-                                        </button>
-                                    </h6>
-                                    <ul class="d-flex mb-4 flex-column align-items-start jobs__item--icon">
-                                        <li class="jobs__itemsub">
-                                            <i class="ln ln-icon-Management"></i>
-                                            Telimed
-                                        </li>
-                                        <li class="jobs__itemsub">
-                                            <i class="ln ln-icon-Map2"></i>
-                                            Paris, France
-                                        </li>
-                                        <li class="jobs__itemsub">
-                                            <i class="ln ln-icon-Money-2"></i>
-                                            $30,000.00 - $35,000.00
-                                        </li>
-                                    </ul>
-                                    <p>
-                                        The Social Media &amp; PR Executive
-                                        will be responsible
-                                        for increasing hotel marketing
-                                        communication across a
-                                        variety of social media
-                                    </p>
-                                </div>
-                                <button class="btn--all">
-                                    Apply For This Job
-                                </button>
-                            </a>
-                        </div>
-                        <div class="jobs__item">
-                            <a href="#" class="d-flex flex-column">
-                                <div class="w-100 jobs__item--text">
-                                    <h6 class="-size-15 -dark">
-                                        Senior Health and Nutrition Advisor
-                                        <button class="btn btn--transparent">
-                                            Full time
-                                        </button>
-                                    </h6>
-                                    <ul class="d-flex mb-4 flex-column align-items-start jobs__item--icon">
-                                        <li class="jobs__itemsub">
-                                            <i class="ln ln-icon-Management"></i>
-                                            Telimed
-                                        </li>
-                                        <li class="jobs__itemsub">
-                                            <i class="ln ln-icon-Map2"></i>
-                                            Paris, France
-                                        </li>
-                                        <li class="jobs__itemsub">
-                                            <i class="ln ln-icon-Money-2"></i>
-                                            $30,000.00 - $35,000.00
-                                        </li>
-                                    </ul>
-                                    <p>
-                                        The Social Media &amp; PR Executive
-                                        will be responsible
-                                        for increasing hotel marketing
-                                        communication across a
-                                        variety of social media
-                                    </p>
-                                </div>
-                                <button class="btn--all">
-                                    Apply For This Job
-                                </button>
-                            </a>
-                        </div>
-                        <div class="jobs__item">
-                            <a href="#" class="d-flex flex-column">
-                                <div class="w-100 jobs__item--text">
-                                    <h6 class="-size-15 -dark">
-                                        Senior Health and Nutrition Advisor
-                                        <button class="btn btn--transparent">
-                                            Full time
-                                        </button>
-                                    </h6>
-                                    <ul class="d-flex mb-4 flex-column align-items-start jobs__item--icon">
-                                        <li class="jobs__itemsub">
-                                            <i class="ln ln-icon-Management"></i>
-                                            Telimed
-                                        </li>
-                                        <li class="jobs__itemsub">
-                                            <i class="ln ln-icon-Map2"></i>
-                                            Paris, France
-                                        </li>
-                                        <li class="jobs__itemsub">
-                                            <i class="ln ln-icon-Money-2"></i>
-                                            $30,000.00 - $35,000.00
-                                        </li>
-                                    </ul>
-                                    <p>
-                                        The Social Media &amp; PR Executive
-                                        will be responsible
-                                        for increasing hotel marketing
-                                        communication across a
-                                        variety of social media
-                                    </p>
-                                </div>
-                                <button class="btn--all">
-                                    Apply For This Job
-                                </button>
-                            </a>
-                        </div>
+                        <?php foreach ($jobs as $job) { ?>
+                            <div class="jobs__item">
+                                <a href="pages/page_detail.php?job_id=<?php echo $job['id']; ?>" class="d-flex flex-column">
+                                    <div class="w-100 jobs__item--text">
+                                        <h6 class="-size-15 -dark">
+                                            <?php echo $job['title']; ?>
+                                            <button class="btn btn--transparent">
+                                                <?php
+                                                if ($job['full_time'] == 1) {
+                                                    echo "Full Time";
+                                                }
+                                                if ($job['internship'] == 1) {
+                                                    echo "Internship";
+                                                }
+                                                if ($job['temporary'] == 1) {
+                                                    echo "Temporary";
+                                                }
+                                                if ($job['freelance'] == 1) {
+                                                    echo "Freelance";
+                                                }
+                                                if ($job['part_time'] == 1) {
+                                                    echo "Part time";
+                                                }
+                                                ?>
+                                            </button>
+                                        </h6>
+                                        <ul class="d-flex mb-4 flex-column align-items-start jobs__item--icon">
+                                            <li class="jobs__itemsub">
+                                                <i class="ln ln-icon-Management"></i> <?php echo $job['name_city']; ?>
+                                            </li>
+                                            <li class="jobs__itemsub">
+                                                <i class="ln ln-icon-Map2"></i> <?php echo $job['name_company']; ?>
+                                            </li>
+                                            <li class="jobs__itemsub">
+                                                <i class="ln ln-icon-Money-2"></i> $<?php echo number_format($job['salary_from']); ?> - $<?php echo number_format($job['salary_to']); ?>
+                                            </li>
+                                        </ul>
+                                        <p><?php
+                                            $substr = $job['description'];
+                                            echo substr($substr, 0, 130);
+                                            ?></p>
+                                    </div>
+                                    <button class="btn--all">
+                                        Apply For This Job
+                                    </button>
+                                </a>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

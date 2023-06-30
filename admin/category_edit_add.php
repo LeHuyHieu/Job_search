@@ -66,7 +66,8 @@ if (isset($_GET['id'])) {
                                 <input type="text" class="form-control" name="name_category" value="" id="" />
                             <?php } ?>
                         </div>
-                        <button class="btn btn--submit" type="submit">Submit</button>
+                        <button class="btn btn--submit" type="submit"><i class="fas fa-save"></i> Lưu</button>
+                        <button class="btn btn--submit ms-5" onclick="history.back()"><i class="fas fa-reply"></i> Quay lại </button>
                     </form>
                 </div>
             </div>
@@ -88,6 +89,8 @@ if (isset($_GET['id'])) {
     <!-- chosen -->
     <script src="/js/chosen.jquery.min.js"></script>
     <script src="/js/chosen.proto.min.js"></script>
+    <!-- sweetalert2 -->
+    <script src="/js/cdnjs.cloudflare.com_ajax_libs_limonte-sweetalert2_11.7.12_sweetalert2.all.min.js"></script>
     <!-- typed js -->
     <script src="/js/cdnjs.cloudflare.com_ajax_libs_typed.js_2.0.10_typed.min.js"></script>
     <!-- scrollreveal js -->

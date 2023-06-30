@@ -10,6 +10,8 @@ require_once('../head.php');
 
 <?php
 $get_id = $_GET['id'];
+$get_city_id = $_GET['city_id'];
+$company_id = $_GET['company_id'];
 $get_category_id = $_GET['category_id'];
 $sql = "SELECT * FROM jobs WHERE id = $get_id";
 $jobs = getData($sql);
@@ -86,9 +88,35 @@ $jobs = getData($sql);
                             </select>
                         </div>
                         <?php foreach ($jobs as $job) { ?>
-                            <div class="input__box mb-5">
-                                <label for="" class="form-label">Title</label>
-                                <input type="text" class="form-control" name="title" value="<?php echo $job['title']; ?>" id="" />
+                            <div class="d-flex">
+                                <div class="input__box w-50 me-4 mb-5">
+                                    <label for="" class="form-label">Title</label>
+                                    <input type="text" class="form-control" name="title" value="<?php echo $job['title']; ?>" id="" />
+                                </div>
+                                <?php
+                                $sql3 = "SELECT * FROM city";
+                                $city_table = getData($sql3);
+                                ?>
+                                <div class="input__box input__box--left me-4 w-25">
+                                    <select name="city_id" class="chosen-select select__admin" id="">
+                                        <option value="0">Vui lòng chọn !</option>
+                                        <?php foreach ($city_table as $city) { ?>
+                                            <option value="<?php echo $city['id']; ?>" <?php if(isset($_GET['company_id']) && $get_city_id == $city['id']){ echo "selected"; } ?> ><?php echo $city['city_name']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <?php
+                                $sql2 = "SELECT * FROM company";
+                                $company = getData($sql2);
+                                ?>
+                                <div class="input__box input__box--left w-25">
+                                    <select name="company_id" class="chosen-select select__admin" id="">
+                                        <option value="0">Vui lòng chọn !</option>
+                                        <?php foreach ($company as $company_item) { ?>
+                                            <option value="<?php echo $company_item['id']; ?>" <?php if(isset($_GET['company_id']) && $company_id == $company_item['id']){ echo "selected"; } ?> ><?php echo $company_item['name']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
                             </div>
                             <div class="d-flex mb-5">
                                 <div class="input__box w-50 me-3">
@@ -121,7 +149,8 @@ $jobs = getData($sql);
                                 </div>
                             </div>
                         <?php } ?>
-                        <button class="btn btn--submit" type="submit">Submit</button>
+                        <button class="btn btn--submit" type="submit"><i class="fas fa-save"></i> Lưu</button>
+                        <button class="btn btn--submit ms-5" onclick="history.back()"><i class="fas fa-reply"></i> Quay lại </button>
                     </form>
                 </div>
             </div>
@@ -143,6 +172,8 @@ $jobs = getData($sql);
     <!-- chosen -->
     <script src="/js/chosen.jquery.min.js"></script>
     <script src="/js/chosen.proto.min.js"></script>
+    <!-- sweetalert2 -->
+    <script src="/js/cdnjs.cloudflare.com_ajax_libs_limonte-sweetalert2_11.7.12_sweetalert2.all.min.js"></script>
     <!-- typed js -->
     <script src="/js/cdnjs.cloudflare.com_ajax_libs_typed.js_2.0.10_typed.min.js"></script>
     <!-- scrollreveal js -->

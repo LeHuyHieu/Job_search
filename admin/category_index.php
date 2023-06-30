@@ -9,7 +9,7 @@ require_once('../head.php');
 ?>
 
 <?php
-$sql = "SELECT * FROM categories";
+$sql = "SELECT * FROM categories ORDER BY id DESC";
 $categories = getData($sql);
 ?>
 
@@ -60,7 +60,7 @@ $categories = getData($sql);
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    <a href="./category_delete.php" class="btn btn--action btn-danger" onclick="confirm('Bạn chắc chắn muốn xóa');">
+                                                    <a href="./category_delete.php?delete_id=<?php echo $category['id']; ?>" class="btn btn--action btn-danger" onclick="if (confirm('Bạn chắc chắc muốn xóa?')){return true;}else{event.stopPropagation(); event.preventDefault();};">
                                                         <i class="fa-solid fa-trash"></i> Delete
                                                     </a>
                                                     <a href="./category_edit_add.php?id=<?php echo $category['id']; ?>&category_id=<?php echo $category['parent_id']; ?>" class="btn btn--action btn-primary">

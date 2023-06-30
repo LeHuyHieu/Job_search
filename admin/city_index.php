@@ -9,13 +9,13 @@ require_once('../head.php');
 ?>
 
 <?php
-$sql = "SELECT * FROM city";
+$sql = "SELECT * FROM city ORDER BY id DESC";
 $city_table = getData($sql);
 ?>
 
 <body>
     <div class="section section__admin">
-        <h1 class="text-center job__title">Categories Admin</h1>
+        <h1 class="text-center job__title">City Admin</h1>
         <a href="./city_edit_add.php" class="btn btn-primary btn--admin ms-auto me-5"><i class="fas fa-plus-circle"></i> Add</a>
         <div class="container">
             <div class="row">
@@ -48,7 +48,7 @@ $city_table = getData($sql);
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    <a href="./city_delete.php" class="btn btn--action btn-danger" onclick="confirm('Bạn chắc chắn muốn xóa');">
+                                                    <a href="./city_delete.php" class="btn btn--action btn-danger" onclick="if (confirm('Bạn chắc chắc muốn xóa?')){return true;}else{event.stopPropagation(); event.preventDefault();};">
                                                         <i class="fa-solid fa-trash"></i> Delete
                                                     </a>
                                                     <a href="./city_edit_add.php?id=<?php echo $city['id']; ?>" class="btn btn--action btn-primary">
@@ -82,6 +82,8 @@ $city_table = getData($sql);
     <!-- chosen -->
     <script src="/js/chosen.jquery.min.js"></script>
     <script src="/js/chosen.proto.min.js"></script>
+    <!-- sweetalert2 -->
+    <script src="/js/cdnjs.cloudflare.com_ajax_libs_limonte-sweetalert2_11.7.12_sweetalert2.all.min.js"></script>
     <!-- typed js -->
     <script src="/js/cdnjs.cloudflare.com_ajax_libs_typed.js_2.0.10_typed.min.js"></script>
     <!-- scrollreveal js -->

@@ -7,6 +7,8 @@ $salary_to = $_POST['salary_to'];
 $expiration_date = $_POST['expiration_date'];
 $description = addslashes($_POST['description']);
 $content = addslashes($_POST['content']);
+$company_id = $_POST['company_id'];
+$city_id = $_POST['city_id'];
 $target_dir = "/images/";
 $full_time = 0;
 $internship = 0;
@@ -14,6 +16,7 @@ $temporary = 0;
 $freelance = 0;
 $part_time = 0;
 $is_public = 0;
+// print_r($_POST['company_id']);die;
 if (isset($_POST['full_time']) && $_POST['full_time'] == 1) {
     $full_time = 1;
 }
@@ -46,13 +49,13 @@ if(isset($_FILES['images']["tmp_name"]) && $_FILES['images']["tmp_name"]) {
 if(isset($_POST['id'])) {
     $id = $_POST['id'];
     if (strlen($images)) {
-        $sql = "UPDATE jobs set title = '$title', salary_to = '$salary_to',salary_from = '$salary_from', expiration_date = '$expiration_date', description = '$description', content = '$content', images = '$images', full_time = '$full_time', internship = '$internship', temporary = '$temporary', freelance = '$freelance', part_time = '$part_time', is_public = '$is_public', category_id = '$job_category_id' where id = $id";
+        $sql = "UPDATE jobs set title = '$title', company_id = '$company_id', salary_to = '$salary_to',salary_from = '$salary_from', expiration_date = '$expiration_date', description = '$description', content = '$content', images = '$images', full_time = '$full_time', internship = '$internship', temporary = '$temporary', freelance = '$freelance', part_time = '$part_time', is_public = '$is_public', category_id = '$job_category_id', city_id = '$city_id' where id = $id";
     } else {
-        $sql = "UPDATE jobs set title = '$title', salary_to = '$salary_to',salary_from = '$salary_from', expiration_date = '$expiration_date', description = '$description', content = '$content', full_time = '$full_time', internship = '$internship', temporary = '$temporary', freelance = '$freelance', part_time = '$part_time', is_public = '$is_public', category_id = '$job_category_id' where id = $id";
+        $sql = "UPDATE jobs set title = '$title', company_id = '$company_id', salary_to = '$salary_to',salary_from = '$salary_from', expiration_date = '$expiration_date', description = '$description', content = '$content', full_time = '$full_time', internship = '$internship', temporary = '$temporary', freelance = '$freelance', part_time = '$part_time', is_public = '$is_public', category_id = '$job_category_id', city_id = '$city_id' where id = $id";
     }
     // echo $sql;die;
 }else {
-    $sql = "INSERT into jobs (title, salary_to, salary_from, expiration_date, description, content, images, full_time, internship, temporary, freelance, part_time, is_public, category_id, created_at, updated_at) values ('$title', '$salary_to', '$salary_from', '$expiration_date', '$description', '$content',  '$images','$full_time','$internship', '$temporary','$freelance', '$part_time', '$is_public', '$job_category_id', NOW(), NOW())";
+    $sql = "INSERT into jobs (title, company_id, city_id, salary_to, salary_from, expiration_date, description, content, images, full_time, internship, temporary, freelance, part_time, is_public, category_id, created_at, updated_at) values ('$title', '$company_id', '$city_id', '$salary_to', '$salary_from', '$expiration_date', '$description', '$content',  '$images','$full_time','$internship', '$temporary','$freelance', '$part_time', '$is_public', '$job_category_id', NOW(), NOW())";
 }
 // print_r($_POST['job_category_id']);die;
 

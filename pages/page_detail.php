@@ -1,3 +1,6 @@
+<?php
+require_once('../lib/connect.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,15 +16,44 @@ require_once('../head.php');
     <!-- end header -->
 
     <!-- section -->
+    <?php
+    $job_id = $_GET['job_id'];
+    $sql = "SELECT jobs.*, city.city_name as location, company.name as company_name, categories.name AS category_name FROM jobs LEFT JOIN city ON city.id = jobs.city_id LEFT JOIN company ON company.id = jobs.company_id LEFT JOIN categories ON categories.parent_id = jobs.category_id where jobs.id='$job_id'";
+    $job = getData($sql);
+    $job_detail = $job[0];
+    $sql2 = "SELECT * FROM company where id = '$job_id'";
+    $company = getData($sql2);
+    // print_r($company_detail);die;
+    // print_r($job_detail);die;
+    ?>
     <section class="content page_detail">
         <div class="container">
             <div class="content__flex">
                 <div class="content__title">
                     <a href="javascript:void(0);" class="content__title--link">
-                        Construction / Facilities
+                        <?php echo $job_detail['category_name']; ?>
                     </a>
                     <h4 class="content__title--title">
-                        Grader Operator <span>Internship</span>
+                        <?php echo $job_detail['title']; ?>
+                        <span>
+                            <?php
+                            if ($job_detail['full_time'] == 1) {
+                                echo "Full Time";
+                            }
+                            if ($job_detail['internship'] == 1) {
+                                echo "Internship";
+                            }
+                            if ($job_detail['temporary'] == 1) {
+                                echo "Temporary";
+                            }
+                            if ($job_detail['freelance'] == 1) {
+                                echo "Freelance";
+                            }
+                            if ($job_detail['part_time'] == 1) {
+                                echo "Part Time";
+                            }
+                            ?>
+                        </span>
                     </h4>
                 </div>
                 <a href="#" class="content__bookmark">
@@ -30,13 +62,15 @@ require_once('../head.php');
             </div>
             <div class="content__company bg-white">
                 <div class="content__company--logo">
-                    <img src="/images/placeholder.png" alt="" class="w-100">
+                    <img src="<?php echo $job_detail['images']; ?>" alt="" class="w-100">
                 </div>
                 <div class="content__company--content">
-                    <a href="#" class="content__company--title">Moore & Kavinsky</a>
+                    <a href="#" class="content__company--title"><?php echo $job_detail['company_name'] ?></a>
                     <div class="content__company--flex">
-                        <a href="#" class="content__company--website"><i class="fas fa-link"></i> Website</a>
-                        <a href="#" class="content__company--email"><i class="fas fa-envelope"></i> text@example.com</a>
+                        <?php foreach ($company as $company_detail) { ?>
+                            <a href="<?php echo $company_detail['contact_web']; ?>" target="_blank" class="content__company--website"><i class="fas fa-link"></i> Website</a>
+                            <a href="javascript:void(0);" class="content__company--email"><i class="fas fa-envelope"></i> <?php echo $company_detail['contact_email']; ?></a>
+                        <?php } ?>
                     </div>
                     <a href="#" class="content__company--login">
                         <i class="fas fa-envelope"></i> Login to Send Message
@@ -50,51 +84,39 @@ require_once('../head.php');
                         Primary Responsibilities:
                     </h4>
                     <ul class="content__description--list">
-                    <?php $content = 'Two-Way Radio and Broadband Wireless Communications Systems, including P25 Land Mobile Radio (LMR) System and 4G LTE systems.
-IP based large scale network deployments, integration, operations and support.
-Voice (including voice messaging), video, and data communications systems, performance capabilities, and evaluative techniques used to determine telephone, video, and data communications service requirements.
-Trends and current developments in the wireless communications field, including methods, procedures, systems, and equipment.
-Rules, codes, regulations, and laws applicable to the wireless telecommunications sector.
-Rate structures and billing procedures of communications common carriers.
-Report preparation.';
-$content = explode(PHP_EOL, $content);
-?>
-                        <?php foreach($content as $li){?>
-                        <li class="content__description--item">
-                            <?php echo $li;?>
-                        </li>
+                        <?php
+                        $content = $job_detail['description'];
+                        $content = explode(PHP_EOL, $content);
+                        ?>
+                        <?php foreach ($content as $li) { ?>
+                            <li class="content__description--item">
+                                <?php echo $li; ?>
+                            </li>
                         <?php } ?>
                     </ul>
                     <h4 class="content__description--title text__headline -dark -bold-600 -size-14">
                         Requirments:
                     </h4>
                     <ul class="content__description--list">
-                        <li class="content__description--item">
-                            Must have minimum of 3 years experience running, maneuvering, driving, and navigating equipment such as bulldozer, excavators, rollers, and front-end loaders.
-                        </li>
-                        <li class="content__description--item">
-                            Strongly prefer candidates with High School Diploma
-                        </li>
-                        <li class="content__description--item">
-                            Must be able to communicate with others to convey information effectively.
-                        </li>
-                        <li class="content__description--item">
-                            Must be accustomed to working outdoors with exposure to all weather conditions
-                        </li>
-                        <li class="content__description--item">
-                            Must be able to perform physical activities that require considerable use of your arms and legs and moving your whole body, such as climbing, lifting, balancing, walking, stooping, and handling of materials
-                        </li>
-                        <li class="content__description--item">
-                            Must be knowledgeable of safety procedures and practices
-                        </li>
+                        <?php
+                        $content = $job_detail['content'];
+                        $content = explode(PHP_EOL, $content);
+                        ?>
+                        <?php foreach ($content as $li) { ?>
+                            <li class="content__description--item">
+                                <?php echo $li; ?>
+                            </li>
+                        <?php } ?>
                     </ul>
                     <div class="content__description--flex -m -mb-5">
-                        <a href="#" class="btn btn--primary">
-                            <i class="fab fa-facebook-f"></i> Facebook
-                        </a>
-                        <a href="#" class="btn btn--info ms-2">
-                            <i class="fab fa-twitter"></i> Twitter
-                        </a>
+                        <?php foreach ($company as $company_detail) { ?>
+                            <a href="<?php echo $company_detail['contact_fb']; ?>" target="_blank" class="btn btn--primary">
+                                <i class="fab fa-facebook-f"></i> Facebook
+                            </a>
+                            <a href="<?php echo $company_detail['contact_tw']; ?>" target="_blank" class="btn btn--info ms-2">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </a>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-5 col-sm-12 col-12 content__description--right">
@@ -111,7 +133,7 @@ $content = explode(PHP_EOL, $content);
                                     Date Posted:
                                 </h6>
                                 <p class="content__description--item--txt">
-                                    Posted 4 years ago
+                                    <?php echo date("m.d.Y", strtotime($job_detail['created_at'])); ?>
                                 </p>
                             </div>
                         </li>
@@ -121,10 +143,10 @@ $content = explode(PHP_EOL, $content);
                             </span>
                             <div class="content__description--text">
                                 <h6 class="content__description--item--title">
-                                    Date Posted:
+                                    Expiration date:
                                 </h6>
                                 <p class="content__description--item--txt">
-                                    Posted 4 years ago
+                                    <?php echo date("M d,Y", strtotime($job_detail['expiration_date'])); ?>
                                 </p>
                             </div>
                         </li>
@@ -134,10 +156,10 @@ $content = explode(PHP_EOL, $content);
                             </span>
                             <div class="content__description--text">
                                 <h6 class="content__description--item--title">
-                                    Date Posted:
+                                    Location:
                                 </h6>
                                 <p class="content__description--item--txt">
-                                    Posted 4 years ago
+                                    <?php echo $job_detail['location']; ?>
                                 </p>
                             </div>
                         </li>
@@ -147,10 +169,10 @@ $content = explode(PHP_EOL, $content);
                             </span>
                             <div class="content__description--text">
                                 <h6 class="content__description--item--title">
-                                    Date Posted:
+                                    Jobs Title:
                                 </h6>
                                 <p class="content__description--item--txt">
-                                    Posted 4 years ago
+                                    <?php echo $job_detail['title']; ?>
                                 </p>
                             </div>
                         </li>
@@ -160,36 +182,10 @@ $content = explode(PHP_EOL, $content);
                             </span>
                             <div class="content__description--text">
                                 <h6 class="content__description--item--title">
-                                    Date Posted:
+                                    Salary:
                                 </h6>
                                 <p class="content__description--item--txt">
-                                    Posted 4 years ago
-                                </p>
-                            </div>
-                        </li>
-                        <li class="content__description--item--flex">
-                            <span class="content__description--icon">
-                                <i class="fa fa-money"></i>
-                            </span>
-                            <div class="content__description--text">
-                                <h6 class="content__description--item--title">
-                                    Date Posted:
-                                </h6>
-                                <p class="content__description--item--txt">
-                                    Posted 4 years ago
-                                </p>
-                            </div>
-                        </li>
-                        <li class="content__description--item--flex">
-                            <span class="content__description--icon">
-                                <i class="fa fa-money"></i>
-                            </span>
-                            <div class="content__description--text">
-                                <h6 class="content__description--item--title">
-                                    Date Posted:
-                                </h6>
-                                <p class="content__description--item--txt">
-                                    Posted 4 years ago
+                                    $<?php echo number_format($job_detail['salary_from']); ?> - $<?php echo number_format($job_detail['salary_to']); ?>
                                 </p>
                             </div>
                         </li>
@@ -201,45 +197,65 @@ $content = explode(PHP_EOL, $content);
             <h4 class="content__description--title text__headline -dark -bold-400 -size-25">
                 Related Jobs
             </h4>
+            <?php
+            $sql3 = "SELECT * FROM jobs WHERE jobs.id <> '$job_id' AND jobs.category_id = '$job_id' LIMIT 6";
+            $job_relateds = getData($sql3);
+            // print_r($sql3);die;
+            ?>
             <div class="row content__description--flex jobs -m -mb-5">
-                <?php for($i = 1;$i <= 6; $i++){?>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-12 jobs__item">
-                    <a href="#" class="d-flex flex-column">
-                        <div class="w-100 jobs__item--text">
-                            <h6 class="-size-15 -dark">
-                                Senior Health and Nutrition Advisor
-                                <button class="btn btn--transparent">
-                                    Full time
-                                </button>
-                            </h6>
-                            <ul class="d-flex mb-4 flex-column align-items-start jobs__item--icon">
-                                <li class="jobs__itemsub">
-                                    <i class="ln ln-icon-Management"></i>
-                                    Telimed
-                                </li>
-                                <li class="jobs__itemsub">
-                                    <i class="ln ln-icon-Map2"></i>
-                                    Paris, France
-                                </li>
-                                <li class="jobs__itemsub">
-                                    <i class="ln ln-icon-Money-2"></i>
-                                    $30,000.00 - $35,000.00
-                                </li>
-                            </ul>
-                            <p>
-                                The Social Media &amp; PR Executive
-                                will be responsible
-                                for increasing hotel marketing
-                                communication across a
-                                variety of social media
-                            </p>
-                        </div>
-                        <button class="btn--0 btn--all">
-                            Apply For This Job
-                        </button>
-                    </a>
-                </div>
-                <?php }?>    
+                <?php foreach ($job_relateds as $job_related) { ?>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-12 jobs__item">
+                        <a href="#" class="d-flex flex-column">
+                            <div class="w-100 jobs__item--text">
+                                <h6 class="-size-15 -dark">
+                                    <?php echo $job_related['title']; ?>
+                                    <button class="btn btn--transparent">
+                                        <?php
+                                        if ($job_detail['full_time'] == 1) {
+                                            echo "Full Time";
+                                        }
+                                        if ($job_detail['internship'] == 1) {
+                                            echo "Internship";
+                                        }
+                                        if ($job_detail['temporary'] == 1) {
+                                            echo "Temporary";
+                                        }
+                                        if ($job_detail['freelance'] == 1) {
+                                            echo "Freelance";
+                                        }
+                                        if ($job_detail['part_time'] == 1) {
+                                            echo "Part Time";
+                                        }
+                                        ?>
+                                    </button>
+                                </h6>
+                                <ul class="d-flex mb-4 flex-column align-items-start jobs__item--icon">
+                                    <li class="jobs__itemsub">
+                                        <i class="ln ln-icon-Management"></i>
+                                        <?php echo $job_detail['company_name']; ?>
+                                    </li>
+                                    <li class="jobs__itemsub">
+                                        <i class="ln ln-icon-Map2"></i>
+                                        <?php echo $job_detail['location'] ?>
+                                    </li>
+                                    <li class="jobs__itemsub">
+                                        <i class="ln ln-icon-Money-2"></i>
+                                        $<?php echo number_format($job_related['salary_from']); ?> - $<?php echo number_format($job_related['salary_to']); ?>
+                                    </li>
+                                </ul>
+                                <p>
+                                    <?php
+                                    $substr = $job_detail['description'];
+                                    echo substr($substr, 0, 130);
+                                    ?>
+                                </p>
+                            </div>
+                            <button class="btn--0 btn--all">
+                                Apply For This Job
+                            </button>
+                        </a>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </section>

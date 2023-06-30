@@ -96,17 +96,22 @@
             margin-bottom: 5rem;
 
             .btn--submit {
-                border: 1px solid $gray;
+                border: 1px solid #555555;
                 font-size: 1.4rem;
                 max-width: 150px;
                 max-height: 45px;
-                padding: 10px 50px;
+                padding: 10px 30px;
                 margin: 0 auto;
-                display: block;
-                background-color: $blue-dark;
-                color: $white;
+                display: inline-block;
+                background-color: #3b5998;
+                color: #fff;
+                width: 100%;
             }
-
+            .flex__grid {
+                display: grid;
+                grid-template-columns: auto auto auto auto auto;
+                gap: 5px;
+            }
             .input__box {
                 & input,
                 textarea {
@@ -155,7 +160,7 @@
 
                 .select__admin~.chosen-container-single {
                     height: 50px;
-                    width: 300px !important;
+                    width: 25% !important;
                     margin-left: auto;
                     display: flex;
                     align-items: center;
@@ -164,6 +169,15 @@
                     & .chosen-single {
                         width: 100%;
                     }
+                }
+            }
+            .input__box--left {
+                .chosen-container-single {
+                    height: 50px;
+                    border-radius: .25rem;
+                    border: 1px solid $gray-light;
+                    margin-top: 2.5rem;
+                    @include flex-l(row);
                 }
             }
         }
