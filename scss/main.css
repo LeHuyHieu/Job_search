@@ -2006,6 +2006,50 @@
   transform: rotate(224deg);
 }
 
+.border--item {
+  border: 1px solid #aaaaaa !important;
+  border-radius: 6px;
+  height: 100%;
+}
+
+.chosen-container-single {
+  height: 100%;
+}
+.chosen-container-single .chosen-single {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.chosen-container-single .chosen-single div {
+  height: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.grid__find--job {
+  grid-template-columns: 20% 25% auto;
+  -moz-column-gap: 5rem;
+       column-gap: 5rem;
+}
+.grid__find--job .mb-5 {
+  position: relative;
+}
+.grid__find--job .mb-5 .job__type--click,
+.grid__find--job .mb-5 .job__type--click2 {
+  cursor: pointer;
+}
+.grid__find--job .mb-5 .job__type, .grid__find--job .mb-5 .job__type2 {
+  padding: 2rem 3rem 1rem 2rem;
+  position: sticky;
+  z-index: 1;
+  border-radius: 5px;
+  background-color: #fff;
+  visibility: hidden;
+  height: 0;
+  opacity: 0;
+  transition: 0.3s;
+}
+
 .pb-7 {
   padding-bottom: 7rem;
 }

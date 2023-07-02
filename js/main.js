@@ -46,7 +46,12 @@ $(document).ready(function () {
     $(".click__item--navbar4").click(function () {
         $(".show_megamenu4, .show_megamenu1").toggleClass("h100");
     });
-
+    $(".job__type--click2").click(function () {
+        $(".job__type2").toggleClass("h100");
+    });
+    $(".job__type--click").click(function () {
+        $(".job__type").toggleClass("h100");
+    });
     $("#wage").click(function () {
         $(".scroll").toggleClass("h100");
     });

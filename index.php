@@ -23,23 +23,30 @@ require_once('./head.php');
                     Hire Experts or be hirded in <span class="typed">sales &
                         marketing</span>
                 </h3>
-                <form action="#" method="post" class="row banner__search banner__btn">
+                <form action="pages/find_job.php" method="get" class="row banner__search banner__btn">
                     <div class="col-md-4 col-sm-12 col-12 banner__search--box">
                         <button class="banner__btn--item">
                             What job are you looking for?
                         </button>
-                        <input type="text" placeholder="Job title, skill, Industry">
+                        <input type="text" name="keyword" placeholder="Job title, skill, Industry">
                     </div>
                     <div class="col-md-4 col-sm-12 col-12 position-relative banner__search--box">
                         <button class="banner__btn--item">
                             Where?
                         </button>
-                        <input type="text" placeholder="City, State, or Zip">
-                        <label for>
-                            <span class="box__item">type and hit enter
-                            </span>
-                            <i class="fas fa-map-marker-alt box__item"></i>
-                        </label>
+                        <?php
+                        if (isset($_GET['city_id'])) {
+                            $city_id = $_GET['city_id'];
+                        }
+                        $sql3 = "SELECT * FROM city";
+                        $city_table = getData($sql3);
+                        ?>
+                        <select class="form-select select__box chosen-select" name="city_id" id="" data-placeholder="Choose a country...">
+                            <option value="0">All Location</option>
+                            <?php foreach ($city_table as $city) { ?>
+                                <option value="<?php echo $city['id']; ?>"><?php echo $city['city_name']; ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
                     <?php
                     $sql = "SELECT * FROM categories";
@@ -49,15 +56,11 @@ require_once('./head.php');
                         <button class="banner__btn--item">
                             Categories
                         </button>
-                        <select class="form-select select__box chosen-select" name="" id="" data-placeholder="Choose a country...">
-                            <option value="0">
-                                All categories
-                            </option>
-                            <?php
-                            foreach ($categories as $category) {
-                                echo '<option value="' . $category['id'] . '" >' . $category['name'] . '</option>';
-                            }
-                            ?>
+                        <select class="form-select select__box chosen-select" name="category_id" id="" data-placeholder="Choose a country...">
+                            <option value="0">All categories</option>
+                            <?php foreach ($categories as $category) { ?>
+                                <option value="<?php echo $category['id']; ?>" ><?php echo $category['name']; ?></option>
+                            <?php } ?>
                         </select>
                         <button type="submit" class="btn btn--search">
                             <span class="btn__search">Search</span>
@@ -74,12 +77,17 @@ require_once('./head.php');
             <h2 class="pt-5 text__headline -bold-400 -dark -size-25 mb-5">
                 Popular Categories
             </h2>
+            <?php 
+            $sql1 = "SELECT * FROM categories WHERE parent_id = 0 limit 8"; 
+            $categories1 = getData($sql1);
+            // print_r($categories1);die;
+            ?>
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="#" class="item__flex">
+                    <a href="pages/find_job.php?category_id=<?php echo $categories1[0]['id']; ?>" class="item__flex">
                         <div class="item__flex--left">
                             <i class="ln ln-icon-Bar-Chart"></i>
-                            <p class="-dark -size-20">Accounting / Finance</p>
+                            <p class="-dark -size-20"><?php echo $categories1[0]['name']; ?></p>
                         </div>
                         <div class="item__flex--right">
                             <span class="-size-32">3</span>
@@ -87,10 +95,10 @@ require_once('./head.php');
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="#" class="item__flex">
+                    <a href="pages/find_job.php?category_id=<?php echo $categories1[1]['id']; ?>" class="item__flex">
                         <div class="item__flex--left">
                             <i class="ln ln-icon-Car-3"></i>
-                            <p class="-dark -size-20">Automotive Jobs</p>
+                            <p class="-dark -size-20"><?php echo $categories1[1]['name']; ?></p>
                         </div>
                         <div class="item__flex--right">
                             <span class="-size-32">3</span>
@@ -98,10 +106,10 @@ require_once('./head.php');
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="#" class="item__flex">
+                    <a href="pages/find_job.php?category_id=<?php echo $categories1[2]['id']; ?>" class="item__flex">
                         <div class="item__flex--left">
                             <i class="ln ln-icon-Worker"></i>
-                            <p class="-dark -size-20">Construction / Facilities</p>
+                            <p class="-dark -size-20"><?php echo $categories1[2]['name']; ?></p>
                         </div>
                         <div class="item__flex--right">
                             <span class="-size-32">3</span>
@@ -109,13 +117,13 @@ require_once('./head.php');
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="#" class="item__flex">
+                    <a href="pages/find_job.php?category_id=<?php echo $categories1[3]['id']; ?>" class="item__flex">
                         <div class="item__flex--left">
                             <i class="ln ln-icon-Brush"></i>
-                            <p class="-dark -size-20">Design, Art & Multimedia</p>
+                            <p class="-dark -size-20"><?php echo $categories1[3]['name']; ?></p>
                         </div>
                         <div class="item__flex--right">
-                            <span class="-size-32">3</span>
+                            <span class="-size-32">0</span>
                         </div>
                     </a>
                 </div>
@@ -123,52 +131,51 @@ require_once('./head.php');
 
             <div class="row mt-4">
                 <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="#" class="item__flex">
+                    <a href="pages/find_job.php?category_id=<?php echo $categories1[4]['id']; ?>" class="item__flex">
                         <div class="item__flex--left">
                             <i class="ln ln-icon-Student-Female"></i>
-                            <p class="-dark -size-20">Education Training</p>
+                            <p class="-dark -size-20"><?php echo $categories1[4]['name']; ?></p>
                         </div>
                         <div class="item__flex--right">
-                            <span class="-size-32">3</span>
+                            <span class="-size-32">2</span>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="#" class="item__flex">
+                    <a href="pages/find_job.php?category_id=<?php echo $categories1[5]['id']; ?>" class="item__flex">
                         <div class="item__flex--left">
                             <i class="ln ln-icon-Medical-Sign"></i>
-                            <p class="-dark -size-20">Healthcare</p>
+                            <p class="-dark -size-20"><?php echo $categories1[5]['name']; ?></p>
                         </div>
                         <div class="item__flex--right">
-                            <span class="-size-32">3</span>
+                            <span class="-size-32">2</span>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="#" class="item__flex">
+                    <a href="pages/find_job.php?category_id=<?php echo $categories1[6]['id']; ?>" class="item__flex">
                         <div class="item__flex--left">
                             <i class="ln ln-icon-Plates"></i>
-                            <p class="-dark -size-20">Restaurant / Food
-                                Service</p>
+                            <p class="-dark -size-20"><?php echo $categories1[6]['name']; ?></p>
                         </div>
                         <div class="item__flex--right">
-                            <span class="-size-32">3</span>
+                            <span class="-size-32">2</span>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="#" class="item__flex">
+                    <a href="pages/find_job.php?category_id=<?php echo $categories1[7]['id']; ?>" class="item__flex">
                         <div class="item__flex--left">
                             <i class="ln ln-icon-Handshake"></i>
-                            <p class="-dark -size-20">Sales & Marketing</p>
+                            <p class="-dark -size-20"><?php echo $categories1[7]['name']; ?></p>
                         </div>
                         <div class="item__flex--right">
-                            <span class="-size-32">3</span>
+                            <span class="-size-32">1</span>
                         </div>
                     </a>
                 </div>
             </div>
-            <a href="#" class="btn btn--all">Browse All Categories</a>
+            <a href="pages/all_category.php" class="btn btn--all">Browse All Categories</a>
         </div>
         <hr class="hr">
         <div class="container">
@@ -191,7 +198,7 @@ require_once('./head.php');
                                     <h6 class="-size-15 -dark"><?php echo $job['title']; ?></h6>
                                     <ul class="d-flex jobs__item--icon">
                                         <li class="jobs__itemsub">
-                                            <i class="ln ln-icon-Management"></i>  <?php echo $job['name_company']; ?>
+                                            <i class="ln ln-icon-Management"></i> <?php echo $job['name_company']; ?>
                                         </li>
                                         <li class="jobs__itemsub">
                                             <i class="ln ln-icon-Map2"></i> <?php echo $job['name_city']; ?>

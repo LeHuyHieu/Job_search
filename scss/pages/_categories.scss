@@ -122,10 +122,11 @@
                             }
                         }
                     }
+
                     .chosen-with-drop {
                         .chosen-single {
                             & div {
-                                & b { 
+                                & b {
                                     transform: rotate(224deg);
                                 }
                             }
@@ -133,6 +134,54 @@
                     }
                 }
             }
+        }
+    }
+}
+
+.border--item {
+    border: 1px solid $gray-light !important;
+    border-radius: 6px;
+    height: 100%;
+}
+
+.chosen-container-single {
+    height: 100%;
+
+    .chosen-single {
+        display: flex;
+        align-items: center;
+        height: 100%;
+
+        & div {
+            height: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+}
+
+.grid__find--job {
+    grid-template-columns: 20% 25% auto;
+    column-gap: 5rem;
+
+    .mb-5 {
+        position: relative;
+
+        .job__type--click,
+        .job__type--click2 {
+            cursor: pointer;
+        }
+
+        .job__type, .job__type2  {
+            padding: 2rem 3rem 1rem 2rem;
+            position: sticky;
+            z-index: 1;
+            border-radius: 5px;
+            background-color: $white;
+            visibility: hidden;
+            height: 0;
+            opacity: 0;
+            transition: .3s;
         }
     }
 }
