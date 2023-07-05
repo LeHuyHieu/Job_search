@@ -9,9 +9,16 @@ require_once('../head.php');
 ?>
 
 <?php
-$sql = "SELECT city.city_name, company.name AS company_name ,jobs.* FROM jobs LEFT JOIN company on company.id = jobs.company_id LEFT JOIN city on city.id = jobs.city_id ORDER BY id DESC";
+$sql = "SELECT city.city_name, company.name AS company_name ,jobs.* FROM jobs LEFT JOIN company on company.id = jobs.company_id LEFT JOIN city on city.id = jobs.city_id ORDER BY id DESC LIMIT 5";
 $jobs = getData($sql);
-// $jobs2 = getData($sql2);
+$sql_count = "SELECT COUNT(*) as total FROM jobs";
+$total_record = getData($sql_count); // tổng records
+$limit = 5; // số records hiển thị trên mỗi trang
+if (isset($_GET['page'])) {
+    $current_page = $_GET['page']; // trang hiện tại
+    $start = ($current_page - 1) * $limit; // record bắt đầu trong câu lệnh sql
+}
+
 ?>
 
 <body>
@@ -28,6 +35,48 @@ $jobs = getData($sql);
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                            <form method="get" action="job_index.php" class="form__block d-flex align-items-center mb-0">
+                                <div class="box__block ms-3">
+                                    <input type="text" name="title" class="form-control" value="<?php echo (isset($_GET['title'])) ? $_GET['title'] : ""; ?>" placeholder="Title" />
+                                </div>
+                                <?php
+                                $sql1 = "SELECT * FROM city";
+                                $citys1 = getData($sql1);
+                                $selected = "selected";
+                                if (isset($_GET['city_id'])) {
+                                    $get_id_city = $_GET['city_id'];
+                                }
+                                ?>
+                                <div class="box__block ms-3">
+                                    <select name="city_id" class="form-select">
+                                        <option value="0">Vui Lòng Chọn!</option>
+                                        <?php foreach ($citys1 as $city1) { ?>
+                                            <option <?php echo (isset($_GET['city_id']) && $_GET['city_id'] == $city1['id']) ? $selected : ""; ?> value="<?php echo $city1['id']; ?>"><?php echo $city1['city_name']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <?php
+                                $sql2 = "SELECT * FROM company";
+                                $companys2 = getData($sql2);
+                                $selected = "selected";
+                                if (isset($_GET['company_id'])) {
+                                    $get_id_company = $_GET['company_id'];
+                                }
+                                ?>
+                                <div class="box__block ms-3">
+                                    <select name="company_id" class="form-select">
+                                        <option value="0">Vui Lòng Chọn!</option>
+                                        <?php foreach ($companys2 as $company2) { ?>
+                                            <option <?php echo (isset($_GET['company_id']) && $_GET['company_id'] == $company2['id']) ? $selected : ""; ?> value="<?php echo $company2['id']; ?>"><?php echo $company2['name']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="box__block d-flex">
+                                    <input type="text" name="salary_from" class="form-control ms-3" value="<?php echo (isset($_GET['salary_from'])) ? $_GET['salary_from'] : ""; ?>" placeholder="Salary from" />
+                                    <input type="text" name="salary_to" class="form-control ms-3" value="<?php echo (isset($_GET['salary_to'])) ? $_GET['salary_to'] : ""; ?>" placeholder="Salary to" />
+                                </div>
+                                <button class="btn btn-primary py-2 px-4 ms-3" type="submit">Tìm kiếm <i class="fas fa-search ms-3"></i></button>
+                            </form>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -74,6 +123,15 @@ $jobs = getData($sql);
                                         <?php } ?>
                                     </tbody>
                                 </table>
+                            </div>
+                            <div class="d-flex">
+                                <?php if ($total_record >= 6) {
+                                    for ($i = 1; $i <= 6; $i++) {
+                                        echo "<a class='btn btn-primary " . (isset($_GET['page']) == $i) ? 'btn--page--active' : '' . " ms-3' href='?page=" . $i . "'>" . $i . "</a>";
+                                    }
+                                }//else if() { ?>
+
+                                <?php //} ?>
                             </div>
                         </div>
                     </div>
