@@ -9,15 +9,44 @@ require_once('../head.php');
 ?>
 
 <?php
-$sql = "SELECT city.city_name, company.name AS company_name ,jobs.* FROM jobs LEFT JOIN company on company.id = jobs.company_id LEFT JOIN city on city.id = jobs.city_id ORDER BY id DESC LIMIT 5";
-$jobs = getData($sql);
-$sql_count = "SELECT COUNT(*) as total FROM jobs";
-$total_record = getData($sql_count); // tổng records
-$limit = 5; // số records hiển thị trên mỗi trang
-if (isset($_GET['page'])) {
-    $current_page = $_GET['page']; // trang hiện tại
-    $start = ($current_page - 1) * $limit; // record bắt đầu trong câu lệnh sql
+$sql_conditions = "WHERE 1 "; // điều kiện where 1 là điều kiện luôn đúng
+$param = '';
+if (isset($_GET['title']) && strlen($_GET['title'])) {
+    $sql_conditions .= " AND title LIKE '%" . $_GET['title'] . "%' ";
+    $param .= '&title=' . $_GET['title'];
 }
+if (isset($_GET['city_id']) && $_GET['city_id']) {
+    $sql_conditions .= " AND city_id = " . $_GET['city_id'] . " ";
+    $param .= '&city_id=' . $_GET['city_id'];
+}
+if (isset($_GET['company_id']) && $_GET['company_id']) {
+    $sql_conditions .= " AND company_id = " . $_GET['company_id'] . " ";
+    $param .= '&company_id=' . $_GET['company_id'];
+}
+if (isset($_GET['salary_from']) && $_GET['salary_from']) {
+    $sql_conditions .= " AND salary_from = " . $_GET['salary_from'] . " ";
+    $param .= '&salary_from=' . $_GET['salary_from'];
+}
+if (isset($_GET['salary_to']) && $_GET['salary_to']) {
+    $sql_conditions .= " AND salary_to = " . $_GET['salary_to'] . " ";
+    $param .= '&salary_to=' . $_GET['salary_to'];
+}
+
+$sql = "SELECT COUNT(*) as total FROM jobs ";
+$sql .= $sql_conditions;
+
+$total = getData($sql);
+$total = $total[0]['total'];
+$num_per_page = 5;
+$total_page = ceil($total / $num_per_page);
+$page = (isset($_GET['page'])) ? $_GET['page'] : 1;
+$start = ($page - 1) * $num_per_page;
+
+$sql = "SELECT city.city_name, company.name AS company_name ,jobs.* FROM jobs LEFT JOIN company on company.id = jobs.company_id LEFT JOIN city on city.id = jobs.city_id ";
+$sql .= $sql_conditions;
+$sql .= "ORDER BY id DESC LIMIT $start,$num_per_page";
+// print_r($sql);die;
+$jobs = getData($sql);
 
 ?>
 
@@ -34,50 +63,42 @@ if (isset($_GET['page'])) {
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                            <form method="get" action="job_index.php" class="form__block d-flex align-items-center mb-0">
-                                <div class="box__block ms-3">
-                                    <input type="text" name="title" class="form-control" value="<?php echo (isset($_GET['title'])) ? $_GET['title'] : ""; ?>" placeholder="Title" />
-                                </div>
-                                <?php
-                                $sql1 = "SELECT * FROM city";
-                                $citys1 = getData($sql1);
-                                $selected = "selected";
-                                if (isset($_GET['city_id'])) {
-                                    $get_id_city = $_GET['city_id'];
-                                }
-                                ?>
-                                <div class="box__block ms-3">
-                                    <select name="city_id" class="form-select">
-                                        <option value="0">Vui Lòng Chọn!</option>
-                                        <?php foreach ($citys1 as $city1) { ?>
-                                            <option <?php echo (isset($_GET['city_id']) && $_GET['city_id'] == $city1['id']) ? $selected : ""; ?> value="<?php echo $city1['id']; ?>"><?php echo $city1['city_name']; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <?php
-                                $sql2 = "SELECT * FROM company";
-                                $companys2 = getData($sql2);
-                                $selected = "selected";
-                                if (isset($_GET['company_id'])) {
-                                    $get_id_company = $_GET['company_id'];
-                                }
-                                ?>
-                                <div class="box__block ms-3">
-                                    <select name="company_id" class="form-select">
-                                        <option value="0">Vui Lòng Chọn!</option>
-                                        <?php foreach ($companys2 as $company2) { ?>
-                                            <option <?php echo (isset($_GET['company_id']) && $_GET['company_id'] == $company2['id']) ? $selected : ""; ?> value="<?php echo $company2['id']; ?>"><?php echo $company2['name']; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="box__block d-flex">
-                                    <input type="text" name="salary_from" class="form-control ms-3" value="<?php echo (isset($_GET['salary_from'])) ? $_GET['salary_from'] : ""; ?>" placeholder="Salary from" />
-                                    <input type="text" name="salary_to" class="form-control ms-3" value="<?php echo (isset($_GET['salary_to'])) ? $_GET['salary_to'] : ""; ?>" placeholder="Salary to" />
-                                </div>
-                                <button class="btn btn-primary py-2 px-4 ms-3" type="submit">Tìm kiếm <i class="fas fa-search ms-3"></i></button>
-                            </form>
+                            <h6 class="m-0 font-weight-bold text-primary text__headline -size-20">DataTables Example</h6>
                         </div>
+                        <form method="get" action="job_index.php" class="form__block d-flex align-items-start pt-4 mb-0 pe-4 justify-content-end bg-white rounded">
+                            <div class="box__block ms-3 w-25">
+                                <input type="text" name="title" class="form-control mb-3 text__headline -size-14 py-2" value="<?php echo (isset($_GET['title'])) ? $_GET['title'] : ""; ?>" placeholder="Title" />
+                            </div>
+                            <?php
+                            $sql1 = "SELECT * FROM city";
+                            $citys1 = getData($sql1);
+                            $selected = "selected";
+                            if (isset($_GET['city_id'])) {
+                                $get_id_city = $_GET['city_id'];
+                            }
+                            ?>
+                            <select name="city_id" class="form-select text__headline -size-14 ms-3 w-25 py-2">
+                                <option value="0">Vui Lòng Chọn!</option>
+                                <?php foreach ($citys1 as $city1) { ?>
+                                    <option <?php echo (isset($_GET['city_id']) && $_GET['city_id'] == $city1['id']) ? $selected : ""; ?> value="<?php echo $city1['id']; ?>"><?php echo $city1['city_name']; ?></option>
+                                <?php } ?>
+                            </select>
+                            <?php
+                            $sql2 = "SELECT * FROM company";
+                            $companys2 = getData($sql2);
+                            $selected = "selected";
+                            if (isset($_GET['company_id'])) {
+                                $get_id_company = $_GET['company_id'];
+                            }
+                            ?>
+                            <select name="company_id" class="form-select ms-3 text__headline -size-14 py-2 w-25">
+                                <option value="0">Vui Lòng Chọn!</option>
+                                <?php foreach ($companys2 as $company2) { ?>
+                                    <option <?php echo (isset($_GET['company_id']) && $_GET['company_id'] == $company2['id']) ? $selected : ""; ?> value="<?php echo $company2['id']; ?>"><?php echo $company2['name']; ?></option>
+                                <?php } ?>
+                            </select>
+                            <button class="btn btn-primary py-2 px-4 ms-auto" type="submit">Tìm kiếm <i class="fas fa-search ms-3"></i></button>
+                        </form>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -124,14 +145,45 @@ if (isset($_GET['page'])) {
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="d-flex">
-                                <?php if ($total_record >= 6) {
-                                    for ($i = 1; $i <= 6; $i++) {
-                                        echo "<a class='btn btn-primary " . (isset($_GET['page']) == $i) ? 'btn--page--active' : '' . " ms-3' href='?page=" . $i . "'>" . $i . "</a>";
-                                    }
-                                }//else if() { ?>
+                            <div class="d-flex justify-content-end">
+                                <?php if ($page > 1) { ?>
+                                    <a class="btn btn-primary ms-3" href="?page=<?php echo $page - 1; ?>&<?php echo $param; ?>"><i class="fas fa-angle-double-left"></i></a>
+                                <?php } ?>
 
-                                <?php //} ?>
+                                <?php if (!isset($_GET['page']) || $_GET['page'] <= 5) {
+                                    if ($total_page >= 5) {
+                                        for ($i = 1; $i <= 5; $i++) { ?>
+                                            <a class="btn btn-primary ms-3 px-3
+                                        <?php echo (isset($_GET['page']) && $_GET['page'] == $i) ? "btn-danger" : ""; ?>" href="?page=<?php echo $i; ?>&<?php echo $param; ?>"><?php echo $i; ?></a>
+                                        <?php }
+                                    } else {
+                                        for ($i = 1; $i <= $total_page; $i++) { ?>
+                                            <a class="btn btn-primary ms-3 px-3
+                                        <?php echo (isset($_GET['page']) && $_GET['page'] == $i) ? "btn-danger" : ""; ?>" href="?page=<?php echo $i; ?>&<?php echo $param; ?>"><?php echo $i; ?></a>
+                                        <?php }
+                                    }
+                                } else if ($total_page <= 5) {
+                                    for ($i = 1; $i <= $total_page; $i++) { ?>
+                                        <a class="btn btn-primary ms-3 px-3
+                                        <?php echo (isset($_GET['page']) && $_GET['page'] == $i) ? "btn-danger" : ""; ?>" href="?page=<?php echo $i; ?>&<?php echo $param; ?>"><?php echo $i; ?></a>
+                                        <?php }
+                                } else {
+                                    if ($total_page - $page <= 3) {
+                                        for ($i = $total_page - 4; $i <= $total_page; $i++) { ?>
+                                            <a class="btn btn-primary ms-3 px-3
+                                        <?php echo (isset($_GET['page']) && $_GET['page'] == $i) ? "btn-danger" : ""; ?>" href="?page=<?php echo $i; ?>&<?php echo $param; ?>"><?php echo $i; ?></a>
+                                        <?php }
+                                    } else {
+                                        for ($i = $page - 2; $i <= $page + 2; $i++) { ?>
+                                            <a class="btn btn-primary ms-3 px-3
+                                        <?php echo (isset($_GET['page']) && $_GET['page'] == $i) ? "btn-danger" : ""; ?>" href="?page=<?php echo $i; ?>&<?php echo $param; ?>"><?php echo $i; ?></a>
+                                <?php }
+                                    }
+                                } ?>
+                                <!-- next -->
+                                <?php if ($page < $total_page) { ?>
+                                    <a class="btn btn-primary ms-3" href="?page=<?php echo $page + 1; ?>&<?php echo $param; ?>"><i class="fas fa-angle-double-right"></i></a>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -139,6 +191,11 @@ if (isset($_GET['page'])) {
             </div>
         </div>
     </div>
+    <?php
+    /**
+     * 6 - 3 = 3
+     */
+    ?>
 
     <!-- jquery -->
     <script src="/js/jquery-3.7.0.min.js"></script>

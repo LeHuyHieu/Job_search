@@ -9,7 +9,26 @@ require_once('../head.php');
 ?>
 
 <?php
-$sql = "SELECT * FROM city ORDER BY id DESC";
+$sql_conditions = "WHERE 1 "; // điều kiện where 1 là điều kiện luôn đúng
+$param = '';
+if (isset($_GET['title']) && strlen($_GET['title'])) {
+    $sql_conditions .= " AND city_name LIKE '%" . $_GET['title'] . "%' ";
+    $param .= '&title=' . $_GET['title'];
+}
+
+$sql = "SELECT COUNT(*) as total FROM city ";
+$sql .= $sql_conditions;
+
+$total = getData($sql);
+$total = $total[0]['total'];
+$num_per_page = 5;
+$total_page = ceil($total / $num_per_page);
+$page = (isset($_GET['page'])) ? $_GET['page'] : 1;
+$start = ($page - 1) * $num_per_page;
+
+$sql = "SELECT * FROM city ";
+$sql .= $sql_conditions;
+$sql .= "ORDER BY id DESC LIMIT $start,$num_per_page";
 $city_table = getData($sql);
 ?>
 
@@ -28,6 +47,12 @@ $city_table = getData($sql);
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
                         </div>
+                        <form method="get" action="city_index.php" class="form__block d-flex align-items-start pt-4 mb-0 pe-4 justify-content-end bg-white rounded">
+                            <div class="box__block ms-3 w-25">
+                                <input type="text" name="title" class="form-control mb-3 text__headline -size-14 py-2" value="<?php echo (isset($_GET['title'])) ? $_GET['title'] : ""; ?>" placeholder="Title" />
+                            </div>
+                            <button class="btn btn-primary py-2 px-4 ms-auto" type="submit">Tìm kiếm <i class="fas fa-search ms-3"></i></button>
+                        </form>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -59,6 +84,46 @@ $city_table = getData($sql);
                                         <?php } ?>
                                     </tbody>
                                 </table>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <?php if ($page > 1) { ?>
+                                    <a class="btn btn-primary ms-3" href="?page=<?php echo $page - 1; ?>&<?php echo $param; ?>"><i class="fas fa-angle-double-left"></i></a>
+                                <?php } ?>
+
+                                <?php if (!isset($_GET['page']) || $_GET['page'] <= 5) {
+                                    if ($total_page >= 5) {
+                                        for ($i = 1; $i <= 5; $i++) { ?>
+                                            <a class="btn btn-primary ms-3 px-3
+                                        <?php echo (isset($_GET['page']) && $_GET['page'] == $i) ? "btn-danger" : ""; ?>" href="?page=<?php echo $i; ?>&<?php echo $param; ?>"><?php echo $i; ?></a>
+                                        <?php }
+                                    } else {
+                                        for ($i = 1; $i <= $total_page; $i++) { ?>
+                                            <a class="btn btn-primary ms-3 px-3
+                                        <?php echo (isset($_GET['page']) && $_GET['page'] == $i) ? "btn-danger" : ""; ?>" href="?page=<?php echo $i; ?>&<?php echo $param; ?>"><?php echo $i; ?></a>
+                                        <?php }
+                                    }
+                                } else if ($total_page <= 5) {
+                                    for ($i = 1; $i <= $total_page; $i++) { ?>
+                                        <a class="btn btn-primary ms-3 px-3
+                                        <?php echo (isset($_GET['page']) && $_GET['page'] == $i) ? "btn-danger" : ""; ?>" href="?page=<?php echo $i; ?>&<?php echo $param; ?>"><?php echo $i; ?></a>
+                                        <?php }
+                                } else {
+                                    if ($total_page - $page <= 3) {
+                                        for ($i = $total_page - 4; $i <= $total_page; $i++) { ?>
+                                            <a class="btn btn-primary ms-3 px-3
+                                        <?php echo (isset($_GET['page']) && $_GET['page'] == $i) ? "btn-danger" : ""; ?>" href="?page=<?php echo $i; ?>&<?php echo $param; ?>"><?php echo $i; ?></a>
+                                        <?php }
+                                    } else {
+                                        for ($i = $page - 2; $i <= $page + 2; $i++) { ?>
+                                            <a class="btn btn-primary ms-3 px-3
+                                        <?php echo (isset($_GET['page']) && $_GET['page'] == $i) ? "btn-danger" : ""; ?>" href="?page=<?php echo $i; ?>&<?php echo $param; ?>"><?php echo $i; ?></a>
+                                <?php }
+                                    }
+                                } ?>
+                                <!-- next -->
+                                <?php if ($page < $total_page) { ?>
+                                    <a class="btn btn-primary ms-3" href="?page=<?php echo $page + 1; ?>&<?php echo $param; ?>"><i class="fas fa-angle-double-right"></i></a>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
