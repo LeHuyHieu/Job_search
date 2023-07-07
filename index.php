@@ -23,7 +23,7 @@ require_once('./head.php');
                     Hire Experts or be hirded in <span class="typed">sales &
                         marketing</span>
                 </h3>
-                <form action="pages/find_job.php" method="get" class="row banner__search banner__btn">
+                <form action="pages/categories.php" method="get" class="row banner__search banner__btn">
                     <div class="col-md-4 col-sm-12 col-12 banner__search--box">
                         <button class="banner__btn--item">
                             What job are you looking for?
@@ -42,7 +42,7 @@ require_once('./head.php');
                         $city_table = getData($sql3);
                         ?>
                         <select class="form-select select__box chosen-select" name="city_id" id="" data-placeholder="Choose a country...">
-                            <option value="0">All Location</option>
+                            <option value="">All Location</option>
                             <?php foreach ($city_table as $city) { ?>
                                 <option value="<?php echo $city['id']; ?>"><?php echo $city['city_name']; ?></option>
                             <?php } ?>
@@ -57,7 +57,7 @@ require_once('./head.php');
                             Categories
                         </button>
                         <select class="form-select select__box chosen-select" name="category_id" id="" data-placeholder="Choose a country...">
-                            <option value="0">All categories</option>
+                            <option value="">All categories</option>
                             <?php foreach ($categories as $category) { ?>
                                 <option value="<?php echo $category['id']; ?>" ><?php echo $category['name']; ?></option>
                             <?php } ?>
@@ -84,7 +84,7 @@ require_once('./head.php');
             ?>
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="pages/find_job.php?category_id=<?php echo $categories1[0]['id']; ?>" class="item__flex">
+                    <a href="pages/categories.php?category_id=<?php echo $categories1[0]['id']; ?>" class="item__flex">
                         <div class="item__flex--left">
                             <i class="ln ln-icon-Bar-Chart"></i>
                             <p class="-dark -size-20"><?php echo $categories1[0]['name']; ?></p>
@@ -95,7 +95,7 @@ require_once('./head.php');
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="pages/find_job.php?category_id=<?php echo $categories1[1]['id']; ?>" class="item__flex">
+                    <a href="pages/categories.php?category_id=<?php echo $categories1[1]['id']; ?>" class="item__flex">
                         <div class="item__flex--left">
                             <i class="ln ln-icon-Car-3"></i>
                             <p class="-dark -size-20"><?php echo $categories1[1]['name']; ?></p>
@@ -106,7 +106,7 @@ require_once('./head.php');
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="pages/find_job.php?category_id=<?php echo $categories1[2]['id']; ?>" class="item__flex">
+                    <a href="pages/categories.php?category_id=<?php echo $categories1[2]['id']; ?>" class="item__flex">
                         <div class="item__flex--left">
                             <i class="ln ln-icon-Worker"></i>
                             <p class="-dark -size-20"><?php echo $categories1[2]['name']; ?></p>
@@ -117,7 +117,7 @@ require_once('./head.php');
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="pages/find_job.php?category_id=<?php echo $categories1[3]['id']; ?>" class="item__flex">
+                    <a href="pages/categories.php?category_id=<?php echo $categories1[3]['id']; ?>" class="item__flex">
                         <div class="item__flex--left">
                             <i class="ln ln-icon-Brush"></i>
                             <p class="-dark -size-20"><?php echo $categories1[3]['name']; ?></p>
@@ -131,7 +131,7 @@ require_once('./head.php');
 
             <div class="row mt-4">
                 <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="pages/find_job.php?category_id=<?php echo $categories1[4]['id']; ?>" class="item__flex">
+                    <a href="pages/categories.php?category_id=<?php echo $categories1[4]['id']; ?>" class="item__flex">
                         <div class="item__flex--left">
                             <i class="ln ln-icon-Student-Female"></i>
                             <p class="-dark -size-20"><?php echo $categories1[4]['name']; ?></p>
@@ -142,7 +142,7 @@ require_once('./head.php');
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="pages/find_job.php?category_id=<?php echo $categories1[5]['id']; ?>" class="item__flex">
+                    <a href="pages/categories.php?category_id=<?php echo $categories1[5]['id']; ?>" class="item__flex">
                         <div class="item__flex--left">
                             <i class="ln ln-icon-Medical-Sign"></i>
                             <p class="-dark -size-20"><?php echo $categories1[5]['name']; ?></p>
@@ -153,7 +153,7 @@ require_once('./head.php');
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="pages/find_job.php?category_id=<?php echo $categories1[6]['id']; ?>" class="item__flex">
+                    <a href="pages/categories.php?category_id=<?php echo $categories1[6]['id']; ?>" class="item__flex">
                         <div class="item__flex--left">
                             <i class="ln ln-icon-Plates"></i>
                             <p class="-dark -size-20"><?php echo $categories1[6]['name']; ?></p>
@@ -164,7 +164,7 @@ require_once('./head.php');
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="pages/find_job.php?category_id=<?php echo $categories1[7]['id']; ?>" class="item__flex">
+                    <a href="pages/categories.php?category_id=<?php echo $categories1[7]['id']; ?>" class="item__flex">
                         <div class="item__flex--left">
                             <i class="ln ln-icon-Handshake"></i>
                             <p class="-dark -size-20"><?php echo $categories1[7]['name']; ?></p>
@@ -230,7 +230,7 @@ require_once('./head.php');
                             </a>
                         </div>
                     <?php } ?>
-                    <a href="#" class="btn btn--all"><i class="fas fa-plus-circle pe-2"></i> Browse Jobs</a>
+                    <a href="pages/categories.php" class="btn btn--all"><i class="fas fa-plus-circle pe-2"></i> Browse Jobs</a>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12 col-12 slider">
                     <h2 class="pt-5 mt-5 text__headline -bold-400 -dark -size-25 mb-5">
@@ -313,8 +313,7 @@ require_once('./head.php');
                                 flexible jobs
                             </li>
                         </ul>
-                        <a href="#" class="btn m-0 btn--all btn--bgdark">Browse
-                            Jobs</a>
+                        <a href="pages/categories.php" class="btn m-0 btn--all btn--bgdark">Browse Jobs</a>
                     </div>
                     <div class="col-md-7 col-sm-12 col-12 position-relative">
                         <div class="bg__dark__img">

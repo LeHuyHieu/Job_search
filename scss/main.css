@@ -760,6 +760,36 @@
   font-size: 1.4rem;
 }
 
+.content .jobs .jobs__item .btn.btn--fulltime {
+  background-color: rgba(0, 0, 255, 0.1) !important;
+  color: blue;
+  border-color: blue;
+}
+
+.content .jobs .jobs__item .btn.btn--internship {
+  background-color: rgba(214, 214, 0, 0.1) !important;
+  color: #9C27B0;
+  border-color: #9C27B0;
+}
+
+.content .jobs .jobs__item .btn.btn--temporary {
+  background-color: rgba(184, 0, 0, 0.1) !important;
+  color: #b80000;
+  border-color: #b80000;
+}
+
+.content .jobs .jobs__item .btn.btn--freelance {
+  background-color: rgba(51, 188, 243, 0.1) !important;
+  color: #33bcf3;
+  border-color: #33bcf3;
+}
+
+.content .jobs .jobs__item .btn.btn--parttime {
+  background-color: rgba(38, 174, 97, 0.1) !important;
+  color: #26ae61;
+  border-color: #26ae61;
+}
+
 .chosen-single {
   border: none !important;
   background-image: none !important;
@@ -794,9 +824,6 @@
 .scroll {
   position: relative;
   font-size: 1.4rem;
-  visibility: hidden;
-  opacity: 0;
-  height: 0;
   padding: 0;
   transition: opacity 0.3s ease;
 }
@@ -830,6 +857,40 @@
   left: 100%;
 }
 
+.scroll1 {
+  position: relative;
+  font-size: 1.4rem;
+}
+.scroll1 input.wage__range {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  width: 45px;
+  text-align: center;
+}
+.scroll1 #slider {
+  position: relative;
+  height: 5px;
+  background-color: #ebebeb;
+  margin: 2rem 0;
+}
+.scroll1 #slider .ui-slider-handle {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: #fff;
+  box-shadow: 0px 0px 0px 3px #26ae61;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.scroll1 #slider .ui-slider-handle:focus {
+  outline: none;
+}
+.scroll1 #slider .ui-slider-handle:nth-child(2) {
+  left: 100%;
+}
+
 .search__category h5 {
   margin-bottom: 1.5rem;
 }
@@ -847,7 +908,7 @@
 .search__category .check__box label {
   font-size: 1.4rem;
   color: #555555;
-  padding-left: 4rem;
+  padding-left: 2.5rem;
   position: relative;
   margin-bottom: 1.5rem;
   cursor: pointer;
@@ -2038,7 +2099,7 @@
 .grid__find--job .mb-5 .job__type--click2 {
   cursor: pointer;
 }
-.grid__find--job .mb-5 .job__type, .grid__find--job .mb-5 .job__type2 {
+.grid__find--job .mb-5 .job__type {
   padding: 2rem 3rem 1rem 2rem;
   position: sticky;
   z-index: 1;
@@ -2047,6 +2108,14 @@
   visibility: hidden;
   height: 0;
   opacity: 0;
+  transition: 0.3s;
+}
+.grid__find--job .mb-5 .job__type2 {
+  padding: 2rem 3rem 1rem 2rem;
+  position: sticky;
+  z-index: 1;
+  border-radius: 5px;
+  background-color: #fff;
   transition: 0.3s;
 }
 

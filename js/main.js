@@ -52,9 +52,6 @@ $(document).ready(function () {
     $(".job__type--click").click(function () {
         $(".job__type").toggleClass("h100");
     });
-    $("#wage").click(function () {
-        $(".scroll").toggleClass("h100");
-    });
 
     $("#slider").slider({
         min: 15000,
@@ -66,6 +63,10 @@ $(document).ready(function () {
                 $("input.sliderValue[data-index=" + i + "]").val(ui.values[i]);
             }
         }
+    });
+    $("input.sliderValue").each(function () {
+        var $this = $(this);
+        $("#slider").slider("values", $this.data("index"), $this.val());
     });
 
     $("input.sliderValue").change(function () {

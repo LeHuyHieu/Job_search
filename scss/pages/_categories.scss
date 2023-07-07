@@ -172,7 +172,7 @@
             cursor: pointer;
         }
 
-        .job__type, .job__type2  {
+        .job__type   {
             padding: 2rem 3rem 1rem 2rem;
             position: sticky;
             z-index: 1;
@@ -181,6 +181,14 @@
             visibility: hidden;
             height: 0;
             opacity: 0;
+            transition: .3s;
+        }
+        .job__type2 {
+            padding: 2rem 3rem 1rem 2rem;
+            position: sticky;
+            z-index: 1;
+            border-radius: 5px;
+            background-color: $white;
             transition: .3s;
         }
     }

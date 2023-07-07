@@ -34,12 +34,47 @@
 .scroll {
     position: relative;
     font-size: 1.4rem;
-    visibility: hidden;
-    opacity: 0;
-    height: 0;
     padding: 0;
     transition: opacity .3s ease;
 
+    & input.wage__range {
+        border: none;
+        background-color: transparent;
+        outline: none;
+        width: 45px;
+        text-align: center;
+    }
+
+    & #slider {
+        position: relative;
+        height: 5px;
+        background-color: $light;
+        margin: 2rem 0;
+
+        & .ui-slider-handle {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: $white;
+            box-shadow: 0px 0px 0px 3px $green;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        & .ui-slider-handle:nth-child(2) {
+            left: 100%;
+        }
+    }
+}
+
+.scroll1 {
+    position: relative;
+    font-size: 1.4rem;
     & input.wage__range {
         border: none;
         background-color: transparent;
@@ -96,7 +131,7 @@
         & label {
             font-size: 1.4rem;
             color: $gray;
-            padding-left: 4rem;
+            padding-left: 2.5rem;
             position: relative;
             margin-bottom: 1.5rem;
             cursor: pointer;
