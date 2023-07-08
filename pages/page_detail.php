@@ -17,14 +17,22 @@ require_once('../head.php');
 
     <!-- section -->
     <?php
-    $job_id = $_GET['job_id'];
-    $sql = "SELECT jobs.*, city.city_name as location, company.name as company_name, categories.name AS category_name FROM jobs LEFT JOIN city ON city.id = jobs.city_id LEFT JOIN company ON company.id = jobs.company_id LEFT JOIN categories ON categories.parent_id = jobs.category_id where jobs.id='$job_id'";
-    $job = getData($sql);
-    $job_detail = $job[0];
-    $sql2 = "SELECT * FROM company where id = '$job_id'";
-    $company = getData($sql2);
-    // print_r($company_detail);die;
-    // print_r($job_detail);die;
+    if (isset($_GET['job_id'])) {
+        $job_id = $_GET['job_id'];
+        $sql = "SELECT jobs.*, city.city_name as location, company.name as company_name, categories.name AS category_name FROM jobs LEFT JOIN city ON city.id = jobs.city_id LEFT JOIN company ON company.id = jobs.company_id LEFT JOIN categories ON categories.parent_id = jobs.category_id where jobs.id='$job_id'";
+        $job = getData($sql);
+        $job_detail = $job[0];
+        $company_id = $job_detail['company_id'];
+        $sql2 = "SELECT jobs.* ,company.* FROM jobs LEFT JOIN company ON jobs.company_id = company.id where jobs.company_id = $company_id AND jobs.id = '$job_id'";
+        $company = getData($sql2);
+    } else {
+        $sql = "SELECT jobs.*, city.city_name as location, company.name as company_name, categories.name AS category_name FROM jobs LEFT JOIN city ON city.id = jobs.city_id LEFT JOIN company ON company.id = jobs.company_id LEFT JOIN categories ON categories.parent_id = jobs.category_id where jobs.id= 1";
+        $job = getData($sql);
+        $job_detail = $job[0];
+        $company_id = $job_detail['company_id'];
+        $sql2 = "SELECT jobs.* ,company.* FROM jobs LEFT JOIN company ON jobs.company_id = company.id where jobs.company_id = $company_id AND jobs.id = 1";
+        $company = getData($sql2);
+    }
     ?>
     <section class="content page_detail">
         <div class="container">
@@ -35,25 +43,23 @@ require_once('../head.php');
                     </a>
                     <h4 class="content__title--title">
                         <?php echo $job_detail['title']; ?>
-                        <span>
-                            <?php
-                            if ($job_detail['full_time'] == 1) {
-                                echo "Full Time";
-                            }
-                            if ($job_detail['internship'] == 1) {
-                                echo "Internship";
-                            }
-                            if ($job_detail['temporary'] == 1) {
-                                echo "Temporary";
-                            }
-                            if ($job_detail['freelance'] == 1) {
-                                echo "Freelance";
-                            }
-                            if ($job_detail['part_time'] == 1) {
-                                echo "Part Time";
-                            }
-                            ?>
-                        </span>
+                        <?php
+                        if ($job_detail['full_time'] == 1) {
+                            echo "<span>Full Time</span>";
+                        }
+                        if ($job_detail['internship'] == 1) {
+                            echo "<span>Internship</span>";
+                        }
+                        if ($job_detail['temporary'] == 1) {
+                            echo "<span>Temporary</span>";
+                        }
+                        if ($job_detail['freelance'] == 1) {
+                            echo "<span>Freelance</span>";
+                        }
+                        if ($job_detail['part_time'] == 1) {
+                            echo "<span>Part Time</span>";
+                        }
+                        ?>
                     </h4>
                 </div>
                 <a href="#" class="content__bookmark">
@@ -198,8 +204,13 @@ require_once('../head.php');
                 Related Jobs
             </h4>
             <?php
-            $sql3 = "SELECT * FROM jobs WHERE jobs.id <> '$job_id' AND jobs.category_id = '$job_id' LIMIT 6";
-            $job_relateds = getData($sql3);
+            if (isset($_GET['job_id'])) {
+                $sql3 = "SELECT * FROM jobs WHERE jobs.id <> '$job_id' AND jobs.category_id = '$job_id' LIMIT 6";
+                $job_relateds = getData($sql3);
+            } else {
+                $sql3 = "SELECT * FROM jobs WHERE jobs.id <> 1 AND jobs.category_id = 1 LIMIT 6";
+                $job_relateds = getData($sql3);
+            }
             // print_r($sql3);die;
             ?>
             <div class="row content__description--flex jobs -m -mb-5">

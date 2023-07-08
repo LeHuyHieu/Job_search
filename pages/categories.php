@@ -28,7 +28,7 @@ if (isset($_GET['keyword'])) {
                         Browse Jobs – List Layout
                     </h3>
                     <p class="categories__text">
-                        <a href="#" class="categories__link">
+                        <a href="/index.php" class="categories__link">
                             WorkScout <i class="fas fa-angle-right"></i>
                         </a>
                         <span>Browse Jobs – Grid Layout</span>
@@ -63,22 +63,27 @@ if (isset($_GET['keyword'])) {
 
         if (isset($_GET['freelance']) && $_GET['freelance'] == 1) {
             $freelance = 1;
+            $sql_conditions .= " AND freelance = " . $_GET['freelance'] . " ";
             $param .= '&freelance=' . $_GET['freelance'];
         }
         if (isset($_GET['full_time']) && $_GET['full_time'] == 1) {
             $full_time = 1;
+            $sql_conditions .= " AND full_time = " . $_GET['full_time'] . " ";
             $param .= '&full_time=' . $_GET['full_time'];
         }
         if (isset($_GET['internship']) && $_GET['internship'] == 1) {
             $internship = 1;
+            $sql_conditions .= " AND internship = " . $_GET['internship'] . " ";
             $param .= '&internship=' . $_GET['internship'];
         }
         if (isset($_GET['part_time']) && $_GET['part_time'] == 1) {
             $part_time = 1;
+            $sql_conditions .= " AND part_time = " . $_GET['part_time'] . " ";
             $param .= '&part_time=' . $_GET['part_time'];
         }
         if (isset($_GET['temporary']) && $_GET['temporary'] == 1) {
             $temporary = 1;
+            $sql_conditions .= " AND temporary = " . $_GET['temporary'] . " ";
             $param .= '&temporary=' . $_GET['temporary'];
         }
         if (isset($_GET['job_type'])) {
@@ -94,9 +99,7 @@ if (isset($_GET['keyword'])) {
         $total_page = ceil($total / $num_per_page);
         $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
         $start = ($page - 1) * $num_per_page;
-        // die;
-        ?>
-        <?php
+
         $sql2 = "SELECT jobs.*, city.city_name as name_city, company.name as name_company FROM jobs LEFT JOIN city ON city.id = jobs.city_id LEFT JOIN company ON company.id = jobs.company_id ";
         $sql2 .= $sql_conditions;
         $sql2 .= "ORDER BY id DESC LIMIT $start,$num_per_page";
@@ -107,7 +110,24 @@ if (isset($_GET['keyword'])) {
             <div class="row">
                 <div class="col-md-8 col-ms-12 col-12 jobs">
                     <?php foreach ($jobs as $job) { ?>
-                        <div class="jobs__item">
+                        <div class="jobs__item 
+                            <?php
+                            if ($job['full_time'] == 1) {
+                                echo " jobs__item--fulltime";
+                            }
+                            if ($job['internship'] == 1) {
+                                echo " jobs__item--internship";
+                            }
+                            if ($job['temporary'] == 1) {
+                                echo " jobs__item--temporary";
+                            }
+                            if ($job['freelance'] == 1) {
+                                echo " jobs__item--freelance";
+                            }
+                            if ($job['part_time'] == 1) {
+                                echo " jobs__item--part_time";
+                            }
+                            ?>">
                             <a href="page_detail.php?job_id=<?php echo $job['id']; ?>" class="d-flex">
                                 <div class="jobs__item--img">
                                     <img src="<?php echo $job['images']; ?>" class="w-100" alt="">
@@ -116,7 +136,7 @@ if (isset($_GET['keyword'])) {
                                     <h6 class="-size-15 -dark"><?php echo $job['title']; ?></h6>
                                     <ul class="d-flex jobs__item--icon">
                                         <li class="jobs__itemsub">
-                                            <i class="ln ln-icon-Management"></i> <?php echo $job['name_company']; ?> 
+                                            <i class="ln ln-icon-Management"></i> <?php echo $job['name_company']; ?>
                                         </li>
                                         <li class="jobs__itemsub">
                                             <i class="ln ln-icon-Map2"></i> <?php echo $job['name_city']; ?>
@@ -126,23 +146,25 @@ if (isset($_GET['keyword'])) {
                                         </li>
                                     </ul>
                                 </div>
-                                <?php
-                                if ($job['full_time'] == 1) {
-                                    echo "<button class=\"btn btn--transparent ms-2 btn--fulltime\">Full Time</button>";
-                                }
-                                if ($job['internship'] == 1) {
-                                    echo "<button class=\"btn btn--transparent ms-2 btn--internship\">Internship</button>";
-                                }
-                                if ($job['temporary'] == 1) {
-                                    echo "<button class=\"btn btn--transparent ms-2 btn--temporary\">Temporary</button>";
-                                }
-                                if ($job['freelance'] == 1) {
-                                    echo "<button class=\"btn btn--transparent ms-2 btn--freelance\">Freelance</button>";
-                                }
-                                if ($job['part_time'] == 1) {
-                                    echo "<button class=\"btn btn--transparent ms-2 btn--parttime\">Part Time</button>";
-                                }
-                                ?>
+                                <div class="d-flex" style="flex-wrap: wrap;justify-content: end;width: 35%;">
+                                    <?php
+                                    if ($job['full_time'] == 1) {
+                                        echo "<button class=\"btn btn--transparent ms-2 mb-2 btn--fulltime\">Full Time</button>";
+                                    }
+                                    if ($job['internship'] == 1) {
+                                        echo "<button class=\"btn btn--transparent ms-2 mb-2 btn--internship\">Internship</button>";
+                                    }
+                                    if ($job['temporary'] == 1) {
+                                        echo "<button class=\"btn btn--transparent ms-2 mb-2 btn--temporary\">Temporary</button>";
+                                    }
+                                    if ($job['freelance'] == 1) {
+                                        echo "<button class=\"btn btn--transparent ms-2 mb-2 btn--freelance\">Freelance</button>";
+                                    }
+                                    if ($job['part_time'] == 1) {
+                                        echo "<button class=\"btn btn--transparent ms-2 mb-2 btn--parttime\">Part Time</button>";
+                                    }
+                                    ?>
+                                </div>
                             </a>
                         </div>
                     <?php } ?>
@@ -154,12 +176,12 @@ if (isset($_GET['keyword'])) {
                         <?php if (!isset($_GET['page']) || $_GET['page'] <= 5) {
                             if ($total_page >= 5) {
                                 for ($i = 1; $i <= 5; $i++) { ?>
-                                    <a class="btn btn--page ms-3 px-3
+                                    <a class="btn btn--page ms-3 px-3 <?php echo (!isset($_GET['page']) && $i == 1) ? "btn--page--active" : ""; ?> 
                                         <?php echo (isset($_GET['page']) && $_GET['page'] == $i) ? "btn--page--active" : ""; ?>" href="?page=<?php echo $i; ?>&<?php echo $param; ?>"><?php echo $i; ?></a>
                                 <?php }
                             } else {
                                 for ($i = 1; $i <= $total_page; $i++) { ?>
-                                    <a class="btn btn--page ms-3 px-3
+                                    <a class="btn btn--page ms-3 px-3 <?php echo (!isset($_GET['page']) && $i == 1) ? "btn--page--active" : ""; ?> 
                                         <?php echo (isset($_GET['page']) && $_GET['page'] == $i) ? "btn--page--active" : ""; ?>" href="?page=<?php echo $i; ?>&<?php echo $param; ?>"><?php echo $i; ?></a>
                                 <?php }
                             }
@@ -205,11 +227,7 @@ if (isset($_GET['keyword'])) {
                             <select class="form-select select__box chosen-select" name="city_id" id="" data-placeholder="Choose a country...">
                                 <option value="">All Location</option>
                                 <?php foreach ($city_table as $city) { ?>
-                                    <option value="<?php echo $city['id']; ?>" <?php if (isset($_GET['city_id'])) {
-                                                                                    if ($city_id == $city['id']) {
-                                                                                        echo $selected;
-                                                                                    }
-                                                                                } ?>><?php echo $city['city_name']; ?></option>
+                                    <option value="<?php echo $city['id']; ?>" <?php if (isset($_GET['city_id'])) { if ($city_id == $city['id']) { echo $selected; } } ?>><?php echo $city['city_name']; ?></option>
                                 <?php } ?>
                             </select>
                         </div>

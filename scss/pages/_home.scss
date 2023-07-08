@@ -290,36 +290,6 @@
             transition: .3s;
             border-left: 4px solid $blue;
 
-            &:nth-child(2) {
-                border-radius: 5px 5px 0 0;
-            }
-
-            &:nth-child(3) {
-                border-left-color: $green;
-
-                & .btn {
-                    border: 1px solid $green;
-                    font-size: 1.2rem;
-                    color: $green;
-                    background-color: rgba($color: $green, $alpha: .1);
-                }
-            }
-
-            &:nth-child(4) {
-                border-left-color: $yellow;
-
-                & .btn {
-                    border: 1px solid $yellow;
-                    font-size: 1.2rem;
-                    color: $yellow;
-                    background-color: rgba($color: $yellow, $alpha: .1);
-                }
-            }
-
-            &:nth-child(6) {
-                border-radius: 0 0 5px 5px;
-            }
-
             &:hover {
                 background-color: $light;
             }
@@ -340,6 +310,9 @@
                 height: 60px;
                 border-radius: 5px;
                 overflow: hidden;
+                margin-right: 2rem;
+                max-width: 60px;
+                min-width: 60px;
             }
 
             &--text {

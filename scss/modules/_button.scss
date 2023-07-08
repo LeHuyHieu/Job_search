@@ -110,3 +110,19 @@
     color: $green;
     border-color: $green;
 }
+
+.content .jobs .jobs__item--fulltime {
+    border-left: 4px solid $blue !important;
+}
+.content .jobs .jobs__item--internship {
+    border-left: 4px solid #9C27B0 !important;
+}
+.content .jobs .jobs__item--temporary {
+    border-left: 4px solid $red !important;
+}
+.content .jobs .jobs__item--freelance {
+    border-left: 4px solid $info !important;
+}
+.content .jobs .jobs__item--parttime {
+    border-left: 4px solid $green !important;
+}

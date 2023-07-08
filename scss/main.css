@@ -790,6 +790,26 @@
   border-color: #26ae61;
 }
 
+.content .jobs .jobs__item--fulltime {
+  border-left: 4px solid blue !important;
+}
+
+.content .jobs .jobs__item--internship {
+  border-left: 4px solid #9C27B0 !important;
+}
+
+.content .jobs .jobs__item--temporary {
+  border-left: 4px solid #b80000 !important;
+}
+
+.content .jobs .jobs__item--freelance {
+  border-left: 4px solid #33bcf3 !important;
+}
+
+.content .jobs .jobs__item--parttime {
+  border-left: 4px solid #26ae61 !important;
+}
+
 .chosen-single {
   border: none !important;
   background-image: none !important;
@@ -1242,30 +1262,6 @@
   transition: 0.3s;
   border-left: 4px solid blue;
 }
-.content .jobs .jobs__item:nth-child(2) {
-  border-radius: 5px 5px 0 0;
-}
-.content .jobs .jobs__item:nth-child(3) {
-  border-left-color: #26ae61;
-}
-.content .jobs .jobs__item:nth-child(3) .btn {
-  border: 1px solid #26ae61;
-  font-size: 1.2rem;
-  color: #26ae61;
-  background-color: rgba(38, 174, 97, 0.1);
-}
-.content .jobs .jobs__item:nth-child(4) {
-  border-left-color: #d6d600;
-}
-.content .jobs .jobs__item:nth-child(4) .btn {
-  border: 1px solid #d6d600;
-  font-size: 1.2rem;
-  color: #d6d600;
-  background-color: rgba(214, 214, 0, 0.1);
-}
-.content .jobs .jobs__item:nth-child(6) {
-  border-radius: 0 0 5px 5px;
-}
 .content .jobs .jobs__item:hover {
   background-color: #ebebeb;
 }
@@ -1286,6 +1282,9 @@
   height: 60px;
   border-radius: 5px;
   overflow: hidden;
+  margin-right: 2rem;
+  max-width: 60px;
+  min-width: 60px;
 }
 .content .jobs .jobs__item--text {
   width: 75%;

@@ -1,3 +1,6 @@
+<?php
+require_once('../lib/connect.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +25,7 @@ require_once('../head.php');
                         Browse Jobs – List Layout
                     </h3>
                     <p class="categories__text">
-                        <a href="#" class="categories__link">
+                        <a href="../index.php" class="categories__link">
                             WorkScout <i class="fas fa-angle-right"></i>
                         </a>
                         <span>Contact</span>
@@ -32,27 +35,27 @@ require_once('../head.php');
         </div>
         <div class="container -m -mt-5 -mb-5 categories__list">
             <div class="content__head">
-                
+
             </div>
             <div class="content__form">
-                <h4 class="contact__title text__headline -bold-400 -dark -size-30 text-center">Any questions?</h4>
-                <p class="contact__text text__headline text-center -size-20 -gray -bold-300">Feel free to contact us!</p>
-                <form class="form__block" style="max-width: 800px;margin: 0 auto;" action="" method="post">
+                <h4 class="contact__title text__headline -bold-400 -dark -size-30 text-center">Bất kỳ câu hỏi nào?</h4>
+                <p class="contact__text text__headline text-center -size-20 -gray -bold-300">Liên lạc nếu bạn cần!</p>
+                <form class="form__block" style="max-width: 800px;margin: 0 auto;" action="process.php" method="post">
                     <div class="d-flex mb-5">
                         <div class="form__box me-3 w-50 text__headline -size-15 -gray">
-                            <label for="">Name</label>
-                            <input type="text" name="name_user" value="" class="form-control text__headline -size-20 form__box--input" />
+                            <label for="">Họ & tên: *</label>
+                            <input type="text" name="user_name" value="" class="form-control text__headline -size-16 form__box--input p-3" />
                         </div>
                         <div class="form__box ms-3 w-50 text__headline -size-15 -gray">
                             <label for="">Email <span>*</span></label>
-                            <input type="email" name="name_user" value="" class="form-control text__headline -size-20 form__box--input" />
+                            <input type="email" name="user_email" value="" class="form-control text__headline -size-16 form__box--input p-3" />
                         </div>
                     </div>
                     <div class="form__box text__headline -size-15 -gray">
-                        <label for="">Message <span>*</span></label>
-                        <textarea type="text" name="name_user" value="" rows="7" class="form-control text__headline -size-20 form__box--input"></textarea>
+                        <label for="">Nội dung: <span>*</span></label>
+                        <textarea type="text" name="user_content" value="" rows="7" class="form-control text__headline -size-16 form__box--input p-3"></textarea>
                     </div>
-                    <input type="submit" value="Send" class="mt-5 btn--all btn--0" />
+                    <button type="submit" class="mt-5 btn--all btn--0"> <i class="fas fa-paper-plane me-4"></i> Gửi</button>
                 </form>
             </div>
         </div>

@@ -162,7 +162,7 @@
                          </a>
                      </li>
                      <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
+                         <a href="./pages/contact.php" class="list__megamenu--link">
                              Contact
                          </a>
                      </li>
@@ -343,7 +343,7 @@
                          </a>
                      </li>
                      <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
+                         <a href="./pages/contact.php" class="list__megamenu--link">
                              Contact
                          </a>
                      </li>

@@ -59,7 +59,7 @@ require_once('./head.php');
                         <select class="form-select select__box chosen-select" name="category_id" id="" data-placeholder="Choose a country...">
                             <option value="">All categories</option>
                             <?php foreach ($categories as $category) { ?>
-                                <option value="<?php echo $category['id']; ?>" ><?php echo $category['name']; ?></option>
+                                <option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
                             <?php } ?>
                         </select>
                         <button type="submit" class="btn btn--search">
@@ -77,8 +77,8 @@ require_once('./head.php');
             <h2 class="pt-5 text__headline -bold-400 -dark -size-25 mb-5">
                 Popular Categories
             </h2>
-            <?php 
-            $sql1 = "SELECT * FROM categories WHERE parent_id = 0 limit 8"; 
+            <?php
+            $sql1 = "SELECT * FROM categories WHERE parent_id = 0 limit 8";
             $categories1 = getData($sql1);
             // print_r($categories1);die;
             ?>
@@ -189,7 +189,25 @@ require_once('./head.php');
                     $jobs = getData($sql2);
                     ?>
                     <?php foreach ($jobs as $job) { ?>
-                        <div class="jobs__item">
+                        <div class="jobs__item
+                        <?php
+                        if ($job['full_time'] == 1) {
+                            echo " jobs__item--fulltime";
+                        }
+                        if ($job['internship'] == 1) {
+                            echo " jobs__item--internship";
+                        }
+                        if ($job['temporary'] == 1) {
+                            echo " jobs__item--temporary";
+                        }
+                        if ($job['freelance'] == 1) {
+                            echo " jobs__item--freelance";
+                        }
+                        if ($job['part_time'] == 1) {
+                            echo " jobs__item--part_time";
+                        }
+                        ?>
+                        ">
                             <a href="pages/page_detail.php?job_id=<?php echo $job['id']; ?>" class="d-flex">
                                 <div class="jobs__item--img">
                                     <img src="<?php echo $job['images']; ?>" class="w-100" alt>
@@ -208,25 +226,25 @@ require_once('./head.php');
                                         </li>
                                     </ul>
                                 </div>
-                                <button class="btn btn--transparent">
+                                <div class="d-flex" style="flex-wrap: wrap;justify-content: end;width: 35%;">
                                     <?php
                                     if ($job['full_time'] == 1) {
-                                        echo "Full Time";
+                                        echo "<button class=\"btn btn--transparent ms-2 mb-2 btn--fulltime\">Full Time</button>";
                                     }
                                     if ($job['internship'] == 1) {
-                                        echo "Internship";
+                                        echo "<button class=\"btn btn--transparent ms-2 mb-2 btn--internship\">Internship</button>";
                                     }
                                     if ($job['temporary'] == 1) {
-                                        echo "Temporary";
+                                        echo "<button class=\"btn btn--transparent ms-2 mb-2 btn--temporary\">Temporary</button>";
                                     }
                                     if ($job['freelance'] == 1) {
-                                        echo "Freelance";
+                                        echo "<button class=\"btn btn--transparent ms-2 mb-2 btn--freelance\">Freelance</button>";
                                     }
                                     if ($job['part_time'] == 1) {
-                                        echo "Part time";
+                                        echo "<button class=\"btn btn--transparent ms-2 mb-2 btn--parttime\">Part Time</button>";
                                     }
                                     ?>
-                                </button>
+                                </div>
                             </a>
                         </div>
                     <?php } ?>
