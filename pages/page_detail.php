@@ -45,19 +45,19 @@ require_once('../head.php');
                         <?php echo $job_detail['title']; ?>
                         <?php
                         if ($job_detail['full_time'] == 1) {
-                            echo "<span>Full Time</span>";
+                            echo "<span class=\"btn--fulltime\">Full Time</span>";
                         }
                         if ($job_detail['internship'] == 1) {
-                            echo "<span>Internship</span>";
+                            echo "<span class=\"btn--internship\">Internship</span>";
                         }
                         if ($job_detail['temporary'] == 1) {
-                            echo "<span>Temporary</span>";
+                            echo "<span class=\"btn--temporary\">Temporary</span>";
                         }
                         if ($job_detail['freelance'] == 1) {
-                            echo "<span>Freelance</span>";
+                            echo "<span class=\"btn--freelance\">Freelance</span>";
                         }
                         if ($job_detail['part_time'] == 1) {
-                            echo "<span>Part Time</span>";
+                            echo "<span class=\"btn--parttime\">Part Time</span>";
                         }
                         ?>
                     </h4>

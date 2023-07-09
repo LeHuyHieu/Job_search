@@ -69,7 +69,15 @@
         }
     }
 }
-
+.error__validate {
+    color: $red;
+    font-size: 1.2rem;
+}
+.success__validate {
+    color: $green;
+    font-size: 2rem;
+    text-align: center;
+}
 /* Icons Fix */
 .fa-calendar:before,
 .fa-calendar:before,

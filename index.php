@@ -6,7 +6,7 @@
 require_once('./head.php');
 ?>
 
-<body>
+<body class="p-0">
     <?php
     require_once('./header_dark.php');
     ?>

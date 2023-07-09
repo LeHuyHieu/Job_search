@@ -90,7 +90,17 @@
     color: $blue;
     border-color: $blue;
 }
+.btn--fulltime {
+    background-color: rgba($color: $blue, $alpha: .1) !important;
+    color: $blue;
+    border-color: $blue;
+}
 .content .jobs .jobs__item .btn.btn--internship {
+    background-color: rgba($color: $yellow, $alpha: .1) !important;
+    color: #9C27B0;
+    border-color: #9C27B0;
+}
+.btn--internship {
     background-color: rgba($color: $yellow, $alpha: .1) !important;
     color: #9C27B0;
     border-color: #9C27B0;
@@ -100,7 +110,17 @@
     color: $red;
     border-color: $red;
 }
+.btn--temporary {
+    background-color: rgba($color:  $red, $alpha: .1) !important;
+    color: $red;
+    border-color: $red;
+}
 .content .jobs .jobs__item .btn.btn--freelance {
+    background-color: rgba($color: $info, $alpha: .1) !important;
+    color: $info;
+    border-color: $info;
+}
+.btn--freelance {
     background-color: rgba($color: $info, $alpha: .1) !important;
     color: $info;
     border-color: $info;
@@ -110,7 +130,11 @@
     color: $green;
     border-color: $green;
 }
-
+.btn--parttime {
+    background-color: rgba($color: $green, $alpha: .1) !important;
+    color: $green;
+    border-color: $green;
+}
 .content .jobs .jobs__item--fulltime {
     border-left: 4px solid $blue !important;
 }

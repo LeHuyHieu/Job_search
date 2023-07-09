@@ -170,12 +170,89 @@
              </li>
          </ul>
          <div class="login--register">
-             <button class="btn btn--login">
+             <button class="btn btn--login" type="button" data-bs-toggle="modal" data-bs-target="#login_Modal">
                  <i class="fas fa-unlock"></i> Log in
              </button>
-             <button class="btn btn--register">
+             <!-- Modal -->
+             <div class="modal fade" id="login_Modal" tabindex="-1" aria-labelledby="login_Modal_Label" aria-hidden="true">
+                 <div class="modal-dialog">
+                     <div class="modal-content pb-5">
+                         <div class="modal-header bg-light p-5">
+                             <h5 class="modal-title" id="login_Modal_Label">Đăng Nhập</h5>
+                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                         </div>
+                         <div class="modal-body p-5 pb-2">
+                             <form action="process_login_register.php" method="post" class="form__block">
+                                 <div class="input_box mb-4">
+                                     <label class="input__box--item" for=""><i class="fas fa-envelope"></i> Nhập Email</label>
+                                     <input class="input__box--item" type="email" name="user_email" value="" placeholder="Nhập Email của bạn" />
+                                 </div>
+                                 <div class="input_box mb-4">
+                                     <label class="input__box--item" for=""><i class="fas fa-lock"></i> Nhập mật khẩu</label>
+                                     <input class="input__box--item" type="password" name="user_password" value="" placeholder="Nhập mật khẩu của bạn" />
+                                 </div>
+                                 <div class="input_box mb-4">
+                                     <input type="checkbox" name="" value="" id="remember_me" />
+                                     <label for="remember_me">Nhớ tôi</label>
+                                 </div>
+                                 <button class="btn btn--all m-0">Đăng Nhập</button>
+                             </form>
+                         </div>
+                         <div class="modal-footer px-5 border-0 d-block">
+                             <p class="sign_up">Không có tài khoản? <a href="javascript:void((0);">Đăng kí ngay</a></p>
+                             <a href="javascript:void(0);">Quên mật khẩu</a>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <!-- end Modal Login -->
+             <button class="btn btn--register" type="button" data-bs-toggle="modal" data-bs-target="#sign-up_Modal">
                  <i class="fas fa-plus"></i> Register
              </button>
+             <!-- Modal -->
+             <div class="modal fade" id="sign-up_Modal" tabindex="-1" aria-labelledby="sign-up_Modal_Label" aria-hidden="true">
+                 <div class="modal-dialog">
+                     <div class="modal-content pb-5">
+                         <div class="modal-header bg-light p-5">
+                             <h5 class="modal-title" id="sign-up_Modal_Label">Đăng Ký</h5>
+                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                         </div>
+                         <div class="modal-body p-5 pb-2">
+                             <form action="process_login_register.php" method="post" class="form__block">
+                                <div class="d-flex mb-3">
+                                    <div class="input_box w-50 me-2">
+                                        <input type="radio" name="candidate_employer" value="1" id="candidate" class="d-none radio_check">
+                                        <label for="candidate"><i class="far fa-user"></i> Candidate</label>
+                                    </div>
+                                    <div class="input_box w-50 ms-2">
+                                        <input type="radio" name="candidate_employer" value="1" id="employer" class="d-none radio_check">
+                                        <label for="employer"><i class="ln ln-icon-Management"></i> Employer</label>
+                                    </div>
+                                </div>
+                                 <div class="input_box mb-4">
+                                     <label class="input__box--item" for=""><i class="fas fa-envelope"></i> Nhập Email</label>
+                                     <input class="input__box--item" type="email" name="user_email" value="" placeholder="Nhập Email của bạn" />
+                                 </div>
+                                 <div class="input_box mb-4">
+                                     <label class="input__box--item" for=""><i class="fas fa-lock"></i> Nhập Tên</label>
+                                     <input class="input__box--item" type="text" name="user_password" value="" placeholder="Nhập tên của bạn" />
+                                 </div>
+                                 <div class="input_box mb-4">
+                                     <input type="checkbox" name="" value="" id="privacy_policy" />
+                                     <label for="privacy_policy">Đồng ý với <a class="privacy_policy" href="#">chính sách bảo mật</a></label>
+                                 </div>
+                                 <button class="btn btn--all m-0">Đăng kí tài khoản</button>
+                             </form>
+                         </div>
+                         <div class="modal-footer px-5 border-0 d-block">
+                             <p class="send__password p-4">
+                                 Mật khẩu sẻ được gủi về địa chỉ Email của bạn.
+                             </p>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <!-- end Modal Sign up -->
          </div>
          <div class="navbar__icon">
              <i class="fas fa-bars"></i>

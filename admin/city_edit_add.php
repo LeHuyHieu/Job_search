@@ -20,7 +20,7 @@ if (isset($_GET['id'])) {
                     <?php require_once('../admin/menu.php'); ?>
                 </div>
                 <div class="col-8 content__right">
-                    <form action="city_process.php" method="post" class="form__block" enctype="multipart/form-data">
+                    <form action="city_process.php" method="post" class="form__block mw-800" enctype="multipart/form-data">
                         <?php 
                         if(isset($get_id)) {
                             $sql2 = "SELECT * FROM city WHERE id = $get_id";
@@ -40,8 +40,10 @@ if (isset($_GET['id'])) {
                                 <input type="text" class="form-control" name="city_name" value="" id="" />
                             <?php } ?>
                         </div>
+                        <div class="d-flex justify-content-center">
                         <button class="btn btn--submit" type="submit"><i class="fas fa-save"></i> Lưu</button>
                         <button class="btn btn--submit ms-5" onclick="history.back()"><i class="fas fa-reply"></i> Quay lại </button>
+                        </div>
                     </form>
                 </div>
             </div>

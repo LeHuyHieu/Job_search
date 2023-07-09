@@ -23,7 +23,7 @@ if (isset($_GET['id'])) {
                     <?php require_once('../admin/menu.php'); ?>
                 </div>
                 <div class="col-8 content__right">
-                    <form action="category_process.php" method="post" class="form__block" enctype="multipart/form-data">
+                    <form action="category_process.php" method="post" class="form__block mw-800" enctype="multipart/form-data">
                         <div class="input__box--check mb-5">
                             <?php
                             if (isset($get_id)) {
@@ -47,7 +47,7 @@ if (isset($_GET['id'])) {
                                     } ?>
                                     <?php if (!isset($get_id)) { ?>
                                         <?php if ($category_item['parent_id'] == 0) {
-                                            echo '<option name="name" value=" ' . $category_item['id'] .' ">' . $category_item['name'] . '</option>';
+                                            echo '<option name="name" value=" ' . $category_item['id'] . ' ">' . $category_item['name'] . '</option>';
                                         } ?>
                                     <?php } ?>
                                 <?php } ?>
@@ -66,8 +66,10 @@ if (isset($_GET['id'])) {
                                 <input type="text" class="form-control" name="name_category" value="" id="" />
                             <?php } ?>
                         </div>
-                        <button class="btn btn--submit" type="submit"><i class="fas fa-save"></i> Lưu</button>
-                        <button class="btn btn--submit ms-5" onclick="history.back()"><i class="fas fa-reply"></i> Quay lại </button>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn--submit" type="submit"><i class="fas fa-save"></i> Lưu</button>
+                            <button class="btn btn--submit ms-5" onclick="history.back()"><i class="fas fa-reply"></i> Quay lại </button>
+                        </div>
                     </form>
                 </div>
             </div>

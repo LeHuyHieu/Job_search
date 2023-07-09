@@ -67,11 +67,12 @@
 
                 & span {
                     font-size: 1.2rem;
-                    background-color: $yellow;
-                    padding: .5rem;
+                    padding: 0.7rem;
                     border-radius: 2px;
-                    color: $white;
                     margin-left: 1rem;
+                    width: 20%;
+                    text-align: center;
+                    border: 1px solid;
                 }
             }
         }

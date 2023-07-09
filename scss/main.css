@@ -766,7 +766,19 @@
   border-color: blue;
 }
 
+.btn--fulltime {
+  background-color: rgba(0, 0, 255, 0.1) !important;
+  color: blue;
+  border-color: blue;
+}
+
 .content .jobs .jobs__item .btn.btn--internship {
+  background-color: rgba(214, 214, 0, 0.1) !important;
+  color: #9C27B0;
+  border-color: #9C27B0;
+}
+
+.btn--internship {
   background-color: rgba(214, 214, 0, 0.1) !important;
   color: #9C27B0;
   border-color: #9C27B0;
@@ -778,13 +790,31 @@
   border-color: #b80000;
 }
 
+.btn--temporary {
+  background-color: rgba(184, 0, 0, 0.1) !important;
+  color: #b80000;
+  border-color: #b80000;
+}
+
 .content .jobs .jobs__item .btn.btn--freelance {
   background-color: rgba(51, 188, 243, 0.1) !important;
   color: #33bcf3;
   border-color: #33bcf3;
 }
 
+.btn--freelance {
+  background-color: rgba(51, 188, 243, 0.1) !important;
+  color: #33bcf3;
+  border-color: #33bcf3;
+}
+
 .content .jobs .jobs__item .btn.btn--parttime {
+  background-color: rgba(38, 174, 97, 0.1) !important;
+  color: #26ae61;
+  border-color: #26ae61;
+}
+
+.btn--parttime {
   background-color: rgba(38, 174, 97, 0.1) !important;
   color: #26ae61;
   border-color: #26ae61;
@@ -1578,6 +1608,103 @@
     margin-bottom: 5rem;
   }
 }
+.modal-content .modal-header .modal-title {
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: #222;
+}
+.modal-content .modal-header .btn-close {
+  padding: 1.3rem;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content .modal-body .form__block .title__login {
+  margin-bottom: 3rem;
+}
+.modal-content .modal-body .form__block .input_box label {
+  font-size: 1.5rem;
+  display: inline-block;
+}
+.modal-content .modal-body .form__block .input_box label .privacy_policy {
+  color: #26ae61;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+.modal-content .modal-body .form__block .input_box label .privacy_policy:hover {
+  color: #222;
+}
+.modal-content .modal-body .form__block .input_box .input__box--item {
+  display: inline-block;
+  width: 100%;
+}
+.modal-content .modal-body .form__block .input_box input.input__box--item {
+  padding: 1rem;
+  font-size: 1.4rem;
+  outline: none;
+  background-color: rgba(51, 188, 243, 0.2);
+  border: 1px solid #ebebeb;
+  color: #000;
+  border-radius: 5px;
+}
+.modal-content .modal-body .form__block .input_box .radio_check ~ label {
+  background-color: #ebebeb;
+  padding: 1rem 3rem;
+  width: 100%;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.3s;
+}
+.modal-content .modal-body .form__block .input_box .radio_check ~ label:hover {
+  background-color: rgba(38, 174, 97, 0.3);
+  color: #26ae61;
+}
+.modal-content .modal-body .form__block .input_box .radio_check:checked ~ label {
+  background-color: #26ae61;
+  color: #fff;
+}
+.modal-content .modal-footer .sign_up {
+  font-size: 1.4rem;
+}
+.modal-content .modal-footer .sign_up a {
+  color: #26ae61;
+  text-decoration: none;
+  transition: 0.2s;
+}
+.modal-content .modal-footer .sign_up a:hover {
+  color: #222;
+}
+.modal-content .modal-footer a {
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: #26ae61;
+  transition: 0.2s;
+}
+.modal-content .modal-footer a:hover {
+  color: #222;
+}
+.modal-content .modal-footer .send__password {
+  background-color: rgba(51, 188, 243, 0.2);
+  font-size: 1.4rem;
+  border-radius: 0.25rem;
+}
+
+.modal-backdrop {
+  display: none;
+}
+
+.modal::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.7;
+  position: fixed;
+}
+
 .section.section__admin .job__title {
   font-size: 4rem;
   padding-top: 1rem;
@@ -1608,22 +1735,14 @@
   position: relative;
   width: 100%;
   letter-spacing: 1px;
-}
-.section.section__admin .menu__left .menu__admin--link::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: #26ae61;
-  transition: 0.3s;
+  transition: 0.3s ease;
 }
 .section.section__admin .menu__left .menu__admin--link:hover {
-  color: #fff;
-}
-.section.section__admin .menu__left .menu__admin--link:hover::before {
-  width: 100%;
+  color: #26ae61;
+  color: #26ae61;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding-left: 2rem;
+  border-radius: 5px;
 }
 .section.section__admin .menu__left .menu__admin .close {
   position: absolute;
@@ -1663,7 +1782,6 @@
   max-width: 150px;
   max-height: 45px;
   padding: 10px 30px;
-  margin: 0 auto;
   display: inline-block;
   background-color: #3b5998;
   color: #fff;
@@ -1741,6 +1859,15 @@
   width: 83.33333333% !important;
 }
 
+.mw-800 {
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid;
+  padding: 3rem;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px #bbb;
+}
+
 .header .bg-white.navbar {
   border-color: #ebebeb;
   position: relative;
@@ -1776,6 +1903,7 @@
   padding-top: 5rem;
 }
 .content.page_detail .content__flex {
+  flex-wrap: wrap;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -1798,11 +1926,12 @@
 }
 .content.page_detail .content__flex .content__title--title span {
   font-size: 1.2rem;
-  background-color: #d6d600;
-  padding: 0.5rem;
+  padding: 0.7rem;
   border-radius: 2px;
-  color: #fff;
   margin-left: 1rem;
+  width: 20%;
+  text-align: center;
+  border: 1px solid;
 }
 .content.page_detail .content__flex .content__bookmark {
   font-size: 1.5rem;
@@ -2210,6 +2339,17 @@
   color: #222;
 }
 
+.error__validate {
+  color: #b80000;
+  font-size: 1.2rem;
+}
+
+.success__validate {
+  color: #26ae61;
+  font-size: 2rem;
+  text-align: center;
+}
+
 /* Icons Fix */
 .fa-calendar:before,
 .fa-calendar:before,
@@ -2300,4 +2440,5 @@ html {
 
 body {
   font-family: "Poppins", Sans-serif;
+  padding-right: 0 !important;
 }/*# sourceMappingURL=main.css.map */

@@ -1,3 +1,125 @@
-.content__head {
-    
+.modal-content {
+    .modal-header {
+        .modal-title {
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: $dark;
+        }
+
+        .btn-close {
+            padding: 1.3rem;
+            background-color: $black;
+            color: $white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .modal-body {
+        .form__block {
+            .title__login {
+                margin-bottom: 3rem;
+            }
+
+            .input_box {
+                & label {
+                    font-size: 1.5rem;
+                    display: inline-block;
+
+                    .privacy_policy {
+                        color: $green;
+                        text-decoration: none;
+                        font-size: 1.5rem;
+
+                        &:hover {
+                            color: $dark;
+                        }
+                    }
+                }
+
+                .input__box--item {
+                    display: inline-block;
+                    width: 100%;
+                }
+
+                input.input__box--item {
+                    padding: 1rem;
+                    font-size: 1.4rem;
+                    outline: none;
+                    background-color: rgba($color: $info, $alpha: .2);
+                    border: 1px solid $light;
+                    color: $black;
+                    border-radius: 5px;
+                }
+
+                & .radio_check~label {
+                    background-color: $light;
+                    padding: 1rem 3rem;
+                    width: 100%;
+                    border-radius: .25rem;
+                    cursor: pointer;
+                    text-align: center;
+                    transition: .3s;
+
+                    &:hover {
+                        background-color: rgba($color: $green, $alpha: .3);
+                        color: $green;
+                    }
+                }
+                & .radio_check:checked ~ label {
+                    background-color: $green;
+                    color: $white;
+                }
+            }
+        }
+    }
+
+    .modal-footer {
+        .sign_up {
+            font-size: 1.4rem;
+
+            a {
+                color: $green;
+                text-decoration: none;
+                transition: .2s;
+
+                &:hover {
+                    color: $dark;
+                }
+            }
+        }
+
+        a {
+            font-size: 1.4rem;
+            text-decoration: none;
+            color: $green;
+            transition: .2s;
+
+            &:hover {
+                color: $dark;
+            }
+        }
+
+        .send__password {
+            background-color: rgba($color: $info, $alpha: .2);
+            font-size: 1.4rem;
+            border-radius: .25rem;
+        }
+    }
+}
+
+.modal-backdrop {
+    display: none;
+}
+
+.modal {
+    &::before {
+        content: '';
+        width: 100%;
+        height: 100%;
+        background-color: $black;
+        opacity: .7;
+        position: fixed;
+    }
 }

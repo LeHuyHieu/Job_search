@@ -1,6 +1,6 @@
 <ul class="menu__admin">
-    <li class="menu__admin--item">
-        <a href="./job_index.php" class="menu__admin--link">
+    <li class="menu__admin--item mb-4">
+        <a href="./job_index.php" class="">
             <img src="../images/logo.png" width="200px" alt="">
         </a>
     </li>
@@ -25,7 +25,7 @@
         </a>
     </li>
     <li class="menu__admin--item">
-        <a href="#" class="menu__admin--link">
+        <a href="./contact_index.php" class="menu__admin--link">
             <i class="fas fa-file-signature"></i> Contact
         </a>
     </li>
