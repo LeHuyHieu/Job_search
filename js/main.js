@@ -11,6 +11,14 @@ $(window).scroll(function () {
 });
 
 $(document).ready(function () {
+    $(document).on('change', '#privacy_policy', function () {
+        if ($('#privacy_policy').is(":checked")) {
+            $('#btnRegister').prop('disabled', false);
+        } else {
+            $('#btnRegister').prop('disabled', true);
+        }
+    });
+
     $(".navbar__icon").click(function () {
         $(".navbar").toggleClass("tranform0");
     });
@@ -53,6 +61,10 @@ $(document).ready(function () {
         $(".job__type").toggleClass("h100");
     });
 
+    $(".click__profile").click(function () {
+        $(".list__profile").toggleClass("d-block");
+    });
+
     $("#slider").slider({
         min: 15000,
         max: 75000,
@@ -77,14 +89,12 @@ $(document).ready(function () {
     // chosen
     $(".chosen-select").chosen({ allow_single_deselect: true, width: "100%" });
 
-    // // summernote
-    // $('#content').summernote({
-    //     placeholder: 'Content',
-    //     tabsize: 2,
-    //     height: 100
-    // });
-
-    // $('#content').summernote();
+    // sumernote
+    $(document).ready(function () {
+        $('.summernote').summernote({
+            height: 200,
+        });
+    });
 });
 
 var typed2 = new Typed('.typed', {

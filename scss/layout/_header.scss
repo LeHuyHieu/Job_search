@@ -1,8 +1,12 @@
 .header {
     position: relative;
+    box-shadow: 2px 0px 10px #ccc;
+    z-index: 5;
+
     .navbar__responsive.fixed-menu {
         box-shadow: none;
     }
+
     .fixed-menu {
         position: fixed !important;
         top: 0;
@@ -24,9 +28,11 @@
         .btn {
             color: $gray !important;
             font-weight: 500;
+
             &::after {
                 border-color: $gray;
             }
+
             &:hover {
                 color: $green !important;
             }
@@ -286,7 +292,6 @@
             width: 15%;
             position: relative;
             padding: 1.5rem 0 1.5rem 2rem;
-            overflow: hidden;
 
             &::before {
                 content: '';
@@ -326,24 +331,93 @@
             }
         }
 
+        & .profile {
+            position: relative;
+
+            .click__profile {
+                align-items: center;
+                cursor: pointer;
+                padding: 1rem 0;
+
+                & img {
+                    width: 50px;
+                    border-radius: 50%;
+                }
+
+                & .name_profile {
+                    font-size: 1.4rem;
+                    color: $white;
+                    padding-left: 1rem;
+                }
+            }
+
+            & .list__profile {
+                display: none;
+                width: 200px;
+                padding: 2rem;
+                list-style: none;
+                position: absolute;
+                top: 85%;
+                right: 4rem;
+                background-color: $white;
+                border-radius: .25rem;
+                box-shadow: 2px 2px 5px $gray;
+
+                &::before {
+                    content: "";
+                    border-top: 0px;
+                    border-inline: 5px solid;
+                    border-color: transparent;
+                    border-bottom: 8px solid #fff;
+                    position: absolute;
+                    top: -8px;
+                    right: 30px;
+                }
+
+                & .item__profile {
+                    padding: .5rem;
+                    transition: .3s;
+
+                    &:hover {
+                        color: $green;
+                        background-color: rgba($color: $green, $alpha: .3);
+                        border-radius: .25rem;
+
+                        & a {
+                            color: $green;
+                        }
+                    }
+
+                    a {
+                        color: $black;
+                        font-size: 1.4rem;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+
         &__title {
             padding-left: 3rem;
             color: $white;
             font-size: 2rem;
             margin-bottom: 2rem;
         }
+
         &__text {
             color: $gray-light;
             padding-left: 3rem;
             font-size: 1.4rem;
             margin-bottom: .5rem;
         }
+
         &__email {
             color: $green;
             text-decoration: none;
             font-size: 1.4rem;
             padding-left: 3rem;
             font-weight: 600;
+
             &:hover {
                 color: $white;
             }
@@ -361,15 +435,26 @@
             &__logo {
                 width: 30%;
                 padding: 1.3rem;
+
                 &::after {
                     display: none;
                 }
             }
 
             & .login--register {
-                display: none;
                 padding: 0;
+                width: 40%;
                 padding-left: 2rem;
+                padding-right: 3rem;
+
+                & .click__profile {
+                    justify-content: end;
+                    padding-right: 8rem;
+
+                    & .name_profile {
+                        display: none;
+                    }
+                }
             }
 
             &__icon {
@@ -393,12 +478,31 @@
             display: block;
             position: fixed;
             background-color: $dark;
-            height: 100vh;
+            height: 100vh !important;
             width: 100%;
             inset: 0;
             z-index: 99;
             transform: translateX(-100%);
             transition: .5s ease;
+
+            & .list__profile {
+                top: -20px !important;
+                right: 100% !important;
+
+                &::before {
+                    display: none;
+                }
+
+                &::after {
+                    content: "";
+                    border-block: 5px solid transparent;
+                    border-right: 5px solid transparent;
+                    position: absolute;
+                    border-left: 8px solid #fff;
+                    right: -13px;
+                    top: 48px;
+                }
+            }
 
             & .navbar__icon {
                 color: $white;
@@ -499,8 +603,10 @@
                 background-color: $white;
                 margin-top: 3rem;
             }
+
             & .login--register {
                 display: block;
+
                 &::before {
                     display: none;
                 }
@@ -522,17 +628,79 @@
     opacity: 1 !important;
     visibility: visible !important;
 }
+
 @media (max-width: 600px) {
-    .navbar {
-        height: 55px;
-        .navbar__logo {
-            padding: 0;
-            width: 200px;
+    .header {
+        .navbar {
+            height: 55px;
+
+            .navbar__logo {
+                padding: 0;
+                width: 150px;
+            }
+
+            .login--register {
+                .click__profile {
+                    padding: 0;
+                    padding-right: 3rem;
+                }
+            }
         }
     }
 }
+
 @media (max-width: 768px) {
     html {
         font-size: 55% !important;
     }
+}
+
+body._bg_transparent .header {
+    background-color: transparent !important;
+}
+
+body._bg_transparent .header .navbar {
+    position: absolute;
+}
+
+body._bg_transparent .header .navbar .profile .click__profile .name_profile {
+    color: $white;
+}
+
+body._bg_transparent .header .navbar__list--link {
+    color: $white;
+}
+body._bg_transparent .header .navbar__logo .scroll__logo__dark {
+    display: none;
+}
+body._bg_transparent .header .navbar__logo .scroll__logo__light {
+    display: block;
+}
+body .header .navbar__list--link {
+    color: $black;
+}
+
+body .header .navbar .profile .click__profile .name_profile {
+    color: $black;
+}
+
+body .header .navbar {
+    position: relative;
+}
+body .header .navbar__logo .scroll__logo__dark {
+    display: block;
+}
+body .header .navbar__logo .scroll__logo__light {
+    display: none;
+}
+
+body._bg_transparent .header .fixed-menu .navbar__logo .scroll__logo__light {
+    display: none;
+}
+body._bg_transparent .header .fixed-menu .navbar__logo .scroll__logo__dark {
+    display: block;
+}
+
+.header.bg-white .navbar .login--register .btn--login,.header.bg-white .navbar .login--register .btn--register {
+    color: $dark;
 }

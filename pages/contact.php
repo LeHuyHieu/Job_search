@@ -12,7 +12,7 @@ require_once('../head.php');
 <body>
     <!-- header -->
     <?php
-    require_once('../header_white.php');
+    require_once('../header.php');
     ?>
     <!-- end header -->
 
@@ -44,18 +44,18 @@ require_once('../head.php');
                     <div class="d-flex mb-5">
                         <div class="form__box me-3 w-50 text__headline -size-15 -gray">
                             <label for="">Họ & tên: *</label>
-                            <input type="text" name="user_name" value="<?php echo (isset($_GET['user_name'])) ? $_GET['user_name'] : ""; ?>" class="form-control text__headline -size-16 form__box--input p-3" />
+                            <input required type="text" name="user_name" value="<?php echo (isset($_GET['user_name'])) ? $_GET['user_name'] : ""; ?>" class="form-control text__headline -size-16 form__box--input p-3" />
                             <?php echo (isset($_GET['error']) && $_GET['error'] == 0 && isset($_GET['user_name']) && $_GET['user_name'] == "") ? "<p class=\"error__validate\">Bạn chưa điền thông tin!</p>" : ""; ?>
                         </div>
                         <div class="form__box ms-3 w-50 text__headline -size-15 -gray">
                             <label for="">Email <span>*</span></label>
-                            <input type="email" name="user_email" value="<?php echo (isset($_GET['user_email'])) ? $_GET['user_email'] : ""; ?>" class="form-control text__headline -size-16 form__box--input p-3" />
+                            <input required type="email" name="user_email" value="<?php echo (isset($_GET['user_email'])) ? $_GET['user_email'] : ""; ?>" class="form-control text__headline -size-16 form__box--input p-3" />
                             <?php echo (isset($_GET['error']) && $_GET['error'] == 0 && isset($_GET['user_email']) && $_GET['user_email'] == "") ? "<p class=\"error__validate\">Bạn chưa điền thông tin!</p>" : ""; ?>
                         </div>
                     </div>
                     <div class="form__box text__headline -size-15 -gray">
                         <label for="">Nội dung: <span>*</span></label>
-                        <textarea type="text" name="user_content" value="" rows="7" class="form-control text__headline -size-16 form__box--input p-3"><?php echo (isset($_GET['user_content'])) ? $_GET['user_content'] : ""; ?></textarea>
+                        <textarea required name="user_content" value="" rows="7" class="form-control text__headline -size-16 form__box--input p-3"><?php echo (isset($_GET['user_content'])) ? $_GET['user_content'] : ""; ?></textarea>
                         <?php echo (isset($_GET['error']) && $_GET['error'] == 0 && isset($_GET['user_content']) && $_GET['user_content'] == "") ? "<p class=\"error__validate\">Bạn chưa điền thông tin!</p>" : ""; ?>
                     </div>
                     <button type="submit" class="mt-5 btn--all btn--0"> <i class="fas fa-paper-plane me-4"></i> Gửi</button>

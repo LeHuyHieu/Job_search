@@ -6,9 +6,9 @@
 require_once('./head.php');
 ?>
 
-<body class="p-0">
+<body class="p-0 _bg_transparent">
     <?php
-    require_once('./header_dark.php');
+    require_once('./header.php');
     ?>
 
     <!-- section -->

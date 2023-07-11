@@ -16,7 +16,7 @@ if (isset($_GET['keyword'])) {
 <body>
     <!-- header -->
     <?php
-    require_once('../header_white.php');
+    require_once('../header.php');
     ?>
     <!-- end header -->
     <?php

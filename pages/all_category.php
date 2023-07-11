@@ -9,7 +9,7 @@ require_once('../head.php');
 <body>
     <!-- header -->
     <?php
-    require_once('../header_white.php');
+    require_once('../header.php');
     ?>
     <!-- end header -->
 
