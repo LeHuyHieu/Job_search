@@ -1,4 +1,8 @@
 <?php
+session_start();
+if (!isset($_SESSION['user'])) {
+    header('loaction:index.php');
+}
 require_once('../lib/connect.php');
 ?>
 <!DOCTYPE html>
@@ -50,39 +54,32 @@ require_once('../head.php');
                             <div class="bg-light title__detail">
                                 Profile Detail
                             </div>
-                            <?php
-                            $sql = "SELECT * FROM users WHERE user_email = '$user_email'";
-                            $users = getData($sql);
-                            // print_r($sql);die;
-                            ?>
                             <form action="process_profile.php" method="post" class="form__block p-5" enctype="multipart/form-data">
-                                <?php foreach ($users as $user) { ?>
-                                    <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>" />
+                                    <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']['id'];?>" />
                                     <div class="data__profile">
                                         <span>Ảnh đại diện</span><br>
                                         <label for="avt" class="label_cursor">
-                                            <img id="blah" alt="your image" src="<?php echo ($user['avatar'] == "") ? "/images/1x1.png" : $user['avatar']; ?>" width="100" height="100" />
+                                            <img id="blah" alt="your image" src="<?php echo ($_SESSION['user']['avatar'] == "") ? "/images/1x1.png" : $_SESSION['user']['avatar']; ?>" width="100" height="100" />
                                         </label>
-                                        <input type="file" id="avt" name="avatar" value="<?php echo $user['avatar']; ?>" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+                                        <input type="file" id="avt" name="avatar" value="<?php echo $_SESSION['user']['avatar']; ?>" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
                                     </div>
                                     <div class="data__profile">
                                         <label for="">Họ và tên</label>
-                                        <input type="text" name="name" value="<?php echo $user['name']; ?>" placeholder="Họ và tên...">
+                                        <input type="text" name="name" value="<?php echo $_SESSION['user']['name']; ?>" placeholder="Họ và tên...">
                                     </div>
                                     <div class="data__profile">
                                         <label for="">Số điện thoại</label>
-                                        <input type="text" name="phone" value="<?php echo $user['phone']; ?>" placeholder="Số điện thoại...">
+                                        <input type="text" name="phone" value="<?php echo $_SESSION['user']['phone']; ?>" placeholder="Số điện thoại...">
                                     </div>
                                     <div class="data__profile">
                                         <label for="">E-mail</label>
-                                        <input type="Email" name="email" readonly value="<?php echo $user['user_email']; ?>" placeholder="Email...">
+                                        <input type="Email" name="email" readonly value="<?php echo $_SESSION['user']['user_email']; ?>" placeholder="Email...">
                                     </div>
                                     <div class="data__profile">
                                         <label for="">Về tôi: </label>
-                                        <textarea rows="9" cols="" name="about_me" placeholder="Mô tả..."><?php echo $user['about_me']; ?></textarea>
+                                        <textarea rows="9" cols="" name="about_me" placeholder="Mô tả..."><?php echo $_SESSION['user']['about_me']; ?></textarea>
                                     </div>
-                                <?php } ?>
-                                <button class="btn btn--all ms-0" type="submit" name="save" id="">Lưu thông tin</button>
+                                <button class="btn btn--all ms-0" name="save">Lưu thông tin</button>
                             </form>
                         </div>
                     </div>
@@ -92,19 +89,18 @@ require_once('../head.php');
                                 Change Password
                             </div>
                             <form action="process_profile.php" id="change__password" method="post" class="form__block p-5">
-                                <?php foreach ($users as $user) { ?>
-                                    <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
-                                <?php } ?>
+                                
+                                <input type="hidden" name="id" value="<?php echo $_SESSION['user']['id']; ?>">
                                 <p class="password__err<?php echo (!isset($_GET['err'])) ? "d-none" : ""; ?>"><?php echo (isset($_GET['err']) && $_GET['err'] == 1) ? "Bạn Đã nhập mật khẩu cũ vui lòng nhập mật khẩu mới" : ""; ?></p>
                                 <p class="password__safe">
                                     Mật khẩu của bạn phải dài ít nhất 12 ký tự ngẫu nhiên để được an toàn
                                 </p>
                                 <div class="data__profile">
-                                    <label for="">Mật khẩu mới</label>
+                                    <label for="password">Mật khẩu mới</label>
                                     <input type="text" id="password" name="password" value="">
                                 </div>
                                 <div class="data__profile">
-                                    <label for="">Xác nhận mật khẩu mới</label>
+                                    <label for="re-password">Xác nhận mật khẩu mới</label>
                                     <input type="password" id="re-password" name="re-password" value="">
                                 </div>
                                 <p class="password__success<?php echo (!isset($_GET['successful_change'])) ? "d-none" : ""; ?>"><?php echo (isset($_GET['successful_change']) && $_GET['successful_change'] == 1) ? "Đổi mật khẩu thành công :33" : ""; ?></p>

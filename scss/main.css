@@ -555,70 +555,55 @@
     font-size: 55% !important;
   }
 }
-body._bg_transparent .header {
-  background-color: transparent !important;
+body .header .navbar {
+  position: relative;
 }
-
-body._bg_transparent .header .navbar {
-  position: absolute;
+body .header .navbar .profile .click__profile .name_profile {
+  color: #000;
 }
-
-body._bg_transparent .header .navbar .profile .click__profile .name_profile {
-  color: #fff;
-}
-
-body._bg_transparent .header .navbar__list--link {
-  color: #fff;
-}
-
-body._bg_transparent .header .navbar__logo .scroll__logo__dark {
-  display: none;
-}
-
-body._bg_transparent .header .navbar__logo .scroll__logo__light {
+body .header .navbar__logo .scroll__logo__dark {
   display: block;
 }
-
+body .header .navbar__logo .scroll__logo__light {
+  display: none;
+}
 body .header .navbar__list--link {
   color: #000;
 }
 
-body .header .navbar .profile .click__profile .name_profile {
-  color: #000;
+.header.bg-white .navbar .login--register .btn--register, .header.bg-white .navbar .login--register .btn--login {
+  color: #222;
 }
 
-body .header .navbar {
-  position: relative;
+body._bg_transparent .header {
+  background-color: transparent !important;
 }
-
-body .header .navbar__logo .scroll__logo__dark {
-  display: block;
+body._bg_transparent .header .navbar.fixed-menu .profile .click__profile .name_profile {
+  color: #222;
 }
-
-body .header .navbar__logo .scroll__logo__light {
-  display: none;
+body._bg_transparent .header .navbar {
+  position: absolute;
 }
-
-body._bg_transparent .header .fixed-menu .navbar__logo .scroll__logo__light {
-  display: none;
+body._bg_transparent .header .navbar .profile .click__profile .name_profile {
+  color: #fff;
 }
-
 body._bg_transparent .header .fixed-menu .navbar__logo .scroll__logo__dark {
   display: block;
 }
-
-.header.bg-white .navbar .login--register .btn--login,
-.header.bg-white .navbar .login--register .btn--register {
-  color: #222;
+body._bg_transparent .header .fixed-menu .navbar__logo .scroll__logo__light {
+  display: none;
 }
-
-body._bg_transparent .header.bg-white .navbar .login--register .btn--login,
-body._bg_transparent .header.bg-white .navbar .login--register .btn--register {
+body._bg_transparent .header .navbar__logo .scroll__logo__light {
+  display: block;
+}
+body._bg_transparent .header .navbar__logo .scroll__logo__dark {
+  display: none;
+}
+body._bg_transparent .header .navbar__list--link {
   color: #fff;
 }
-
-body._bg_transparent .header .navbar.fixed-menu .profile .click__profile .name_profile {
-  color: #222;
+body._bg_transparent .header.bg-white .navbar .login--register .btn--register, body._bg_transparent .header.bg-white .navbar .login--register .btn--login {
+  color: #fff;
 }
 
 .position_header {

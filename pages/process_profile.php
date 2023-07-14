@@ -1,7 +1,7 @@
 <?php
-require_once('../lib/connect.php');
 session_start();
-if (isset($_SESSION['user_email']) && isset($_POST['reset_pass'])) {
+require_once('../lib/connect.php');
+if (isset($_SESSION['user']) && isset($_POST['reset_pass'])) {
     $user_email = $_SESSION['user_email'];
     $sql = "SELECT * FROM users where user_email = '$user_email'";
     $users = getData($sql);
@@ -11,16 +11,18 @@ if (isset($_SESSION['user_email']) && isset($_POST['reset_pass'])) {
         header('location:profile.php?err=1');
         exit;
     }
-    print_r($user_password);
-    print_r($pass);
     // die;
     if (isset($_POST['id'])) {
         $id = $_POST['id'];
         $sql = "UPDATE users SET user_password = '$user_password' WHERE id = '$id'";
         if ($conn->query($sql) === TRUE) {
+            unset($users[0]['user_password']);
+            $_SESSION['user'] = $users[0];
             header('location:profile.php?successful_change=1');
+            exit;
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
+            exit;
         }
     }
 }
@@ -57,7 +59,11 @@ if (isset($_POST['user_id']) && isset($_POST['save'])) {
     // print_r($sql);
     // die;
     if ($conn->query($sql) === TRUE) {
+        $sql = "SELECT * FROM users where user_email = '$user_email'";
+        $users = getData($sql);
+        $_SESSION['user'] = $users[0];
         header('location:profile.php');
+        exit;
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

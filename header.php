@@ -1,6 +1,5 @@
  <?php
     require_once('lib/connect.php');
-    session_start();
     ?>
  <header class="header bg-white" id="header">
      <!-- navbar -->
@@ -174,15 +173,12 @@
              </li>
          </ul>
          <?php
-            if (isset($_SESSION['user_email']) === true) {
-                $user_email = $_SESSION['user_email'];
-                $sql = "SELECT * FROM users WHERE user_email = '$user_email'";
-                $users = getData($sql);
-                echo '
+            if (isset($_SESSION['user']) ) {
+            ?>
             <div class="login--register profile">
                 <div class="d-flex click__profile">
-                    <img src="'.$users[0]['avatar'].'" />
-                    <h5 class="name_profile">Hi!, '.$users[0]['name'].'</h5>
+                    <img src="<?php echo $_SESSION['user']['avatar'];?>" />
+                    <h5 class="name_profile">Hi!, <?php echo $_SESSION['user']['name'];?></h5>
                 </div>
                 <ul class="list__profile">
                     <li class="item__profile"><a href="#"><i class="fas fa-chart-line"></i> DashBoard</a></li>
@@ -194,9 +190,9 @@
                     <li class="item__profile"><a href="/process_logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                 </ul>
              </div>
-            ';
+             <?php
             } else {
-                echo '
+                ?>
              <div class="login--register">
                  <button class="btn btn--login" type="button" data-bs-toggle="modal" data-bs-target="#login_Modal">
                      <i class="fas fa-unlock"></i> Log in
@@ -282,8 +278,7 @@
                  </div>
                  <!-- end Modal Sign up -->
              </div>
-            ';
-            } ?>
+            <?php } ?>
          <div class="navbar__icon">
              <i class="fas fa-bars"></i>
          </div>
