@@ -78,6 +78,18 @@
     font-size: 2rem;
     text-align: center;
 }
+.password__success {
+    color: $green;
+    font-size: 1.4rem;
+}
+.password__err {
+    color: red;
+    font-size: 1.4rem;
+}
+.err_validate {
+    color: red;
+    font-size: 1.2rem !important;
+}
 /* Icons Fix */
 .fa-calendar:before,
 .fa-calendar:before,

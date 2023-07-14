@@ -175,20 +175,23 @@
          </ul>
          <?php
             if (isset($_SESSION['user_email']) === true) {
+                $user_email = $_SESSION['user_email'];
+                $sql = "SELECT * FROM users WHERE user_email = '$user_email'";
+                $users = getData($sql);
                 echo '
             <div class="login--register profile">
                 <div class="d-flex click__profile">
-                    <img src="/images/avatar-03.png" />
-                    <h5 class="name_profile">Hi!, Name</h5>
+                    <img src="'.$users[0]['avatar'].'" />
+                    <h5 class="name_profile">Hi!, '.$users[0]['name'].'</h5>
                 </div>
                 <ul class="list__profile">
                     <li class="item__profile"><a href="#"><i class="fas fa-chart-line"></i> DashBoard</a></li>
                     <li class="item__profile"><a href="#"><i class="fas fa-comment-alt"></i> Messages</a></li>
-                    <li class="item__profile"><a href="#"><i class="fas fa-bookmark"></i> Bookmarks</a></li>
-                    <li class="item__profile"><a href="#"><i class="fas fa-bell"></i> Job Alerts</a></li>
+                    <li class="item__profile"><a href="/pages/bookmark.php"><i class="fas fa-bookmark"></i> Bookmarks</a></li>
+                    <li class="item__profile"><a href="/pages/job_alerts.php"><i class="fas fa-bell"></i> Job Alerts</a></li>
                     <li class="item__profile"><a href="#"><i class="fas fa-file"></i> Manage Resumes</a></li>
                     <li class="item__profile"><a href="/pages/profile.php"><i class="fas fa-user-circle"></i> My Profile</a></li>
-                    <li class="item__profile"><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    <li class="item__profile"><a href="/process_logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                 </ul>
              </div>
             ';
@@ -243,7 +246,7 @@
                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
                              </div>
                              <div class="modal-body p-5 pb-2">
-                                 <form action="/process_register.php" method="post" class="form__block">
+                                 <form action="/phpmailer/send_mail.php" method="post" class="form__block">
                                      <div class="d-flex mb-3">
                                          <div class="input_box w-50 me-2">
                                              <input type="radio" name="candidate_employer" value="1" id="candidate" class="d-none radio_check">
@@ -259,8 +262,8 @@
                                          <input class="input__box--item" type="email" name="user_email" value="" placeholder="Nhập Email của bạn" />
                                      </div>
                                      <div class="input_box mb-4">
-                                         <label class="input__box--item" for=""><i class="fas fa-lock"></i> Nhập Tên</label>
-                                         <input class="input__box--item" type="text" name="user_name" value="" placeholder="Nhập tên của bạn" />
+                                         <label class="input__box--item" for=""><i class="fas fa-user-alt"></i> Tên Của Bạn</label>
+                                         <input class="input__box--item" type="text" name="user_name" value="" placeholder="Tên của bạn" />
                                      </div>
                                      <div class="input_box mb-4">
                                          <input type="checkbox" name="agree" value="1" id="privacy_policy" />

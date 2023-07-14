@@ -198,6 +198,8 @@
 <script src="/js/bootstrap.min.js"></script>
 <!-- slick slider -->
 <script src="/js/slick.min.js"></script>
+<!-- jquery validate -->
+<script src="/js/jquery.validate.min.js"></script>
 <!-- chosen -->
 <script src="/js/chosen.jquery.min.js"></script>
 <script src="/js/chosen.proto.min.js"></script>

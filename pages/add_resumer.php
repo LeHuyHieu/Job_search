@@ -33,7 +33,7 @@ require_once('../head.php');
                     <h5 class="title__profile">Account</h5>
                     <ul class="list__profile">
                         <li class="item__profile"><a href="/pages/profile.php" class="link__profile"><i class="fas fa-user-circle"></i> My Profile</a></li>
-                        <li class="item__profile"><a href="#" class="link__profile"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        <li class="item__profile"><a href="/process_logout.php" class="link__profile"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -98,7 +98,7 @@ require_once('../head.php');
                                         <div class="data__profile avt">
                                             <span>Ảnh đại diện</span><br>
                                             <label for="avt" class="label_cursor">
-                                                <span><i class="fas fa-upload"></i> Browse</span>
+                                                <span class="browse"><i class="fas fa-upload"></i> Browse</span>
                                                 <img id="blah" alt="your image" src="/images/avt_user.jpg" width="50" height="50" />
                                             </label>
                                             <input type="file" id="avt" name="" value="" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
@@ -117,21 +117,83 @@ require_once('../head.php');
                                     <div class="flex flex__left w-50 me-3">
                                         <div class="data__profile">
                                             <label for="">URL(s)</label>
-                                            <input type="text" name="" value="">
+                                            <div class="border__input">
+                                                <div class="data__profile--detail p-5 bg-light">
+                                                    <span class="close__card"><i class="fas fa-times"></i></span>
+                                                    <div class="mb-4">
+                                                        <label for="">Name</label>
+                                                        <input type="text" value="" name="">
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <label for="">URL</label>
+                                                        <input type="text" value="" name="">
+                                                    </div>
+                                                </div>
+                                                <span class="btn btn--add" id="btn_add_url"><i class="fas fa-plus"></i> Thêm URl</span>
+                                            </div>
                                         </div>
                                         <div class="data__profile">
                                             <label for="">Kinh nghiệm</label>
-                                            <input type="text" name="" value="">
+                                            <div class="border__input">
+                                                <div class="data__profile--detail p-5 bg-light">
+                                                    <span class="close__card"><i class="fas fa-times"></i></span>
+                                                    <div class="mb-4">
+                                                        <label for="">Nhà tuyển dụng</label>
+                                                        <input type="text" value="" name="">
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <label for="">Tiêu đề công việc</label>
+                                                        <input type="text" value="" name="">
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <label for="">Ngày bắt đầu/Ngày hết hạn</label>
+                                                        <input type="text" value="" name="">
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <label for="">Ghi chú</label>
+                                                        <textarea value="" name="" rows="5"></textarea>
+                                                    </div>
+                                                </div>
+                                                <span class="btn btn--add" id="btn_add_url"><i class="fas fa-plus"></i> Thêm Kinh Nghiệm</span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="flex flex__right w-50 ms-3">
                                         <div class="data__profile">
                                             <label for="">Học vấn</label>
-                                            <input type="text" name="" value="">
+                                            <div class="border__input">
+                                                <div class="data__profile--detail p-5 bg-light">
+                                                    <span class="close__card"><i class="fas fa-times"></i></span>
+                                                    <div class="mb-4">
+                                                        <label for="">Tên trường</label>
+                                                        <input type="text" value="" name="">
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <label for="">Trình độ học vấn</label>
+                                                        <input type="text" value="" name="">
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <label for="">Ngày bắt đầu/Ngày hết hạn</label>
+                                                        <input type="text" value="" name="">
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <label for="">Ghi chú</label>
+                                                        <textarea value="" name="" rows="5"></textarea>
+                                                    </div>
+                                                </div>
+                                                <span class="btn btn--add" id="btn_add_url"><i class="fas fa-plus"></i> Thêm Học vấn</span>
+                                            </div>
                                         </div>
                                         <div class="data__profile">
-                                            <label for="">CV</label>
-                                            <input type="file" name="" value="">
+                                            <span>Sơ yếu lý lịch</span><br>
+                                            <div class="border__input">
+                                                <label for="cv" class="label_cursor d-flex align-items-center">
+                                                    <span class="browse d-flex align-items-center"><i class="fas fa-upload pe-2"></i> Browse</span> 
+                                                    <span class="ms-3">Tùy chọn tải lên sơ yếu lý lịch của bạn để nhà tuyển dụng xem. tối đa. kích thước tệp: 100 MB.</span>
+                                                </label>
+                                                <img id="blah2" class="mt-4" alt="your image" src="/images/1x1.png" style="max-width: 150px"; height="auto" />
+                                                <input type="file" id="cv" name="" value="" onchange="document.getElementById('blah2').src = window.URL.createObjectURL(this.files[0])">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

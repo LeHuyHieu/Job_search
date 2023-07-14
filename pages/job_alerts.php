@@ -33,7 +33,7 @@ require_once('../head.php');
                     <h5 class="title__profile">Account</h5>
                     <ul class="list__profile">
                         <li class="item__profile"><a href="/pages/profile.php" class="link__profile"><i class="fas fa-user-circle"></i> My Profile</a></li>
-                        <li class="item__profile"><a href="#" class="link__profile"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        <li class="item__profile"><a href="/process_logout.php" class="link__profile"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -49,7 +49,7 @@ require_once('../head.php');
                                 Add New Alert
                             </div>
                             <form action="" method="post" class="row form__block p-5" enctype="multipart/form-data">
-                                <div class="col-md-6 col-sm-12 col-12">
+                                <div class="col-md-6 col-sm-12 col-12 flex">
                                     <div class="data__profile">
                                         <label for="">Tên việc làm</label>
                                         <input type="text" name="" value="" placeholder="Tên công việc...">
@@ -77,7 +77,7 @@ require_once('../head.php');
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-sm-12 col-12">
+                                <div class="col-md-6 col-sm-12 col-12 flex">
                                     <div class="data__profile">
                                         <label for="">Từ Khóa</label>
                                         <input type="text" name="" value="" placeholder="Từ khóa...">
@@ -97,8 +97,7 @@ require_once('../head.php');
                                     </div>
                                     <div class="data__profile">
                                         <label>Loại công việc</label>
-                                        <select name="job_type" id="" multiple class="form-select chosen-select">
-                                            <option value="0">Vui lòng chọn!</option>
+                                        <select name="job_type" id="" multiple class="form-select chosen-select" placeholder="Vui lòng chọn">
                                             <option value="1">Full time</option>
                                             <option value="2">Freelance</option>
                                             <option value="3">Internship</option>

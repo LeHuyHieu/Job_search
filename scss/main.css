@@ -607,8 +607,28 @@ body._bg_transparent .header .fixed-menu .navbar__logo .scroll__logo__dark {
   display: block;
 }
 
-.header.bg-white .navbar .login--register .btn--login, .header.bg-white .navbar .login--register .btn--register {
+.header.bg-white .navbar .login--register .btn--login,
+.header.bg-white .navbar .login--register .btn--register {
   color: #222;
+}
+
+body._bg_transparent .header.bg-white .navbar .login--register .btn--login,
+body._bg_transparent .header.bg-white .navbar .login--register .btn--register {
+  color: #fff;
+}
+
+body._bg_transparent .header .navbar.fixed-menu .profile .click__profile .name_profile {
+  color: #222;
+}
+
+.position_header {
+  box-shadow: 0px 5px 10px #aaaaaa;
+}
+.position_header .header .navbar .profile {
+  border-left: 1px solid #ebebeb;
+}
+.position_header .header .navbar .navbar__logo {
+  border-right: 1px solid #ebebeb;
 }
 
 .footer .footer__block {
@@ -979,6 +999,34 @@ body._bg_transparent .header .fixed-menu .navbar__logo .scroll__logo__dark {
 
 .content .jobs .jobs__item--parttime {
   border-left: 4px solid #26ae61 !important;
+}
+
+.browse {
+  display: inline-block;
+  padding: 1.2rem 2.5rem;
+  background-color: #f8f9fa;
+  border-radius: 0.3rem;
+  font-weight: 400 !important;
+  color: #555555;
+  transition: 0.3s;
+}
+.browse:hover {
+  background-color: #222;
+  color: #fff;
+}
+
+.btn.btn--add {
+  margin-top: 1.5rem;
+  padding: 1.2rem 2.5rem;
+  background-color: #f8f9fa;
+  border-radius: 0.3rem;
+  font-weight: 400 !important;
+  color: #555555;
+  transition: 0.3s;
+}
+.btn.btn--add:hover {
+  background-color: #222;
+  color: #fff;
 }
 
 .chosen-single {
@@ -2591,6 +2639,37 @@ body.position_header .header .navbar {
   height: 50px;
   font-size: 1.3rem;
 }
+.flex .data__profile .border__input {
+  padding: 2rem;
+  border: 1px solid #ebebeb;
+  border-radius: 0.3rem;
+}
+.flex .data__profile .border__input .data__profile--detail {
+  border-radius: 0.3rem;
+  position: relative;
+}
+.flex .data__profile .border__input .data__profile--detail .close__card {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 0;
+  right: 0;
+  background-color: rgba(184, 0, 0, 0.3);
+  border-radius: 0.2rem;
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.flex .data__profile .border__input .data__profile--detail .mb-4 input, .flex .data__profile .border__input .data__profile--detail .mb-4 textarea {
+  background-color: #fff;
+  border: 1px solid #ebebeb;
+}
+.flex .data__profile .border__input .data__profile--detail .mb-4 label {
+  font-weight: 400 !important;
+  font-size: 1.2rem !important;
+}
 .flex .data__profile.avt label {
   display: block;
   width: 100%;
@@ -2622,6 +2701,13 @@ body.position_header .header .navbar {
 
 .note-editor.note-frame .note-editing-area .note-codable {
   display: none !important;
+}
+
+.chosen-container-multi .chosen-choices {
+  border: none;
+  background-color: transparent;
+  background-image: none;
+  box-shadow: none;
 }
 
 .pb-7 {
@@ -2725,6 +2811,21 @@ body.position_header .header .navbar {
   color: #26ae61;
   font-size: 2rem;
   text-align: center;
+}
+
+.password__success {
+  color: #26ae61;
+  font-size: 1.4rem;
+}
+
+.password__err {
+  color: red;
+  font-size: 1.4rem;
+}
+
+.err_validate {
+  color: red;
+  font-size: 1.2rem !important;
 }
 
 /* Icons Fix */

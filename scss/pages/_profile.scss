@@ -242,6 +242,39 @@ body.position_header .header .navbar {
             height: 50px;
             font-size: 1.3rem;
         }
+        .border__input {
+            padding: 2rem;
+            border: 1px solid $light;
+            border-radius: .3rem;
+            .data__profile--detail {
+                border-radius: .3rem;
+                position: relative;
+                .close__card {
+                    position: absolute;
+                    width: 30px;
+                    height: 30px;
+                    top: 0;
+                    right: 0;
+                    background-color: rgba($color: $red, $alpha: .3);
+                    border-radius: .2rem;
+                    color: red;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                }
+                .mb-4 {
+                    input, textarea {
+                        background-color: $white;
+                        border: 1px solid $light;
+                    }
+                    label {
+                        font-weight: 400 !important;
+                        font-size: 1.2rem !important;
+                    }
+                }
+            }
+        } 
     }
 
     .data__profile.avt {
@@ -282,4 +315,10 @@ body.position_header .header .navbar {
 
 .note-editor.note-frame .note-editing-area .note-codable {
     display: none !important;
+}
+.chosen-container-multi .chosen-choices {
+    border: none;
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
 }

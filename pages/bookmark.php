@@ -33,7 +33,7 @@ require_once('../head.php');
                     <h5 class="title__profile">Account</h5>
                     <ul class="list__profile">
                         <li class="item__profile"><a href="/pages/profile.php" class="link__profile"><i class="fas fa-user-circle"></i> My Profile</a></li>
-                        <li class="item__profile"><a href="#" class="link__profile"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        <li class="item__profile"><a href="/process_logout.php" class="link__profile"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                 </div>
             </div>

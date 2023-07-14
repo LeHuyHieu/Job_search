@@ -150,3 +150,30 @@
 .content .jobs .jobs__item--parttime {
     border-left: 4px solid $green !important;
 }
+
+.browse {
+    display: inline-block;
+    padding: 1.2rem 2.5rem;
+    background-color: $white-light;
+    border-radius: 0.3rem;
+    font-weight: 400 !important;
+    color: $gray;
+    transition: .3s;
+    &:hover {
+        background-color: $dark;
+        color: $white;
+    }
+}
+.btn.btn--add {
+    margin-top: 1.5rem;
+    padding: 1.2rem 2.5rem;
+    background-color: $white-light;
+    border-radius: .3rem;
+    font-weight: 400 !important;
+    color: $gray;
+    transition: .3s;
+    &:hover {
+        background-color: $dark;
+        color: $white;
+    }
+}

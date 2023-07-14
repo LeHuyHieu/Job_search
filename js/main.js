@@ -95,6 +95,33 @@ $(document).ready(function () {
             height: 200,
         });
     });
+
+    // validate
+    $("#change__password").validate({
+		onfocusout: false,
+		onkeyup: false,
+		onclick: false,
+		rules: {
+			"password": {
+				required: true,
+				minlength: 6
+			},
+			"re-password": {
+				equalTo: "#password",
+				minlength: 6
+			}
+		},
+		messages: {
+			"password": {
+				required: "<span class=\"err_validate\">Bắt buộc nhập Password</span>",
+				minlength: "<span class=\"err_validate\">Hãy nhập ít nhất 6 ký tự</span>"
+			},
+			"re-password": {
+				equalTo: "<span class=\"err_validate\">Hai password phải giống nhau</span>",
+				minlength: "<span class=\"err_validate\">Hãy nhập ít nhất 6 ký tự</span>"
+			}
+		}
+	});
 });
 
 var typed2 = new Typed('.typed', {
