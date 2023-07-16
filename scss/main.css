@@ -571,8 +571,41 @@ body .header .navbar__list--link {
   color: #000;
 }
 
-.header.bg-white .navbar .login--register .btn--register, .header.bg-white .navbar .login--register .btn--login {
+.header.bg-white .navbar .login--register .btn--register,
+.header.bg-white .navbar .login--register .btn--login {
   color: #222;
+}
+.header.bg-white .navbar .profile .list__profile {
+  background-color: #222;
+}
+.header.bg-white .navbar .profile .list__profile::before {
+  border-bottom: 8px solid #222;
+}
+.header.bg-white .navbar .profile .list__profile .item__profile a {
+  display: inline-block;
+  width: 100%;
+  color: #fff;
+}
+.header.bg-white .navbar .profile .list__profile .item__profile a:hover {
+  color: #26ae61;
+}
+.header.bg-white .navbar__list--link::after {
+  border-color: #222;
+}
+.header.bg-white .navbar__list--link:hover::after {
+  border-color: #26ae61;
+}
+.header.bg-white .navbar__list--item .list__megamenu {
+  background-color: #222;
+}
+.header.bg-white .navbar__list--item .list__megamenu .list__megamenu--item {
+  background-color: #222;
+}
+.header.bg-white .navbar__list--item .list__megamenu::before {
+  border-bottom: 8px solid #222;
+}
+.header.bg-white .navbar__list--item .list__megamenu--link:hover {
+  color: #fff;
 }
 
 body._bg_transparent .header {
@@ -602,7 +635,8 @@ body._bg_transparent .header .navbar__logo .scroll__logo__dark {
 body._bg_transparent .header .navbar__list--link {
   color: #fff;
 }
-body._bg_transparent .header.bg-white .navbar .login--register .btn--register, body._bg_transparent .header.bg-white .navbar .login--register .btn--login {
+body._bg_transparent .header.bg-white .navbar .login--register .btn--register,
+body._bg_transparent .header.bg-white .navbar .login--register .btn--login {
   color: #fff;
 }
 
@@ -1012,6 +1046,32 @@ body._bg_transparent .header.bg-white .navbar .login--register .btn--register, b
 .btn.btn--add:hover {
   background-color: #222;
   color: #fff;
+}
+
+.btn.btn--add.save {
+  margin: 1rem 0;
+  padding: 1rem 4rem;
+  background-color: #26ae61;
+  color: #fff;
+}
+
+.btn-experience,
+.btn-education {
+  position: absolute;
+  right: 0;
+  background-color: #26ae61;
+  color: #fff;
+  z-index: 1;
+  font-size: 1.4rem;
+  top: 0;
+  cursor: pointer;
+  padding: 0.5rem 0.8rem;
+}
+.btn-experience:hover,
+.btn-education:hover {
+  border-radius: 0.3rem;
+  color: #fff;
+  background-color: #222;
 }
 
 .chosen-single {
@@ -2556,7 +2616,7 @@ body._bg_transparent .header.bg-white .navbar .login--register .btn--register, b
 }
 .content.connect__profile .right .profile_details .form__block .data__profile img {
   transition: 0.2s;
-  border-radius: 0.3rem;
+  border-radius: 100rem;
 }
 .content.connect__profile .right .profile_details .form__block .data__profile img:hover {
   transform: scale(1.05);
@@ -2603,6 +2663,12 @@ body.position_header .header .navbar {
   background-color: #f9f9f9;
 }
 
+.flex .data__profile label {
+  font-size: 1.5rem;
+  display: inline-block;
+  font-weight: 600;
+  color: #222;
+}
 .flex .data__profile .chosen-container {
   background-color: #f8f9fa;
   border: 1px solid #ebebeb;
@@ -2632,6 +2698,8 @@ body.position_header .header .navbar {
 .flex .data__profile .border__input .data__profile--detail {
   border-radius: 0.3rem;
   position: relative;
+  padding: 3rem;
+  padding-top: 5rem;
 }
 .flex .data__profile .border__input .data__profile--detail .close__card {
   position: absolute;
@@ -2647,9 +2715,13 @@ body.position_header .header .navbar {
   justify-content: center;
   cursor: pointer;
 }
-.flex .data__profile .border__input .data__profile--detail .mb-4 input, .flex .data__profile .border__input .data__profile--detail .mb-4 textarea {
+.flex .data__profile .border__input .data__profile--detail .mb-4 input,
+.flex .data__profile .border__input .data__profile--detail .mb-4 textarea {
   background-color: #fff;
   border: 1px solid #ebebeb;
+  display: inline-block;
+  width: 100%;
+  outline: none;
 }
 .flex .data__profile .border__input .data__profile--detail .mb-4 label {
   font-weight: 400 !important;
@@ -2693,6 +2765,29 @@ body.position_header .header .navbar {
   background-color: transparent;
   background-image: none;
   box-shadow: none;
+}
+
+.note-editing-area {
+  font-size: 1.5rem;
+}
+
+.experience-content .bg-white {
+  padding: 1rem 1.5rem;
+}
+.experience-content .bg-white .experience-title {
+  font-size: 1.35rem;
+  width: 40%;
+}
+.experience-content .bg-white .experience-name {
+  font-size: 1.35rem;
+  margin-left: 1.5rem;
+  width: 60%;
+}
+
+.line {
+  background-color: #aaaaaa;
+  width: 95%;
+  margin: 0 auto;
 }
 
 .pb-7 {

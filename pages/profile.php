@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user'])) {
-    header('loaction:index.php');
+    header('location:/index.php');
 }
 require_once('../lib/connect.php');
 ?>
@@ -26,12 +26,6 @@ require_once('../head.php');
                         <li class="item__profile"><a href="#" class="link__profile"><i class="fas fa-comment-alt"></i> Messages </a></li>
                         <li class="item__profile"><a href="/pages/bookmark.php" class="link__profile"><i class="fas fa-bookmark"></i> Bookmarks</a></li>
                         <li class="item__profile"><a href="/pages/job_alerts.php" class="link__profile"><i class="fas fa-bell"></i> Job Alerts <span class="notification">1</span></a></li>
-                    </ul>
-                </div>
-                <div class="left__block">
-                    <h5 class="title__profile">Candidate</h5>
-                    <ul class="list__profile">
-                        <li class="item__profile"><a href="#" class="link__profile"><i class="fas fa-file"></i> Manage Resumes <span class="notification">1</span></a></li>
                         <li class="item__profile"><a href="/pages/add_resumer.php" class="link__profile"><i class="fas fa-file"></i> Add Resume</a></li>
                     </ul>
                 </div>
@@ -59,7 +53,7 @@ require_once('../head.php');
                                     <div class="data__profile">
                                         <span>Ảnh đại diện</span><br>
                                         <label for="avt" class="label_cursor">
-                                            <img id="blah" alt="your image" src="<?php echo ($_SESSION['user']['avatar'] == "") ? "/images/1x1.png" : $_SESSION['user']['avatar']; ?>" width="100" height="100" />
+                                            <img id="blah" alt="your image" src="<?php echo ($_SESSION['user']['avatar'] == "") ? "/images/avt_user.jpg" : $_SESSION['user']['avatar']; ?>" width="100" height="100" />
                                         </label>
                                         <input type="file" id="avt" name="avatar" value="<?php echo $_SESSION['user']['avatar']; ?>" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
                                     </div>
@@ -89,7 +83,6 @@ require_once('../head.php');
                                 Change Password
                             </div>
                             <form action="process_profile.php" id="change__password" method="post" class="form__block p-5">
-                                
                                 <input type="hidden" name="id" value="<?php echo $_SESSION['user']['id']; ?>">
                                 <p class="password__err<?php echo (!isset($_GET['err'])) ? "d-none" : ""; ?>"><?php echo (isset($_GET['err']) && $_GET['err'] == 1) ? "Bạn Đã nhập mật khẩu cũ vui lòng nhập mật khẩu mới" : ""; ?></p>
                                 <p class="password__safe">

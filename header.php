@@ -178,7 +178,7 @@
             <div class="login--register profile">
                 <div class="d-flex click__profile">
                     <img src="<?php echo $_SESSION['user']['avatar'];?>" />
-                    <h5 class="name_profile">Hi!, <?php echo $_SESSION['user']['name'];?></h5>
+                    <h5 class="name_profile"><?php echo $_SESSION['user']['name'];?> <i class="fas fa-angle-down"></i></h5>
                 </div>
                 <ul class="list__profile">
                     <li class="item__profile"><a href="#"><i class="fas fa-chart-line"></i> DashBoard</a></li>

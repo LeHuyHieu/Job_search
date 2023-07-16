@@ -1,4 +1,10 @@
-<?php require_once('../lib/connect.php'); ?>
+<?php 
+session_start();
+if (!isset($_SESSION['user'])) {
+    header('location:/index.php');
+}
+require_once('../lib/connect.php'); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,12 +26,6 @@ require_once('../head.php');
                         <li class="item__profile"><a href="#" class="link__profile"><i class="fas fa-comment-alt"></i> Messages </a></li>
                         <li class="item__profile"><a href="/pages/bookmark.php" class="link__profile color__green"><i class="fas fa-bookmark"></i> Bookmarks</a></li>
                         <li class="item__profile"><a href="/pages/job_alerts.php" class="link__profile"><i class="fas fa-bell"></i> Job Alerts <span class="notification">1</span></a></li>
-                    </ul>
-                </div>
-                <div class="left__block">
-                    <h5 class="title__profile">Candidate</h5>
-                    <ul class="list__profile">
-                        <li class="item__profile"><a href="#" class="link__profile"><i class="fas fa-file"></i> Manage Resumes <span class="notification">1</span></a></li>
                         <li class="item__profile"><a href="/pages/add_resumer.php" class="link__profile"><i class="fas fa-file"></i> Add Resume</a></li>
                     </ul>
                 </div>

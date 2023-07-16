@@ -1,4 +1,7 @@
-<?php require_once('./lib/connect.php'); ?>
+<?php
+session_start();
+require_once('./lib/connect.php'); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 

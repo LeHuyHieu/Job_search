@@ -24,10 +24,6 @@ if(isset($_POST['register']) && $_POST['user_email'] != '' && $_POST['user_name'
     if($_POST['candidate_employer'] == 2){
         $employer = 1;
     }
-    print_r($user_email);
-    print_r($user_name);
-    print_r($candidate);
-    print_r($employer);
 
     $sql = "SELECT * FROM users where user_email = '$user_email'";
     $register = mysqli_query($conn, $sql);
@@ -75,7 +71,7 @@ if(isset($_POST['register']) && $_POST['user_email'] != '' && $_POST['user_name'
     }
     // print_r($login_register);die;
 }else {
-    header('location:index.php?err=1');
+    header('location:../index.php?err=1');
 }
 
 

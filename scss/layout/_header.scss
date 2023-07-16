@@ -659,6 +659,7 @@ body {
     .header {
         .navbar {
             position: relative;
+
             .profile {
                 .click__profile {
                     .name_profile {
@@ -667,14 +668,17 @@ body {
                 }
             }
         }
+
         .navbar__logo {
             .scroll__logo__dark {
                 display: block;
             }
+
             .scroll__logo__light {
                 display: none;
             }
         }
+
         .navbar__list--link {
             color: $black;
         }
@@ -684,8 +688,54 @@ body {
 .header.bg-white {
     .navbar {
         .login--register {
-            .btn--register, .btn--login {
+
+            .btn--register,
+            .btn--login {
                 color: $dark;
+            }
+        }
+        .profile {
+            .list__profile {
+                background-color: $dark;
+                &::before {
+                    border-bottom: 8px solid $dark;
+                }
+                .item__profile{
+                    a {
+                        display: inline-block;
+                        width: 100%;
+                        color: $white;
+                        &:hover {
+                            color: $green;
+                        }
+                    }   
+                } 
+            }
+        }
+    }
+
+    .navbar__list--link::after {
+        border-color: $dark;
+    }
+
+    .navbar__list--link:hover::after {
+        border-color: $green;
+    }
+
+    .navbar__list--item {
+        .list__megamenu {
+            background-color: $dark;
+            .list__megamenu--item  {
+                background-color: $dark;
+               
+            }
+            &::before {
+                border-bottom: 8px solid $dark;
+            }
+        }
+        .list__megamenu--link {
+            &:hover {
+                color: $white;
             }
         }
     }
@@ -694,6 +744,7 @@ body {
 body._bg_transparent {
     .header {
         background-color: transparent !important;
+
         .navbar.fixed-menu {
             .profile {
                 .click__profile {
@@ -703,8 +754,10 @@ body._bg_transparent {
                 }
             }
         }
+
         .navbar {
             position: absolute;
+
             .profile {
                 .click__profile {
                     .name_profile {
@@ -713,32 +766,40 @@ body._bg_transparent {
                 }
             }
         }
+
         .fixed-menu {
             .navbar__logo {
                 .scroll__logo__dark {
                     display: block;
                 }
+
                 .scroll__logo__light {
                     display: none;
                 }
             }
         }
+
         .navbar__logo {
             .scroll__logo__light {
                 display: block;
             }
+
             .scroll__logo__dark {
                 display: none;
             }
         }
+
         .navbar__list--link {
             color: $white;
         }
     }
+
     .header.bg-white {
         .navbar {
             .login--register {
-                .btn--register, .btn--login {
+
+                .btn--register,
+                .btn--login {
                     color: $white;
                 }
             }

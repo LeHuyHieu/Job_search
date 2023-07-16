@@ -1,3 +1,6 @@
+// 
+
+
 $(window).scroll(function () {
     // Get number of pixels of scroll.
     var pixel = $(window).scrollTop();
@@ -94,8 +97,62 @@ $(document).ready(function () {
         if ($('.summernote').length > 0) {
             $('.summernote').summernote({
                 height: 200,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'link', 'unlink', 'undo', 'redo', 'list']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                ],
             });
         }
+    });
+
+    $("#btnCloneExperience").on("click", function () {
+        // Clone the div
+        var html = $("#templateExperience").html();
+        // Append the cloned div to the DOM
+        $(html).insertBefore($("#btnCloneExperience"));
+    });
+
+    $("#btnCloneEducation").on("click", function () {
+        // Clone the div
+        var html = $("#templateEducation").html();
+        // Append the cloned div to the DOM
+        $(html).insertBefore($("#btnCloneEducation"));
+    });
+    $(document).on('click', '.close__card', function () {
+        $(this).parent().remove();
+    });
+    $(document).on('click', '.edit-experience', function () {
+        var _this = $(this);
+        var id= $(this).attr('data-id');
+        $.ajax("get-experience.php?id="+id)
+        .done(function(data) {
+            $(_this).next().html(data);
+        });
+    });
+
+    $(document).on('click', '.edit-education', function () {
+        var _this = $(this);
+        var id= $(this).attr('data-id');
+        $.ajax("get-education.php?id="+id)
+        .done(function(data) {
+            $(_this).next().html(data);
+        });
+    });
+
+    $(document).on('click', '.btn.btn--add.save', function (event) {
+        event.preventDefault();
+        var _this = $(this);
+        var form = $(this).parents('form').first();
+        var data = $(form).serialize();
+        var url = $(form).attr('action');
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+          }).done(function(data) {
+            $(_this).parents('.experience-content').first().html(data);
+          });
+          return false;
     });
 
     // validate
@@ -135,6 +192,7 @@ var typed2 = new Typed('.typed', {
 });
 
 $('.single-item').slick();
+
 
 $('.center').slick({
     centerMode: true,

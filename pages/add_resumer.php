@@ -1,4 +1,11 @@
-<?php require_once('../lib/connect.php'); ?>
+<?php
+session_start();
+if (!isset($_SESSION['user'])) {
+    header('location:/index.php');
+}
+require_once('../lib/connect.php');
+$selected = "selected";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,12 +27,6 @@ require_once('../head.php');
                         <li class="item__profile"><a href="#" class="link__profile"><i class="fas fa-comment-alt"></i> Messages </a></li>
                         <li class="item__profile"><a href="/pages/bookmark.php" class="link__profile"><i class="fas fa-bookmark"></i> Bookmarks</a></li>
                         <li class="item__profile"><a href="/pages/job_alerts.php" class="link__profile"><i class="fas fa-bell"></i> Job Alerts <span class="notification">1</span></a></li>
-                    </ul>
-                </div>
-                <div class="left__block">
-                    <h5 class="title__profile">Candidate</h5>
-                    <ul class="list__profile">
-                        <li class="item__profile"><a href="#" class="link__profile"><i class="fas fa-file"></i> Manage Resumes <span class="notification">1</span></a></li>
                         <li class="item__profile"><a href="/pages/add_resumer.php" class="link__profile color__green"><i class="fas fa-file"></i> Add Resume</a></li>
                     </ul>
                 </div>
@@ -48,40 +49,38 @@ require_once('../head.php');
                             <div class="bg-light title__detail">
                                 Add New Resumer
                             </div>
-                            <form action="" method="post" class="row form__block p-5" enctype="multipart/form-data">
+                            <form action="./process_add_resumer.php" method="post" class="row form__block p-5" enctype="multipart/form-data">
+                                <input type="hidden" name="user_id" value="<?php echo isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : ""; ?>">
                                 <div class="d-flex">
                                     <div class="flex flex__left w-50 me-3">
                                         <div class="data__profile">
                                             <label for="">Tên của bạn</label>
-                                            <input type="text" value="" name="" placeholder="Tên của bạn...">
+                                            <input type="text" readonly value="<?php echo (isset($_SESSION['user']['name'])) ? $_SESSION['user']['name'] : ""; ?>" name="name" placeholder="Tên của bạn...">
                                         </div>
                                         <?php
                                         $sql = "SELECT * FROM city";
                                         $city_table = getData($sql);
                                         ?>
                                         <div class="data__profile">
-                                            <label for="">Tỉnh/Thành phố</label>
+                                            <span>Tỉnh/Thành phố</span>
                                             <select name="city_id" id="" class="form-select chosen-select">
                                                 <option value="0">Vui lòng chọn Tỉnh/Thành Phố!</option>
                                                 <?php foreach ($city_table as $city) { ?>
-                                                    <option value="<?php echo $city['id']; ?>"><?php echo $city['city_name']; ?></option>
+                                                    <option value="<?php echo $city['id']; ?>" <?php echo ($city['id'] == $_SESSION['user']['city_id']) ? $selected : ""; ?>><?php echo $city['city_name']; ?></option>
                                                 <?php } ?>
                                             </select>
-                                        </div>
-                                        <div class="data__profile">
-                                            <label for="">Địa chỉ</label>
-                                            <input type="text" value="" name="" placeholder="Địa chỉ...">
                                         </div>
                                         <?php
                                         $sql = "SELECT * FROM categories";
                                         $categories = getData($sql);
+                                        // print_r($_SESSION['user']['city_id']);die;
                                         ?>
                                         <div class="data__profile">
-                                            <label for="">Danh mục sơ yếu lý lịch</label>
-                                            <select name="city_id" id="" class="form-select chosen-select">
-                                                <option value="0">Chọn một mục!</option>
+                                            <span>Categories</span>
+                                            <select name="category_id" id="" class="form-select chosen-select">
+                                                <option value="0">Vui lòng chọn!</option>
                                                 <?php foreach ($categories as $category) { ?>
-                                                    <option value="<?php echo $category['id']; ?>"><?php echo ($category['parent_id'] != 0 ? "-" . $category['name'] : $category['name']); ?></option>
+                                                    <option value="<?php echo $category['id']; ?>" <?php echo ($category['id'] == $_SESSION['user']['city_id']) ? $selected : ""; ?> ><?php echo ($category['parent_id'] != 0 ? "-" . $category['name'] : $category['name']); ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
@@ -89,116 +88,109 @@ require_once('../head.php');
                                     <div class="flex flex__right w-50 ms-3">
                                         <div class="data__profile">
                                             <label for="">Email của bạn</label>
-                                            <input type="text" value="" name="" placeholder="Email của bạn...">
+                                            <input type="text" readonly value="<?php echo (isset($_SESSION['user']['user_email'])) ? $_SESSION['user']['user_email'] : ""; ?>" name="email" placeholder="Email của bạn...">
                                         </div>
                                         <div class="data__profile">
                                             <label for="">Nghề nghiệp của bạn</label>
-                                            <input type="text" value="" name="" placeholder="Nghề nghiệp của bạn...">
+                                            <input type="text" value="<?php echo (isset($_SESSION['user']) && $_SESSION['user']['profession'] != '') ? $_SESSION['user']['profession'] : ""; ?>" name="professional_title" required placeholder="Nghề nghiệp của bạn...">
                                         </div>
                                         <div class="data__profile avt">
                                             <span>Ảnh đại diện</span><br>
                                             <label for="avt" class="label_cursor">
                                                 <span class="browse"><i class="fas fa-upload"></i> Browse</span>
-                                                <img id="blah" alt="your image" src="/images/avt_user.jpg" width="50" height="50" />
+                                                <img id="blah" alt="your image" src="<?php echo (isset($_SESSION['user']['avatar'])) ? $_SESSION['user']['avatar'] : "/images/avt_user.jpg"; ?>" width="100" height="100" />
                                             </label>
-                                            <input type="file" id="avt" name="" value="" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+                                            <input type="file" id="avt" name="avatar" value="<?php echo (isset($_SESSION['user']['avatar'])) ? $_SESSION['user']['avatar'] : "/images/avt_user.jpg"; ?>" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="data__profile">
                                     <label for="">Nội dung</label>
-                                    <textarea rows="7" cols="" class="summernote" name="" value=""></textarea>
+                                    <textarea rows="7" cols="" required class="summernote" name="content"><?php echo (isset($_SESSION['user']['content']) && $_SESSION['user']['content'] != '') ? $_SESSION['user']['content'] : ""; ?></textarea>
                                 </div>
                                 <div class="data__profile input__profile">
                                     <label for="">Kỹ năng</label>
-                                    <input type="text" value="" name="" placeholder="Kỹ năng...">
+                                    <input type="text" value="<?php echo (isset($_SESSION['user']['skills']) && $_SESSION['user']['skills'] != '') ? $_SESSION['user']['skills'] : ""; ?>" name="skill" placeholder="Kỹ năng...">
                                 </div>
-                                <div class="d-flex">
-                                    <div class="flex flex__left w-50 me-3">
-                                        <div class="data__profile">
-                                            <label for="">URL(s)</label>
-                                            <div class="border__input">
-                                                <div class="data__profile--detail p-5 bg-light">
-                                                    <span class="close__card"><i class="fas fa-times"></i></span>
-                                                    <div class="mb-4">
-                                                        <label for="">Name</label>
-                                                        <input type="text" value="" name="">
-                                                    </div>
-                                                    <div class="mb-4">
-                                                        <label for="">URL</label>
-                                                        <input type="text" value="" name="">
-                                                    </div>
-                                                </div>
-                                                <span class="btn btn--add" id="btn_add_url"><i class="fas fa-plus"></i> Thêm URl</span>
-                                            </div>
-                                        </div>
-                                        <div class="data__profile">
-                                            <label for="">Kinh nghiệm</label>
-                                            <div class="border__input">
-                                                <div class="data__profile--detail p-5 bg-light">
-                                                    <span class="close__card"><i class="fas fa-times"></i></span>
-                                                    <div class="mb-4">
-                                                        <label for="">Nhà tuyển dụng</label>
-                                                        <input type="text" value="" name="">
-                                                    </div>
-                                                    <div class="mb-4">
-                                                        <label for="">Tiêu đề công việc</label>
-                                                        <input type="text" value="" name="">
-                                                    </div>
-                                                    <div class="mb-4">
-                                                        <label for="">Ngày bắt đầu/Ngày hết hạn</label>
-                                                        <input type="text" value="" name="">
-                                                    </div>
-                                                    <div class="mb-4">
-                                                        <label for="">Ghi chú</label>
-                                                        <textarea value="" name="" rows="5"></textarea>
-                                                    </div>
-                                                </div>
-                                                <span class="btn btn--add" id="btn_add_url"><i class="fas fa-plus"></i> Thêm Kinh Nghiệm</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex__right w-50 ms-3">
-                                        <div class="data__profile">
-                                            <label for="">Học vấn</label>
-                                            <div class="border__input">
-                                                <div class="data__profile--detail p-5 bg-light">
-                                                    <span class="close__card"><i class="fas fa-times"></i></span>
-                                                    <div class="mb-4">
-                                                        <label for="">Tên trường</label>
-                                                        <input type="text" value="" name="">
-                                                    </div>
-                                                    <div class="mb-4">
-                                                        <label for="">Trình độ học vấn</label>
-                                                        <input type="text" value="" name="">
-                                                    </div>
-                                                    <div class="mb-4">
-                                                        <label for="">Ngày bắt đầu/Ngày hết hạn</label>
-                                                        <input type="text" value="" name="">
-                                                    </div>
-                                                    <div class="mb-4">
-                                                        <label for="">Ghi chú</label>
-                                                        <textarea value="" name="" rows="5"></textarea>
-                                                    </div>
-                                                </div>
-                                                <span class="btn btn--add" id="btn_add_url"><i class="fas fa-plus"></i> Thêm Học vấn</span>
-                                            </div>
-                                        </div>
-                                        <div class="data__profile">
-                                            <span>Sơ yếu lý lịch</span><br>
-                                            <div class="border__input">
-                                                <label for="cv" class="label_cursor d-flex align-items-center">
-                                                    <span class="browse d-flex align-items-center"><i class="fas fa-upload pe-2"></i> Browse</span> 
-                                                    <span class="ms-3">Tùy chọn tải lên sơ yếu lý lịch của bạn để nhà tuyển dụng xem. tối đa. kích thước tệp: 100 MB.</span>
-                                                </label>
-                                                <img id="blah2" class="mt-4" alt="your image" src="/images/1x1.png" style="max-width: 150px"; height="auto" />
-                                                <input type="file" id="cv" name="" value="" onchange="document.getElementById('blah2').src = window.URL.createObjectURL(this.files[0])">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="btn btn--all ms-0" type="submit" disabled name="" id="">Thêm</button>
+                                <button class="btn btn--all m-0 ms-3" type="submit" name="add_resumer" id="">Thêm</button>
                             </form>
+                            <hr class="line">
+                            <div class="d-flex p-5">
+                                <div class="flex flex__left w-50 me-3">
+                                    <div class="data__profile">
+                                        <label for="">Kinh nghiệm</label>
+                                        <div class="border__input">
+                                            <?php 
+                                            if (isset($_SESSION['user']['id'])) {
+                                                $user_id = $_SESSION['user']['id'];
+                                                $sql = "SELECT * FROM experience WHERE user_id = '$user_id'";
+                                                $experiences = getData($sql);
+                                                foreach ($experiences as $experience) { ?>
+                                                    <div class="data__profile--detail bg-light mb-3">
+                                                        <div class="edit-experience btn btn-experience" data-id="<?php echo $experience['id']; ?>"><i class="fa-regular fa-pen-to-square"></i></div>
+                                                        <div class="experience-content">
+                                                            <div class="d-flex bg-white mb-4">
+                                                                <div class="experience-title">Nhà tuyển dụng </div>:
+                                                                <div class="experience-name"><?php echo $experience['experience_employer']; ?></div>
+                                                            </div>
+                                                            <div class="d-flex bg-white mb-4">
+                                                                <div class="experience-title">Tên công việc </div>:
+                                                                <div class="experience-name"><?php echo $experience['experience_job']; ?></div>
+                                                            </div>
+                                                            <div class="d-flex bg-white mb-4">
+                                                                <div class="experience-title">Ngày bắt đầu </div>:
+                                                                <div class="experience-name"><?php echo $experience['start_experience_date']; ?></div>
+                                                            </div>
+                                                            <div class="d-flex bg-white mb-4">
+                                                                <div class="experience-title">Ngày hết hạn </div>:
+                                                                <div class="experience-name"><?php echo $experience['end_experience_date']; ?></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            <?php }
+                                            } ?>
+                                            <span class="btn btn--add" id="btnCloneExperience"><i class="fas fa-plus"></i> Thêm Kinh Nghiệm</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex flex__right w-50 ms-3">
+                                    <div class="data__profile">
+                                        <label for="">Học vấn</label>
+                                        <div class="border__input">
+                                            <?php
+                                            if (isset($_SESSION['user']['id'])) {
+                                                $user_id = $_SESSION['user']['id'];
+                                                $sql = "SELECT * FROM education WHERE user_id = '$user_id'";
+                                                $educations = getData($sql);
+                                                foreach ($educations as $education) { ?>
+                                                    <div class="data__profile--detail bg-light mb-3">
+                                                        <div class="edit-education btn btn-education" data-id="<?php echo $education['id']; ?>"><i class="fa-regular fa-pen-to-square"></i></div>
+                                                        <div class="experience-content">
+                                                            <div class="d-flex bg-white mb-4">
+                                                                <div class="experience-title">Tên trường </div>:
+                                                                <div class="experience-name"><?php echo $education['education_school']; ?></div>
+                                                            </div>
+                                                            <div class="d-flex bg-white mb-4">
+                                                                <div class="experience-title">Trình độ học vấn </div>:
+                                                                <div class="experience-name"><?php echo $education['education_level']; ?></div>
+                                                            </div>
+                                                            <div class="d-flex bg-white mb-4">
+                                                                <div class="experience-title">Ngày bắt đầu </div>:
+                                                                <div class="experience-name"><?php echo $education['start_education_date']; ?></div>
+                                                            </div>
+                                                            <div class="d-flex bg-white mb-4">
+                                                                <div class="experience-title">Ngày hết hạn </div>:
+                                                                <div class="experience-name"><?php echo $education['end_education_date']; ?></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            <?php }
+                                            } ?>
+                                            <span class="btn btn--add" id="btnCloneEducation"><i class="fas fa-plus"></i> Thêm Học vấn</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -206,6 +198,71 @@ require_once('../head.php');
         </div>
     </section>
 
+
+    <div id="templateExperience" class="d-none">
+        <div class="data__profile--detail p-5 bg-light mb-3">
+            <span class="close__card"><i class="fas fa-times"></i></span>
+            <div class="experience-content">
+                <form action="./process_add_resumer.php" method="post">
+                    <input type="hidden" name="save_experience" value="1" />
+                    <input type="hidden" name="user_id" value="<?php echo isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : ""; ?>">
+                    <div class="mb-4">
+                        <label for="">Nhà tuyển dụng</label>
+                        <input type="text" value="" name="experience_employer">
+                    </div>
+                    <div class="mb-4">
+                        <label for="">Tiêu đề công việc</label>
+                        <input type="text" value="" name="experience_job">
+                    </div>
+                    <div class="mb-4 d-flex">
+                        <div class="me-2">
+                            <label for="">Ngày bắt đầu</label>
+                            <input type="date" value="" name="start_experience_date">
+                        </div>
+                        <div class="ms-2">
+                            <label for="">Ngày hết hạn</label>
+                            <input type="date" value="" name="end_experience_date">
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <button class="btn btn--add save" name="save_experience">Lưu</button>
+                        <button class="btn btn--add save ms-3">Xóa</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="templateEducation" class="d-none">
+        <div class="data__profile--detail p-5 bg-light mb-3">
+            <span class="close__card"><i class="fas fa-times"></i></span>
+            <form action="./process_add_resumer.php" method="post">
+                <input type="hidden" name="user_id" value="<?php echo isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : ""; ?>">
+                <div class="mb-4">
+                    <label for="">Tên trường</label>
+                    <input type="text" value="" name="education_school">
+                </div>
+                <div class="mb-4">
+                    <label for="">Trình độ học vấn</label>
+                    <input type="text" value="" name="education_level">
+                </div>
+                <div class="mb-4 d-flex">
+                    <div class="me-2">
+                        <label for="">Ngày bắt đầu</label>
+                        <input type="date" value="" name="start_education_date">
+                    </div>
+                    <div class="ms-2">
+                        <label for="">Ngày hết hạn</label>
+                        <input type="date" value="" name="end_education_date">
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <button class="btn btn--add save" name="save_education">Lưu</button>
+                    <button class="btn btn--add save ms-3">Xóa</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <!-- jquery -->
     <script src="/js/jquery-3.7.0.min.js"></script>
     <script src="/js/code.jquery.com_ui_1.12.1_jquery-ui.js"></script>
@@ -227,6 +284,8 @@ require_once('../head.php');
     <script src="/js/cdnjs.cloudflare.com_ajax_libs_typed.js_2.0.10_typed.min.js"></script>
     <!-- scrollreveal js -->
     <script src="/js/unpkg.com_scrollreveal@4.0.9_dist_scrollreveal.js"></script>
+    <!-- validate -->
+    <script src="/js/jquery.validate.min.js"></script>
     <!-- main js -->
     <script src="/js/main.js?v=<?php echo time(); ?>"></script>
 </body>

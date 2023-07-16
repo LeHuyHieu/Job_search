@@ -22,7 +22,7 @@
 }
 
 .btn--transparent {
-    background-color: transparent;   
+    background-color: transparent;
     padding: .5rem 1rem;
 
     &.-yellow {
@@ -73,6 +73,7 @@
         background-color: rgba($color: $info, $alpha: .8);
     }
 }
+
 .btn--admin {
     font-size: 1.4rem;
     color: $light;
@@ -81,6 +82,7 @@
     max-height: 45px;
     padding: 1rem 3rem;
 }
+
 .btn {
     font-size: 1.4rem;
 }
@@ -90,63 +92,77 @@
     color: $blue;
     border-color: $blue;
 }
+
 .btn--fulltime {
     background-color: rgba($color: $blue, $alpha: .1) !important;
     color: $blue;
     border-color: $blue;
 }
+
 .content .jobs .jobs__item .btn.btn--internship {
     background-color: rgba($color: $yellow, $alpha: .1) !important;
     color: #9C27B0;
     border-color: #9C27B0;
 }
+
 .btn--internship {
     background-color: rgba($color: $yellow, $alpha: .1) !important;
     color: #9C27B0;
     border-color: #9C27B0;
 }
+
 .content .jobs .jobs__item .btn.btn--temporary {
-    background-color: rgba($color:  $red, $alpha: .1) !important;
+    background-color: rgba($color: $red, $alpha: .1) !important;
     color: $red;
     border-color: $red;
 }
+
 .btn--temporary {
-    background-color: rgba($color:  $red, $alpha: .1) !important;
+    background-color: rgba($color: $red, $alpha: .1) !important;
     color: $red;
     border-color: $red;
 }
+
 .content .jobs .jobs__item .btn.btn--freelance {
     background-color: rgba($color: $info, $alpha: .1) !important;
     color: $info;
     border-color: $info;
 }
+
 .btn--freelance {
     background-color: rgba($color: $info, $alpha: .1) !important;
     color: $info;
     border-color: $info;
 }
+
 .content .jobs .jobs__item .btn.btn--parttime {
     background-color: rgba($color: $green, $alpha: .1) !important;
     color: $green;
     border-color: $green;
 }
+
 .btn--parttime {
     background-color: rgba($color: $green, $alpha: .1) !important;
     color: $green;
     border-color: $green;
 }
+
 .content .jobs .jobs__item--fulltime {
     border-left: 4px solid $blue !important;
 }
+
 .content .jobs .jobs__item--internship {
     border-left: 4px solid #9C27B0 !important;
 }
+
 .content .jobs .jobs__item--temporary {
     border-left: 4px solid $red !important;
 }
+
 .content .jobs .jobs__item--freelance {
     border-left: 4px solid $info !important;
 }
+
 .content .jobs .jobs__item--parttime {
     border-left: 4px solid $green !important;
 }
@@ -159,11 +175,13 @@
     font-weight: 400 !important;
     color: $gray;
     transition: .3s;
+
     &:hover {
         background-color: $dark;
         color: $white;
     }
 }
+
 .btn.btn--add {
     margin-top: 1.5rem;
     padding: 1.2rem 2.5rem;
@@ -172,8 +190,34 @@
     font-weight: 400 !important;
     color: $gray;
     transition: .3s;
+
     &:hover {
         background-color: $dark;
         color: $white;
+    }
+}
+
+.btn.btn--add.save {
+    margin: 1rem 0;
+    padding: 1rem 4rem;
+    background-color: $green;
+    color: $white;
+}
+
+.btn-experience,
+.btn-education {
+    position: absolute;
+    right: 0;
+    background-color: #26ae61;
+    color: #fff;
+    z-index: 1;
+    font-size: 1.4rem;
+    top: 0;
+    cursor: pointer;
+    padding: 0.5rem 0.8rem;
+    &:hover {
+        border-radius: .3rem;
+        color: $white;
+        background-color: $dark;
     }
 }
