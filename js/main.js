@@ -89,6 +89,21 @@ $(document).ready(function () {
         $("#slider").slider("values", $this.data("index"), $this.val());
     });
 
+    $(document).ready(function () {
+        const slider_line = document.getElementById('slider_line');
+        const slider_input = document.getElementById('slider_input');
+        if (slider_input && slider_line) {
+            function showSliderValue() {
+                slider_line.style.width = slider_input.value + '%';
+            }
+
+            showSliderValue();
+
+            window.addEventListener("resize", showSliderValue);
+            slider_input.addEventListener('input', showSliderValue, false);
+        }
+    });
+
     // chosen
     $(".chosen-select").chosen({ allow_single_deselect: true, width: "100%" });
 
@@ -118,25 +133,34 @@ $(document).ready(function () {
         // Append the cloned div to the DOM
         $(html).insertBefore($("#btnCloneEducation"));
     });
+
+    $("#btnCloneAction").on("click", function () {
+        // Clone the div
+        var html = $("#templateAction").html();
+        // Append the cloned div to the DOM
+        $(html).insertBefore($("#btnCloneAction"));
+    });
+
     $(document).on('click', '.close__card', function () {
         $(this).parent().remove();
     });
+
     $(document).on('click', '.edit-experience', function () {
         var _this = $(this);
-        var id= $(this).attr('data-id');
-        $.ajax("get-experience.php?id="+id)
-        .done(function(data) {
-            $(_this).next().html(data);
-        });
+        var id = $(this).attr('data-id');
+        $.ajax("get-experience.php?id=" + id)
+            .done(function (data) {
+                $(_this).next().html(data);
+            });
     });
 
     $(document).on('click', '.edit-education', function () {
         var _this = $(this);
-        var id= $(this).attr('data-id');
-        $.ajax("get-education.php?id="+id)
-        .done(function(data) {
-            $(_this).next().html(data);
-        });
+        var id = $(this).attr('data-id');
+        $.ajax("get-education.php?id=" + id)
+            .done(function (data) {
+                $(_this).next().html(data);
+            });
     });
 
     $(document).on('click', '.btn.btn--add.save', function (event) {
@@ -149,10 +173,17 @@ $(document).ready(function () {
             type: "POST",
             url: url,
             data: data,
-          }).done(function(data) {
+        }).done(function (data) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Đã lưu thành công!',
+                showConfirmButton: false,
+                timer: 1500
+            });
             $(_this).parents('.experience-content').first().html(data);
-          });
-          return false;
+        });
+        return false;
     });
 
     // validate
@@ -183,12 +214,18 @@ $(document).ready(function () {
     });
 });
 
-var typed2 = new Typed('.typed', {
-    strings: ["First sentence.", "Second sentence."],
-    typeSpeed: 100,
-    backSpeed: 100,
-    fadeOut: true,
-    loop: true
+$(document).ready(function () {
+    var typedElement = document.querySelector('.typed');
+
+    if (typedElement) {
+        var typed2 = new Typed(typedElement, {
+            strings: ["First sentence.", "Second sentence."],
+            typeSpeed: 100,
+            backSpeed: 100,
+            fadeOut: true,
+            loop: true
+        });
+    }
 });
 
 $('.single-item').slick();

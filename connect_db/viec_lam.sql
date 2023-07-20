@@ -19,6 +19,24 @@
 CREATE DATABASE IF NOT EXISTS `viec_lam_vn` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `viec_lam_vn`;
 
+-- Dumping structure for table viec_lam_vn.actions
+CREATE TABLE IF NOT EXISTS `actions` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT '0',
+  `name_action` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `note_action` longtext COLLATE utf8mb4_unicode_ci,
+  `start_action_date` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `end_action_date` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Dumping data for table viec_lam_vn.actions: 0 rows
+DELETE FROM `actions`;
+/*!40000 ALTER TABLE `actions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `actions` ENABLE KEYS */;
+
 -- Dumping structure for table viec_lam_vn.categories
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -30,6 +48,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
 ) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table viec_lam_vn.categories: 24 rows
+DELETE FROM `categories`;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
 INSERT INTO `categories` (`id`, `name`, `parent_id`, `created_at`, `updated_at`) VALUES
 	(2, 'Accounting / Finance', 0, '2023-06-29 16:20:01', '2023-06-29 16:20:02'),
@@ -68,6 +87,7 @@ CREATE TABLE IF NOT EXISTS `city` (
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table viec_lam_vn.city: 5 rows
+DELETE FROM `city`;
 /*!40000 ALTER TABLE `city` DISABLE KEYS */;
 INSERT INTO `city` (`id`, `city_name`, `created_at`, `updated_at`) VALUES
 	(1, 'Đắk Lắk', '2023-06-30 10:12:14', '2023-07-08 03:03:49'),
@@ -95,6 +115,7 @@ CREATE TABLE IF NOT EXISTS `company` (
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table viec_lam_vn.company: 5 rows
+DELETE FROM `company`;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
 INSERT INTO `company` (`id`, `name`, `contact_web`, `contact_email`, `contact_phone`, `contact_fb`, `contact_tw`, `images`, `description`, `content`, `created_at`, `updated_at`) VALUES
 	(1, 'Telimed', 'https://www.w3schools.com/php/phptryit.asp?filename=tryphp_date1', ' telimed@example.com', '0123456789', 'https://www.facebook.com/', 'https://twitter.com/', '/images/company-logo-06-150x150.png', 'Improving Lives Together', 'Offer strategic and technical health and nutrition advice to headquarters and field staff, as well as training and coaching Telimed field health and nutrition staff in emergency (acute and chronic) as well as transitional programming.  Assist in strengthe', '2023-06-30 10:14:55', '2023-06-30 13:19:32'),
@@ -117,17 +138,66 @@ CREATE TABLE IF NOT EXISTS `contact` (
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table viec_lam_vn.contact: 8 rows
+DELETE FROM `contact`;
 /*!40000 ALTER TABLE `contact` DISABLE KEYS */;
 INSERT INTO `contact` (`id`, `user_name`, `user_email`, `user_content`, `watched`, `created_at`, `updated_at`) VALUES
 	(1, 'Lê Huy Hiệu', 'lehuyhieu.dev.fontend@gmail.com', 'xin chào', 0, '2023-07-08 14:26:37', '2023-07-08 18:49:37'),
 	(2, 'Lê Huy Hiệu', 'lehuyhieupro06182@gmail.com', 'hello', 0, '2023-07-08 14:27:43', '2023-07-08 18:49:37'),
 	(3, '1', 'lehuyhieupro06182@gmail.com', 'hello', 0, '2023-07-08 14:45:47', '2023-07-08 18:49:37'),
 	(4, 'Lê Huy Hiệu', 'lehuyhieu.dev.fontend@gmail.com', '1', 0, '2023-07-08 14:47:39', '2023-07-08 18:49:37'),
-	(5, 'Lê Huy Hiệu', 'lehuyhieupro06182@gmail.com', 'hello', 0, '2023-07-08 14:56:57', '2023-07-08 18:49:37'),
+	(5, 'Lê Huy Hiệu', 'lehuyhieupro06182@gmail.com', 'hello', 1, '2023-07-08 14:56:57', '2023-07-19 15:23:31'),
 	(6, 'hello word', 'lehuyhieu.dev.fontend@gmail.com', '123', 1, '2023-07-08 14:57:38', '2023-07-08 18:50:07'),
 	(7, 'Lê Huy Hiệu', 'lehuyhieupro06182@gmail.com', '11', 1, '2023-07-08 14:58:45', '2023-07-08 18:50:00'),
 	(8, '1111', '34234234@gmail.com', '123123', 0, '2023-07-09 10:45:46', '2023-07-09 10:45:46');
 /*!40000 ALTER TABLE `contact` ENABLE KEYS */;
+
+-- Dumping structure for table viec_lam_vn.education
+CREATE TABLE IF NOT EXISTS `education` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL DEFAULT '0',
+  `education_school` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `education_level` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `start_education_date` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `end_education_date` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `education_note` longtext COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Dumping data for table viec_lam_vn.education: 4 rows
+DELETE FROM `education`;
+/*!40000 ALTER TABLE `education` DISABLE KEYS */;
+INSERT INTO `education` (`id`, `user_id`, `education_school`, `education_level`, `start_education_date`, `end_education_date`, `education_note`, `created_at`, `updated_at`) VALUES
+	(1, 1, 'itc', 'cao đẳng', '2017-08-16', '2019-06-16', NULL, '2023-07-16 06:10:46', '2023-07-16 06:10:46'),
+	(2, 1, 'Hung Vuong', 'THPT', '2023-07-25', '2026-10-16', NULL, '2023-07-16 06:12:47', '2023-07-16 15:37:20'),
+	(8, 8, 'Công Nghệ Thông Tin Thành Phó Hồ Chí Minh', 'Chuyên Nghành Công Nghệ Thông Tin', '2023-07-06', '2023-07-26', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam, molestiae nostrum aperiam dignissimos deleniti accusantium!', '2023-07-19 08:38:37', '2023-07-20 14:30:30'),
+	(9, 8, 'Cao Đẳng ITC', 'Kinh Tế Học', '2023-07-28', '2023-07-20', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam, molestiae nostrum aperiam dignissimos deleniti accusantium!', '2023-07-19 08:38:47', '2023-07-20 14:31:40');
+/*!40000 ALTER TABLE `education` ENABLE KEYS */;
+
+-- Dumping structure for table viec_lam_vn.experience
+CREATE TABLE IF NOT EXISTS `experience` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT '0',
+  `experience_employer` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `experience_job` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `start_experience_date` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `end_experience_date` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `experience_note` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Dumping data for table viec_lam_vn.experience: 4 rows
+DELETE FROM `experience`;
+/*!40000 ALTER TABLE `experience` DISABLE KEYS */;
+INSERT INTO `experience` (`id`, `user_id`, `experience_employer`, `experience_job`, `start_experience_date`, `end_experience_date`, `experience_note`, `created_at`, `updated_at`) VALUES
+	(12, 8, 'Google', 'back end', '2021-10-14', '2021-10-14', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam, molestiae nostrum aperiam dignissimos deleniti accusantium!', '2023-07-19 08:25:03', '2023-07-20 14:16:52'),
+	(11, 8, 'ITC', 'front end', '2022-08-25', '2022-08-25', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam, molestiae nostrum aperiam dignissimos deleniti accusantium!', '2023-07-19 08:22:15', '2023-07-20 14:16:58'),
+	(3, 1, 'le huy hieu', 'front end', '2021-06-17', '2021-06-17', NULL, '2023-07-16 06:43:46', '2023-07-16 14:33:32'),
+	(4, 1, 'le huy hieu', 'back end', '2021-04-24', '2021-04-24', NULL, '2023-07-16 10:43:03', '2023-07-16 15:17:50');
+/*!40000 ALTER TABLE `experience` ENABLE KEYS */;
 
 -- Dumping structure for table viec_lam_vn.jobs
 CREATE TABLE IF NOT EXISTS `jobs` (
@@ -154,6 +224,7 @@ CREATE TABLE IF NOT EXISTS `jobs` (
 ) ENGINE=MyISAM AUTO_INCREMENT=92 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table viec_lam_vn.jobs: 77 rows
+DELETE FROM `jobs`;
 /*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
 INSERT INTO `jobs` (`id`, `category_id`, `company_id`, `city_id`, `title`, `description`, `content`, `images`, `salary_from`, `salary_to`, `full_time`, `internship`, `temporary`, `freelance`, `part_time`, `expiration_date`, `is_public`, `created_at`, `updated_at`) VALUES
 	(1, 14, 1, 1, 'Senior Health And Nutrition Advisor', 'Provide technical health advice to Head of Country Programmes and field advisors at all key stages of the project management cycle including needs assessment, technical strategy and design, implementation as well as sector specific monitoring and evaluation. This includes travel to field programmes as well as review of proposals, key reports and surveys prior to external submission.\r\nStay abreast of current best practice. Research and stay informed on academic and technical health and nutrition issues, techniques, and guidelines to inform and improve programming.', 'Assist in developing internal training materials and resources and providing training to staff at appropriate venues, including but not limited to the ROC, HQ Briefing, HQ Inductions and online sessions', '/images/company-logo-06-150x150.png', '30000', '35000', 1, 0, 0, 0, 0, '2024-03-30', 1, '2023-06-30 10:11:26', '2023-06-30 10:15:24'),
@@ -235,26 +306,39 @@ INSERT INTO `jobs` (`id`, `category_id`, `company_id`, `city_id`, `title`, `desc
 	(91, 4, 3, 3, 'Grader Operator', 'Take action to avoid potential hazards and obstructions, such as utility lines, other equipment, other workers, and falling objects.\r\nStart engines, move throttles, switches, and levers, and depress pedals to operate such stated machines\r\nAlign machines with reference stakes and guidelines or ground or position equipment, following hand signals of other workers.\r\nLoad and move dirt, rocks, equipment, and materials, using trucks, crawler tractors, shovels, graders, or related equipment.\r\nCoordinate machine actions with other activities, positioning or moving loads in response to hand or audio signals from crew members', 'Must have minimum of 3 years experience running, maneuvering, driving, and navigating equipment such as bulldozer, excavators, rollers, and front-end loaders.\r\nStrongly prefer candidates with High School Diploma\r\nMust be able to communicate with others to convey information effectively.\r\nMust be accustomed to working outdoors with exposure to all weather conditions\r\nMust be able to perform physical activities that require considerable use of your arms and legs and moving your whole body, such as climbing, lifting, balancing, walking, stooping, and handling of materials\r\nMust be knowledgeable of safety procedures and practices', '/images/placeholder.png', '30000', '38000', 0, 1, 1, 0, 1, '2024-05-04', 1, '2023-06-30 10:26:26', '2023-07-07 17:11:01');
 /*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
 
--- Dumping structure for table viec_lam_vn.login_register
-CREATE TABLE IF NOT EXISTS `login_register` (
+-- Dumping structure for table viec_lam_vn.users
+CREATE TABLE IF NOT EXISTS `users` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city_id` int NOT NULL DEFAULT '0',
+  `category_id` int NOT NULL DEFAULT '0',
   `candidate` tinyint DEFAULT '0',
   `employer` tinyint DEFAULT '0',
   `admin_login` tinyint DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `about_me` text COLLATE utf8mb4_unicode_ci,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `profession` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `skills` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci,
+  `is_update` tinyint DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table viec_lam_vn.login_register: 2 rows
-/*!40000 ALTER TABLE `login_register` DISABLE KEYS */;
-INSERT INTO `login_register` (`id`, `name`, `user_email`, `user_password`, `candidate`, `employer`, `admin_login`, `created_at`, `updated_at`) VALUES
-	(1, 'Lê Huy Hiệu', 'lehuyhieu.dev.fontend@gmail.com', '123123', 0, 1, 0, '2023-07-09 10:34:41', '2023-07-09 10:59:18'),
-	(2, 'admin', 'admin@gmail.com', '123123', 0, 0, 1, NULL, '2023-07-09 11:22:49');
-/*!40000 ALTER TABLE `login_register` ENABLE KEYS */;
+-- Dumping data for table viec_lam_vn.users: 5 rows
+DELETE FROM `users`;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`id`, `city_id`, `category_id`, `candidate`, `employer`, `admin_login`, `name`, `phone`, `about_me`, `avatar`, `user_email`, `user_password`, `profession`, `skills`, `content`, `is_update`, `created_at`, `updated_at`) VALUES
+	(1, 3, 3, 0, 1, 0, 'Lê Huy Hiệu', '01234567890', 'Developer', '/images/avatar-03.png', 'lehuyhieu.dev.fontend@gmail.com', '4297f44b13955235245b2497399d7a93', 'deverloper', 'frontend', '<p>hello</p>', 1, '2023-07-09 10:34:41', '2023-07-16 17:45:09'),
+	(2, 0, 0, 0, 0, 1, 'admin', NULL, NULL, NULL, 'admin@gmail.com', '4297f44b13955235245b2497399d7a93', NULL, NULL, NULL, 0, NULL, '2023-07-14 08:59:21'),
+	(6, 0, 0, 1, 0, 0, 'Hieu Le', '0123456789', 'hello', '/images/avatar-03.png', 'le5745500@gmail.com', '4297f44b13955235245b2497399d7a93', NULL, NULL, NULL, 0, '2023-07-14 07:34:10', '2023-07-14 08:59:22'),
+	(8, 4, 2, 1, 0, 0, 'Hieu Le', '0123456789', 'hello', '/images/avatar-01.png', 'leh55279@gmail.com', '4297f44b13955235245b2497399d7a93', 'deverloper', 'back end', '<p>hello</p>', 1, '2023-07-14 12:55:28', '2023-07-19 08:21:50'),
+	(9, 0, 0, 0, 1, 0, 'Lê Huy Hiệu', '0123456789', 'hello', '/images/banner_bg.jpg', 'lehuyhieupro06182@gmail.com', '4297f44b13955235245b2497399d7a93', NULL, NULL, NULL, 1, '2023-07-14 14:16:03', '2023-07-19 08:18:33');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

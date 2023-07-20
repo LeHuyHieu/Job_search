@@ -25,10 +25,29 @@ require_once('../head.php');
                         <li class="item__profile"><a href="#" class="link__profile"><i class="fas fa-chart-line"></i> Dashboard</a></li>
                         <li class="item__profile"><a href="#" class="link__profile"><i class="fas fa-comment-alt"></i> Messages </a></li>
                         <li class="item__profile"><a href="/pages/bookmark.php" class="link__profile"><i class="fas fa-bookmark"></i> Bookmarks</a></li>
-                        <li class="item__profile"><a href="/pages/job_alerts.php" class="link__profile"><i class="fas fa-bell"></i> Job Alerts <span class="notification">1</span></a></li>
-                        <li class="item__profile"><a href="/pages/add_resumer.php" class="link__profile"><i class="fas fa-file"></i> Add Resume</a></li>
+                        <li class="item__profile"><a href="/pages/candidate/manage_jobalert.php" class="link__profile"><i class="fas fa-bell"></i> Job Alerts <span class="notification">1</span></a></li>
                     </ul>
                 </div>
+                <?php if ($_SESSION['user']['candidate']) { ?>
+                    <div class="left__block">
+                        <h5 class="title__profile">Candidate</h5>
+                        <ul class="list__profile">
+                            <li class="item__profile"><a href="#" class="link__profile"><i class="fas fa-file"></i> Manage Resumer</a></li>
+                            <li class="item__profile"><a href="/pages/candidate/add_resumer.php" class="link__profile"><i class="fas fa-file"></i> Add Resume</a></li>
+                        </ul>
+                    </div>
+                <?php } ?>
+                <?php if ($_SESSION['user']['employer'] == 1) { ?>
+                    <div class="left__block">
+                        <h5 class="title__profile">Employer</h5>
+                        <ul class="list__profile">
+                            <li class="item__profile"><a href="/pages/employer/managae_job.php" class="link__profile"><i class="fas fa-chart-line"></i> Manage Jobs</a></li>
+                            <li class="item__profile"><a href="/pages/employer/submit_job.php" class="link__profile"><i class="fas fa-comment-alt"></i> Submit Jobs </a></li>
+                            <li class="item__profile"><a href="/pages/employer/manage_companies.php" class="link__profile"><i class="fas fa-bookmark"></i> Manage Companies</a></li>
+                            <li class="item__profile"><a href="/pages/employer/add_company.php" class="link__profile"><i class="fas fa-bell"></i> Add Company <span class="notification">1</span></a></li>
+                        </ul>
+                    </div>
+                <?php } ?>
                 <div class="left__block">
                     <h5 class="title__profile">Account</h5>
                     <ul class="list__profile">
@@ -49,30 +68,30 @@ require_once('../head.php');
                                 Profile Detail
                             </div>
                             <form action="process_profile.php" method="post" class="form__block p-5" enctype="multipart/form-data">
-                                    <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']['id'];?>" />
-                                    <div class="data__profile">
-                                        <span>Ảnh đại diện</span><br>
-                                        <label for="avt" class="label_cursor">
-                                            <img id="blah" alt="your image" src="<?php echo ($_SESSION['user']['avatar'] == "") ? "/images/avt_user.jpg" : $_SESSION['user']['avatar']; ?>" width="100" height="100" />
-                                        </label>
-                                        <input type="file" id="avt" name="avatar" value="<?php echo $_SESSION['user']['avatar']; ?>" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
-                                    </div>
-                                    <div class="data__profile">
-                                        <label for="">Họ và tên</label>
-                                        <input type="text" name="name" value="<?php echo $_SESSION['user']['name']; ?>" placeholder="Họ và tên...">
-                                    </div>
-                                    <div class="data__profile">
-                                        <label for="">Số điện thoại</label>
-                                        <input type="text" name="phone" value="<?php echo $_SESSION['user']['phone']; ?>" placeholder="Số điện thoại...">
-                                    </div>
-                                    <div class="data__profile">
-                                        <label for="">E-mail</label>
-                                        <input type="Email" name="email" readonly value="<?php echo $_SESSION['user']['user_email']; ?>" placeholder="Email...">
-                                    </div>
-                                    <div class="data__profile">
-                                        <label for="">Về tôi: </label>
-                                        <textarea rows="9" cols="" name="about_me" placeholder="Mô tả..."><?php echo $_SESSION['user']['about_me']; ?></textarea>
-                                    </div>
+                                <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']['id']; ?>" />
+                                <div class="data__profile">
+                                    <span>Ảnh đại diện</span><br>
+                                    <label for="avt" class="label_cursor">
+                                        <img id="blah" alt="your image" src="<?php echo ($_SESSION['user']['avatar'] == "") ? "/images/avt_user.jpg" : $_SESSION['user']['avatar']; ?>" width="100" height="100" />
+                                    </label>
+                                    <input type="file" id="avt" name="avatar" value="<?php echo $_SESSION['user']['avatar']; ?>" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+                                </div>
+                                <div class="data__profile">
+                                    <label for="">Họ và tên</label>
+                                    <input type="text" name="name" value="<?php echo $_SESSION['user']['name']; ?>" placeholder="Họ và tên...">
+                                </div>
+                                <div class="data__profile">
+                                    <label for="">Số điện thoại</label>
+                                    <input type="text" name="phone" value="<?php echo $_SESSION['user']['phone']; ?>" placeholder="Số điện thoại...">
+                                </div>
+                                <div class="data__profile">
+                                    <label for="">E-mail</label>
+                                    <input type="Email" name="email" readonly value="<?php echo $_SESSION['user']['user_email']; ?>" placeholder="Email...">
+                                </div>
+                                <div class="data__profile">
+                                    <label for="">Về tôi: </label>
+                                    <textarea rows="9" cols="" name="about_me" placeholder="Mô tả..."><?php echo $_SESSION['user']['about_me']; ?></textarea>
+                                </div>
                                 <button class="btn btn--all ms-0" name="save">Lưu thông tin</button>
                             </form>
                         </div>

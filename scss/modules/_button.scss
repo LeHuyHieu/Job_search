@@ -203,7 +203,23 @@
     background-color: $green;
     color: $white;
 }
-
+.btn.btn--add.delete {
+    margin: 1rem 0;
+    padding: 1rem 4rem;
+    background-color: $red;
+    color: $white;
+}
+.btn--green {
+    margin: 1rem 0;
+    padding: 1rem 4rem;
+    background-color: $green;
+    color: $white;
+    &:hover {
+        color: $green;
+        border: 1px solid $green;
+        background-color: transparent;
+    }
+}
 .btn-experience,
 .btn-education {
     position: absolute;

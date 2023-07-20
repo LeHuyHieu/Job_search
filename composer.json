@@ -1,0 +1,10 @@
+{
+    "name": "your-vendor-name/vieclam",
+    "description": "vieclam",
+    "type": "project",
+    "require": {
+        "laravel/framework": "^10.15"
+    },
+    "license": "MIT",
+    "minimum-stability": "stable"
+}
