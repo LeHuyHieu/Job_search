@@ -1074,8 +1074,7 @@ body._bg_transparent .header.bg-white .navbar .login--register .btn--login {
   background-color: transparent;
 }
 
-.btn-experience,
-.btn-education {
+.btn-edit {
   position: absolute;
   right: 0;
   background-color: #26ae61;
@@ -1086,8 +1085,7 @@ body._bg_transparent .header.bg-white .navbar .login--register .btn--login {
   cursor: pointer;
   padding: 0.5rem 0.8rem;
 }
-.btn-experience:hover,
-.btn-education:hover {
+.btn-edit:hover {
   border-radius: 0.3rem;
   color: #fff;
   background-color: #222;

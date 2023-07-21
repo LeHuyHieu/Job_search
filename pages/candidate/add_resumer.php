@@ -146,7 +146,7 @@ require_once('../../head.php');
                                                 $experiences = getData($sql);
                                                 foreach ($experiences as $experience) { ?>
                                                     <div class="data__profile--detail bg-light mb-3">
-                                                        <div class="edit-experience btn btn-experience" data-id="<?php echo $experience['id']; ?>"><i class="fa-regular fa-pen-to-square"></i></div>
+                                                        <div class="edit-experience btn btn-edit" data-id="<?php echo $experience['id']; ?>"><i class="fa-regular fa-pen-to-square"></i></div>
                                                         <div class="experience-content">
                                                             <div class="d-flex bg-white mb-4">
                                                                 <div class="experience-title">Nhà tuyển dụng </div>:
@@ -185,7 +185,7 @@ require_once('../../head.php');
                                                 $actions = getData($sql);
                                                 foreach ($actions as $action) { ?>
                                                     <div class="data__profile--detail bg-light mb-3">
-                                                        <div class="edit-experience btn btn-experience" data-id="<?php echo $action['id']; ?>"><i class="fa-regular fa-pen-to-square"></i></div>
+                                                        <div class="edit-action btn btn-edit" data-id="<?php echo $action['id']; ?>"><i class="fa-regular fa-pen-to-square"></i></div>
                                                         <div class="experience-content">
                                                             <div class="d-flex bg-white mb-4">
                                                                 <div class="experience-title">Tên hoạt động </div>:
@@ -222,7 +222,7 @@ require_once('../../head.php');
                                                 $educations = getData($sql);
                                                 foreach ($educations as $education) { ?>
                                                     <div class="data__profile--detail bg-light mb-3">
-                                                        <div class="edit-education btn btn-education" data-id="<?php echo $education['id']; ?>"><i class="fa-regular fa-pen-to-square"></i></div>
+                                                        <div class="edit-education btn btn-edit" data-id="<?php echo $education['id']; ?>"><i class="fa-regular fa-pen-to-square"></i></div>
                                                         <div class="experience-content">
                                                             <div class="d-flex bg-white mb-4">
                                                                 <div class="experience-title">Tên trường </div>:
@@ -344,11 +344,11 @@ require_once('../../head.php');
                     <input type="hidden" name="user_id" value="<?php echo isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : ""; ?>">
                     <div class="mb-4">
                         <label for="">Tên hoạt động</label>
-                        <input type="text" value="" name="action_name">
+                        <input type="text" value="" name="name_action">
                     </div>
                     <div class="mb-4">
                         <label for="">Mô tả </label>
-                        <textarea rows="3" name="action_detail" class="form-control"></textarea>
+                        <textarea rows="3" name="note_action" class="form-control"></textarea>
                     </div>
                     <div class="mb-4 d-flex">
                         <div class="me-2">

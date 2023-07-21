@@ -163,6 +163,16 @@ $(document).ready(function () {
             });
     });
 
+    $(document).on('click', '.edit-action', function () {
+        var _this = $(this);
+        var id = $(this).attr('data-id');
+        $.ajax("get-action.php?id=" + id)
+            .done(function (data) {
+                $(_this).next().html(data);
+            });
+    });
+
+
     $(document).on('click', '.btn.btn--add.save', function (event) {
         event.preventDefault();
         var _this = $(this);

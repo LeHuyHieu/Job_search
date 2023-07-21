@@ -58,18 +58,19 @@ if (isset($_POST['save_experience'])) {
 }
 
 if (isset($_POST['save_action'])) {
-    $action_name = $_POST['action_name'];
+    $name_action = $_POST['name_action'];
     $note_action = $_POST['note_action'];
     $start_action_date = $_POST['start_action_date'];
     $end_action_date = $_POST['end_action_date'];
 
     if (isset($_POST['action_id'])) {
         $action_id = $_POST['action_id'];
-        $sql = "UPDATE actions SET action_name = '$action_name', note_action = '$note_action', start_action_date = '$start_action_date', end_action_date = '$end_action_date' where id = '$action_id'";
+        $sql = "UPDATE actions SET name_action = '$name_action', note_action = '$note_action', start_action_date = '$start_action_date', end_action_date = '$end_action_date' where id = '$action_id'";
     } else {
         $user_id = $_SESSION['user']['id'];
         $_SESSION['user']['action_id'] = $user_id;
-        $sql = "INSERT INTO experience (user_id, action_name, note_action, start_action_date, end_action_date, created_at, updated_at) VALUES ('$user_id' , '$action_name', '$note_action', '$start_action_date','$end_action_date', NOW(), NOW())";
+        $sql = "INSERT INTO actions (user_id, name_action, note_action, start_action_date, end_action_date, created_at, updated_at) VALUES ('$user_id' , '$name_action', '$note_action', '$start_action_date','$end_action_date', NOW(), NOW())";
+        // print_r($sql);die;
     }
     if ($conn->query($sql) === true) {
         if (!isset($action_id)) {

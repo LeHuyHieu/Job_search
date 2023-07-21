@@ -30,7 +30,7 @@
         </a>
     </li>
     <li class="menu__admin--item">
-        <a href="#" class="menu__admin--link">
+        <a href="../process_logout.php" class="menu__admin--link">
             <i class="fas fa-sign-out-alt"></i> Log out
         </a>
     </li>
