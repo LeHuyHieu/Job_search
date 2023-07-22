@@ -84,17 +84,61 @@ if (isset($_POST['save_action'])) {
     }
 }
 
+if (isset($_POST['save_interest'])) {
+    $interest = $_POST['interest'];
+
+    if (isset($_POST['interest_id'])) {
+        $interest_id = $_POST['interest_id'];
+        $sql = "UPDATE interest SET interest = '$interest' where id = '$interest_id'";
+    } else {
+        $user_id = $_SESSION['user']['id'];
+        $_SESSION['user']['interest_id'] = $user_id;
+        $sql = "INSERT INTO interest (user_id, interest, created_at, updated_at) VALUES ('$user_id' , '$interest', NOW(), NOW())";
+    }
+    if ($conn->query($sql) === true) {
+        if (!isset($interest_id)) {
+            $sql = "SELECT id FROM interest order by id desc limit 1";
+            $data = getData($sql);
+            $interest_id = $data[0]['id'];
+        }
+        header('location:./get-interest-data.php?id=' . $interest_id);
+        exit();
+    } else {
+        echo "Error" . $sql . "<br>" . $conn->error;
+    }
+}
+
+if (isset($_POST['save_additional_information'])) {
+    $additional_information = $_POST['additional_information'];
+
+    if (isset($_POST['additional_information_id'])) {
+        $additional_information_id = $_POST['additional_information_id'];
+        $sql = "UPDATE additional_information SET additional_information = '$additional_information' where id = '$additional_information_id'";
+    } else {
+        $user_id = $_SESSION['user']['id'];
+        $_SESSION['user']['additional_information'] = $user_id;
+        $sql = "INSERT INTO additional_information (user_id, additional_information, created_at, updated_at) VALUES ('$user_id' , '$additional_information', NOW(), NOW())";
+    }
+    if ($conn->query($sql) === true) {
+        if (!isset($additional_information_id)) {
+            $sql = "SELECT id FROM additional_information order by id desc limit 1";
+            $data = getData($sql);
+            $additional_information_id = $data[0]['id'];
+        }
+        header('location:./get-additional-information-data.php?id=' . $additional_information_id);
+        exit();
+    } else {
+        echo "Error" . $sql . "<br>" . $conn->error;
+    }
+}
+
 if (isset($_POST['add_skills'])) {
     $t_anh = $_POST['t_anh'];
     $t_trung = $_POST['t_trung'];
     $word = $_POST['word'];
     $excel = $_POST['excel'];
     $career_goals = $_POST['career_goals'];
-    print_r($t_anh);
-    print_r($t_trung);
-    print_r($word);
-    print_r($excel);
-    // print_r($career_goals);die;
+    
     if (isset($_POST['skill_id']) && $_POST['skill_id'] != '') {
         $skill_id = $_POST['skill_id'];
         $sql = "UPDATE skills SET t_anh = '$t_anh', t_trung = '$t_trung', word = '$word', excel = '$excel', career_goals = '$career_goals' where id = '$skill_id'";

@@ -254,7 +254,7 @@ require_once('../../head.php');
                                     </div>
                                 </div>
                                 <div class="flex flex__right w-50 ms-3">
-                                    <div class="data__profile">
+                                    <div class="data__profile mb-5">
                                         <label for="">Học vấn</label>
                                         <div class="border__input">
                                             <?php
@@ -291,6 +291,52 @@ require_once('../../head.php');
                                             <?php }
                                             } ?>
                                             <span class="btn btn--add" id="btnCloneEducation"><i class="fas fa-plus"></i> Thêm Học vấn</span>
+                                        </div>
+                                    </div>
+                                    <div class="data__profile mb-5">
+                                        <label for="">Sở thích</label>
+                                        <div class="border__input">
+                                            <?php
+                                            if (isset($_SESSION['user']['id'])) {
+                                                $user_id = $_SESSION['user']['id'];
+                                                $sql = "SELECT * FROM interest WHERE user_id = '$user_id'";
+                                                $interests = getData($sql);
+                                                foreach ($interests as $interest) { ?>
+                                                    <div class="data__profile--detail bg-light mb-3">
+                                                        <div class="edit-interest btn btn-edit" data-id="<?php echo $interest['id']; ?>"><i class="fa-regular fa-pen-to-square"></i></div>
+                                                        <div class="experience-content">
+                                                            <div class="d-flex bg-white mb-4">
+                                                                <div class="experience-title">Tên sở thích </div>:
+                                                                <div class="experience-name"><?php echo $interest['interest']; ?></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            <?php }
+                                            } ?>
+                                            <span class="btn btn--add" id="btnCloneInterest"><i class="fas fa-plus"></i> Thêm Sở Thích</span>
+                                        </div>
+                                    </div>
+                                    <div class="data__profile mb-5">
+                                        <label for="">Thông tin bổ xung</label>
+                                        <div class="border__input">
+                                            <?php
+                                            if (isset($_SESSION['user']['id'])) {
+                                                $user_id = $_SESSION['user']['id'];
+                                                $sql = "SELECT * FROM additional_information WHERE user_id = '$user_id'";
+                                                $additional_informations = getData($sql);
+                                                foreach ($additional_informations as $additional_information) { ?>
+                                                    <div class="data__profile--detail bg-light mb-3">
+                                                        <div class="edit-additional-information btn btn-edit" data-id="<?php echo $additional_information['id']; ?>"><i class="fa-regular fa-pen-to-square"></i></div>
+                                                        <div class="experience-content">
+                                                            <div class="d-flex bg-white mb-4">
+                                                                <div class="experience-title">Thông tin bổ xung </div>:
+                                                                <div class="experience-name"><?php echo $additional_information['additional_information']; ?></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            <?php }
+                                            } ?>
+                                            <span class="btn btn--add" id="btnCloneAdditionalInformation"><i class="fas fa-plus"></i> Thêm Thông Tin Bổ Xung</span>
                                         </div>
                                     </div>
                                 </div>
@@ -404,6 +450,44 @@ require_once('../../head.php');
                     </div>
                     <div class="d-flex">
                         <button class="btn btn--add save" name="save_action">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="templateInterest" class="d-none">
+        <div class="data__profile--detail p-5 bg-light mb-3">
+            <span class="close__card"><i class="fas fa-times"></i></span>
+            <div class="experience-content">
+                <form action="./process_add_resumer.php" method="post">
+                    <input type="hidden" name="save_interest" value="1" />
+                    <input type="hidden" name="user_id" value="<?php echo isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : ""; ?>">
+                    <div class="mb-4">
+                        <label for="">Tên sở thích</label>
+                        <input type="text" value="" name="interest">
+                    </div>
+                    <div class="d-flex">
+                        <button class="btn btn--add save" name="save_interest">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="templateAdditionalInformation" class="d-none">
+        <div class="data__profile--detail p-5 bg-light mb-3">
+            <span class="close__card"><i class="fas fa-times"></i></span>
+            <div class="experience-content">
+                <form action="./process_add_resumer.php" method="post">
+                    <input type="hidden" name="save_additional_information" value="1" />
+                    <input type="hidden" name="user_id" value="<?php echo isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : ""; ?>">
+                    <div class="mb-4">
+                        <label for="">Thông tin bổ xung</label>
+                        <textarea class="form-control" rows="3" name="additional_information"></textarea>
+                    </div>
+                    <div class="d-flex">
+                        <button class="btn btn--add save" name="save_additional_information">Lưu</button>
                     </div>
                 </form>
             </div>

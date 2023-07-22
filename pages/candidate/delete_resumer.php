@@ -34,3 +34,24 @@ if (isset($_POST['delete_experience']) && isset($_POST['experience_id'])) {
         echo "Error" . $sql . "<br>" . $conn->error;
     }
 }
+
+if (isset($_POST['delete_interest']) && isset($_POST['interest_id'])) {
+    $interest_id = $_POST['interest_id'];
+    $sql = "DELETE FROM interest WHERE id = '$interest_id'";
+    if ($conn->query($sql) === true) {
+        header('location:./get-interest-data.php');
+    } else {
+        echo "Error" . $sql . "<br>" . $conn->error;
+    }
+}
+
+if (isset($_POST['delete_additional_information']) && isset($_POST['additional_information_id'])) {
+    $additional_information_id = $_POST['additional_information_id'];
+    $sql = "DELETE FROM additional_information WHERE id = '$additional_information_id'";
+    if ($conn->query($sql) === true) {
+        header('location:./get-additional-information-data.php');
+    } else {
+        echo "Error" . $sql . "<br>" . $conn->error;
+    }
+}
+// 

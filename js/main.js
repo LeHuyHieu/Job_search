@@ -120,6 +120,7 @@ $(document).ready(function () {
         }
     });
 
+    // clone html
     $("#btnCloneExperience").on("click", function () {
         // Clone the div
         var html = $("#templateExperience").html();
@@ -141,10 +142,26 @@ $(document).ready(function () {
         $(html).insertBefore($("#btnCloneAction"));
     });
 
+    $("#btnCloneInterest").on("click", function () {
+        // Clone the div
+        var html = $("#templateInterest").html();
+        // Append the cloned div to the DOM
+        $(html).insertBefore($("#btnCloneInterest"));
+    });
+
+    $("#btnCloneAdditionalInformation").on("click", function () {
+        // Clone the div
+        var html = $("#templateAdditionalInformation").html();
+        // Append the cloned div to the DOM
+        $(html).insertBefore($("#btnCloneAdditionalInformation"));
+    });
+    // end clone html
+
     $(document).on('click', '.close__card', function () {
         $(this).parent().remove();
     });
 
+    // edit html
     $(document).on('click', '.edit-experience', function () {
         var _this = $(this);
         var id = $(this).attr('data-id');
@@ -172,6 +189,24 @@ $(document).ready(function () {
             });
     });
 
+    $(document).on('click', '.edit-additional-information', function () {
+        var _this = $(this);
+        var id = $(this).attr('data-id');
+        $.ajax("get-additional-information.php?id=" + id)
+            .done(function (data) {
+                $(_this).next().html(data);
+            });
+    });
+
+    $(document).on('click', '.edit-interest', function () {
+        var _this = $(this);
+        var id = $(this).attr('data-id');
+        $.ajax("get-interest.php?id=" + id)
+            .done(function (data) {
+                $(_this).next().html(data);
+            });
+    });
+    // end edit html
 
     $(document).on('click', '.btn.btn--add.save', function (event) {
         event.preventDefault();

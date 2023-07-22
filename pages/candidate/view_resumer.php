@@ -130,23 +130,31 @@ $user = current($users);
                                 <input type="range" class="slider" name="excel" value="<?php echo $skill['excel']; ?>" min="1" max="100">
                             </div>
                         </div>
+                        <?php
+                        $sql = "SELECT * FROM interest WHERE user_id = '$user_id'";
+                        $interests = getData($sql);
+                        ?>
                         <div class="cv__item">
                             <h3 class="cv__title">// Sở Thích</h3>
                             <div class="cv__job__detail bf-none">
                                 <ul class="list__detail">
-                                    <li class="item__detail">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam, molestiae</li>
-                                    <li class="item__detail">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam, molestiae</li>
-                                    <li class="item__detail">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam, molestiae</li>
+                                    <?php foreach ($interests as $interest) { ?>
+                                        <li class="item__detail"><?php echo $interest['interest']; ?></li>
+                                    <?php } ?>
                                 </ul>
                             </div>
                         </div>
+                        <?php
+                        $sql = "SELECT * FROM additional_information WHERE user_id = '$user_id'";
+                        $additional_informations = getData($sql);
+                        ?>
                         <div class="cv__item">
                             <h3 class="cv__title">// Thông Tin Bổ Xung</h3>
                             <div class="cv__job__detail bf-none">
                                 <ul class="list__detail">
-                                    <li class="item__detail">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam, molestiae</li>
-                                    <li class="item__detail">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam, molestiae</li>
-                                    <li class="item__detail">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam, molestiae</li>
+                                    <?php foreach ($additional_informations as $additional_information) { ?>
+                                        <li class="item__detail"><?php echo $additional_information['additional_information']; ?></li>
+                                    <?php } ?>
                                 </ul>
                             </div>
                         </div>

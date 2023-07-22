@@ -38,6 +38,7 @@ $education = current($educations);
         </div>
         <div class="d-flex">
             <input type="hidden" name="save_education" value="1" />
+            <input type="hidden" name="delete_education" value="1" />
             <button class="btn btn--add save" name="save_education">Lưu</button>
             <button class="btn btn--add delete ms-3" name="delete_education">Xóa</button>
         </div>
