@@ -27,6 +27,8 @@ if (isset($_SESSION['user']) && isset($_POST['reset_pass'])) {
 if (isset($_POST['user_id']) && isset($_POST['save'])) {
     $is_update = 1;
     $phone = $_POST['phone'];
+    $male_female = $_POST['male_female'];
+    $birthday = $_POST['birthday'];
     $name = $_POST['name'];
     $email = $_POST['email'];
     $about_me = $_POST['about_me'];
@@ -42,9 +44,9 @@ if (isset($_POST['user_id']) && isset($_POST['save'])) {
     if (isset($_POST['user_id'])) {
         $user_id = $_POST['user_id'];
         if (strlen($avatar)) {
-            $sql = "UPDATE users SET avatar = '$avatar', phone = '$phone', name = '$name', user_email = '$email', about_me = '$about_me', is_update = '$is_update' where id = '$user_id'";
+            $sql = "UPDATE users SET avatar = '$avatar', phone = '$phone', male_female = $male_female', birthday = '$birthday', name = '$name', user_email = '$email', about_me = '$about_me', is_update = '$is_update' where id = '$user_id'";
         } else {
-            $sql = "UPDATE users SET phone = '$phone', name = '$name', user_email = '$email', about_me = '$about_me', is_update = '$is_update' where id = '$user_id'";
+            $sql = "UPDATE users SET phone = '$phone', male_female = '$male_female', birthday = '$birthday', name = '$name', user_email = '$email', about_me = '$about_me', is_update = '$is_update' where id = '$user_id'";
         }
     }
     if ($conn->query($sql) === TRUE) {

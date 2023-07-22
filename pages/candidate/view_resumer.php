@@ -28,8 +28,8 @@ $user = current($users);
                                 <img src="<?php echo $_SESSION['user']['avatar']; ?>" alt="" class="w-100">
                             </div>
                             <ul class="cv__list">
-                                <li class="cv__item"><i class="fas fa-user-circle"></i>: Nam</li>
-                                <li class="cv__item"><i class="fas fa-calendar-alt"></i>: 29/10/2004</li>
+                                <li class="cv__item"><i class="fas fa-user-circle"></i>: <?php echo $_SESSION['user']['male_female']; ?></li>
+                                <li class="cv__item"><i class="fas fa-calendar-alt"></i>: <?php $birthdayString = $_SESSION['user']['birthday'];$birthdayDateTime = new DateTime($birthdayString);echo $birthdayDateTime->format("d/m/Y"); ?></li>
                                 <li class="cv__item"><i class="fas fa-envelope"></i>: <?php echo $_SESSION['user']['user_email']; ?></li>
                                 <li class="cv__item"><i class="fas fa-mobile-alt"></i>: <?php echo $_SESSION['user']['phone']; ?></li>
                                 <li class="cv__item"><i class="fas fa-map-signs"></i>: <?php echo $user['city_name']; ?></li>
@@ -70,19 +70,21 @@ $user = current($users);
                                     </div>
                                 <?php } ?>
                             </div>
+                            <?php
+                            $sql_action = "SELECT * FROM actions WHERE user_id = '$user_id'";
+                            $actions = getData($sql_action);
+                            ?>
                             <div class="cv__item">
                                 <h3 class="cv__title">// Hoạt Động</h3>
-                                <div class="cv__job__detail">
-                                    <p class="date_job"><span></span> 03/2019 - 05/2022</p>
-                                    <h5 class="job__title">Tình Luyện Viên</h5>
-                                    <ul class="list__detail">
-                                        <li class="item__detail">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam, molestiae nostrum aperiam dignissimos deleniti accusantium!</li>
-                                        <li class="item__detail">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam, molestiae nostrum aperiam dignissimos deleniti accusantium!</li>
-                                        <li class="item__detail">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam, molestiae nostrum aperiam dignissimos deleniti accusantium!</li>
-                                        <li class="item__detail">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam, molestiae nostrum aperiam dignissimos deleniti accusantium!</li>
-                                        <li class="item__detail">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam, molestiae nostrum aperiam dignissimos deleniti accusantium!</li>
-                                    </ul>
-                                </div>
+                                <?php foreach ($actions as $action) { ?>
+                                    <div class="cv__job__detail">
+                                        <p class="date_job"><span></span> <?php echo $action['start_action_date']; ?> - <?php echo $action['end_action_date']; ?></p>
+                                        <h5 class="job__title"><?php echo $action['name_action']; ?></h5>
+                                        <ul class="list__detail">
+                                            <li class="item__detail"><?php echo $action['note_action']; ?></li>
+                                        </ul>
+                                    </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>

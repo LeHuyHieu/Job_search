@@ -72,17 +72,27 @@ require_once('../head.php');
                                 <div class="data__profile">
                                     <span>Ảnh đại diện</span><br>
                                     <label for="avt" class="label_cursor">
-                                        <img id="blah" alt="your image" src="<?php echo ($_SESSION['user']['avatar'] == "") ? "/images/avt_user.jpg" : $_SESSION['user']['avatar']; ?>" width="100" height="100" />
+                                        <img id="blah" alt="your image" src="<?php echo (isset($_SESSION['user']['avatar'])) ? $_SESSION['user']['avatar'] : "/images/avt_user.jpg"; ?>" width="100" height="100" />
                                     </label>
-                                    <input type="file" id="avt" name="avatar" value="<?php echo $_SESSION['user']['avatar']; ?>" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+                                    <input type="file" id="avt" name="avatar" value="<?php echo (isset($_SESSION['user']['avatar'])) ? $_SESSION['user']['avatar'] : ""; ?>" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
                                 </div>
                                 <div class="data__profile">
                                     <label for="">Họ và tên</label>
-                                    <input type="text" name="name" value="<?php echo $_SESSION['user']['name']; ?>" placeholder="Họ và tên...">
+                                    <input type="text" name="name" value="<?php echo (isset($_SESSION['user']['name'])) ? $_SESSION['user']['name'] : ""; ?>" placeholder="Họ và tên...">
                                 </div>
                                 <div class="data__profile">
                                     <label for="">Số điện thoại</label>
-                                    <input type="text" name="phone" value="<?php echo $_SESSION['user']['phone']; ?>" placeholder="Số điện thoại...">
+                                    <input type="text" name="phone" value="<?php echo (isset($_SESSION['user']['phone'])) ? $_SESSION['user']['phone'] : ""; ?>" placeholder="Số điện thoại...">
+                                </div>
+                                <div class="data__profile d-flex">
+                                    <div class="me-2 w-50">
+                                        <label for="">Giới tính</label>
+                                        <input type="text" name="male_female" value="<?php echo (isset($_SESSION['user']['male_female'])) ? $_SESSION['user']['male_female'] : ""; ?>" placeholder="Giới tính...">
+                                    </div>
+                                    <div class="ms-2 w-50">
+                                        <label for="">Ngày tháng năm sinh</label>
+                                        <input type="date" name="birthday" value="<?php echo (isset($_SESSION['user']['birthday'])) ? $_SESSION['user']['birthday'] : ""; ?>" placeholder="Ngày/Tháng/Năm Sinh ...">
+                                    </div>
                                 </div>
                                 <div class="data__profile">
                                     <label for="">E-mail</label>
