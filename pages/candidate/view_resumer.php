@@ -29,7 +29,9 @@ $user = current($users);
                             </div>
                             <ul class="cv__list">
                                 <li class="cv__item"><i class="fas fa-user-circle"></i>: <?php echo $_SESSION['user']['male_female']; ?></li>
-                                <li class="cv__item"><i class="fas fa-calendar-alt"></i>: <?php $birthdayString = $_SESSION['user']['birthday'];$birthdayDateTime = new DateTime($birthdayString);echo $birthdayDateTime->format("d/m/Y"); ?></li>
+                                <li class="cv__item"><i class="fas fa-calendar-alt"></i>: <?php $birthdayString = $_SESSION['user']['birthday'];
+                                                                                            $birthdayDateTime = new DateTime($birthdayString);
+                                                                                            echo $birthdayDateTime->format("d/m/Y"); ?></li>
                                 <li class="cv__item"><i class="fas fa-envelope"></i>: <?php echo $_SESSION['user']['user_email']; ?></li>
                                 <li class="cv__item"><i class="fas fa-mobile-alt"></i>: <?php echo $_SESSION['user']['phone']; ?></li>
                                 <li class="cv__item"><i class="fas fa-map-signs"></i>: <?php echo $user['city_name']; ?></li>
@@ -89,6 +91,11 @@ $user = current($users);
                         </div>
                     </div>
                 </div>
+                <?php
+                $sql = "SELECT * FROM skills WHERE user_id = '$user_id'";
+                $skills = getData($sql);
+                $skill = current($skills);
+                ?>
                 <div class="col-5 p-0">
                     <div class="cv__right">
                         <div class="cv__item">
@@ -96,20 +103,18 @@ $user = current($users);
                             <span class="job__application"><?php echo $_SESSION['user']['skills']; ?></span>
                             <h3 class="cv__title">// Mục Tiêu Nghề Nghiệp</h3>
                             <p class="career__goals">
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, officia ex?
-                                Voluptates voluptatem pariatur sunt harum alias obcaecati, fugiat saepe reiciendis
-                                minima aliquam natus omnis, corrupti quidem culpa deserunt ullam!
+                                <?php echo $skill['career_goals']; ?>
                             </p>
                         </div>
                         <div class="cv__item">
                             <h3 class="cv__title">// Ngoại Ngữ</h3>
                             <div class="mb-3 language">
                                 <label for="">Tiếng Anh</label>
-                                <input type="range" class="slider" name="" value="60" min="1" max="100">
+                                <input type="range" class="slider" name="t_anh" value="<?php echo $skill['t_anh']; ?>" min="1" max="100">
                             </div>
                             <div class="mb-3 language">
                                 <label for="">Tiếng Trung</label>
-                                <input type="range" class="slider" name="" value="70" min="1" max="100">
+                                <input type="range" class="slider" name="t_trung" value="<?php echo $skill['t_trung']; ?>" min="1" max="100">
                             </div>
                         </div>
                         <div class="cv__item">
@@ -117,12 +122,12 @@ $user = current($users);
                             <div class="mb-3 language">
                                 <label for="slider_input">Word</label>
                                 <span id="slider_line" class="slider_line"></span>
-                                <input type="range" class="slider" id="slider_input" name="" value="50" min="1" max="100">
+                                <input type="range" class="slider" id="slider_input" name="word" value="<?php echo $skill['word']; ?>" min="1" max="100">
                             </div>
                             <div class="mb-3 language">
                                 <label for="">Excel</label>
                                 <span id="slider_line" class="slider_line"></span>
-                                <input type="range" class="slider" name="" value="70" min="1" max="100">
+                                <input type="range" class="slider" name="excel" value="<?php echo $skill['excel']; ?>" min="1" max="100">
                             </div>
                         </div>
                         <div class="cv__item">

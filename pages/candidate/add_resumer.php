@@ -131,9 +131,51 @@ require_once('../../head.php');
                                     <label for="">Kỹ năng</label>
                                     <input type="text" value="<?php echo (isset($_SESSION['user']['skills']) && $_SESSION['user']['skills'] != '') ? $_SESSION['user']['skills'] : ""; ?>" name="skill" placeholder="Kỹ năng...">
                                 </div>
+
                                 <button class="btn btn--all m-0 ms-3" type="submit" name="add_resumer" id="">Lưu</button>
                             </form>
                             <hr class="line">
+                            <form action="./process_add_resumer.php" method="post" class="row form__block p-5">
+                                <?php
+                                $user_id = $_SESSION['user']['id'];
+                                $sql = "SELECT * FROM skills WHERE user_id = '$user_id'";
+                                $skills = getData($sql);
+                                $skill = current($skills);
+                                ?>
+                                <input type="hidden" name="user_id" value="<?php echo isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : ""; ?>">
+                                <input type="hidden" name="skill_id" value="<?php echo (isset($skill['id']) && $skill['id'] != '') ? $skill['id'] : ""; ?>">
+                                <div class="d-flex mt-5">
+                                    <div class="flex flex__left w-50 me-3">
+                                        <div class="d-flex">
+                                            <div class="data__profile w-50 me-3">
+                                                <label for="">Tiếng Anh (tối đa 100 điểm)</label>
+                                                <input type="number" class="form-control" name="t_anh" value="<?php echo (isset($skill['t_anh']) && $skill['t_anh'] != '') ? $skill['t_anh'] : ""; ?>" min="1" max="100" placeholder="Tiếng anh">
+                                            </div>
+                                            <div class="data__profile w-50 ms-3">
+                                                <label for="">Tiếng Trung (tối đa 100 điểm)</label>
+                                                <input type="number" class="form-control" name="t_trung" value="<?php echo (isset($skill['t_trung']) && $skill['t_trung'] != '') ? $skill['t_trung'] : ""; ?>" min="1" max="100" placeholder="Tiếng trung">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex__right w-50 ms-3">
+                                        <div class="d-flex">
+                                            <div class="data__profile w-50 me-3">
+                                                <label for="">Word (tối đa 100 điểm)</label>
+                                                <input type="number" class="form-control" name="word" value="<?php echo (isset($skill['word']) && $skill['word'] != '') ? $skill['word'] : ""; ?>" min="1" max="100" placeholder="Word">
+                                            </div>
+                                            <div class="data__profile w-50 ms-3">
+                                                <label for="">Excel (tối đa 100 điểm)</label>
+                                                <input type="number" class="form-control" name="excel" value="<?php echo (isset($skill['excel']) && $skill['excel'] != '') ? $skill['excel'] : ""; ?>" min="1" max="100" placeholder="Excel">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data__profile input__profile">
+                                    <label for="">Mục tiêu nghề nghiệp</label>
+                                    <textarea class="form-control" rows="4" name="career_goals" placeholder="Mục tiêu nghề nghiệp"><?php echo (isset($skill['career_goals']) && $skill['career_goals'] != '') ? $skill['career_goals'] : ""; ?></textarea>
+                                </div>
+                                <button class="btn btn--all m-0 ms-3" type="submit" name="add_skills" id="">Lưu</button>
+                            </form>
                             <div class="d-flex p-5">
                                 <div class="flex flex__left w-50 me-3">
                                     <div class="data__profile mb-5">

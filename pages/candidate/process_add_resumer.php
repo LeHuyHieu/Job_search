@@ -84,6 +84,33 @@ if (isset($_POST['save_action'])) {
     }
 }
 
+if (isset($_POST['add_skills'])) {
+    $t_anh = $_POST['t_anh'];
+    $t_trung = $_POST['t_trung'];
+    $word = $_POST['word'];
+    $excel = $_POST['excel'];
+    $career_goals = $_POST['career_goals'];
+    print_r($t_anh);
+    print_r($t_trung);
+    print_r($word);
+    print_r($excel);
+    // print_r($career_goals);die;
+    if (isset($_POST['skill_id']) && $_POST['skill_id'] != '') {
+        $skill_id = $_POST['skill_id'];
+        $sql = "UPDATE skills SET t_anh = '$t_anh', t_trung = '$t_trung', word = '$word', excel = '$excel', career_goals = '$career_goals' where id = '$skill_id'";
+    } else {
+        $user_id = $_SESSION['user']['id'];
+        $_SESSION['user']['skill_id'] = $user_id;
+        $sql = "INSERT INTO skills (user_id, t_anh, t_trung, word, excel, career_goals, created_at, updated_at) VALUES ('$user_id' , '$t_anh', '$t_trung', '$word','$excel', '$career_goals', NOW(), NOW())";
+    }
+    if ($conn->query($sql) === true) {
+        header('location:./add_resumer.php');
+        exit();
+    } else {
+        echo "Error" . $sql . "<br>" . $conn->error;
+    }
+}
+
 // die;
 if (isset($_POST['add_resumer'])) {
     $name                   = $_POST['name'];
