@@ -34,6 +34,7 @@ $action = current($actions);
         </div>
         <div class="d-flex">
             <input type="hidden" name="save_action" value="1" />
+            <input type="hidden" name="delete_action" value="1" />
             <button class="btn btn--add save" name="save_action">Lưu</button>
             <button class="btn btn--add delete ms-3" name="delete_action">Xóa</button>
         </div>

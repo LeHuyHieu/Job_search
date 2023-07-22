@@ -34,7 +34,7 @@ $education = current($educations);
         </div>
         <div class="mb-4">
             <label for="">Mô tả</label>
-            <textarea rows="3" name="education_note"><?php echo $education['education_note']; ?></textarea>
+            <textarea rows="3" name="education_notes"><?php echo $education['education_note']; ?></textarea>
         </div>
         <div class="d-flex">
             <input type="hidden" name="save_education" value="1" />

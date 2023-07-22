@@ -196,6 +196,29 @@ $(document).ready(function () {
         return false;
     });
 
+    $(document).on('click', '.btn.btn--add.delete', function (event) {
+        event.preventDefault();
+        var _this = $(this);
+        var form = $(this).parents('form').first();
+        var data = $(form).serialize();
+        var url = "./delete_resumer.php";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+        }).done(function (data) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Đã xóa thành công!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            $(_this).parents('.data__profile--detail.bg-light').first().remove();
+        });
+        return false;
+    });
+
     // validate
     $("#change__password").validate({
         onfocusout: false,

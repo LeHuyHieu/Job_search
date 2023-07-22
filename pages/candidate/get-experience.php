@@ -38,6 +38,7 @@ $experience = current($experiences);
         </div>
         <div class="d-flex">
             <input type="hidden" name="save_experience" value="1" />
+            <input type="hidden" name="delete_experience" value="1" />
             <button class="btn btn--add save" name="save_experience">Lưu</button>
             <button class="btn btn--add delete ms-3" name="delete_experience">Xóa</button>
         </div>

@@ -7,15 +7,15 @@ if (isset($_POST['save_education'])) {
     $education_level = $_POST['education_level'];
     $start_education_date = $_POST['start_education_date'];
     $end_education_date = $_POST['end_education_date'];
-    $education_note = $_POST['education_note'];
+    $education_notes = $_POST['education_notes'];
 
     if (isset($_POST['education_id'])) {
         $education_id = $_POST['education_id'];
-        $sql = "UPDATE education SET education_school = '$education_school', education_level = '$education_level', start_education_date = '$start_education_date', end_education_date = '$end_education_date', education_note = '$education_note' where id = '$education_id'";
+        $sql = "UPDATE education SET education_school = '$education_school', education_level = '$education_level', start_education_date = '$start_education_date', end_education_date = '$end_education_date', education_note = '$education_notes' where id = '$education_id'";
     } else {
         $user_id = $_POST['user_id'];
         $_SESSION['user']['education_id'] = $user_id;
-        $sql = "INSERT INTO education (user_id, education_school, education_level, start_education_date, end_education_date, education_note, created_at, updated_at) VALUES ('$user_id' , '$education_school', '$education_level', '$start_education_date', '$end_education_date', '$education_note', NOW(), NOW())";
+        $sql = "INSERT INTO education (user_id, education_school, education_level, start_education_date, end_education_date, education_note, created_at, updated_at) VALUES ('$user_id' , '$education_school', '$education_level', '$start_education_date', '$end_education_date', '$education_notes', NOW(), NOW())";
     }
     if ($conn->query($sql) === true) {
         if (!isset($education_id)) {
@@ -34,15 +34,15 @@ if (isset($_POST['save_experience'])) {
     $experience_job = $_POST['experience_job'];
     $start_experience_date = $_POST['start_experience_date'];
     $end_experience_date = $_POST['end_experience_date'];
-    $experience_note = $_POST['experience_note'];
+    $experience_notes = $_POST['experience_notes'];
 
     if (isset($_POST['experience_id'])) {
         $experience_id = $_POST['experience_id'];
-        $sql = "UPDATE experience SET experience_employer = '$experience_employer', experience_job = '$experience_job', start_experience_date = '$start_experience_date', end_experience_date = '$start_experience_date', experience_note = '$experience_note' where id = '$experience_id'";
+        $sql = "UPDATE experience SET experience_employer = '$experience_employer', experience_job = '$experience_job', start_experience_date = '$start_experience_date', end_experience_date = '$start_experience_date', experience_note = '$experience_notes' where id = '$experience_id'";
     } else {
         $user_id = $_SESSION['user']['id'];
         $_SESSION['user']['experience_id'] = $user_id;
-        $sql = "INSERT INTO experience (user_id, experience_employer, experience_job, start_experience_date, end_experience_date, experience_note, created_at, updated_at) VALUES ('$user_id' , '$experience_employer', '$experience_job', '$start_experience_date','$end_experience_date', '$experience_note', NOW(), NOW())";
+        $sql = "INSERT INTO experience (user_id, experience_employer, experience_job, start_experience_date, end_experience_date, experience_note, created_at, updated_at) VALUES ('$user_id' , '$experience_employer', '$experience_job', '$start_experience_date','$end_experience_date', '$experience_notes', NOW(), NOW())";
     }
     if ($conn->query($sql) === true) {
         if (!isset($experience_id)) {
@@ -70,7 +70,6 @@ if (isset($_POST['save_action'])) {
         $user_id = $_SESSION['user']['id'];
         $_SESSION['user']['action_id'] = $user_id;
         $sql = "INSERT INTO actions (user_id, name_action, note_action, start_action_date, end_action_date, created_at, updated_at) VALUES ('$user_id' , '$name_action', '$note_action', '$start_action_date','$end_action_date', NOW(), NOW())";
-        // print_r($sql);die;
     }
     if ($conn->query($sql) === true) {
         if (!isset($action_id)) {
@@ -108,19 +107,19 @@ if (isset($_POST['add_resumer'])) {
         $user_id = $_POST['user_id'];
         if (strlen($avatar)) {
             $sql = "UPDATE users SET avatar = '$avatar', name = '$name', city_id = '$city_id', category_id = '$category_id', user_email = '$email', profession = '$professional_title', content = '$content', skills = '$skill' where id = '$user_id'";
-        }else {
+        } else {
             $sql = "UPDATE users SET name = '$name', city_id = '$city_id', category_id = '$category_id', user_email = '$email', profession = '$professional_title', content = '$content', skills = '$skill' where id = '$user_id'";
         }
     }
 
-    if($conn->query($sql) === true) {
+    if ($conn->query($sql) === true) {
         $user_email = $_SESSION['user']['user_email'];
         $sql = "SELECT * FROM users where user_email = '$user_email'";
         $users = getData($sql);
         $_SESSION['user'] = $users[0];
         header('location:add_resumer.php');
         exit();
-    }else {
+    } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
