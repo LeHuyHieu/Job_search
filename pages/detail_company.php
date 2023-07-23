@@ -217,7 +217,7 @@ require_once('../head.php');
             <div class="row content__description--flex jobs -m -mb-5">
                 <?php foreach ($job_relateds as $job_related) { ?>
                     <div class="col-lg-4 col-md-6 col-sm-12 col-12 jobs__item">
-                        <a href="./page_detail.php?job_id=<?php echo $job_related['id']; ?>" class="d-flex flex-column">
+                        <a href="#" class="d-flex flex-column">
                             <div class="w-100 jobs__item--text">
                                 <h6 class="-size-15 -dark">
                                     <?php echo $job_related['title']; ?>
