@@ -81,13 +81,14 @@ require_once('../../head.php');
                                 <?php foreach ($companies as $company) { ?>
                                     <tr>
                                         <td><a href="../detail_company.php?company_id=<?php echo $company['id']; ?>"><img width="70px" height="70px" src="<?php echo $company['images']; ?>" alt=""><p class="me-3"><?php echo $company['name']; ?></p></a></td>
-                                        <td><?php echo ($company['status'] == 0 || $company['status'] == '') ? "Pending Review" : $company['status']; ?></td>
+                                        <td><?php echo ($company['status'] == 0 || $company['status'] == '') ? "Chờ xem sét" : "Đã duyệt"; ?></td>
                                         <td><?php $dateTimeString = $company['created_at'];$dateTime = new DateTime($dateTimeString);$newFormat = $dateTime->format("F j, Y");echo $newFormat; ?></td>
                                         <td><a href="#"><i class="fas fa-times"></i> Xóa</a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
                         </table>
+                        <a href="./add_company.php" class="btn btn--all ms-3 mb-3">Thêm mới công ty</a>
                     </div>
                 </div>
             </div>

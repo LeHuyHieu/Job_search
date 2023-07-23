@@ -3,7 +3,8 @@
     "description": "vieclam",
     "type": "project",
     "require": {
-        "laravel/framework": "^10.15"
+        "laravel/framework": "^10.15",
+        "phpoffice/phpword": "^1.1"
     },
     "license": "MIT",
     "minimum-stability": "stable"

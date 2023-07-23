@@ -72,16 +72,19 @@ require_once('../head.php');
                     <img src="<?php echo $job_detail['images']; ?>" alt="" class="w-100">
                 </div>
                 <div class="content__company--content">
-                    <a href="#" class="content__company--title"><?php echo $job_detail['company_name'] ?></a>
+                    <a href="./detail_company.php?company_id=<?php echo $company_id; ?>" class="content__company--title"><?php echo $job_detail['company_name'] ?></a>
                     <div class="content__company--flex">
                         <?php foreach ($company as $company_detail) { ?>
                             <a href="<?php echo $company_detail['contact_web']; ?>" target="_blank" class="content__company--website"><i class="fas fa-link"></i> Website</a>
                             <a href="javascript:void(0);" class="content__company--email"><i class="fas fa-envelope"></i> <?php echo $company_detail['contact_email']; ?></a>
                         <?php } ?>
                     </div>
-                    <a href="#" class="content__company--login">
-                        <i class="fas fa-envelope"></i> Login to Send Message
-                    </a>
+                    <?php if (!isset($_SESSION['user'])) { ?>
+                        <a href="#" class="content__company--login">
+                            <i class="fas fa-envelope"></i> Login to Send Message
+                        </a>
+                    <?php } ?>
+
                 </div>
                 <a href="#" class="btn btn--all">Apply for job</a>
             </div>

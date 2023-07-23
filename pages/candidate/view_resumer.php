@@ -17,7 +17,7 @@ $user = current($users);
     <div class="cv__block">
         <div class="d-flex mb-5">
             <a class="btn btn--green px-3" href="./add_resumer.php"><i class="fa-solid fa-circle-plus pe-2"></i> Quay Lại Trang</a>
-            <a class="btn btn--green px-3 ms-3" href="#"><i class="fa-solid fa-cloud-arrow-down pe-2"></i> Tải Xuống CV</a>
+            <a class="btn btn--green px-3 ms-3" href="../dowload_work.php"><i class="fa-solid fa-cloud-arrow-down pe-2"></i> Tải Xuống CV</a>
         </div>
         <div class="container p-0">
             <div class="row bg-white">

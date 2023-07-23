@@ -18,256 +18,165 @@ require_once('../head.php');
 
     <!-- section -->
     <?php
-    if (isset($_GET['job_id'])) {
-        $job_id = $_GET['job_id'];
-        $sql = "SELECT jobs.*, city.city_name as location, company.name as company_name, categories.name AS category_name FROM jobs LEFT JOIN city ON city.id = jobs.city_id LEFT JOIN company ON company.id = jobs.company_id LEFT JOIN categories ON categories.parent_id = jobs.category_id where jobs.id='$job_id'";
-        $job = getData($sql);
-        $job_detail = $job[0];
-        $company_id = $job_detail['company_id'];
-        $sql2 = "SELECT jobs.* ,company.* FROM jobs LEFT JOIN company ON jobs.company_id = company.id where jobs.company_id = $company_id AND jobs.id = '$job_id'";
-        $company = getData($sql2);
+    if (isset($_GET['company_id'])) {
+        $company_id = $_GET['company_id'];
+        $sql = "SELECT company.*, categories.name as category_name FROM company LEFT JOIN categories ON company.category_id = categories.id WHERE company.id = '$company_id'";
+        $companies = getData($sql);
+        $company = current($companies);
     } else {
-        $sql = "SELECT jobs.*, city.city_name as location, company.name as company_name, categories.name AS category_name FROM jobs LEFT JOIN city ON city.id = jobs.city_id LEFT JOIN company ON company.id = jobs.company_id LEFT JOIN categories ON categories.parent_id = jobs.category_id where jobs.id= 1";
-        $job = getData($sql);
-        $job_detail = $job[0];
-        $company_id = $job_detail['company_id'];
-        $sql2 = "SELECT jobs.* ,company.* FROM jobs LEFT JOIN company ON jobs.company_id = company.id where jobs.company_id = $company_id AND jobs.id = 1";
-        $company = getData($sql2);
     }
     ?>
-    <section class="content page_detail">
+    <section class="content page_detail mb-5">
         <div class="container">
-            <div class="content__flex">
-                <div class="content__title">
-                    <a href="javascript:void(0);" class="content__title--link">
-                        <?php echo $job_detail['category_name']; ?>
-                    </a>
-                    <h4 class="content__title--title">
-                        <?php echo $job_detail['title']; ?>
-                        <?php
-                        if ($job_detail['full_time'] == 1) {
-                            echo "<span class=\"btn--fulltime\">Full Time</span>";
-                        }
-                        if ($job_detail['internship'] == 1) {
-                            echo "<span class=\"btn--internship\">Internship</span>";
-                        }
-                        if ($job_detail['temporary'] == 1) {
-                            echo "<span class=\"btn--temporary\">Temporary</span>";
-                        }
-                        if ($job_detail['freelance'] == 1) {
-                            echo "<span class=\"btn--freelance\">Freelance</span>";
-                        }
-                        if ($job_detail['part_time'] == 1) {
-                            echo "<span class=\"btn--parttime\">Part Time</span>";
-                        }
-                        ?>
-                    </h4>
-                </div>
-                <a href="#" class="content__bookmark">
-                    Login to bookmark
-                </a>
-            </div>
-            <div class="content__company bg-white">
+            <div class="content__company bg-white justify-content-start">
                 <div class="content__company--logo">
-                    <img src="<?php echo $job_detail['images']; ?>" alt="" class="w-100">
+                    <img src="<?php echo $company['images']; ?>" alt="" class="w-100">
                 </div>
                 <div class="content__company--content">
-                    <a href="#" class="content__company--title"><?php echo $job_detail['company_name'] ?></a>
+                    <a href="#" class="content__company--title"><?php echo $company['name'] ?></a> <br>
+                    <p class="text__headline -bold-400 -size-16"><?php echo $company['company_tagline']; ?></p>
                     <div class="content__company--flex">
-                        <?php foreach ($company as $company_detail) { ?>
-                            <a href="<?php echo $company_detail['contact_web']; ?>" target="_blank" class="content__company--website"><i class="fas fa-link"></i> Website</a>
-                            <a href="javascript:void(0);" class="content__company--email"><i class="fas fa-envelope"></i> <?php echo $company_detail['contact_email']; ?></a>
-                        <?php } ?>
+                        <a href="<?php echo $company['contact_web']; ?>" target="_blank" class="content__company--website"><i class="fas fa-link"></i> Website</a>
+                        <a href="javascript:void(0);" class="content__company--email"><i class="fas fa-envelope"></i> <?php echo $company['contact_email']; ?></a>
+                        <a href="<?php echo $company['contact_tw']; ?>" target="_blank" class="content__company--email"><i class="fab fa-twitter"></i> Twitter</a>
+                        <a href="<?php echo $company['contact_fb']; ?>" target="_blank" class="content__company--email"><i class="fab fa-facebook-f"></i> Facebook</a>
                     </div>
-                    <a href="#" class="content__company--login">
-                        <i class="fas fa-envelope"></i> Login to Send Message
-                    </a>
                 </div>
-                <a href="#" class="btn btn--all">Apply for job</a>
             </div>
             <div class="row content__description">
                 <div class="col-lg-8 col-md-7 col-sm-12 col-12 content__description--left">
-                    <h4 class="content__description--title -m -mt-5 text__headline -dark -bold-600 -size-14">
-                        Primary Responsibilities:
+                    <h4 class="text__headline -bold-400 -size-20 -gray -m -mt-5">
+                        Về chúng tôi:
                     </h4>
-                    <ul class="content__description--list">
-                        <?php
-                        $content = $job_detail['description'];
-                        $content = explode(PHP_EOL, $content);
-                        ?>
-                        <?php foreach ($content as $li) { ?>
-                            <li class="content__description--item">
-                                <?php echo $li; ?>
-                            </li>
-                        <?php } ?>
-                    </ul>
-                    <h4 class="content__description--title text__headline -dark -bold-600 -size-14">
-                        Requirments:
-                    </h4>
-                    <ul class="content__description--list">
-                        <?php
-                        $content = $job_detail['content'];
-                        $content = explode(PHP_EOL, $content);
-                        ?>
-                        <?php foreach ($content as $li) { ?>
-                            <li class="content__description--item">
-                                <?php echo $li; ?>
-                            </li>
-                        <?php } ?>
-                    </ul>
-                    <div class="content__description--flex -m -mb-5">
-                        <?php foreach ($company as $company_detail) { ?>
-                            <a href="<?php echo $company_detail['contact_fb']; ?>" target="_blank" class="btn btn--primary">
-                                <i class="fab fa-facebook-f"></i> Facebook
-                            </a>
-                            <a href="<?php echo $company_detail['contact_tw']; ?>" target="_blank" class="btn btn--info ms-2">
-                                <i class="fab fa-twitter"></i> Twitter
-                            </a>
-                        <?php } ?>
-                    </div>
+                    <div class="text__headline -bold-300 -size-15"><?php echo $company['content']; ?></div>
                 </div>
                 <div class="col-lg-4 col-md-5 col-sm-12 col-12 content__description--right">
                     <h4 class="text__headline -bold-400 -size-20 -gray -m -mt-5">
-                        Job Overview
+                        Tông quan công ty
                     </h4>
                     <ul class="bg-light content__description--list">
                         <li class="content__description--item--flex">
-                            <span class="content__description--icon">
-                                <i class="fa fa-calendar"></i>
+                            <span class="content__description--icon text__headline -size-20">
+                                <i class="ln ln-icon-Bodybuilding"></i>
                             </span>
                             <div class="content__description--text">
                                 <h6 class="content__description--item--title">
-                                    Date Posted:
+                                    Quy Mô Công Ty:
                                 </h6>
                                 <p class="content__description--item--txt">
-                                    <?php echo date("m.d.Y", strtotime($job_detail['created_at'])); ?>
+                                    <?php
+                                    if ($company['company_size'] == 1) {
+                                        echo "1 - 5";
+                                    }
+                                    if ($company['company_size'] == 2) {
+                                        echo "15 - 30";
+                                    }
+                                    if ($company['company_size'] == 3) {
+                                        echo "30 - 50";
+                                    }
+                                    if ($company['company_size'] == 4) {
+                                        echo "15 - 30";
+                                    }
+                                    if ($company['company_size'] == 5) {
+                                        echo "50+";
+                                    }
+                                    ?>
                                 </p>
                             </div>
                         </li>
                         <li class="content__description--item--flex">
-                            <span class="content__description--icon">
-                                <i class="fa fa-calendar"></i>
+                            <span class="content__description--icon text__headline -size-20">
+                                <i class="ln ln-icon-Folder-Archive"></i>
                             </span>
                             <div class="content__description--text">
                                 <h6 class="content__description--item--title">
-                                    Expiration date:
+                                    Nghành Nghề Công Ty:
                                 </h6>
                                 <p class="content__description--item--txt">
-                                    <?php echo date("M d,Y", strtotime($job_detail['expiration_date'])); ?>
+                                    <?php
+                                    echo $company['category_name'];
+                                    ?>
                                 </p>
                             </div>
                         </li>
                         <li class="content__description--item--flex">
-                            <span class="content__description--icon">
-                                <i class="fa fa-map-marker"></i>
+                            <span class="content__description--icon text__headline -size-20">
+                                <i class="ln ln-icon-Money-2"></i>
                             </span>
                             <div class="content__description--text">
                                 <h6 class="content__description--item--title">
-                                    Location:
+                                    Doanh thu:
                                 </h6>
                                 <p class="content__description--item--txt">
-                                    <?php echo $job_detail['location']; ?>
+                                    <?php
+                                    if ($company['company_revenue'] == 1) {
+                                        echo "$ 70.000";
+                                    }
+                                    if ($company['company_revenue'] == 2) {
+                                        echo "$ 100.000";
+                                    }
+                                    if ($company['company_revenue'] == 3) {
+                                        echo "$ 150.000";
+                                    }
+                                    if ($company['company_revenue'] == 4) {
+                                        echo "$ 300.000";
+                                    }
+                                    if ($company['company_revenue'] == 5) {
+                                        echo "$ 600.000";
+                                    }
+                                    if ($company['company_revenue'] == 6) {
+                                        echo "$ 1.000.000";
+                                    }
+                                    ?>
                                 </p>
                             </div>
                         </li>
                         <li class="content__description--item--flex">
-                            <span class="content__description--icon">
-                                <i class="fa fa-user"></i>
+                            <span class="content__description--icon text__headline -size-20">
+                                <i class="ln ln-icon-Money-2"></i>
                             </span>
                             <div class="content__description--text">
                                 <h6 class="content__description--item--title">
-                                    Jobs Title:
+                                    Trung Bình Lương:
                                 </h6>
                                 <p class="content__description--item--txt">
-                                    <?php echo $job_detail['title']; ?>
+                                    <?php
+                                    if ($company['company_average_salary'] == 1) {
+                                        echo "$15.000 - $20.000";
+                                    }
+                                    if ($company['company_average_salary'] == 2) {
+                                        echo "$20.000 - $30.000";
+                                    }
+                                    if ($company['company_average_salary'] == 3) {
+                                        echo "$30.000 - $40.000";
+                                    }
+                                    if ($company['company_average_salary'] == 4) {
+                                        echo "$40.000 - $50.000";
+                                    }
+                                    if ($company['company_average_salary'] == 5) {
+                                        echo "$50.000+";
+                                    }
+                                    ?>
                                 </p>
                             </div>
                         </li>
-                        <li class="content__description--item--flex">
-                            <span class="content__description--icon">
-                                <i class="fa fa-clock-o"></i>
+                        <li class="content__description--item--flex mb-0">
+                            <span class="content__description--icon text__headline -size-20">
+                                <i class="ln ln-icon-Folder-Archive"></i>
                             </span>
                             <div class="content__description--text">
                                 <h6 class="content__description--item--title">
-                                    Salary:
+                                    Trụ Sở:
                                 </h6>
                                 <p class="content__description--item--txt">
-                                    $<?php echo number_format($job_detail['salary_from']); ?> - $<?php echo number_format($job_detail['salary_to']); ?>
+                                    <?php
+                                    echo $company['company_headquarters'];
+                                    ?>
                                 </p>
                             </div>
                         </li>
                     </ul>
                 </div>
-            </div>
-        </div>
-        <div class="container">
-            <h4 class="content__description--title text__headline -dark -bold-400 -size-25">
-                Related Jobs
-            </h4>
-            <?php
-            if (isset($_GET['job_id'])) {
-                $sql3 = "SELECT * FROM jobs WHERE jobs.id <> '$job_id' AND jobs.category_id = '$job_id' LIMIT 6";
-                $job_relateds = getData($sql3);
-            } else {
-                $sql3 = "SELECT * FROM jobs WHERE jobs.id <> 1 AND jobs.category_id = 1 LIMIT 6";
-                $job_relateds = getData($sql3);
-            }
-            // print_r($sql3);die;
-            ?>
-            <div class="row content__description--flex jobs -m -mb-5">
-                <?php foreach ($job_relateds as $job_related) { ?>
-                    <div class="col-lg-4 col-md-6 col-sm-12 col-12 jobs__item">
-                        <a href="#" class="d-flex flex-column">
-                            <div class="w-100 jobs__item--text">
-                                <h6 class="-size-15 -dark">
-                                    <?php echo $job_related['title']; ?>
-                                    <button class="btn btn--transparent">
-                                        <?php
-                                        if ($job_detail['full_time'] == 1) {
-                                            echo "Full Time";
-                                        }
-                                        if ($job_detail['internship'] == 1) {
-                                            echo "Internship";
-                                        }
-                                        if ($job_detail['temporary'] == 1) {
-                                            echo "Temporary";
-                                        }
-                                        if ($job_detail['freelance'] == 1) {
-                                            echo "Freelance";
-                                        }
-                                        if ($job_detail['part_time'] == 1) {
-                                            echo "Part Time";
-                                        }
-                                        ?>
-                                    </button>
-                                </h6>
-                                <ul class="d-flex mb-4 flex-column align-items-start jobs__item--icon">
-                                    <li class="jobs__itemsub">
-                                        <i class="ln ln-icon-Management"></i>
-                                        <?php echo $job_detail['company_name']; ?>
-                                    </li>
-                                    <li class="jobs__itemsub">
-                                        <i class="ln ln-icon-Map2"></i>
-                                        <?php echo $job_detail['location'] ?>
-                                    </li>
-                                    <li class="jobs__itemsub">
-                                        <i class="ln ln-icon-Money-2"></i>
-                                        $<?php echo number_format($job_related['salary_from']); ?> - $<?php echo number_format($job_related['salary_to']); ?>
-                                    </li>
-                                </ul>
-                                <p>
-                                    <?php
-                                    $substr = $job_detail['description'];
-                                    echo substr($substr, 0, 130);
-                                    ?>
-                                </p>
-                            </div>
-                            <button class="btn--0 btn--all">
-                                Apply For This Job
-                            </button>
-                        </a>
-                    </div>
-                <?php } ?>
             </div>
         </div>
     </section>
