@@ -203,23 +203,27 @@
     background-color: $green;
     color: $white;
 }
+
 .btn.btn--add.delete {
     margin: 1rem 0;
     padding: 1rem 4rem;
     background-color: $red;
     color: $white;
 }
+
 .btn--green {
     margin: 1rem 0;
     padding: 1rem 4rem;
     background-color: $green;
     color: $white;
+
     &:hover {
         color: $green;
         border: 1px solid $green;
         background-color: transparent;
     }
 }
+
 .btn-edit {
     position: absolute;
     right: 0;
@@ -230,9 +234,45 @@
     top: 0;
     cursor: pointer;
     padding: 0.5rem 0.8rem;
+
     &:hover {
         border-radius: .3rem;
         color: $white;
         background-color: $dark;
+    }
+}
+
+.btn--radius100 {
+    border-radius: 100rem;
+    border: none;
+    outline: none;
+}
+
+.btn--dark {
+    background-color: $dark;
+    padding: 1rem;
+    border: 1px solid transparent;
+
+    &:hover {
+        color: $green;
+        background-color: transparent;
+        border: 1px solid $green;
+    }
+}
+
+.profile_details.bookmark_detail {
+    .table {
+        tbody {
+            td {
+                & a.btn-delete {
+                    color: $dark;
+                    transition: .3s ease;
+
+                    &:hover {
+                        color: $red;
+                    }
+                }
+            }
+        }
     }
 }

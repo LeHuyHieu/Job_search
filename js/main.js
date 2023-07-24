@@ -254,32 +254,99 @@ $(document).ready(function () {
         return false;
     });
 
-    // validate
-    $("#change__password").validate({
-        onfocusout: false,
-        onkeyup: false,
-        onclick: false,
-        rules: {
-            "password": {
-                required: true,
-                minlength: 6
-            },
-            "re-password": {
-                equalTo: "#password",
-                minlength: 6
+    $(document).on('change', '#file_cv', function getValueFromInput() {
+        var inputField = document.getElementById('file_cv');
+        var value = inputField.value;
+        var showCV = document.getElementById('showCV');
+        showCV.textContent = "Đã chọn tệp: " + value;
+    })
+
+    // $(document).on('click', '.btn-delete.delete', function (event) {
+    //     if (Swal.fire({
+    //         title: 'Are you sure?',
+    //         text: "You won't be able to revert this!",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#3085d6',
+    //         cancelButtonColor: '#d33',
+    //         confirmButtonText: 'Yes, delete it!'
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             Swal.fire(
+    //                 'Deleted!',
+    //                 'Your file has been deleted.',
+    //                 'success'
+    //             )
+    //         }
+    //     })) {
+    //         return true;
+    //     } else {
+    //         event.stopPropagation();
+    //         event.preventDefault();
+    //     }
+    // })
+
+    $(document).on('click', '.btn-delete.delete', function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        Swal.fire({
+            title: 'Bạn có chắc muốn xóa?',
+            text: "Bạn không thể hoàn tác lại!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Xóa!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var link = $(this).attr('href');
+                window.location.href = link;
+                Swal.fire(
+                    'Đã xóa!',
+                    'Bạn đã xóa thành công.',
+                    'success'
+                );
+            } else {
+                Swal.fire(
+                    'Chưa Xóa',
+                    'Bạn chưa chưa xóa thành công.',
+                    'error'
+                );
             }
-        },
-        messages: {
-            "password": {
-                required: "<span class=\"err_validate\">Bắt buộc nhập Password</span>",
-                minlength: "<span class=\"err_validate\">Hãy nhập ít nhất 6 ký tự</span>"
-            },
-            "re-password": {
-                equalTo: "<span class=\"err_validate\">Hai password phải giống nhau</span>",
-                minlength: "<span class=\"err_validate\">Hãy nhập ít nhất 6 ký tự</span>"
-            }
-        }
+        });
     });
+});
+
+$(document).ready(function () {
+    if (typeof $.fn.validate === 'function') {
+        // validate
+        $("#change__password").validate({
+            onfocusout: false,
+            onkeyup: false,
+            onclick: false,
+            rules: {
+                "password": {
+                    required: true,
+                    minlength: 6
+                },
+                "re-password": {
+                    equalTo: "#password",
+                    minlength: 6
+                }
+            },
+            messages: {
+                "password": {
+                    required: "<span class=\"err_validate\">Bắt buộc nhập Password</span>",
+                    minlength: "<span class=\"err_validate\">Hãy nhập ít nhất 6 ký tự</span>"
+                },
+                "re-password": {
+                    equalTo: "<span class=\"err_validate\">Hai password phải giống nhau</span>",
+                    minlength: "<span class=\"err_validate\">Hãy nhập ít nhất 6 ký tự</span>"
+                }
+            }
+        });
+    }
 });
 
 $(document).ready(function () {

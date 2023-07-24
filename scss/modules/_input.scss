@@ -228,3 +228,27 @@
         }
     }
 }
+
+.form__block {
+    & label {
+        font-size: 16px;
+        & .detail__file__cv {
+            font-size: 15px;
+            width: 70%;
+            margin-right: 0;
+        }
+    }
+    & input {
+        font-size: 14px;
+        height: 45px;
+    }
+    & input:focus {
+        box-shadow: none;
+    }
+    & textarea {
+        font-size: 14px;
+    }
+    & button {
+        border: none;
+    }
+}

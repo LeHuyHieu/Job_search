@@ -63,8 +63,8 @@ require_once('../head.php');
                         ?>
                     </h4>
                 </div>
-                <a href="#" class="content__bookmark">
-                    Login to bookmark
+                <a href="javascript:void(0);" class="content__bookmark">
+                    <?php echo (isset($_SESSION['user'])) ? "Đánh dấu trang" : "Đăng nhập để đánh dấu"; ?>
                 </a>
             </div>
             <div class="content__company bg-white">
@@ -80,13 +80,62 @@ require_once('../head.php');
                         <?php } ?>
                     </div>
                     <?php if (!isset($_SESSION['user'])) { ?>
-                        <a href="#" class="content__company--login">
-                            <i class="fas fa-envelope"></i> Login to Send Message
+                        <a href="javascript:void(0);" class="content__company--login">
+                            <i class="fas fa-envelope"></i> Đăng nhập đẻ gửi tin nhắn
+                        </a>
+                    <?php } else { ?>
+                        <a href="javascript:void(0);" class="content__company--login">
+                            <i class="fas fa-envelope"></i> Gửi tin nhắn
                         </a>
                     <?php } ?>
-
                 </div>
-                <a href="#" class="btn btn--all">Apply for job</a>
+                <!-- Button trigger modal -->
+                <a href="javascript:void(0);" class="btn btn--all" data-bs-toggle="modal" data-bs-target="#applyJob">Apply for job</a>
+                <!-- Modal -->
+                <div class="modal fade" id="applyJob" tabindex="-1" aria-labelledby="applyJobLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-light p-5">
+                                <h5 class="modal-title" id="applyJobLabel">Nộp đơn cho công việc</h5>
+                                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body p-5 pb-0">
+                                <form action="../phpmailer/apply_job.php" method="post" class="form__block" enctype="multipart/form-data">
+                                    <div class="mb-4">
+                                        <label for="full_name_apply">Họ và tên:</label>
+                                        <input type="text" id="full_name_apply" class="form-control" name="full_name_apply" value="<?php echo (isset($_SESSION['user']['name'])) ? $_SESSION['user']['name'] : "";  ?>">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="address_apply">Địa chỉ email:</label>
+                                        <input type="text" id="address_apply" class="form-control" name="address_apply" value="<?php echo (isset($_SESSION['user']['user_email'])) ? $_SESSION['user']['user_email'] : "";  ?>">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="file_cv" id="addCV">
+                                            <span>Upload CV</span> <br>
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <span class="btn btn--add"><i class="fas fa-upload"></i> Browse</span>
+                                                <span class="detail__file__cv">Tải lên CV/sơ yếu lý lịch của bạn hoặc bất kỳ tệp có liên quan nào khác. tối đa. kích thước tệp: 100 MB.</span>
+                                            </div>
+                                        </label>
+                                        <input type="file" id="file_cv" name="file_cv" class="d-none" value="">
+                                        <span id="showCV" class="text__headline -size-15 -bold-500"></span>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="messge_apply">Tin Nhắn:</label>
+                                        <textarea id="messge_apply" rows="5" placeholder="Thư xin việc hoặc tin nhắn đến nhà tuyển dụng" class="form-control" name="messge_apply" value=""></textarea>
+                                    </div>
+                                    <button class="btn--all w-100 btn--radius100 m-0" name="apply_job">Gửi đơn</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer d-block border-0 p-5">
+                                <p class="text__headline -size-14 mb-3">
+                                    Bạn có thể ứng tuyển vào công việc này và những công việc khác bằng cách sử dụng sơ yếu lý lịch trực tuyến của mình. Nhấp vào liên kết bên dưới để gửi sơ yếu lý lịch trực tuyến của bạn và gửi đơn đăng ký của bạn qua email cho nhà tuyển dụng này.
+                                </p>
+                                <a href="javascript:void(0);" class="btn btn--dark btn--radius100 w-50 ms-0">Nộp Hồ sơ và ứng tuyển</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="row content__description">
                 <div class="col-lg-8 col-md-7 col-sm-12 col-12 content__description--left">

@@ -1091,6 +1091,31 @@ body._bg_transparent .header.bg-white .navbar .login--register .btn--login {
   background-color: #222;
 }
 
+.btn--radius100 {
+  border-radius: 100rem;
+  border: none;
+  outline: none;
+}
+
+.btn--dark {
+  background-color: #222;
+  padding: 1rem;
+  border: 1px solid transparent;
+}
+.btn--dark:hover {
+  color: #26ae61;
+  background-color: transparent;
+  border: 1px solid #26ae61;
+}
+
+.profile_details.bookmark_detail .table tbody td a.btn-delete {
+  color: #222;
+  transition: 0.3s ease;
+}
+.profile_details.bookmark_detail .table tbody td a.btn-delete:hover {
+  color: #b80000;
+}
+
 .chosen-single {
   border: none !important;
   background-image: none !important;
@@ -1295,6 +1320,28 @@ body._bg_transparent .header.bg-white .navbar .login--register .btn--login {
 }
 .search__category .check__box.fiter input[type=checkbox]:checked ~ label span.check::before {
   display: block;
+}
+
+.form__block label {
+  font-size: 16px;
+}
+.form__block label .detail__file__cv {
+  font-size: 15px;
+  width: 70%;
+  margin-right: 0;
+}
+.form__block input {
+  font-size: 14px;
+  height: 45px;
+}
+.form__block input:focus {
+  box-shadow: none;
+}
+.form__block textarea {
+  font-size: 14px;
+}
+.form__block button {
+  border: none;
 }
 
 .content .banner {
