@@ -19,7 +19,7 @@ require_once('../../head.php');
     ?>
     <section class="content connect__profile">
         <div class="left">
-            <div class="left__position">
+        <div class="left__position">
                 <div class="left__block">
                     <h5 class="title__profile">Main</h5>
                     <ul class="list__profile">
@@ -33,8 +33,8 @@ require_once('../../head.php');
                     <div class="left__block">
                         <h5 class="title__profile">Candidate</h5>
                         <ul class="list__profile">
-                            <li class="item__profile"><a href="#" class="link__profile"><i class="fas fa-file"></i> Manage Resumer</a></li>
-                            <li class="item__profile"><a href="/pages/candidate/add_resumer.php" class="link__profile"><i class="fas fa-file"></i> Add Resume</a></li>
+                            <li class="item__profile"><a href="#" class="link__profile"><i class="fa-solid fa-rectangle-list"></i> Manage Resumer</a></li>
+                            <li class="item__profile"><a href="/pages/candidate/add_resumer.php" class="link__profile"><i class="fa-solid fa-square-plus"></i> Add Resume</a></li>
                         </ul>
                     </div>
                 <?php } ?>
@@ -42,10 +42,10 @@ require_once('../../head.php');
                     <div class="left__block">
                         <h5 class="title__profile">Employer</h5>
                         <ul class="list__profile">
-                            <li class="item__profile"><a href="/pages/employer/managae_job.php" class="link__profile"><i class="fas fa-chart-line"></i> Manage Jobs</a></li>
-                            <li class="item__profile"><a href="/pages/employer/submit_job.php" class="link__profile color__green"><i class="fas fa-comment-alt"></i> Submit Jobs </a></li>
-                            <li class="item__profile"><a href="/pages/employer/manage_companies.php" class="link__profile"><i class="fas fa-bookmark"></i> Manage Companies</a></li>
-                            <li class="item__profile"><a href="/pages/employer/add_company.php" class="link__profile"><i class="fas fa-bell"></i> Add Company <span class="notification">1</span></a></li>
+                            <li class="item__profile"><a href="/pages/employer/managae_job.php" class="link__profile color__green"><i class="fa-solid fa-rectangle-list"></i> Manage Jobs</a></li>
+                            <li class="item__profile"><a href="/pages/employer/submit_job.php" class="link__profile"><i class="fa-solid fa-square-plus"></i> Submit Jobs </a></li>
+                            <li class="item__profile"><a href="/pages/employer/manage_companies.php" class="link__profile"><i class="fa-solid fa-rectangle-list"></i> Manage Companies</a></li>
+                            <li class="item__profile"><a href="/pages/employer/add_company.php" class="link__profile"><i class="fa-solid fa-square-plus"></i> Add Company <span class="notification">1</span></a></li>
                         </ul>
                     </div>
                 <?php } ?>

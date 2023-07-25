@@ -32,8 +32,8 @@ require_once('../../head.php');
                     <div class="left__block">
                         <h5 class="title__profile">Candidate</h5>
                         <ul class="list__profile">
-                            <li class="item__profile"><a href="#" class="link__profile"><i class="fas fa-file"></i> Manage Resumer</a></li>
-                            <li class="item__profile"><a href="/pages/candidate/add_resumer.php" class="link__profile"><i class="fas fa-file"></i> Add Resume</a></li>
+                            <li class="item__profile"><a href="#" class="link__profile"><i class="fa-solid fa-rectangle-list"></i> Manage Resumer</a></li>
+                            <li class="item__profile"><a href="/pages/candidate/add_resumer.php" class="link__profile"><i class="fa-solid fa-square-plus"></i> Add Resume</a></li>
                         </ul>
                     </div>
                 <?php } ?>
