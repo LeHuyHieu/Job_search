@@ -18,6 +18,9 @@ Mô tả về dự án:
                 - Profile  : + tạo Sơ yếu lý lịch để ứng tuyển,
                              + cập nhật thông tin cá nhân như: mật khẩu, tên, ảnh đại diện, ...  
                              + ứng tuyển vào công việc mong muốn,... vv
+  ![image](https://github.com/LeHuyHieu/viec_lam/assets/126578220/96511bd6-974d-41e5-801a-fe99301ebbe6)
+  ![image](https://github.com/LeHuyHieu/viec_lam/assets/126578220/fc09bfff-f2e7-4486-87db-17a39e010cf7)
+
                              + và một số tính năng khác bạn có thể đăng nhạp để xem
    ![image](https://github.com/LeHuyHieu/viec_lam/assets/126578220/64975b08-235c-4490-8754-26f576786abb)
                 - Employer : + đăng công việc cần tuyển thêm người, công ty, ...
