@@ -49,7 +49,7 @@ if (isset($_GET['keyword'])) {
             $param .= '&city_id=' . $_GET['city_id'];
         }
         if (isset($_GET['category_id']) && strlen($_GET['category_id'])) {
-            $sql_conditions .= " AND category_id = " . $_GET['category_id'] . " ";
+            $sql_conditions .= " AND jobs.category_id = " . $_GET['category_id'] . " ";
             $param .= '&category_id=' . $_GET['category_id'];
         }
         if (isset($_GET['salary_from']) && strlen($_GET['salary_from'])) {
@@ -101,9 +101,9 @@ if (isset($_GET['keyword'])) {
         $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
         $start = ($page - 1) * $num_per_page;
 
-        $sql2 = "SELECT jobs.*, city.city_name as name_city, company.name as name_company FROM jobs LEFT JOIN city ON city.id = jobs.city_id LEFT JOIN company ON company.id = jobs.company_id ";
+        $sql2 = "SELECT jobs.*, city.city_name as name_city, company.name as name_company, categories.id FROM jobs LEFT JOIN city ON city.id = jobs.city_id LEFT JOIN company ON company.id = jobs.company_id LEFT JOIN categories ON categories.id = jobs.category_id ";
         $sql2 .= $sql_conditions;
-        $sql2 .= "ORDER BY id DESC LIMIT $start,$num_per_page";
+        $sql2 .= "ORDER BY jobs.id DESC LIMIT $start,$num_per_page";
         $jobs = getData($sql2);
         // print_r($sql2);die;
         ?>

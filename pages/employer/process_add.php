@@ -17,20 +17,7 @@ if(isset($_POST['add_compamy'])) {
     $company_content        = $_POST['company_content'];
     $category_id           = $_POST['category_id'];
     $target_dir             = '/images/';
-    print_r($company_name);
-    print_r($company_tagline);
-    print_r($company_headquarters);
-    print_r($company_email);
-    print_r($company_web);
-    print_r($company_phone);
-    print_r($company_average_salary);
-    print_r( $company_fb);
-    print_r($company_tw);
-    print_r($company_size);
-    print_r($company_revenue);
-    print_r($company_description);
-    print_r($company_content);
-    print_r($category_id);
+    
     if(isset($_FILES['company_logo']['tmp_name']) && $_FILES['company_logo']['tmp_name']) {
         $company_logo = $target_dir . basename($_FILES['company_logo']['tmp_name']);
         move_uploaded_file($_FILES['company_logo']['tmp_name'], '../..' . $company_logo);
@@ -51,12 +38,74 @@ if(isset($_POST['add_compamy'])) {
     }
 
     if($conn->query($sql) === true) {
-        // die;
         header('location:./manage_companies.php');
         exit();
     }else {
-        echo "Error: ". $sql. "<br>" . $conn->errno;
+        echo "Error: ". $sql. "<br>" . $conn->error;
     }
 }
 
-?>
+if(isset($_POST['add_job'])) {
+    $title = $_POST['title'];
+    $company_id = $_POST['company_id'];
+    $city_id = $_POST['city_id'];
+    $full_time = 0;
+    $freelance = 0;
+    $internship = 0;
+    $part_time = 0;
+    $temporary = 0;
+    if(isset($_POST['type_job']) && is_array($_POST['type_job'])) {
+        $type_jobs = $_POST['type_job'];
+        foreach ($type_jobs as $type_job) {
+            if($type_job == 1) {
+                $full_time = 1;
+            }
+            if($type_job == 2) {
+                $freelance = 1;
+            }
+            if($type_job == 3) {
+                $internship = 1;
+            }
+            if($type_job == 4) {
+                $part_time = 1;
+            }
+            if($type_job == 5) {
+                $temporary = 1;
+            }
+        }
+    }
+
+    $target_dir = "/images/";
+    $category_id = $_POST['category_id'];
+    $salary_from = $_POST['salary_from'];
+    $salary_to = $_POST['salary_to'];
+    $description = $_POST['description'];
+    $content = $_POST['content'];
+    $expiration_date = $_POST['expiration_date'];
+
+    if(isset($_FILES['job_logo']['tmp_name']) && $_FILES['job_logo']['tmp_name']) {
+        $job_logo = $target_dir . basename($_FILES['job_logo']['tmp_name']);
+        move_uploaded_file($_FILES['job_logo']['tmp_name'], '../..' . $job_logo);
+    }else {
+        $job_logo = '';
+    }
+
+    if(isset($_POST['job_id']) && $_POST['job_id'] != '') {
+        $job_id = $_POST['job_id'];
+        if(strlen($job_logo)) {
+            $sql = "UPDATE jobs SET images = '$job_logo', expiration_date = '$expiration_date', title = '$title', company_id = '$company_id', city_id = '$city_id', category_id = '$category_id', salary_from = '$salary_from', salary_to = '$salary_to', description = '$description', content = '$content', full_time = '$full_time', freelance = '$freelance', internship = '$internship', part_time = '$part_time', temporary = '$temporary' WHERE id = '$job_id'";
+        }else {
+            $sql = "UPDATE jobs SET title = '$title', expiration_date = '$expiration_date', company_id = '$company_id', city_id = '$city_id', category_id = '$category_id', salary_from = '$salary_from', salary_to = '$salary_to', description = '$description', content = '$content', full_time = '$full_time', freelance = '$freelance', internship = '$internship', part_time = '$part_time', temporary = '$temporary' WHERE id = '$job_id'";
+        }
+    }else {
+        $user_id = $_POST['user_id'];
+        $sql = "INSERT INTO jobs (user_id, title, company_id, city_id, category_id, salary_from, salary_to, description, content, full_time, freelance, internship, part_time, temporary, images, expiration_date, created_at, updated_at) VALUES ('$user_id', '$title', '$company_id', '$city_id', '$category_id', '$salary_from', '$salary_to', '$description', '$content', '$full_time', '$freelance', '$internship', '$part_time', '$temporary', '$job_logo', '$expiration_date', NOW(), NOW())";
+    }
+
+    if($conn->query($sql) === true) {
+        header('location:./submit_job.php');
+        exit();
+    }else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}

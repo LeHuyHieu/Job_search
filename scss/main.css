@@ -1108,12 +1108,27 @@ body._bg_transparent .header.bg-white .navbar .login--register .btn--login {
   border: 1px solid #26ae61;
 }
 
-.profile_details.bookmark_detail .table tbody td a.btn-delete {
-  color: #222;
-  transition: 0.3s ease;
+.btn-delete {
+  background-color: #b80000;
+  color: #fff;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  border-radius: 0.5rem;
+  transition: 0.3s;
 }
-.profile_details.bookmark_detail .table tbody td a.btn-delete:hover {
-  color: #b80000;
+.btn-view {
+  background-color: #3b5998;
+  color: #fff;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  border-radius: 0.5rem;
+  transition: 0.3s;
 }
 
 .chosen-single {
@@ -2227,7 +2242,7 @@ body._bg_transparent .header.bg-white .navbar .login--register .btn--login {
   padding: 0.7rem;
   border-radius: 2px;
   margin-left: 1rem;
-  width: 20%;
+  width: 10rem;
   text-align: center;
   border: 1px solid;
 }

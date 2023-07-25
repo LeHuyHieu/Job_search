@@ -260,19 +260,28 @@
     }
 }
 
-.profile_details.bookmark_detail {
-    .table {
-        tbody {
-            td {
-                & a.btn-delete {
-                    color: $dark;
-                    transition: .3s ease;
+.btn {
+    &-delete {
+        background-color: $red;
+        color: $white;
+        padding: 1rem 1rem;
+        margin-bottom: 1rem;
+        display: inline-block;
+        width: 100px;
+        text-align: center;
+        border-radius: .5rem;
+        transition: .3s;
+    }
 
-                    &:hover {
-                        color: $red;
-                    }
-                }
-            }
-        }
+    &-view {
+        background-color: $blue-dark;
+        color: $white;
+        padding: 1rem 1rem;
+        margin-bottom: 1rem;
+        display: inline-block;
+        width: 100px;
+        text-align: center;
+        border-radius: .5rem;
+        transition: .3s;
     }
 }

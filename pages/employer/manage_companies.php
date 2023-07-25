@@ -41,10 +41,10 @@ require_once('../../head.php');
                     <div class="left__block">
                         <h5 class="title__profile">Employer</h5>
                         <ul class="list__profile">
-                            <li class="item__profile"><a href="/pages/employer/managae_job.php" class="link__profile"><i class="fas fa-chart-line"></i> Manage Jobs</a></li>
-                            <li class="item__profile"><a href="/pages/employer/submit_job.php" class="link__profile"><i class="fas fa-comment-alt"></i> Submit Jobs </a></li>
-                            <li class="item__profile"><a href="/pages/employer/manage_companies.php" class="link__profile color__green"><i class="fas fa-bookmark"></i> Manage Companies</a></li>
-                            <li class="item__profile"><a href="/pages/employer/add_company.php" class="link__profile"><i class="fas fa-bell"></i> Add Company <span class="notification">1</span></a></li>
+                            <li class="item__profile"><a href="/pages/employer/managae_job.php" class="link__profile"><i class="fa-solid fa-rectangle-list"></i> Manage Jobs</a></li>
+                            <li class="item__profile"><a href="/pages/employer/submit_job.php" class="link__profile"><i class="fa-solid fa-square-plus"></i> Submit Jobs </a></li>
+                            <li class="item__profile"><a href="/pages/employer/manage_companies.php" class="link__profile color__green"><i class="fa-solid fa-rectangle-list"></i> Manage Companies</a></li>
+                            <li class="item__profile"><a href="/pages/employer/add_company.php" class="link__profile"><i class="fa-solid fa-square-plus"></i> Add Company <span class="notification">1</span></a></li>
                         </ul>
                     </div>
                 <?php } ?>
@@ -71,19 +71,33 @@ require_once('../../head.php');
                         <table class="table text__headline -size-15 m-0">
                             <thead class="table-dark">
                                 <tr>
-                                    <th width="30%"> Tên công ty</th>
-                                    <th width="30%"> Trạng thái</th>
-                                    <th width="30%"> Ngày đăng</th>
-                                    <th></th>
+                                    <th width="33%"> Tên công ty</th>
+                                    <th width="25%"> Trạng thái</th>
+                                    <th width="25%"> Ngày đăng</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($companies as $company) { ?>
                                     <tr>
-                                        <td><a href="../detail_company.php?company_id=<?php echo $company['id']; ?>"><img width="70px" height="70px" src="<?php echo $company['images']; ?>" alt=""><p class="me-3"><?php echo $company['name']; ?></p></a></td>
-                                        <td><?php echo ($company['status'] == 0 || $company['status'] == '') ? "Chờ xem sét" : "Đã duyệt"; ?></td>
-                                        <td><?php $dateTimeString = $company['created_at'];$dateTime = new DateTime($dateTimeString);$newFormat = $dateTime->format("F j, Y");echo $newFormat; ?></td>
-                                        <td><a href="./delete_company.php?delete_id=<?php echo $company['id']; ?>" class="btn-delete delete"><i class="fas fa-times"></i> Xóa</a></td>
+                                        <td>
+                                            <a href="../detail_company.php?company_id=<?php echo $company['id']; ?>">
+                                                <img width="70px" src="<?php echo $company['images']; ?>" alt="">
+                                                <p class="me-3"><?php echo $company['name']; ?></p>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <?php echo ($company['status'] == 0 || $company['status'] == '') ? "Chờ xem sét" : "Đã duyệt"; ?></td>
+                                        <td>
+                                            <?php $dateTimeString = $company['created_at'];
+                                            $dateTime = new DateTime($dateTimeString);
+                                            $newFormat = $dateTime->format("F j, Y");
+                                            echo $newFormat; ?>
+                                        </td>
+                                        <td>
+                                            <a href="./delete_company.php?delete_id=<?php echo $company['id']; ?>" class="btn-delete delete text-white"><i class="fas fa-times"></i> Xóa</a>
+                                            <a href="../detail_company.php?company_id=<?php echo $company['id']; ?>" class="btn-view view text-white"><i class="fa-solid fa-eye"></i> Deleil</a>
+                                        </td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

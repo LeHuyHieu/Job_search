@@ -68,7 +68,7 @@ require_once('../../head.php');
                             <div class="bg-light title__detail d-flex justify-content-between align-items-center">
                                 <span>Thêm mới công ty</span>
                             </div>
-                            <form action="./process_add_company.php" method="post" class="row form__block p-5" enctype="multipart/form-data">
+                            <form action="./process_add.php" method="post" class="row form__block p-5" enctype="multipart/form-data">
                                 <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']['id']; ?>">
                                 <input type="hidden" name="company_id" value="">
                                 <div class="d-flex">

@@ -216,7 +216,7 @@
                                          <input class="input__box--item" type="password" name="user_password" value="" placeholder="Nhập mật khẩu của bạn" />
                                      </div>
                                      <div class="input_box mb-4">
-                                         <input type="checkbox" name="" value="" id="remember_me" />
+                                         <input type="checkbox" name="" value="" id="remember_me" class="h-auto" />
                                          <label for="remember_me">Nhớ tôi</label>
                                      </div>
                                      <button class="btn btn--all m-0" name="login" type="submit">Đăng Nhập</button>

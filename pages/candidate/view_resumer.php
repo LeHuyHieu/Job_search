@@ -18,8 +18,9 @@ $user = current($users);
         <div class="d-flex mb-5">
             <a class="btn btn--green px-3" href="./add_resumer.php"><i class="fa-solid fa-circle-plus pe-2"></i> Quay Lại Trang</a>
             <a class="btn btn--green px-3 ms-3" href="../dowload_work.php"><i class="fa-solid fa-cloud-arrow-down pe-2"></i> Tải Xuống CV</a>
+            <button class="btn btn--green px-3 ms-3" onclick="Export2Doc('exportContent', 'test');"><i class="fa-solid fa-cloud-arrow-down pe-2"></i> Tải Xuống CV 2</button>
         </div>
-        <div class="container p-0">
+        <div class="container p-0" id="exportContent">
             <div class="row bg-white">
                 <div class="col-7 p-0">
                     <div class="cv__left">
@@ -189,6 +190,39 @@ $user = current($users);
     <script src="/js/unpkg.com_scrollreveal@4.0.9_dist_scrollreveal.js"></script>
     <!-- main js -->
     <script src="/js/main.js?v=<?php echo time(); ?>"></script>
+    <script>
+        function Export2Doc(element, filename = '') {
+            var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+            var postHtml = "</body></html>";
+            var html = preHtml + document.getElementById(element).innerHTML + postHtml;
+
+            var blob = new Blob(['\ufeff', html], {
+                type: 'application/msword'
+            });
+
+            var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html)
+
+            filename = filename ? filename + '.doc' : 'document.doc';
+
+            var downloadLink = document.createElement("a");
+
+            document.body.appendChild(downloadLink);
+
+            if (navigator.msSaveOrOpenBlob) {
+                navigator.msSaveOrOpenBlob(blob, filename);
+            } else {
+                downloadLink.href = url;
+
+                downloadLink.download = filename;
+
+                downloadLink.click();
+            }
+
+            document.body.removeChild(downloadLink);
+
+
+        }
+    </script>
 </body>
 
 </html>
