@@ -101,11 +101,12 @@ if (isset($_GET['keyword'])) {
         $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
         $start = ($page - 1) * $num_per_page;
 
-        $sql2 = "SELECT jobs.*, city.city_name as name_city, company.name as name_company, categories.id FROM jobs LEFT JOIN city ON city.id = jobs.city_id LEFT JOIN company ON company.id = jobs.company_id LEFT JOIN categories ON categories.id = jobs.category_id ";
+        $sql2 = "SELECT jobs.*, city.city_name as name_city, company.name as name_company, categories.id as category_id FROM jobs LEFT JOIN city ON city.id = jobs.city_id LEFT JOIN company ON company.id = jobs.company_id LEFT JOIN categories ON categories.id = jobs.category_id ";
         $sql2 .= $sql_conditions;
         $sql2 .= "ORDER BY jobs.id DESC LIMIT $start,$num_per_page";
         $jobs = getData($sql2);
-        // print_r($sql2);die;
+        // print_r($sql2);
+        // print_r($jobs);die
         ?>
         <div class="container -m -mt-5 -mb-5 categories__list">
             <div class="row">
@@ -129,7 +130,7 @@ if (isset($_GET['keyword'])) {
                                 echo " jobs__item--part_time";
                             }
                             ?>">
-                            <a href="page_detail.php?job_id=<?php echo $job['id']; ?>" class="d-flex">
+                            <a href="page_detail.php?job_id=<?php echo $job['id']; ?>&category_id=<?php echo $job['category_id']; ?>" class="d-flex">
                                 <div class="jobs__item--img">
                                     <img src="<?php echo $job['images']; ?>" class="w-100" alt="">
                                 </div>

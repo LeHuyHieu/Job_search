@@ -100,7 +100,7 @@ require_once('../head.php');
                                 <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body p-5 pb-0">
-                                <form action="../phpmailer/apply_job.php" method="post" class="form__block" enctype="multipart/form-data">
+                                <form action="../phpmailer/apply_job.php?job_id=<?php echo (isset($_GET['job_id'])) ? $job_id : ""; ?>" method="post" class="form__block" enctype="multipart/form-data">
                                     <div class="mb-4">
                                         <label for="full_name_apply">Họ và tên:</label>
                                         <input type="text" id="full_name_apply" class="form-control" name="full_name_apply" value="<?php echo (isset($_SESSION['user']['name'])) ? $_SESSION['user']['name'] : "";  ?>">
@@ -257,8 +257,9 @@ require_once('../head.php');
                 Related Jobs
             </h4>
             <?php
-            if (isset($_GET['job_id'])) {
-                $sql3 = "SELECT * FROM jobs WHERE jobs.id <> '$job_id' AND jobs.category_id = '$job_id' LIMIT 6";
+            if (isset($_GET['job_id']) && isset($_GET['category_id'])) {
+                $category_id = $_GET['category_id'];
+                $sql3 = "SELECT * FROM jobs WHERE jobs.id <> '$job_id' AND jobs.category_id = '$category_id' LIMIT 6";
                 $job_relateds = getData($sql3);
             } else {
                 $sql3 = "SELECT * FROM jobs WHERE jobs.id <> 1 AND jobs.category_id = 1 LIMIT 6";
@@ -269,29 +270,27 @@ require_once('../head.php');
             <div class="row content__description--flex jobs -m -mb-5">
                 <?php foreach ($job_relateds as $job_related) { ?>
                     <div class="col-lg-4 col-md-6 col-sm-12 col-12 jobs__item">
-                        <a href="./page_detail.php?job_id=<?php echo $job_related['id']; ?>" class="d-flex flex-column">
+                        <a href="./page_detail.php?job_id=<?php echo $job_related['id']; ?>&category_id=<?php echo $job_related['category_id']; ?>" class="d-flex flex-column">
                             <div class="w-100 jobs__item--text">
                                 <h6 class="-size-15 -dark">
                                     <?php echo $job_related['title']; ?>
-                                    <button class="btn btn--transparent">
-                                        <?php
-                                        if ($job_detail['full_time'] == 1) {
-                                            echo "Full Time";
-                                        }
-                                        if ($job_detail['internship'] == 1) {
-                                            echo "Internship";
-                                        }
-                                        if ($job_detail['temporary'] == 1) {
-                                            echo "Temporary";
-                                        }
-                                        if ($job_detail['freelance'] == 1) {
-                                            echo "Freelance";
-                                        }
-                                        if ($job_detail['part_time'] == 1) {
-                                            echo "Part Time";
-                                        }
-                                        ?>
-                                    </button>
+                                    <?php
+                                    if ($job_detail['full_time'] == 1) {
+                                        echo "<button class=\"btn btn--transparent\">Full Time</button>";
+                                    }
+                                    if ($job_detail['internship'] == 1) {
+                                        echo "<button class=\"btn btn--transparent\">Internship</button>";
+                                    }
+                                    if ($job_detail['temporary'] == 1) {
+                                        echo "<button class=\"btn btn--transparent\">Temporary</button>";
+                                    }
+                                    if ($job_detail['freelance'] == 1) {
+                                        echo "<button class=\"btn btn--transparent\">Freelance</button>";
+                                    }
+                                    if ($job_detail['part_time'] == 1) {
+                                        echo "<button class=\"btn btn--transparent\">Part Time</button>";
+                                    }
+                                    ?>
                                 </h6>
                                 <ul class="d-flex mb-4 flex-column align-items-start jobs__item--icon">
                                     <li class="jobs__itemsub">

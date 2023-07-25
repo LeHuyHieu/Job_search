@@ -112,6 +112,7 @@ $(document).ready(function () {
         if ($('.summernote').length > 0) {
             $('.summernote').summernote({
                 height: 200,
+                disableHtml: true,
                 toolbar: [
                     ['style', ['bold', 'italic', 'link', 'unlink', 'undo', 'redo', 'list']],
                     ['para', ['ul', 'ol', 'paragraph']],
@@ -260,31 +261,6 @@ $(document).ready(function () {
         var showCV = document.getElementById('showCV');
         showCV.textContent = "Đã chọn tệp: " + value;
     })
-
-    // $(document).on('click', '.btn-delete.delete', function (event) {
-    //     if (Swal.fire({
-    //         title: 'Are you sure?',
-    //         text: "You won't be able to revert this!",
-    //         icon: 'warning',
-    //         showCancelButton: true,
-    //         confirmButtonColor: '#3085d6',
-    //         cancelButtonColor: '#d33',
-    //         confirmButtonText: 'Yes, delete it!'
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             Swal.fire(
-    //                 'Deleted!',
-    //                 'Your file has been deleted.',
-    //                 'success'
-    //             )
-    //         }
-    //     })) {
-    //         return true;
-    //     } else {
-    //         event.stopPropagation();
-    //         event.preventDefault();
-    //     }
-    // })
 
     $(document).on('click', '.btn-delete.delete', function (event) {
         event.stopPropagation();

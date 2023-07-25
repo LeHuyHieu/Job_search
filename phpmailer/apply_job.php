@@ -7,16 +7,17 @@ use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader
 require 'vendor/autoload.php';
-
+require_once ('../lib/connect.php');
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
 
-require_once('../lib/connect.php');
-if (isset($_POST['apply_job']) && $_POST['full_name_apply'] != '' && $_POST['address_apply'] != '' && $_POST['file_cv'] != '' && $_POST['messge_apply'] != '') {
+if (isset($_POST['apply_job']) && $_POST['full_name_apply'] != '' && $_POST['address_apply'] != '' && $_POST['messge_apply'] != '') {
     $full_name_apply = $_POST['full_name_apply'];
     $address_apply = $_POST['address_apply'];
-    $file_cv = $_POST['file_cv'];
     $messge_apply = $_POST['messge_apply'];
+    $job_id = $_GET['job_id'];
+    // Khởi tạo PHPMailer
+    $mail = new PHPMailer(true);
 
     try {
         //Server settings
@@ -27,26 +28,40 @@ if (isset($_POST['apply_job']) && $_POST['full_name_apply'] != '' && $_POST['add
         $mail->Username   = 'lehuyhieupro06182@gmail.com';                     //SMTP username
         $mail->Password   = 'xbpoduxkliejakfm';                               //SMTP password
         $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
-        $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        $mail->Port       = 587;     
 
         //Recipients
-        $mail->setFrom('lehuyhieupro06182@gmail.com', 'LE HUY HIEU'); // email nguoi gui
-        $mail->addAddress($user_email, 'Le Huy Hieu');     //email nguoi nhan
+        $sql = "SELECT users.*, jobs.user_id FROM users LEFT JOIN jobs ON jobs.user_id = users.id WHERE jobs.id = '$job_id'";
+        $users = getData($sql);
+        $user = current($users);
+        $mail->setFrom($address_apply, $full_name_apply); // email nguoi gui
+        $mail->addAddress($user['user_email'], $user['name']);     //email nguoi nhan
+        // Thiết lập tiêu đề email
+        $mail->Subject = 'Thong tin ung tuyen tu: ' . $full_name_apply;
 
-        //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = 'Mat khau cua ban la: ';
-        $mail->Body    = $user_password;
-        //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        // Thiết lập nội dung email
+        $mail->isHTML(true);
+        $mail->Body = 'Họ và tên: ' . $full_name_apply . '<br>'
+                    . 'Địa chỉ: ' . $address_apply . '<br>'
+                    . 'Tin nhắn: ' . $messge_apply;
 
+        // Kiểm tra và xử lý tệp được tải lên
+        if (isset($_FILES['file_cv']) && $_FILES['file_cv']['error'] === UPLOAD_ERR_OK) {
+            $file_tmp = $_FILES['file_cv']['tmp_name'];
+            $file_name = $_FILES['file_cv']['name'];
+
+            // Đính kèm file vào email
+            $mail->addAttachment($file_tmp, $file_name);
+        }
+
+        // Gửi email
         $mail->send();
-        echo 'Message has been sent';
-        // print_r($pass);die;
+        echo 'Email đã được gửi thành công.';
+        header('location: ../pages/page_detail?thanhcong=1');
     } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        echo "Không thể gửi email. Lỗi: {$mail->ErrorInfo}";
+        header('location: ../pages/page_detail?thatbai=1');
     }
-    // end send mail
-
 } else {
-    header('location:../index.php?err=1');
+    header('location: ../pages/page_detail?err=1');
 }
