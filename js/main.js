@@ -294,6 +294,18 @@ $(document).ready(function () {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    console.log(1);
+    var profileLinks = document.querySelectorAll(".list__profile .link__profile");
+
+    profileLinks.forEach(function (link) {
+        if (link.href === window.location.href) {
+            link.classList.add("color__green");
+        }
+    });
+    
+});
+
 $(document).ready(function () {
     if (typeof $.fn.validate === 'function') {
         // validate

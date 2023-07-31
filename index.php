@@ -188,7 +188,7 @@ require_once('./head.php');
                         Recent Jobs
                     </h2>
                     <?php
-                    $sql2 = "SELECT jobs.*, city.city_name as name_city, company.name as name_company FROM jobs LEFT JOIN city ON city.id = jobs.city_id LEFT JOIN company ON company.id = jobs.company_id LIMIT 5";
+                    $sql2 = "SELECT jobs.*, city.city_name as name_city, company.name as name_company FROM jobs LEFT JOIN city ON city.id = jobs.city_id LEFT JOIN company ON company.id = jobs.company_id ORDER BY jobs.id DESC LIMIT 5";
                     $jobs = getData($sql2);
                     ?>
                     <?php foreach ($jobs as $job) { ?>
@@ -211,7 +211,7 @@ require_once('./head.php');
                         }
                         ?>
                         ">
-                            <a href="pages/page_detail.php?job_id=<?php echo $job['id']; ?>" class="d-flex">
+                            <a href="pages/page_detail.php?job_id=<?php echo $job['id']; ?>&category_id=<?php echo $job['category_id']; ?>" class="d-flex">
                                 <div class="jobs__item--img">
                                     <img src="<?php echo $job['images']; ?>" class="w-100" alt>
                                 </div>

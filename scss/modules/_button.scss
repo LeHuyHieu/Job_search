@@ -285,3 +285,34 @@
         transition: .3s;
     }
 }
+
+.btn--page {
+    width: 40px;
+    height: 40px;
+    padding: 1rem;
+    border-radius: 0.3rem;
+    background-color: $light;
+    color: $green;
+    &:hover {
+        background-color: $green;
+        color: $white;
+    }
+}
+
+.btn--pages {
+    width: 80px;
+    height: 40px;
+    padding: 1rem;
+    border-radius: 0.3rem;
+    background-color: $light;
+    color: $green;
+    &:hover {
+        background-color: $green;
+        color: $white;
+    }
+}
+
+.btn--page.active {
+    background-color: $green;
+    color: $white;
+}

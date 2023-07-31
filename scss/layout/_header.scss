@@ -75,10 +75,6 @@
                 display: none;
             }
         }
-
-        .login--register::before {
-            background-color: $light !important;
-        }
     }
 
     .navbar__responsive {
@@ -206,9 +202,9 @@
                     }
 
                     & .list__megamenu--item {
-                        background: $white;
                         margin: 0;
                         position: relative;
+                        background-color: $dark;
 
                         &.active::after {
                             content: '';
@@ -252,6 +248,7 @@
                     visibility: visible;
                     transform: translateY(0%);
                     opacity: 1;
+                    background-color: $dark;
                 }
             }
 
@@ -292,16 +289,6 @@
             width: 15%;
             position: relative;
             padding: 1.5rem 0 1.5rem 2rem;
-
-            &::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 1px;
-                height: 100%;
-                background-color: rgba($color: $white, $alpha: .5);
-            }
 
             & .btn--login,
             .btn--register {
@@ -390,7 +377,7 @@
 
                     a {
                         color: $black;
-                        font-size: 1.4rem;
+                        font-size: 1.2rem;
                         text-decoration: none;
                     }
                 }
@@ -553,7 +540,6 @@
 
                     .list__megamenu {
                         transform: translateY(0%);
-                        background-color: $dark;
                         width: 100%;
                         z-index: 6;
                         position: unset;
@@ -567,8 +553,6 @@
                         }
 
                         &--item {
-                            background-color: $dark;
-
                             & .list__megamenu {
                                 position: unset;
                                 transform: translateX(0);
@@ -724,13 +708,8 @@ body {
 
     .navbar__list--item {
         .list__megamenu {
-            background-color: $dark;
-            .list__megamenu--item  {
-                background-color: $dark;
-               
-            }
             &::before {
-                border-bottom: 8px solid $dark;
+                border-bottom: 8px solid $dark; 
             }
         }
         .list__megamenu--link {
@@ -808,17 +787,9 @@ body._bg_transparent {
 }
 
 .position_header {
-    box-shadow: 0px 5px 10px $gray-light;
-
     .header {
         .navbar {
-            .profile {
-                border-left: 1px solid $light;
-            }
-
-            .navbar__logo {
-                border-right: 1px solid $light;
-            }
+            box-shadow: 0px 5px 10px $light;
         }
     }
 }

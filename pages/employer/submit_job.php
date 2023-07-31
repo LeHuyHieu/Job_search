@@ -18,46 +18,7 @@ require_once('../../head.php');
     require_once('../../header.php');
     ?>
     <section class="content connect__profile">
-        <div class="left">
-        <div class="left__position">
-                <div class="left__block">
-                    <h5 class="title__profile">Main</h5>
-                    <ul class="list__profile">
-                        <li class="item__profile"><a href="#" class="link__profile"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-                        <li class="item__profile"><a href="#" class="link__profile"><i class="fas fa-comment-alt"></i> Messages </a></li>
-                        <li class="item__profile"><a href="/pages/bookmark.php" class="link__profile"><i class="fas fa-bookmark"></i> Bookmarks</a></li>
-                        <li class="item__profile"><a href="/pages/candidate/manage_jobalert.php" class="link__profile"><i class="fas fa-bell"></i> Job Alerts <span class="notification">1</span></a></li>
-                    </ul>
-                </div>
-                <?php if ($_SESSION['user']['candidate']) { ?>
-                    <div class="left__block">
-                        <h5 class="title__profile">Candidate</h5>
-                        <ul class="list__profile">
-                            <li class="item__profile"><a href="#" class="link__profile"><i class="fa-solid fa-rectangle-list"></i> Manage Resumer</a></li>
-                            <li class="item__profile"><a href="/pages/candidate/add_resumer.php" class="link__profile"><i class="fa-solid fa-square-plus"></i> Add Resume</a></li>
-                        </ul>
-                    </div>
-                <?php } ?>
-                <?php if ($_SESSION['user']['employer'] == 1) { ?>
-                    <div class="left__block">
-                        <h5 class="title__profile">Employer</h5>
-                        <ul class="list__profile">
-                            <li class="item__profile"><a href="/pages/employer/managae_job.php" class="link__profile color__green"><i class="fa-solid fa-rectangle-list"></i> Manage Jobs</a></li>
-                            <li class="item__profile"><a href="/pages/employer/submit_job.php" class="link__profile"><i class="fa-solid fa-square-plus"></i> Submit Jobs </a></li>
-                            <li class="item__profile"><a href="/pages/employer/manage_companies.php" class="link__profile"><i class="fa-solid fa-rectangle-list"></i> Manage Companies</a></li>
-                            <li class="item__profile"><a href="/pages/employer/add_company.php" class="link__profile"><i class="fa-solid fa-square-plus"></i> Add Company <span class="notification">1</span></a></li>
-                        </ul>
-                    </div>
-                <?php } ?>
-                <div class="left__block">
-                    <h5 class="title__profile">Account</h5>
-                    <ul class="list__profile">
-                        <li class="item__profile"><a href="/pages/profile.php" class="link__profile"><i class="fas fa-user-circle"></i> My Profile</a></li>
-                        <li class="item__profile"><a href="/process_logout.php" class="link__profile"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <?php require_once('../menu_left.php'); ?>
         <div class="right">
             <div class="container-fluid">
                 <div class="row p-5">
@@ -78,7 +39,7 @@ require_once('../../head.php');
                                             <input type="text" value="" name="title" placeholder="Tên công việc">
                                         </div>
                                     </div>
-                                    <?php 
+                                    <?php
                                     $sql = "SELECT * FROM company";
                                     $companies = getData($sql);
                                     ?>
@@ -132,7 +93,7 @@ require_once('../../head.php');
                                             <input type="file" id="avt" name="job_logo" value="" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
                                         </div>
                                     </div>
-                                    <?php 
+                                    <?php
                                     $sql = "SELECT * FROM categories";
                                     $categories = getData($sql);
                                     ?>

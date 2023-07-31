@@ -14,19 +14,17 @@
         .left__position {
             position: fixed;
             height: 100vh;
-            top: 30px;
             bottom: 0;
             background-color: #fff;
             width: 250px;
             display: flex;
             flex-direction: column;
             padding: 0;
-            padding-left: 2rem;
             justify-content: center;
         }
 
         &__block {
-            margin-top: 3rem;
+            margin-top: 1rem;
 
             & .title__profile {
                 font-size: 1.5rem;
@@ -53,23 +51,24 @@
                 & .link__profile {
                     color: $dark;
                     text-decoration: none;
-                    padding: .6rem 0;
+                    padding: .6rem 1rem .6rem 1rem;
                     display: inline-block;
                     font-size: 1.3rem;
                     width: 100%;
                     transition: .3s;
+                    border-left: 3px solid transparent;
 
                     &:hover {
-                        background-color: rgba($color: $green, $alpha: .3);
+                        background-color: rgba(38, 174, 97, 0.1);
                         color: $green;
-                        padding-left: 1.5rem;
-                        border-radius: .25rem;
+                        padding-left: 2rem;
+                        border-left: 3px solid;
                     }
 
                     & .notification {
                         width: 20px;
                         height: 20px;
-                        background-color: #26ae61;
+                        background-color: $green;
                         color: #fff;
                         border-radius: 50%;
                         display: inline-flex;
@@ -173,8 +172,9 @@
 
 .content.connect__profile .left__block .list__profile .link__profile.color__green {
     color: $green;
-    padding-left: 1rem;
-    background-color: rgba($color: $green, $alpha: .3);
+    padding-left: 2rem;
+    background-color: rgba(38, 174, 97, 0.1);
+    border-left: 3px solid;
 }
 
 body.position_header .header .navbar {

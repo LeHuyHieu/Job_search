@@ -165,7 +165,7 @@
                          </a>
                      </li>
                      <li class="list__megamenu--item">
-                         <a href="./pages/contact.php" class="list__megamenu--link">
+                         <a href="/pages/contact.php" class="list__megamenu--link">
                              Contact
                          </a>
                      </li>
@@ -173,26 +173,32 @@
              </li>
          </ul>
          <?php
-            if (isset($_SESSION['user']) ) {
+            if (isset($_SESSION['user'])) {
             ?>
-            <div class="login--register profile">
-                <div class="d-flex click__profile">
-                    <img src="<?php echo $_SESSION['user']['avatar'];?>" />
-                    <h5 class="name_profile"><?php echo $_SESSION['user']['name'];?> <i class="fas fa-angle-down"></i></h5>
-                </div>
-                <ul class="list__profile">
-                    <li class="item__profile"><a href="#"><i class="fas fa-chart-line"></i> DashBoard</a></li>
-                    <li class="item__profile"><a href="#"><i class="fas fa-comment-alt"></i> Messages</a></li>
-                    <li class="item__profile"><a href="/pages/bookmark.php"><i class="fas fa-bookmark"></i> Bookmarks</a></li>
-                    <li class="item__profile"><a href="/pages/job_alerts.php"><i class="fas fa-bell"></i> Job Alerts</a></li>
-                    <li class="item__profile"><a href="#"><i class="fas fa-file"></i> Manage Resumes</a></li>
-                    <li class="item__profile"><a href="/pages/profile.php"><i class="fas fa-user-circle"></i> My Profile</a></li>
-                    <li class="item__profile"><a href="/process_logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                </ul>
+             <div class="login--register profile">
+                 <div class="d-flex click__profile">
+                     <img src="<?php echo $_SESSION['user']['avatar']; ?>" />
+                     <h5 class="name_profile m-0"><?php echo $_SESSION['user']['name']; ?> </h5><i class="fas fa-angle-down"></i>
+                 </div>
+                 <ul class="list__profile">
+                     <li class="item__profile"><a href="#"><i class="fas fa-chart-line"></i> DashBoard</a></li>
+                     <li class="item__profile"><a href="#"><i class="fas fa-comment-alt"></i> Messages</a></li>
+                     <li class="item__profile"><a href="/pages/bookmark.php"><i class="fas fa-bookmark"></i> Bookmarks</a></li>
+                     <?php if ($_SESSION['user']['candidate'] == 1) { ?>
+                         <li class="item__profile"><a href="/pages/candidate/job_alerts.php"><i class="fas fa-bell"></i> Job Alerts</a></li>
+                         <li class="item__profile"><a href="/pages/candidate/add_resumer.php"><i class="fas fa-file"></i> Manage Resumes</a></li>
+                     <?php } ?>
+                     <?php if ($_SESSION['user']['employer'] == 1) { ?>
+                        <li class="item__profile"><a href="/pages/employer/managae_job.php" class="link__profile"><i class="far fa-list-alt"></i> Danh Sách Công Việc</a></li>
+                        <li class="item__profile"><a href="/pages/employer/manage_companies.php" class="link__profile"><i class="far fa-list-alt"></i> Danh Sách Công Ty</a></li>
+                     <?php } ?>
+                     <li class="item__profile"><a href="/pages/profile.php"><i class="fas fa-user-circle"></i> Trang Cá Nhân</a></li>
+                     <li class="item__profile"><a href="/process_logout.php"><i class="fas fa-sign-out-alt"></i> Đăng Xuất</a></li>
+                 </ul>
              </div>
-             <?php
+         <?php
             } else {
-                ?>
+            ?>
              <div class="login--register">
                  <button class="btn btn--login" type="button" data-bs-toggle="modal" data-bs-target="#login_Modal">
                      <i class="fas fa-unlock"></i> Log in
@@ -278,13 +284,13 @@
                  </div>
                  <!-- end Modal Sign up -->
              </div>
-            <?php } ?>
+         <?php } ?>
          <div class="navbar__icon">
              <i class="fas fa-bars"></i>
          </div>
      </nav>
      <!-- end navbar -->
-     <nav class="navbar navbar__responsive">
+     <nav class="navbar navbar__responsive bg-dark">
          <div class="navbar__logo">
              <a href="/index.php" class="logo">
                  <img src="/images/logo.png" alt="logo" class="w-100">
@@ -292,160 +298,160 @@
          </div>
          <ul class="navbar__list">
              <li class="navbar__list--item click__item--navbar">
-                 <a href="javascript:void(0);" class="navbar__list--link">
+                 <a href="javascript:void(0);" class="navbar__list--link text-white">
                      Home
                  </a>
-                 <ul class="list__megamenu show_megamenu">
-                     <li class="list__megamenu--item">
-                         <a href="/index.php" class="list__megamenu--link">
+                 <ul class="list__megamenu show_megamenu bg-dark">
+                     <li class="list__megamenu--item bg-dark">
+                         <a href="/index.php" class="list__megamenu--link text-white">
                              Home 1
                          </a>
                      </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
+                     <li class="list__megamenu--item bg-dark">
+                         <a href="#" class="list__megamenu--link text-white">
                              Home 2
                          </a>
                      </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
+                     <li class="list__megamenu--item bg-dark">
+                         <a href="#" class="list__megamenu--link text-white">
                              Home 3
                          </a>
                      </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
+                     <li class="list__megamenu--item bg-dark">
+                         <a href="#" class="list__megamenu--link text-white">
                              Home 4
                          </a>
                      </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
+                     <li class="list__megamenu--item bg-dark">
+                         <a href="#" class="list__megamenu--link text-white">
                              Home 5
                          </a>
                      </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
+                     <li class="list__megamenu--item bg-dark">
+                         <a href="#" class="list__megamenu--link text-white">
                              Home 6 - Resumes
                          </a>
                      </li>
                  </ul>
              </li>
              <li class="navbar__list--item click__item--navbar1">
-                 <a href="javascript:void(0);" class="navbar__list--link">
+                 <a href="javascript:void(0);" class="navbar__list--link text-white">
                      For Candidates
                  </a>
-                 <ul class="list__megamenu show_megamenu1">
-                     <li class="list__megamenu--item active click__item--navbar4">
-                         <a href="javascript:void(0);" class="list__megamenu--link">
+                 <ul class="list__megamenu show_megamenu1 bg-dark">
+                     <li class="list__megamenu--item active click__item--navbar4 bg-dark">
+                         <a href="javascript:void(0);" class="list__megamenu--link text-white">
                              Browse Jobs
                          </a>
-                         <ul class="list__megamenu show_megamenu4">
-                             <li class="list__megamenu--item">
-                                 <a href="#" class="list__megamenu--link">
+                         <ul class="list__megamenu show_megamenu4 bg-dark">
+                             <li class="list__megamenu--item bg-dark">
+                                 <a href="#" class="list__megamenu--link text-white">
                                      Half Page Map
                                  </a>
                              </li>
-                             <li class="list__megamenu--item">
-                                 <a href="#" class="list__megamenu--link">
+                             <li class="list__megamenu--item bg-dark">
+                                 <a href="#" class="list__megamenu--link text-white">
                                      AJAX Loaded Jobs
                                  </a>
                              </li>
-                             <li class="list__megamenu--item">
-                                 <a href="/pages/categories.php" class="list__megamenu--link">
+                             <li class="list__megamenu--item bg-dark">
+                                 <a href="/pages/categories.php" class="list__megamenu--link text-white">
                                      List Layout
                                  </a>
                              </li>
-                             <li class="list__megamenu--item">
-                                 <a href="#" class="list__megamenu--link">
+                             <li class="list__megamenu--item bg-dark">
+                                 <a href="#" class="list__megamenu--link text-white">
                                      Grid Layout
                                  </a>
                              </li>
-                             <li class="list__megamenu--item">
-                                 <a href="#" class="list__megamenu--link">
+                             <li class="list__megamenu--item bg-dark">
+                                 <a href="#" class="list__megamenu--link text-white">
                                      Map Above Listings
                                  </a>
                              </li>
                          </ul>
                      </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
+                     <li class="list__megamenu--item bg-dark">
+                         <a href="#" class="list__megamenu--link text-white">
                              Browse Companies
                          </a>
                      </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
+                     <li class="list__megamenu--item bg-dark">
+                         <a href="#" class="list__megamenu--link text-white">
                              Browse Categories
                          </a>
                      </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
+                     <li class="list__megamenu--item bg-dark">
+                         <a href="#" class="list__megamenu--link text-white">
                              Submit Resume
                          </a>
                      </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
+                     <li class="list__megamenu--item bg-dark">
+                         <a href="#" class="list__megamenu--link text-white">
                              Candidate Dashboard
                          </a>
                      </li>
                  </ul>
              </li>
-             <li class="navbar__list--item click__item--navbar2">
-                 <a href="javascript:void(0);" class="navbar__list--link">
+             <li class="navbar__list--item click__item--navbar2 bg-dark">
+                 <a href="javascript:void(0);" class="navbar__list--link text-white">
                      For Employers
                  </a>
-                 <ul class="list__megamenu show_megamenu2">
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
+                 <ul class="list__megamenu show_megamenu2 bg-dark">
+                     <li class="list__megamenu--item bg-dark">
+                         <a href="#" class="list__megamenu--link text-white">
                              Browse Candidates
                          </a>
                      </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
+                     <li class="list__megamenu--item bg-dark">
+                         <a href="#" class="list__megamenu--link text-white">
                              Browse Candidates – Half Page Map
                          </a>
                      </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
+                     <li class="list__megamenu--item bg-dark">
+                         <a href="#" class="list__megamenu--link text-white">
                              Submit Job
                          </a>
                      </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
+                     <li class="list__megamenu--item bg-dark">
+                         <a href="#" class="list__megamenu--link text-white">
                              Add Company
                          </a>
                      </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
+                     <li class="list__megamenu--item bg-dark">
+                         <a href="#" class="list__megamenu--link text-white">
                              Employer Dashboard
                          </a>
                      </li>
                  </ul>
              </li>
-             <li class="navbar__list--item click__item--navbar3">
-                 <a href="javascript:void(0);" class="navbar__list--link">
+             <li class="navbar__list--item click__item--navbar3 bg-dark">
+                 <a href="javascript:void(0);" class="navbar__list--link text-white">
                      Pages
                  </a>
-                 <ul class="list__megamenu show_megamenu3">
-                     <li class="list__megamenu--item">
-                         <a href="/pages/page_detail.php" class="list__megamenu--link">
+                 <ul class="list__megamenu show_megamenu3 bg-dark">
+                     <li class="list__megamenu--item bg-dark">
+                         <a href="/pages/page_detail.php" class="list__megamenu--link text-white">
                              Job Page
                          </a>
                      </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
+                     <li class="list__megamenu--item bg-dark">
+                         <a href="#" class="list__megamenu--link text-white">
                              Job Page Alternative
                          </a>
                      </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
+                     <li class="list__megamenu--item bg-dark">
+                         <a href="#" class="list__megamenu--link text-white">
                              Resume Page
                          </a>
                      </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
+                     <li class="list__megamenu--item bg-dark">
+                         <a href="#" class="list__megamenu--link text-white">
                              Blog
                          </a>
                      </li>
-                     <li class="list__megamenu--item">
-                         <a href="./pages/contact.php" class="list__megamenu--link">
+                     <li class="list__megamenu--item bg-dark">
+                         <a href="/pages/contact.php" class="list__megamenu--link text-white">
                              Contact
                          </a>
                      </li>

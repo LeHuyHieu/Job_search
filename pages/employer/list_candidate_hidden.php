@@ -21,44 +21,44 @@ require_once('../../head.php');
         <div class="right">
             <div class="container-fluid">
                 <div class="row p-5">
-                    <h3 class="title__content__profile">Công ty của tôi</h3>
-                    <p class="link__home"><a href="/index.php">Trang chủ <i class="fas fa-angle-right"></i> </a>Công ty của tôi</p>
+                    <h3 class="title__content__profile">Danh sách ứng tuyển</h3>
+                    <p class="link__home"><a href="/index.php">Trang chủ <i class="fas fa-angle-right"></i> </a>Danh sách ứng viên đã ẩn</p>
                     <div class="profile_details bookmark_detail bg-white p-0">
                         <?php
                         $user_id = $_SESSION['user']['id'];
-                        $sql = "SELECT * FROM jobs WHERE user_id = '$user_id'";
-                        $jobs = getData($sql);
+                        $sql = "SELECT alert_job.*, jobs.title, jobs.id as id_job, jobs.category_id, jobs.images, users.id AS id_user, users.name FROM alert_job LEFT JOIN jobs ON jobs.id = alert_job.job_id LEFT JOIN users ON users.id = alert_job.user_id WHERE alert_job.employer = '$user_id' AND hidden = 1";
+                        $alert_jobs = getData($sql);
                         ?>
                         <table class="table text__headline -size-15 m-0">
                             <thead class="table-dark">
                                 <tr>
-                                    <th width="33%"> Tên công việc</th>
-                                    <th width="25%"> Trạng thái</th>
-                                    <th width="25%"> Ngày đăng</th>
-                                    <th> Action</th>
+                                    <th width="33%"><i class="fas fa-briefcase"></i> Tên công việc</th>
+                                    <th width="25%"><i class="fas fa-users"></i> Tên người ứng tuyển</th>
+                                    <th width="25%"><i class="fas fa-calendar-alt"></i> Ngày đăng công việc</th>
+                                    <th width="15%"> Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($jobs as $job) { ?>
+                                <?php foreach ($alert_jobs as $alert_job) { ?>
                                     <tr>
                                         <td>
-                                            <a href="../page_detail.php?job_id=<?php echo $job['id']; ?>">
-                                                <img width="70px" src="<?php echo $job['images']; ?>" alt="">
-                                                <p class="me-3"><?php echo $job['title']; ?></p>
+                                        <a href="../page_detail.php?job_id=<?php echo $alert_job['id_job']; ?>&category_id=<?php echo $alert_job['category_id']; ?>">
+                                                <img width="70px" src="<?php echo $alert_job['images']; ?>" alt="">
+                                                <p class="me-3"><?php echo $alert_job['title']; ?></p>
                                             </a>
                                         </td>
                                         <td>
-                                            <?php echo ($job['is_public'] == 0 || $job['is_public'] == '') ? "Chờ xem sét" : "Đã duyệt"; ?>
+                                            <?php echo $alert_job['name']; ?>
                                         </td>
                                         <td>
-                                            <?php $dateTimeString = $job['created_at'];
+                                            <?php $dateTimeString = $alert_job['created_at'];
                                             $dateTime = new DateTime($dateTimeString);
                                             $newFormat = $dateTime->format("F j, Y");
                                             echo $newFormat; ?>
                                         </td>
                                         <td>
-                                            <a href="./delete_job.php?delete_id=<?php echo $job['id']; ?>" class="btn-delete delete text-white"><i class="fas fa-times"></i> Xóa</a> <br>
-                                            <a href="../page_detail.php?job_id=<?php echo $job['id']; ?>&category_id=<?php echo $job['category_id']; ?>" class="btn-view view text-white"><i class="fa-solid fa-eye"></i> Deleil</a>
+                                        <a href="./hidden_candidate.php?hidden=<?php echo 0; ?>&id=<?php echo $alert_job['id']; ?>" class="btn btn-secondary mb-3 text-white"><i class="fa-solid fa-eye"></i> Hiện</a> <br>
+                                            <a href="../employer/view_resumer_candidate.php?user_id=<?php echo $alert_job['user_id']; ?>" class="btn btn-primary text-white"><i class="fa-solid fa-eye"></i> Xem CV</a>
                                         </td>
                                     </tr>
                                 <?php } ?>

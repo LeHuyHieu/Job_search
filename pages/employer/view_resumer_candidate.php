@@ -4,7 +4,7 @@ if (!isset($_SESSION['user'])) {
     header('location:/index.php');
 }
 require_once('../../lib/connect.php');
-$user_id = $_SESSION['user']['id'];
+$user_id = $_GET['user_id'];
 $sql = "SELECT users.*, city.city_name  FROM users LEFT JOIN city ON city.id = users.city_id LEFT JOIN education ON education.user_id = users.id LEFT JOIN experience ON experience.user_id = users.id WHERE users.id = '$user_id'";
 $users = getData($sql);
 $user = current($users);
@@ -16,9 +16,7 @@ $user = current($users);
 <body>
     <div class="cv__block">
         <div class="d-flex mb-5">
-            <a class="btn btn--green px-3" href="./add_resumer.php"><i class="fa-solid fa-circle-plus pe-2"></i> Quay Lại Trang</a>
-            <a class="btn btn--green px-3 ms-3" href="../dowload_work.php"><i class="fa-solid fa-cloud-arrow-down pe-2"></i> Tải Xuống CV</a>
-            <button class="btn btn--green px-3 ms-3" onclick="Export2Doc('exportContent', 'test');"><i class="fa-solid fa-cloud-arrow-down pe-2"></i> Tải Xuống CV 2</button>
+            <a class="btn btn--green px-3" href="./list_candidate_apply.php"><i class="fa-solid fa-circle-plus pe-2"></i> Quay Lại Trang</a>
         </div>
         <div class="container p-0" id="exportContent">
             <div class="row bg-white">
@@ -26,20 +24,20 @@ $user = current($users);
                     <div class="cv__left">
                         <div class="d-flex bg__linner__gradient">
                             <div class="cv__avatar">
-                                <img src="<?php echo isset($_SESSION['user']['avatar']) ? $_SESSION['user']['avatar'] : "Vui lòng thêm vào cv"; ?>" alt="" class="w-100">
+                                <img src="<?php echo isset($user['avatar']) ? $user['avatar'] : "Vui lòng thêm vào cv"; ?>" alt="" class="w-100">
                             </div>
                             <ul class="cv__list">
-                                <li class="cv__item"><i class="fas fa-user-circle"></i>: <?php echo (isset($_SESSION['user']['male_female'])) ? $_SESSION['user']['male_female'] : "Vui lòng thêm vào cv"; ?></li>
-                                <li class="cv__item"><i class="fas fa-calendar-alt"></i>: <?php if (isset($_SESSION['user']['birthday'])) {
-                                                                                                $birthdayString = $_SESSION['user']['birthday'];
+                                <li class="cv__item"><i class="fas fa-user-circle"></i>: <?php echo (isset($user['male_female'])) ? $user['male_female'] : "Vui lòng thêm vào cv"; ?></li>
+                                <li class="cv__item"><i class="fas fa-calendar-alt"></i>: <?php if (isset($user['birthday'])) {
+                                                                                                $birthdayString = $user['birthday'];
                                                                                                 $birthdayDateTime = new DateTime($birthdayString);
                                                                                                 echo $birthdayDateTime->format("d/m/Y");
                                                                                             } else {
                                                                                                 echo "Vui lòng thêm vào cv";
                                                                                             } ?>
                                 </li>
-                                <li class="cv__item"><i class="fas fa-envelope"></i>: <?php echo (isset($_SESSION['user']['user_email'])) ? $_SESSION['user']['user_email'] : "Vui lòng thêm vào cv"; ?></li>
-                                <li class="cv__item"><i class="fas fa-mobile-alt"></i>: <?php echo (isset($_SESSION['user']['phone'])) ? $_SESSION['user']['phone'] : "Vui lòng thêm vào cv"; ?></li>
+                                <li class="cv__item"><i class="fas fa-envelope"></i>: <?php echo (isset($user['user_email'])) ? $user['user_email'] : "Vui lòng thêm vào cv"; ?></li>
+                                <li class="cv__item"><i class="fas fa-mobile-alt"></i>: <?php echo (isset($user['phone'])) ? $user['phone'] : "Vui lòng thêm vào cv"; ?></li>
                                 <li class="cv__item"><i class="fas fa-map-signs"></i>: <?php echo (isset($user['city_name'])) ? $user['city_name'] : "Vui lòng thêm vào cv"; ?></li>
                             </ul>
                         </div>
@@ -105,8 +103,8 @@ $user = current($users);
                 <div class="col-5 p-0">
                     <div class="cv__right">
                         <div class="cv__item">
-                            <h3 class="name__title"><?php echo (isset($_SESSION['user']['name'])) ? $_SESSION['user']['name'] : ""; ?></h3>
-                            <span class="job__application"><?php echo (isset($_SESSION['user']['skills'])) ? $_SESSION['user']['skills'] : ""; ?></span>
+                            <h3 class="name__title"><?php echo (isset($user['name'])) ? $user['name'] : ""; ?></h3>
+                            <span class="job__application"><?php echo (isset($user['skills'])) ? $user['skills'] : ""; ?></span>
                             <h3 class="cv__title">// Mục Tiêu Nghề Nghiệp</h3>
                             <p class="career__goals">
                                 <?php echo (isset($skill['career_goals'])) ? $skill['career_goals'] : "Vui lòng thêm thông tin vào cv"; ?>
@@ -195,39 +193,6 @@ $user = current($users);
     <script src="/js/unpkg.com_scrollreveal@4.0.9_dist_scrollreveal.js"></script>
     <!-- main js -->
     <script src="/js/main.js?v=<?php echo time(); ?>"></script>
-    <script>
-        function Export2Doc(element, filename = '') {
-            var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
-            var postHtml = "</body></html>";
-            var html = preHtml + document.getElementById(element).innerHTML + postHtml;
-
-            var blob = new Blob(['\ufeff', html], {
-                type: 'application/msword'
-            });
-
-            var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html)
-
-            filename = filename ? filename + '.doc' : 'document.doc';
-
-            var downloadLink = document.createElement("a");
-
-            document.body.appendChild(downloadLink);
-
-            if (navigator.msSaveOrOpenBlob) {
-                navigator.msSaveOrOpenBlob(blob, filename);
-            } else {
-                downloadLink.href = url;
-
-                downloadLink.download = filename;
-
-                downloadLink.click();
-            }
-
-            document.body.removeChild(downloadLink);
-
-
-        }
-    </script>
 </body>
 
 </html>
