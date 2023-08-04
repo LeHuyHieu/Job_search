@@ -19,7 +19,7 @@ require_once('../../head.php');
     ?>
     <section class="content connect__profile">
         <?php require_once('../menu_left.php'); ?>
-        <div class="right">
+        <div class="right mh-100">
             <div class="container-fluid">
                 <div class="row p-5">
                     <h3 class="title__content__profile">Thêm công ty</h3>
@@ -45,8 +45,9 @@ require_once('../../head.php');
                                     ?>
                                     <div class="flex flex__right w-50 ms-3">
                                         <div class="data__profile">
-                                            <span>Chọn công ty</span>
+                                            <span class="mb-3 d-inline-block">Chọn công ty</span>
                                             <select name="company_id" id="" class="form-select chosen-select" data-placeholder="Chọn công ty">
+                                                <option value="">Chọn công ty</option>
                                                 <?php foreach ($companies as $company) { ?>
                                                     <option value="<?php echo $company['id']; ?>"><?php echo $company['name']; ?></option>
                                                 <?php } ?>
@@ -61,7 +62,7 @@ require_once('../../head.php');
                                 <div class="d-flex">
                                     <div class="flex flex__left w-50 me-3">
                                         <div class="data__profile">
-                                            <span>Chọn tỉnh</span>
+                                            <span class="mb-3 d-inline-block">Chọn tỉnh</span>
                                             <select name="city_id" id="" class="form-select chosen-select" data-placeholder="Chọn tỉnh">
                                                 <?php foreach ($citys as $city) { ?>
                                                     <option value="<?php echo $city['id']; ?>"><?php echo $city['city_name']; ?></option>
@@ -71,7 +72,7 @@ require_once('../../head.php');
                                     </div>
                                     <div class="flex flex__right w-50 ms-3">
                                         <div class="data__profile">
-                                            <span>Loại công việc</span>
+                                            <span class="mb-3 d-inline-block">Loại công việc</span>
                                             <select name="type_job[]" multiple class="form-select chosen-select" data-placeholder="Chọn loại công việc">
                                                 <option value="1">Full time</option>
                                                 <option value="2">Freelance</option>
@@ -85,7 +86,7 @@ require_once('../../head.php');
                                 <div class="d-flex">
                                     <div class="flex flex__left w-50 me-3">
                                         <div class="data__profile avt">
-                                            <span>Logo công việc</span><br>
+                                            <span class="mb-3 d-inline-block">Logo công việc</span><br>
                                             <label for="avt" class="label_cursor">
                                                 <span class="browse"><i class="fas fa-upload"></i> Browse</span>
                                                 <img id="blah" alt="your image" src="/images/placeholder.png" width="100" height="100" />
@@ -99,7 +100,7 @@ require_once('../../head.php');
                                     ?>
                                     <div class="flex flex__right w-50 ms-3">
                                         <div class="data__profile">
-                                            <span>Chọn nghành nghề</span>
+                                            <span class="mb-3 d-inline-block">Chọn nghành nghề</span>
                                             <select name="category_id" id="" class="form-select chosen-select" data-placeholder="Chọn nghành nghề">
                                                 <?php foreach ($categories as $category) { ?>
                                                     <option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>

@@ -12,164 +12,99 @@
          </div>
          <ul class="navbar__list">
              <li class="navbar__list--item">
-                 <a href="javascript:void(0);" class="navbar__list--link">
-                     Home
+                 <a href="/index.php" class="navbar__list--link dn__after">
+                     Trang chủ
                  </a>
-                 <ul class="list__megamenu">
-                     <li class="list__megamenu--item">
-                         <a href="/index.php" class="list__megamenu--link">
-                             Home 1
-                         </a>
-                     </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
-                             Home 2
-                         </a>
-                     </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
-                             Home 3
-                         </a>
-                     </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
-                             Home 4
-                         </a>
-                     </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
-                             Home 5
-                         </a>
-                     </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
-                             Home 6 - Resumes
-                         </a>
-                     </li>
-                 </ul>
+             </li>
+             <?php if (isset($_SESSION['user']) && $_SESSION['user']['candidate'] == 1) { ?>
+                 <li class="navbar__list--item">
+                     <a href="javascript:void(0);" class="navbar__list--link">
+                         Người ứng tuyển
+                     </a>
+                     <ul class="list__megamenu">
+                         <li class="list__megamenu--item active">
+                             <a href="javascript:void(0);" class="list__megamenu--link">
+                                 Browse Jobs
+                             </a>
+                             <ul class="list__megamenu">
+                                 <li class="list__megamenu--item">
+                                     <a href="/pages/categories.php" class="list__megamenu--link">
+                                         Danh sách công việc
+                                     </a>
+                                 </li>
+                                 <li class="list__megamenu--item">
+                                     <a href="/pages/find_job.php" class="list__megamenu--link">
+                                         Grid Layout
+                                     </a>
+                                 </li>
+                             </ul>
+                         </li>
+                         <li class="list__megamenu--item">
+                             <a href="#" class="list__megamenu--link">
+                                 Các công ty
+                             </a>
+                         </li>
+                         <li class="list__megamenu--item">
+                             <a href="/pages/all_category.php" class="list__megamenu--link">
+                                 Các loại công việc
+                             </a>
+                         </li>
+                         <li class="list__megamenu--item">
+                             <a href="/pages/candidate/add_resumer.php" class="list__megamenu--link">
+                                 Thêm sơ yếu lý lịch
+                             </a>
+                         </li>
+                         <li class="list__megamenu--item">
+                             <a href="#" class="list__megamenu--link">
+                                 Trang tổng quan
+                             </a>
+                         </li>
+                     </ul>
+                 </li>
+             <?php } ?>
+             <?php if (isset($_SESSION['user']) && $_SESSION['user']['employer'] == 1) { ?>
+                 <li class="navbar__list--item">
+                     <a href="javascript:void(0);" class="navbar__list--link">
+                         Nhà tuyển dụng
+                     </a>
+                     <ul class="list__megamenu">
+                         <li class="list__megamenu--item">
+                             <a href="#" class="list__megamenu--link">
+                                 Tìm ứng viên
+                             </a>
+                         </li>
+                         <li class="list__megamenu--item">
+                             <a href="/pages/employer/submit_job.php" class="list__megamenu--link">
+                                 Thêm công việc
+                             </a>
+                         </li>
+                         <li class="list__megamenu--item">
+                             <a href="/pages/employer/add_company.php" class="list__megamenu--link">
+                                 Thêm công ty
+                             </a>
+                         </li>
+                         <li class="list__megamenu--item">
+                             <a href="#" class="list__megamenu--link">
+                                 Trang tông quan
+                             </a>
+                         </li>
+                     </ul>
+                 </li>
+             <?php } ?>
+             <li class="navbar__list--item">
+                 <a href="/pages/page_detail.php" class="navbar__list--link dn__after">
+                     Chi tiết công việc
+                 </a>
              </li>
              <li class="navbar__list--item">
-                 <a href="javascript:void(0);" class="navbar__list--link">
-                     For Candidates
+                 <a href="javascript:void(0);" class="navbar__list--link dn__after">
+                     Blog
                  </a>
-                 <ul class="list__megamenu">
-                     <li class="list__megamenu--item active">
-                         <a href="javascript:void(0);" class="list__megamenu--link">
-                             Browse Jobs
-                         </a>
-                         <ul class="list__megamenu">
-                             <li class="list__megamenu--item">
-                                 <a href="#" class="list__megamenu--link">
-                                     Half Page Map
-                                 </a>
-                             </li>
-                             <li class="list__megamenu--item">
-                                 <a href="#" class="list__megamenu--link">
-                                     AJAX Loaded Jobs
-                                 </a>
-                             </li>
-                             <li class="list__megamenu--item">
-                                 <a href="/pages/categories.php" class="list__megamenu--link">
-                                     List Layout
-                                 </a>
-                             </li>
-                             <li class="list__megamenu--item">
-                                 <a href="#" class="list__megamenu--link">
-                                     Grid Layout
-                                 </a>
-                             </li>
-                             <li class="list__megamenu--item">
-                                 <a href="#" class="list__megamenu--link">
-                                     Map Above Listings
-                                 </a>
-                             </li>
-                         </ul>
-                     </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
-                             Browse Companies
-                         </a>
-                     </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
-                             Browse Categories
-                         </a>
-                     </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
-                             Submit Resume
-                         </a>
-                     </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
-                             Candidate Dashboard
-                         </a>
-                     </li>
-                 </ul>
              </li>
              <li class="navbar__list--item">
-                 <a href="javascript:void(0);" class="navbar__list--link">
-                     For Employers
+                 <a href="/pages/contact.php" class="navbar__list--link dn__after">
+                     Liên hệ
                  </a>
-                 <ul class="list__megamenu">
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
-                             Browse Candidates
-                         </a>
-                     </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
-                             Browse Candidates – Half Page Map
-                         </a>
-                     </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
-                             Submit Job
-                         </a>
-                     </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
-                             Add Company
-                         </a>
-                     </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
-                             Employer Dashboard
-                         </a>
-                     </li>
-                 </ul>
-             </li>
-             <li class="navbar__list--item">
-                 <a href="javascript:void(0);" class="navbar__list--link">
-                     Pages
-                 </a>
-                 <ul class="list__megamenu">
-                     <li class="list__megamenu--item">
-                         <a href="/pages/page_detail.php" class="list__megamenu--link">
-                             Job Page
-                         </a>
-                     </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
-                             Job Page Alternative
-                         </a>
-                     </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
-                             Resume Page
-                         </a>
-                     </li>
-                     <li class="list__megamenu--item">
-                         <a href="#" class="list__megamenu--link">
-                             Blog
-                         </a>
-                     </li>
-                     <li class="list__megamenu--item">
-                         <a href="/pages/contact.php" class="list__megamenu--link">
-                             Contact
-                         </a>
-                     </li>
-                 </ul>
              </li>
          </ul>
          <?php
@@ -182,15 +117,15 @@
                  </div>
                  <ul class="list__profile">
                      <li class="item__profile"><a href="#"><i class="fas fa-chart-line"></i> DashBoard</a></li>
-                     <li class="item__profile"><a href="#"><i class="fas fa-comment-alt"></i> Messages</a></li>
+                     <li class="item__profile"><a href="/pages/messager/mess.php"><i class="fas fa-comment-alt"></i> Messages</a></li>
                      <li class="item__profile"><a href="/pages/bookmark.php"><i class="fas fa-bookmark"></i> Bookmarks</a></li>
                      <?php if ($_SESSION['user']['candidate'] == 1) { ?>
                          <li class="item__profile"><a href="/pages/candidate/job_alerts.php"><i class="fas fa-bell"></i> Job Alerts</a></li>
                          <li class="item__profile"><a href="/pages/candidate/add_resumer.php"><i class="fas fa-file"></i> Manage Resumes</a></li>
                      <?php } ?>
                      <?php if ($_SESSION['user']['employer'] == 1) { ?>
-                        <li class="item__profile"><a href="/pages/employer/managae_job.php" class="link__profile"><i class="far fa-list-alt"></i> Danh Sách Công Việc</a></li>
-                        <li class="item__profile"><a href="/pages/employer/manage_companies.php" class="link__profile"><i class="far fa-list-alt"></i> Danh Sách Công Ty</a></li>
+                         <li class="item__profile"><a href="/pages/employer/managae_job.php" class="link__profile"><i class="far fa-list-alt"></i> Danh Sách Công Việc</a></li>
+                         <li class="item__profile"><a href="/pages/employer/manage_companies.php" class="link__profile"><i class="far fa-list-alt"></i> Danh Sách Công Ty</a></li>
                      <?php } ?>
                      <li class="item__profile"><a href="/pages/profile.php"><i class="fas fa-user-circle"></i> Trang Cá Nhân</a></li>
                      <li class="item__profile"><a href="/process_logout.php"><i class="fas fa-sign-out-alt"></i> Đăng Xuất</a></li>

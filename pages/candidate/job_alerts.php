@@ -18,7 +18,7 @@ require_once('../../head.php');
     ?>
     <section class="content connect__profile">
         <?php require_once('../menu_left.php'); ?>
-        <div class="right">
+        <div class="right mh-100">
             <div class="container-fluid">
                 <div class="row p-5">
                     <h3 class="title__content__profile">Job Alerts</h3>

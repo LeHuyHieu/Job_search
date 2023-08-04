@@ -19,24 +19,31 @@ require_once('../../head.php');
     ?>
     <section class="content connect__profile">
         <?php require_once('../menu_left.php'); ?>
-        <div class="right">
+        <div class="right mh-100">
             <div class="container-fluid">
                 <div class="row p-5">
                     <h3 class="title__content__profile">Thêm công ty</h3>
                     <p class="link__home"><a href="/index.php">Trang chủ <i class="fas fa-angle-right"></i> </a>Thêm công ty</p>
                     <div class="col-12">
+                        <?php
+                        $user_id = $_SESSION['user']['id'];
+                        $sql = "SELECT * FROM company WHERE user_id = '$user_id'";
+                        $companies = getData($sql);
+                        $company = current($companies);
+                        ?>
                         <div class="profile_details bg-white">
                             <div class="bg-light title__detail d-flex justify-content-between align-items-center">
                                 <span>Thêm mới công ty</span>
+                                <a class="btn btn--green" href="/pages/detail_company.php?company_id=<?php echo $company['id']; ?>">Xem chi tiết</a>
                             </div>
                             <form action="./process_add.php" method="post" class="row form__block p-5" enctype="multipart/form-data">
                                 <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']['id']; ?>">
-                                <input type="hidden" name="company_id" value="">
+                                <input type="hidden" name="company_id" value="<?php echo (isset($company['id'])) ? $company['id'] : ""; ?>">
                                 <div class="d-flex">
                                     <div class="flex flex__left w-100">
                                         <div class="data__profile">
                                             <label for="">Tên công ty</label>
-                                            <input type="text" value="" name="company_name" placeholder="Tên công ty...">
+                                            <input type="text" value="<?php echo (isset($company['name'])) ? $company['name'] : ""; ?>" name="company_name" placeholder="Tên công ty...">
                                         </div>
                                     </div>
                                 </div>
@@ -44,13 +51,13 @@ require_once('../../head.php');
                                     <div class="flex flex__left w-50 me-3">
                                         <div class="data__profile">
                                             <label for="">Khẩu hiệu</label>
-                                            <input type="text" value="" name="company_tagline" placeholder="Khẩu hiệu công ty...">
+                                            <input type="text" value="<?php echo (isset($company['company_tagline'])) ? $company['company_tagline'] : ""; ?>" name="company_tagline" placeholder="Khẩu hiệu công ty...">
                                         </div>
                                     </div>
                                     <div class="flex flex__right w-50 ms-3">
                                         <div class="data__profile">
                                             <label for="">Trụ sở</label>
-                                            <input type="text" value="" name="company_headquarters" placeholder="Trụ sở công ty...">
+                                            <input type="text" value="<?php echo (isset($company['company_headquarters'])) ? $company['company_headquarters'] : ""; ?>" name="company_headquarters" placeholder="Trụ sở công ty...">
                                         </div>
                                     </div>
                                 </div>
@@ -60,9 +67,9 @@ require_once('../../head.php');
                                             <span>Logo công ty</span><br>
                                             <label for="avt" class="label_cursor">
                                                 <span class="browse"><i class="fas fa-upload"></i> Browse</span>
-                                                <img id="blah" alt="your image" src="/images/placeholder.png" width="100" height="100" />
+                                                <img id="blah" alt="your image" src="<?php echo (isset($company['images'])) ? $company['images'] : "/images/placeholder.png"; ?>" width="100" height="" />
                                             </label>
-                                            <input type="file" id="avt" name="company_logo" value="<?php echo (isset($_SESSION['user']['avatar'])) ? $_SESSION['user']['avatar'] : "/images/avt_user.jpg"; ?>" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+                                            <input type="file" id="avt" name="company_logo" value="<?php echo (isset($company['images'])) ? $company['images'] : "/images/placeholder.png"; ?>" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
                                         </div>
                                     </div>
                                 </div>
@@ -70,13 +77,13 @@ require_once('../../head.php');
                                     <div class="flex flex__left w-50 me-3">
                                         <div class="data__profile">
                                             <label for="">Email công ty</label>
-                                            <input type="text" value="" name="company_email" required placeholder="Email công ty...">
+                                            <input type="text" value="<?php echo (isset($company['contact_email'])) ? $company['contact_email'] : ""; ?>" name="company_email" required placeholder="Email công ty...">
                                         </div>
                                     </div>
                                     <div class="flex flex__right w-50 ms-3">
                                         <div class="data__profile">
                                             <label for="">Website công ty</label>
-                                            <input type="text" value="" name="company_web" required placeholder="Website công ty...">
+                                            <input type="text" value="<?php echo (isset($company['contact_web'])) ? $company['contact_web'] : ""; ?>" name="company_web" required placeholder="Website công ty...">
                                         </div>
                                     </div>
                                 </div>
@@ -84,19 +91,19 @@ require_once('../../head.php');
                                     <div class="flex flex__left w-50 me-3">
                                         <div class="data__profile">
                                             <label for="">Số điện thoại</label>
-                                            <input type="text" value="" name="company_phone" required placeholder="Số điện thoại...">
+                                            <input type="text" value="<?php echo (isset($company['contact_phone'])) ? $company['contact_phone'] : ""; ?>" name="company_phone" required placeholder="Số điện thoại...">
                                         </div>
                                     </div>
                                     <div class="flex flex__right w-50 ms-3">
                                         <div class="data__profile">
-                                            <span>Lương trung bình</span>
+                                            <span class="d-inline-block">Lương trung bình</span>
                                             <select name="company_average_salary" id="" class="form-select chosen-select">
-                                                <option value="1">Chọn lương trung bình</option>
-                                                <option value="1">$15.000 - $20.000</option>
-                                                <option value="2">$20.000 - $30.000</option>
-                                                <option value="3">$30.000 - $40.000</option>
-                                                <option value="4">$40.000 - $50.000</option>
-                                                <option value="5">$50.000+</option>
+                                                <option value="">Chọn lương trung bình</option>
+                                                <option <?php echo (isset($company['company_average_salary']) && $company['company_average_salary'] == 1) ? "selected" : ""; ?> value="1">$15.000 - $20.000</option>
+                                                <option <?php echo (isset($company['company_average_salary']) && $company['company_average_salary'] == 2) ? "selected" : ""; ?> value="2">$20.000 - $30.000</option>
+                                                <option <?php echo (isset($company['company_average_salary']) && $company['company_average_salary'] == 3) ? "selected" : ""; ?> value="3">$30.000 - $40.000</option>
+                                                <option <?php echo (isset($company['company_average_salary']) && $company['company_average_salary'] == 4) ? "selected" : ""; ?> value="4">$40.000 - $50.000</option>
+                                                <option <?php echo (isset($company['company_average_salary']) && $company['company_average_salary'] == 5) ? "selected" : ""; ?> value="5">$50.000+</option>
                                             </select>
                                         </div>
                                     </div>
@@ -105,27 +112,27 @@ require_once('../../head.php');
                                     <div class="flex flex__left w-50 me-3">
                                         <div class="data__profile">
                                             <label for="">Facabook</label>
-                                            <input type="text" value="" name="company_fb" placeholder="Facebook...">
+                                            <input type="text" value="<?php echo (isset($company['contact_fb'])) ? $company['contact_fb'] : ""; ?>" name="company_fb" placeholder="Facebook...">
                                         </div>
                                     </div>
                                     <div class="flex flex__right w-50 ms-3">
                                         <div class="data__profile">
                                             <label for="">Twitter</label>
-                                            <input type="text" value="" name="company_tw" required placeholder="Twitter...">
+                                            <input type="text" value="<?php echo (isset($company['contact_tw'])) ? $company['contact_tw'] : ""; ?>" name="company_tw" required placeholder="Twitter...">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="d-flex">
                                     <div class="flex flex__left w-50 me-3">
                                         <div class="data__profile">
-                                            <span>Quy mô công ty</span>
+                                            <span class="d-inline-block">Quy mô công ty</span>
                                             <select name="company_size" id="" class="form-select chosen-select">
-                                                <option value="0">Chọn quy mô công ty</option>
-                                                <option value="1">1 - 5</option>
-                                                <option value="2">15 - 30</option>
-                                                <option value="3">30 - 50</option>
-                                                <option value="4">5 - 15</option>
-                                                <option value="5">50+</option>
+                                                <option value="">Chọn quy mô công ty</option>
+                                                <option <?php echo (isset($company['company_size']) && $company['company_size'] == 1) ? "selected" : ""; ?> value="1">1 - 5</option>
+                                                <option <?php echo (isset($company['company_size']) && $company['company_size'] == 2) ? "selected" : ""; ?> value="2">15 - 30</option>
+                                                <option <?php echo (isset($company['company_size']) && $company['company_size'] == 3) ? "selected" : ""; ?> value="3">30 - 50</option>
+                                                <option <?php echo (isset($company['company_size']) && $company['company_size'] == 4) ? "selected" : ""; ?> value="4">5 - 15</option>
+                                                <option <?php echo (isset($company['company_size']) && $company['company_size'] == 5) ? "selected" : ""; ?> value="5">50+</option>
                                             </select>
                                         </div>
                                         <?php
@@ -133,39 +140,39 @@ require_once('../../head.php');
                                         $categories = getData($sql);
                                         ?>
                                         <div class="data__profile">
-                                            <span>Lĩnh vực công ty</span>
+                                            <span class="d-inline-block">Lĩnh vực công ty</span>
                                             <select name="category_id" id="" class="form-select chosen-select">
                                                 <option value="0">Chọn lĩnh vực công ty</option>
                                                 <?php foreach ($categories as $category) { ?>
-                                                    <option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
+                                                    <option <?php echo (isset($company['category_id']) && $company['category_id'] == $category['id']) ? "selected" : ""; ?> value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="flex flex__right w-50 ms-3">
                                         <div class="data__profile">
-                                            <span>Doanh thu công ty</span>
+                                            <span class="d-inline-block">Doanh thu công ty</span>
                                             <select name="company_revenue" id="" class="form-select chosen-select">
-                                                <option value="0">Doanh thu công ty</option>
-                                                <option value="1">$70.000</option>
-                                                <option value="2">$100.000</option>
-                                                <option value="3">$150.000</option>
-                                                <option value="4">$300.000</option>
-                                                <option value="5">$600.000</option>
-                                                <option value="5">$1.000.000</option>
+                                                <option value="">Doanh thu công ty</option>
+                                                <option <?php echo (isset($company['company_revenue']) && $company['company_revenue'] == 1) ? "selected" : ""; ?> value="1">$70.000</option>
+                                                <option <?php echo (isset($company['company_revenue']) && $company['company_revenue'] == 2) ? "selected" : ""; ?> value="2">$100.000</option>
+                                                <option <?php echo (isset($company['company_revenue']) && $company['company_revenue'] == 3) ? "selected" : ""; ?> value="3">$150.000</option>
+                                                <option <?php echo (isset($company['company_revenue']) && $company['company_revenue'] == 4) ? "selected" : ""; ?> value="4">$300.000</option>
+                                                <option <?php echo (isset($company['company_revenue']) && $company['company_revenue'] == 5) ? "selected" : ""; ?> value="5">$600.000</option>
+                                                <option <?php echo (isset($company['company_revenue']) && $company['company_revenue'] == 6) ? "selected" : ""; ?> value="6">$1.000.000</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="data__profile">
                                     <label for="">Mô tả ngắn về công ty</label>
-                                    <textarea rows="9" required class="form-control" name="company_description"></textarea>
+                                    <textarea rows="9" required class="form-control" name="company_description"><?php echo (isset($company['description'])) ? $company['description'] : ""; ?></textarea>
                                 </div>
                                 <div class="data__profile">
                                     <label for="">Nội dung về công ty</label>
-                                    <textarea rows="7" required class="summernote" name="company_content"></textarea>
+                                    <textarea rows="7" required class="summernote" name="company_content"><?php echo (isset($company['content'])) ? $company['content'] : ""; ?></textarea>
                                 </div>
-                                <button class="btn btn--all m-0 ms-3" type="submit" name="add_compamy" id="">Xem Chi Tiết</button>
+                                <button class="btn btn--all m-0 ms-3" type="submit" name="add_compamy" id="">Lưu</button>
                             </form>
                         </div>
                     </div>

@@ -64,103 +64,119 @@ require_once('../head.php');
                         ?>
                     </h4>
                 </div>
-                <a href="javascript:void(0);" class="content__bookmark">
-                    <?php echo (isset($_SESSION['user'])) ? "Đánh dấu trang" : "Đăng nhập để đánh dấu"; ?>
-                </a>
+                <?php if (isset($_SESSION['user'])) { ?>
+                    <a href="javascript:void(0);" class="content__bookmark" data-bs-toggle="modal" data-bs-target="#bookmark">
+                        <i class="fas fa-bookmark"></i> Đánh dấu trang
+                    </a>
+                    <div class="modal fade" id="bookmark" tabindex="-1" aria-labelledby="bookmarkLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header bg-light p-5">
+                                    <h5 class="modal-title" id="bookmarkLabel"><i class="fas fa-bookmark"></i> Ghi chú trang</h5>
+                                    <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body p-5">
+                                    <form action="./process_mess_bookmark.php?job_id=<?php echo $job_id; ?>&user_id=<?php echo $_SESSION['user']['id']; ?>&category_id=<?php echo $job_detail['category_id']; ?>" method="post" class="form__block">
+                                        <div class="mb-4">
+                                            <label for="bookmark_note">Ghi chú:</label>
+                                            <textarea id="bookmark_note" rows="7" placeholder="Lưu ý cho công việc của bạn" class="form-control" name="bookmark_note" value=""></textarea>
+                                        </div>
+                                        <input type="hidden" value="1" name="bookmark_save">
+                                        <button class="btn--all w-50 btn--radius100 m-auto" name="bookmark_save"><i class="fas fa-share-square pe-2"></i> Lưu</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } else { ?>
+                    <a href="javascript:void(0);" class="content__bookmark">
+                        <i class="fas fa-bookmark"></i> Đăng nhập để đánh dấu
+                    </a>
+                <?php } ?>
             </div>
-            <div class="content__company bg-white">
+            <div class="content__company bg-white justify-content-start">
                 <div class="content__company--logo">
                     <img src="<?php echo $job_detail['images']; ?>" alt="" class="w-100">
                 </div>
                 <div class="content__company--content">
-                    <a href="./detail_company.php?company_id=<?php echo $company_id; ?>"
-                        class="content__company--title"><?php echo $job_detail['company_name'] ?></a>
+                    <a href="./detail_company.php?company_id=<?php echo $company_id; ?>" class="content__company--title"><?php echo $job_detail['company_name'] ?></a>
                     <div class="content__company--flex">
                         <?php foreach ($company as $company_detail) { ?>
-                        <a href="<?php echo $company_detail['contact_web']; ?>" target="_blank"
-                            class="content__company--website"><i class="fas fa-link"></i> Website</a>
-                        <a href="javascript:void(0);" class="content__company--email"><i class="fas fa-envelope"></i>
-                            <?php echo $company_detail['contact_email']; ?></a>
+                            <a href="<?php echo $company_detail['contact_web']; ?>" target="_blank" class="content__company--website"><i class="fas fa-link"></i> Website</a>
+                            <a href="javascript:void(0);" class="content__company--email"><i class="fas fa-envelope"></i>
+                                <?php echo $company_detail['contact_email']; ?></a>
                         <?php } ?>
                     </div>
                     <?php if (!isset($_SESSION['user'])) { ?>
-                    <a href="javascript:void(0);" class="content__company--login">
-                        <i class="fas fa-envelope"></i> Đăng nhập đẻ gửi tin nhắn
-                    </a>
+                        <a href="javascript:void(0);" class="content__company--login">
+                            <i class="fas fa-envelope"></i> Đăng nhập đẻ gửi tin nhắn
+                        </a>
                     <?php } else { ?>
-                    <a href="javascript:void(0);" class="content__company--login">
-                        <i class="fas fa-envelope"></i> Gửi tin nhắn
-                    </a>
+                        <a href="/pages/messager/chat.php?job_id=<?php echo $job_detail['id'];?>" class="content__company--login">
+                            <i class="fas fa-envelope"></i> Gửi tin nhắn
+                        </a>
                     <?php } ?>
                 </div>
-                <!-- Button trigger modal -->
-                <a href="javascript:void(0);" class="btn btn--all" data-bs-toggle="modal"
-                    data-bs-target="#applyJob">Apply for job</a>
-                <!-- Modal -->
-                <div class="modal fade" id="applyJob" tabindex="-1" aria-labelledby="applyJobLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header bg-light p-5">
-                                <h5 class="modal-title" id="applyJobLabel">Nộp đơn cho công việc</h5>
-                                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body p-5 pb-0">
-                                <form
-                                    action="../phpmailer/apply_job.php?job_id=<?php echo (isset($_GET['job_id'])) ? $job_id : ""; ?>"
-                                    method="post" class="form__block" enctype="multipart/form-data">
-                                    <div class="mb-4">
-                                        <label for="full_name_apply">Họ và tên:</label>
-                                        <input type="text" id="full_name_apply" class="form-control"
-                                            name="full_name_apply"
-                                            value="<?php echo (isset($_SESSION['user']['name'])) ? $_SESSION['user']['name'] : "";  ?>">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="address_apply">Địa chỉ email:</label>
-                                        <input type="text" id="address_apply" class="form-control" name="address_apply"
-                                            value="<?php echo (isset($_SESSION['user']['user_email'])) ? $_SESSION['user']['user_email'] : "";  ?>">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="file_cv" id="addCV">
-                                            <span>Upload CV</span> <br>
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <span class="btn btn--add"><i class="fas fa-upload"></i> Browse</span>
-                                                <span class="detail__file__cv">Tải lên CV/sơ yếu lý lịch của bạn hoặc
-                                                    bất kỳ tệp có liên quan nào khác. tối đa. kích thước tệp: 100
-                                                    MB.</span>
-                                            </div>
-                                        </label>
-                                        <input type="file" id="file_cv" name="file_cv" class="d-none" value="">
-                                        <span id="showCV" class="text__headline -size-15 -bold-500"></span>
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="messge_apply">Tin Nhắn:</label>
-                                        <textarea id="messge_apply" rows="5"
-                                            placeholder="Thư xin việc hoặc tin nhắn đến nhà tuyển dụng"
-                                            class="form-control" name="messge_apply" value=""></textarea>
-                                    </div>
-                                    <button class="btn--all w-100 btn--radius100 m-0" name="apply_job">Gửi đơn</button>
-                                </form>
-                            </div>
-                            <div class="modal-footer d-block border-0 p-5">
-                                <p class="text__headline -size-14 mb-3">
-                                    Bạn có thể ứng tuyển vào công việc này và những công việc khác bằng cách sử dụng sơ
-                                    yếu lý lịch trực tuyến của mình. Nhấp vào liên kết bên dưới để gửi sơ yếu lý lịch
-                                    trực tuyến của bạn và gửi đơn đăng ký của bạn qua email cho nhà tuyển dụng này.
-                                </p>
-                                <?php
-                                if(isset($_GET['category_id'])) {
-                                    $category_id = $_GET['category_id'];
-                                }else {
-                                    $category_id = 1;
-                                }
-                                ?>
-                                <a href="./alert_job.php?job_id=<?php echo $job_id; ?>&user_id=<?php echo $_SESSION['user']['id']; ?>&category_id=<?php echo $category_id; ?>&employer=<?php echo $job_detail['user_id']; ?>"
-                                    class="btn btn--dark btn--radius100 w-50 ms-0">Nộp Hồ sơ và ứng tuyển</a>
+                <?php if (isset($_SESSION['user']) && $_SESSION['user']['candidate'] == 1) { ?>
+                    <!-- Button trigger modal -->
+                    <a href="javascript:void(0);" class="btn btn--all" data-bs-toggle="modal" data-bs-target="#applyJob">Apply for job</a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="applyJob" tabindex="-1" aria-labelledby="applyJobLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header bg-light p-5">
+                                    <h5 class="modal-title" id="applyJobLabel">Nộp đơn cho công việc</h5>
+                                    <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body p-5 pb-0">
+                                    <form action="../phpmailer/apply_job.php?job_id=<?php echo (isset($_GET['job_id'])) ? $job_id : ""; ?>" method="post" class="form__block" enctype="multipart/form-data">
+                                        <div class="mb-4">
+                                            <label for="full_name_apply">Họ và tên:</label>
+                                            <input type="text" id="full_name_apply" class="form-control" name="full_name_apply" value="<?php echo (isset($_SESSION['user']['name'])) ? $_SESSION['user']['name'] : "";  ?>">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label for="address_apply">Địa chỉ email:</label>
+                                            <input type="text" id="address_apply" class="form-control" name="address_apply" value="<?php echo (isset($_SESSION['user']['user_email'])) ? $_SESSION['user']['user_email'] : "";  ?>">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label for="file_cv" id="addCV">
+                                                <span>Upload CV</span> <br>
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <span class="btn btn--add"><i class="fas fa-upload"></i> Browse</span>
+                                                    <span class="detail__file__cv">Tải lên CV/sơ yếu lý lịch của bạn hoặc
+                                                        bất kỳ tệp có liên quan nào khác. tối đa. kích thước tệp: 100
+                                                        MB.</span>
+                                                </div>
+                                            </label>
+                                            <input type="file" id="file_cv" name="file_cv" class="d-none" value="">
+                                            <span id="showCV" class="text__headline -size-15 -bold-500"></span>
+                                        </div>
+                                        <div class="mb-4">
+                                            <label for="messge_apply">Tin Nhắn:</label>
+                                            <textarea id="messge_apply" rows="5" placeholder="Thư xin việc hoặc tin nhắn đến nhà tuyển dụng" class="form-control" name="messge_apply" value=""></textarea>
+                                        </div>
+                                        <button class="btn--all w-100 btn--radius100 m-0" name="apply_job">Gửi đơn</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer d-block border-0 p-5">
+                                    <p class="text__headline -size-14 mb-3">
+                                        Bạn có thể ứng tuyển vào công việc này và những công việc khác bằng cách sử dụng sơ
+                                        yếu lý lịch trực tuyến của mình. Nhấp vào liên kết bên dưới để gửi sơ yếu lý lịch
+                                        trực tuyến của bạn và gửi đơn đăng ký của bạn qua email cho nhà tuyển dụng này.
+                                    </p>
+                                    <?php
+                                    if (isset($_GET['category_id'])) {
+                                        $category_id = $_GET['category_id'];
+                                    } else {
+                                        $category_id = 1;
+                                    }
+                                    ?>
+                                    <a href="./alert_job.php?job_id=<?php echo $job_id; ?>&user_id=<?php echo $_SESSION['user']['id']; ?>&category_id=<?php echo $category_id; ?>&employer=<?php echo $job_detail['user_id']; ?>" class="btn btn--dark btn--radius100 w-50 ms-0">Nộp Hồ sơ và ứng tuyển</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php } ?>
             </div>
             <div class="row content__description">
                 <div class="col-lg-8 col-md-7 col-sm-12 col-12 content__description--left">
@@ -173,9 +189,9 @@ require_once('../head.php');
                         $content = explode(PHP_EOL, $content);
                         ?>
                         <?php foreach ($content as $li) { ?>
-                        <li class="content__description--item">
-                            <?php echo $li; ?>
-                        </li>
+                            <li class="content__description--item">
+                                <?php echo $li; ?>
+                            </li>
                         <?php } ?>
                     </ul>
                     <h4 class="content__description--title text__headline -dark -bold-600 -size-14">
@@ -187,20 +203,19 @@ require_once('../head.php');
                         $content = explode(PHP_EOL, $content);
                         ?>
                         <?php foreach ($content as $li) { ?>
-                        <li class="content__description--item">
-                            <?php echo $li; ?>
-                        </li>
+                            <li class="content__description--item">
+                                <?php echo $li; ?>
+                            </li>
                         <?php } ?>
                     </ul>
                     <div class="content__description--flex -m -mb-5">
                         <?php foreach ($company as $company_detail) { ?>
-                        <a href="<?php echo $company_detail['contact_fb']; ?>" target="_blank" class="btn btn--primary">
-                            <i class="fab fa-facebook-f"></i> Facebook
-                        </a>
-                        <a href="<?php echo $company_detail['contact_tw']; ?>" target="_blank"
-                            class="btn btn--info ms-2">
-                            <i class="fab fa-twitter"></i> Twitter
-                        </a>
+                            <a href="<?php echo $company_detail['contact_fb']; ?>" target="_blank" class="btn btn--primary">
+                                <i class="fab fa-facebook-f"></i> Facebook
+                            </a>
+                            <a href="<?php echo $company_detail['contact_tw']; ?>" target="_blank" class="btn btn--info ms-2">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </a>
                         <?php } ?>
                     </div>
                 </div>
@@ -296,13 +311,12 @@ require_once('../head.php');
             ?>
             <div class="row content__description--flex jobs -m -mb-5">
                 <?php foreach ($job_relateds as $job_related) { ?>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-12 jobs__item">
-                    <div class="d-flex flex-column border p-5">
-                        <div class="w-100 jobs__item--text">
-                            <h6 class="-size-15 -dark">
-                                <a href="./page_detail.php?job_id=<?php echo $job_related['id']; ?>&category_id=<?php echo $job_related['category_id']; ?>"
-                                    class="-size-15 -dark"><?php echo $job_related['title']; ?></a>
-                                <?php
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-12 jobs__item">
+                        <div class="d-flex flex-column border p-5">
+                            <div class="w-100 jobs__item--text">
+                                <h6 class="-size-15 -dark">
+                                    <a href="./page_detail.php?job_id=<?php echo $job_related['id']; ?>&category_id=<?php echo $job_related['category_id']; ?>" class="-size-15 -dark"><?php echo $job_related['title']; ?></a>
+                                    <?php
                                     if ($job_related['full_time'] == 1) {
                                         echo "<button class=\"btn btn--transparent\">Full Time</button>";
                                     }
@@ -319,108 +333,98 @@ require_once('../head.php');
                                         echo "<button class=\"btn btn--transparent\">Part Time</button>";
                                     }
                                     ?>
-                            </h6>
-                            <ul class="d-flex mb-4 flex-column align-items-start jobs__item--icon">
-                                <li class="jobs__itemsub">
-                                    <i class="ln ln-icon-Management"></i>
-                                    <?php echo $job_related['company_name']; ?>
-                                </li>
-                                <li class="jobs__itemsub">
-                                    <i class="ln ln-icon-Map2"></i>
-                                    <?php echo $job_related['location'] ?>
-                                </li>
-                                <li class="jobs__itemsub">
-                                    <i class="ln ln-icon-Money-2"></i>
-                                    $<?php echo number_format($job_related['salary_from']); ?> -
-                                    $<?php echo number_format($job_related['salary_to']); ?>
-                                </li>
-                            </ul>
-                            <p>
-                                <?php
+                                </h6>
+                                <ul class="d-flex mb-4 flex-column align-items-start jobs__item--icon">
+                                    <li class="jobs__itemsub">
+                                        <i class="ln ln-icon-Management"></i>
+                                        <?php echo $job_related['company_name']; ?>
+                                    </li>
+                                    <li class="jobs__itemsub">
+                                        <i class="ln ln-icon-Map2"></i>
+                                        <?php echo $job_related['location'] ?>
+                                    </li>
+                                    <li class="jobs__itemsub">
+                                        <i class="ln ln-icon-Money-2"></i>
+                                        $<?php echo number_format($job_related['salary_from']); ?> -
+                                        $<?php echo number_format($job_related['salary_to']); ?>
+                                    </li>
+                                </ul>
+                                <p>
+                                    <?php
                                     $substr = $job_related['description'];
                                     echo substr($substr, 0, 130);
                                     ?>
-                            </p>
-                        </div>
-                        <!-- Button trigger modal -->
-                        <button class="btn--0 btn--all mt-0" data-bs-toggle="modal"
-                            data-bs-target="#applyJob<?php echo $job_related['id']; ?>">
-                            Apply For This Job
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="applyJob<?php echo $job_related['id']; ?>" tabindex="-1"
-                            aria-labelledby="applyJobLabel<?php echo $job_related['id']; ?>" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header bg-light p-5">
-                                        <h5 class="modal-title" id="applyJobLabel<?php echo $job_related['id']; ?>">Nộp
-                                            đơn cho công việc</h5>
-                                        <button type="button" class="btn-close bg-white" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body p-5 pb-0">
-                                        <form
-                                            action="../phpmailer/apply_job.php?job_id=<?php echo (isset($_GET['job_id'])) ? $job_id : ""; ?>"
-                                            method="post" class="form__block" enctype="multipart/form-data">
-                                            <div class="mb-4">
-                                                <label for="full_name_apply">Họ và tên:</label>
-                                                <input type="text" id="full_name_apply" class="form-control"
-                                                    name="full_name_apply"
-                                                    value="<?php echo (isset($_SESSION['user']['name'])) ? $_SESSION['user']['name'] : "";  ?>">
+                                </p>
+                            </div>
+                            <?php if (isset($_SESSION['user']) && $_SESSION['user']['candidate'] == 1) { ?>
+                                <!-- Button trigger modal -->
+                                <button class="btn--0 btn--all mt-0" data-bs-toggle="modal" data-bs-target="#applyJob<?php echo $job_related['id']; ?>">
+                                    Apply For This Job
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="applyJob<?php echo $job_related['id']; ?>" tabindex="-1" aria-labelledby="applyJobLabel<?php echo $job_related['id']; ?>" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-light p-5">
+                                                <h5 class="modal-title" id="applyJobLabel<?php echo $job_related['id']; ?>">Nộp
+                                                    đơn cho công việc</h5>
+                                                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <div class="mb-4">
-                                                <label for="address_apply">Địa chỉ email:</label>
-                                                <input type="text" id="address_apply" class="form-control"
-                                                    name="address_apply"
-                                                    value="<?php echo (isset($_SESSION['user']['user_email'])) ? $_SESSION['user']['user_email'] : "";  ?>">
-                                            </div>
-                                            <div class="mb-4">
-                                                <label for="file_cv" id="addCV">
-                                                    <span>Upload CV</span> <br>
-                                                    <div class="d-flex align-items-center justify-content-between">
-                                                        <span class="btn btn--add"><i class="fas fa-upload"></i>
-                                                            Browse</span>
-                                                        <span class="detail__file__cv">Tải lên CV/sơ yếu lý lịch của bạn
-                                                            hoặc bất kỳ tệp có liên quan nào khác. tối đa. kích thước
-                                                            tệp: 100 MB.</span>
+                                            <div class="modal-body p-5 pb-0">
+                                                <form action="../phpmailer/apply_job.php?job_id=<?php echo (isset($_GET['job_id'])) ? $job_id : ""; ?>" method="post" class="form__block" enctype="multipart/form-data">
+                                                    <div class="mb-4">
+                                                        <label for="full_name_apply">Họ và tên:</label>
+                                                        <input type="text" id="full_name_apply" class="form-control" name="full_name_apply" value="<?php echo (isset($_SESSION['user']['name'])) ? $_SESSION['user']['name'] : "";  ?>">
                                                     </div>
-                                                </label>
-                                                <input type="file" id="file_cv" name="file_cv" class="d-none" value="">
-                                                <span id="showCV" class="text__headline -size-15 -bold-500"></span>
+                                                    <div class="mb-4">
+                                                        <label for="address_apply">Địa chỉ email:</label>
+                                                        <input type="text" id="address_apply" class="form-control" name="address_apply" value="<?php echo (isset($_SESSION['user']['user_email'])) ? $_SESSION['user']['user_email'] : "";  ?>">
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <label for="file_cv" id="addCV">
+                                                            <span>Upload CV</span> <br>
+                                                            <div class="d-flex align-items-center justify-content-between">
+                                                                <span class="btn btn--add"><i class="fas fa-upload"></i>
+                                                                    Browse</span>
+                                                                <span class="detail__file__cv">Tải lên CV/sơ yếu lý lịch của bạn
+                                                                    hoặc bất kỳ tệp có liên quan nào khác. tối đa. kích thước
+                                                                    tệp: 100 MB.</span>
+                                                            </div>
+                                                        </label>
+                                                        <input type="file" id="file_cv" name="file_cv" class="d-none" value="">
+                                                        <span id="showCV" class="text__headline -size-15 -bold-500"></span>
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <label for="messge_apply">Tin Nhắn:</label>
+                                                        <textarea id="messge_apply" rows="5" placeholder="Thư xin việc hoặc tin nhắn đến nhà tuyển dụng" class="form-control" name="messge_apply" value=""></textarea>
+                                                    </div>
+                                                    <button class="btn--all w-100 btn--radius100 m-0" name="apply_job">Gửi
+                                                        đơn</button>
+                                                </form>
                                             </div>
-                                            <div class="mb-4">
-                                                <label for="messge_apply">Tin Nhắn:</label>
-                                                <textarea id="messge_apply" rows="5"
-                                                    placeholder="Thư xin việc hoặc tin nhắn đến nhà tuyển dụng"
-                                                    class="form-control" name="messge_apply" value=""></textarea>
+                                            <div class="modal-footer d-block border-0 p-5">
+                                                <p class="text__headline -size-14 mb-3">
+                                                    Bạn có thể ứng tuyển vào công việc này và những công việc khác bằng cách sử
+                                                    dụng sơ yếu lý lịch trực tuyến của mình. Nhấp vào liên kết bên dưới để gửi
+                                                    sơ yếu lý lịch trực tuyến của bạn và gửi đơn đăng ký của bạn qua email cho
+                                                    nhà tuyển dụng này.
+                                                </p>
+                                                <?php
+                                                if (isset($_GET['category_id'])) {
+                                                    $category_id = $_GET['category_id'];
+                                                } else {
+                                                    $category_id = 1;
+                                                }
+                                                ?>
+                                                <a href="./alert_job.php?job_id=<?php echo $job_id; ?>&user_id=<?php echo $_SESSION['user']['id']; ?>&category_id=<?php echo $category_id; ?>" class="btn btn--dark btn--radius100 w-50 ms-0">Nộp Hồ sơ và ứng tuyển</a>
                                             </div>
-                                            <button class="btn--all w-100 btn--radius100 m-0" name="apply_job">Gửi
-                                                đơn</button>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer d-block border-0 p-5">
-                                        <p class="text__headline -size-14 mb-3">
-                                            Bạn có thể ứng tuyển vào công việc này và những công việc khác bằng cách sử
-                                            dụng sơ yếu lý lịch trực tuyến của mình. Nhấp vào liên kết bên dưới để gửi
-                                            sơ yếu lý lịch trực tuyến của bạn và gửi đơn đăng ký của bạn qua email cho
-                                            nhà tuyển dụng này.
-                                        </p>
-                                        <?php
-                                            if(isset($_GET['category_id'])) {
-                                                $category_id = $_GET['category_id'];
-                                            }else {
-                                                $category_id = 1;
-                                            }
-                                            ?>
-                                        <a href="./alert_job.php?job_id=<?php echo $job_id; ?>&user_id=<?php echo $_SESSION['user']['id']; ?>&category_id=<?php echo $category_id; ?>"
-                                            class="btn btn--dark btn--radius100 w-50 ms-0">Nộp Hồ sơ và ứng tuyển</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                <!-- end modal -->
+                            <?php } ?>
                         </div>
-                        <!-- end modal -->
                     </div>
-                </div>
                 <?php } ?>
             </div>
         </div>

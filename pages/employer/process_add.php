@@ -38,7 +38,7 @@ if(isset($_POST['add_compamy'])) {
     }
 
     if($conn->query($sql) === true) {
-        header('location:./manage_companies.php');
+        header('location:./add_company.php');
         exit();
     }else {
         echo "Error: ". $sql. "<br>" . $conn->error;

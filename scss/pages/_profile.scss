@@ -135,6 +135,7 @@
                     span {
                         font-size: 1.5rem;
                         font-weight: 500;
+                        margin-bottom: 1rem;
                     }
 
                     & input[type=file] {
@@ -224,6 +225,7 @@ body.position_header .header .navbar {
             display: inline-block;
             font-weight: 600;
             color: $dark;
+            margin-bottom: 1rem;
         }
 
         & .chosen-container {
@@ -356,6 +358,7 @@ body.position_header .header .navbar {
 
         .experience-title {
             font-size: 1.35rem;
+            font-weight: 500;
             width: 40%;
         }
 
@@ -628,4 +631,145 @@ body.position_header .header .navbar {
             }
         }
     }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  messages                                  */
+/* -------------------------------------------------------------------------- */
+
+.mess__box {
+    .mess_detail {
+        & .name_job {
+            margin-left: 1rem;
+            background-color: lightgray;
+            font-size: 1.2rem;
+            padding: 0.2rem 1rem;
+            border-radius: 0.25rem;
+        }
+
+        .user_detail {
+            padding: 2rem 3rem;
+            width: 100%;
+            display: inline-block;
+            text-decoration: none;
+
+            &:hover {
+                background-color: $white-light;
+            }
+
+            & .image_user {
+                width: 70px;
+                height: 70px;
+                object-fit: cover;
+                border-radius: 100rem;
+                overflow: hidden;
+            }
+
+            & .detail_user {
+                ._name {
+                    padding-left: 2rem;
+                    @include flex-center(row);
+
+                    .name_user {
+                        font-size: 1.6rem;
+                        color: $dark;
+                    }
+
+                    .name_job {
+                        color: $gray;
+                        background-color: $light;
+                        font-size: 1.2rem;
+                        margin-left: 1rem;
+                        padding: .3rem;
+                        border-radius: .25rem;
+                    }
+                }
+
+                .mess_user {
+                    padding-left: 2rem;
+
+                    span {
+                        font-size: 1.4rem;
+                        color: $gray-light;
+                    }
+                }
+            }
+
+            .date_mess {
+                margin-left: auto;
+                font-size: 1rem;
+                color: $gray;
+                display: inline-block;
+            }
+        }
+    }
+
+    .mess_left {
+        overflow-y: scroll;
+        height: 70vh;
+
+        &::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $gray-light;
+            border-radius: .5rem;
+        }
+    }
+
+    .mess_right {
+        position: relative;
+
+        .scroll_mess {
+            overflow-y: scroll;
+            height: 60vh;
+            padding-bottom: 3rem;
+
+            &::-webkit-scrollbar {
+                width: 10px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: $gray-light;
+                border-radius: .5rem;
+            }
+        }
+
+        .form__block {
+            & .icon_form_mess {
+                display: flex;
+                background-color: $white;
+                padding: 1rem;
+
+                & input[type=text] {
+                    outline: none;
+                    border: 1px solid $dark;
+                    border-radius: 100rem;
+                    width: calc(100% - 6rem);
+                    padding: .5rem 2rem;
+
+                    &:focus {
+                        border-color: $green;
+
+                        &::placeholder {
+                            color: $green;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.mh-100 {
+    min-height: 100vh;
 }

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('./lib/connect.php'); 
+require_once('./lib/connect.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +20,7 @@ require_once('./head.php');
         <div class="position-relative banner">
             <div class="banner__before container">
                 <h1 class="banner__title">
-                    Find job
+                    Tìm Việc
                 </h1>
                 <h3 class="banner__title">
                     Hire Experts or be hirded in <span class="typed">sales &
@@ -31,7 +31,7 @@ require_once('./head.php');
                         <button class="banner__btn--item">
                             What job are you looking for?
                         </button>
-                        <input type="text" name="keyword" placeholder="Job title, skill, Industry">
+                        <input type="text" name="keyword" class="w-100" placeholder="Tên công việc, Kỹ năng, Nghành nghề">
                     </div>
                     <div class="col-md-4 col-sm-12 col-12 position-relative banner__search--box">
                         <button class="banner__btn--item">
@@ -45,7 +45,7 @@ require_once('./head.php');
                         $city_table = getData($sql3);
                         ?>
                         <select class="form-select select__box chosen-select" name="city_id" id="" data-placeholder="Choose a country...">
-                            <option value="">All Location</option>
+                            <option value="">Tất cả thành phố</option>
                             <?php foreach ($city_table as $city) { ?>
                                 <option value="<?php echo $city['id']; ?>"><?php echo $city['city_name']; ?></option>
                             <?php } ?>
@@ -60,7 +60,7 @@ require_once('./head.php');
                             Categories
                         </button>
                         <select class="form-select select__box chosen-select" name="category_id" id="" data-placeholder="Choose a country...">
-                            <option value="">All categories</option>
+                            <option value="">Tất cả loại công việc</option>
                             <?php foreach ($categories as $category) { ?>
                                 <option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
                             <?php } ?>
@@ -71,114 +71,67 @@ require_once('./head.php');
                         </button>
                     </div>
                 </form>
-                <p class="banner__text">Need more search options? <a href="#">Advanced Search</a></p>
+                <p class="banner__text">Cần thêm tùy chọn tìm kiếm? <a href="./pages/categories.php">Tìm Kiếm nâng cao</a></p>
             </div>
             <div class="banner__after"></div>
         </div>
         <!-- end banner section -->
         <div class="container pt-5">
             <h2 class="pt-5 text__headline -bold-400 -dark -size-25 mb-5">
-                Popular Categories
+                Loại Công Việc Phổ Biến
             </h2>
             <?php
-            $sql1 = "SELECT * FROM categories WHERE parent_id = 0 limit 8";
+            $sql1 = "SELECT * FROM categories WHERE parent_id = 0";
             $categories1 = getData($sql1);
-            // print_r($categories1);die;
             ?>
             <div class="row">
-                <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="pages/categories.php?category_id=<?php echo $categories1[0]['id']; ?>" class="item__flex">
-                        <div class="item__flex--left">
-                            <i class="ln ln-icon-Bar-Chart"></i>
-                            <p class="-dark -size-20"><?php echo $categories1[0]['name']; ?></p>
-                        </div>
-                        <div class="item__flex--right">
-                            <span class="-size-32">3</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="pages/categories.php?category_id=<?php echo $categories1[1]['id']; ?>" class="item__flex">
-                        <div class="item__flex--left">
-                            <i class="ln ln-icon-Car-3"></i>
-                            <p class="-dark -size-20"><?php echo $categories1[1]['name']; ?></p>
-                        </div>
-                        <div class="item__flex--right">
-                            <span class="-size-32">3</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="pages/categories.php?category_id=<?php echo $categories1[2]['id']; ?>" class="item__flex">
-                        <div class="item__flex--left">
-                            <i class="ln ln-icon-Worker"></i>
-                            <p class="-dark -size-20"><?php echo $categories1[2]['name']; ?></p>
-                        </div>
-                        <div class="item__flex--right">
-                            <span class="-size-32">3</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="pages/categories.php?category_id=<?php echo $categories1[3]['id']; ?>" class="item__flex">
-                        <div class="item__flex--left">
-                            <i class="ln ln-icon-Brush"></i>
-                            <p class="-dark -size-20"><?php echo $categories1[3]['name']; ?></p>
-                        </div>
-                        <div class="item__flex--right">
-                            <span class="-size-32">0</span>
-                        </div>
-                    </a>
-                </div>
+                <?php foreach ($categories1 as $category) { ?>
+                    <div class="col-md-3 col-sm-6 col-12 content__item mb-3">
+                        <a href="pages/categories.php?category_id=<?php echo $category['id']; ?>" class="item__flex">
+                            <div class="item__flex--left">
+                                <?php if ($category['id'] == 2) { ?>
+                                    <i class="ln ln-icon-Bar-Chart"></i>
+                                <?php }
+                                if ($category['id'] == 3) { ?>
+                                    <i class="ln ln-icon-Car-3"></i>
+                                <?php }
+                                if ($category['id'] == 4) { ?>
+                                    <i class="ln ln-icon-Worker"></i>
+                                <?php }
+                                if ($category['id'] == 5) { ?>
+                                    <i class="ln ln-icon-Brush"></i>
+                                <?php }
+                                if ($category['id'] == 13) { ?>
+                                    <i class="ln ln-icon-Student-Female"></i>
+                                <?php }
+                                if ($category['id'] == 14) { ?>
+                                    <i class="ln ln-icon-Medical-Sign"></i>
+                                <?php }
+                                if ($category['id'] == 15) { ?>
+                                    <i class="ln ln-icon-Plates"></i>
+                                <?php }
+                                if ($category['id'] == 16) { ?>
+                                    <i class="ln ln-icon-Handshake"></i>
+                                <?php }
+                                if ($category['id'] == 23) { ?>
+                                    <i class="ln ln-icon-Medical-Sign"></i>
+                                <?php }
+                                if ($category['id'] == 25) { ?>
+                                    <i class="ln ln-icon-Brush"></i>
+                                <?php }
+                                if ($category['id'] == 40) { ?>
+                                    <i class="ln ln-icon-Worker"></i>
+                                <?php } ?>
+                                <p class="-dark -size-20"><?php echo $category['name']; ?></p>
+                            </div>
+                            <div class="item__flex--right">
+                                <span class="-size-32">3</span>
+                            </div>
+                        </a>
+                    </div>
+                <?php } ?>
             </div>
-
-            <div class="row mt-4">
-                <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="pages/categories.php?category_id=<?php echo $categories1[4]['id']; ?>" class="item__flex">
-                        <div class="item__flex--left">
-                            <i class="ln ln-icon-Student-Female"></i>
-                            <p class="-dark -size-20"><?php echo $categories1[4]['name']; ?></p>
-                        </div>
-                        <div class="item__flex--right">
-                            <span class="-size-32">2</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="pages/categories.php?category_id=<?php echo $categories1[5]['id']; ?>" class="item__flex">
-                        <div class="item__flex--left">
-                            <i class="ln ln-icon-Medical-Sign"></i>
-                            <p class="-dark -size-20"><?php echo $categories1[5]['name']; ?></p>
-                        </div>
-                        <div class="item__flex--right">
-                            <span class="-size-32">2</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="pages/categories.php?category_id=<?php echo $categories1[6]['id']; ?>" class="item__flex">
-                        <div class="item__flex--left">
-                            <i class="ln ln-icon-Plates"></i>
-                            <p class="-dark -size-20"><?php echo $categories1[6]['name']; ?></p>
-                        </div>
-                        <div class="item__flex--right">
-                            <span class="-size-32">2</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6 col-12 content__item">
-                    <a href="pages/categories.php?category_id=<?php echo $categories1[7]['id']; ?>" class="item__flex">
-                        <div class="item__flex--left">
-                            <i class="ln ln-icon-Handshake"></i>
-                            <p class="-dark -size-20"><?php echo $categories1[7]['name']; ?></p>
-                        </div>
-                        <div class="item__flex--right">
-                            <span class="-size-32">1</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <a href="pages/all_category.php" class="btn btn--all">Browse All Categories</a>
+            <a href="pages/all_category.php" class="btn btn--all">Tất cả loại công việc</a>
         </div>
         <hr class="hr">
         <div class="container">
@@ -264,25 +217,23 @@ require_once('./head.php');
                                     <div class="w-100 jobs__item--text">
                                         <h6 class="-size-15 -dark">
                                             <?php echo $job['title']; ?>
-                                            <button class="btn btn--transparent">
-                                                <?php
-                                                if ($job['full_time'] == 1) {
-                                                    echo "Full Time";
-                                                }
-                                                if ($job['internship'] == 1) {
-                                                    echo "Internship";
-                                                }
-                                                if ($job['temporary'] == 1) {
-                                                    echo "Temporary";
-                                                }
-                                                if ($job['freelance'] == 1) {
-                                                    echo "Freelance";
-                                                }
-                                                if ($job['part_time'] == 1) {
-                                                    echo "Part time";
-                                                }
-                                                ?>
-                                            </button>
+                                            <?php
+                                            if ($job['full_time'] == 1) {
+                                                echo "<button class=\"btn btn--transparent ms-2 mt-2\">Full Time</button>";
+                                            }
+                                            if ($job['internship'] == 1) {
+                                                echo "<button class=\"btn btn--transparent ms-2 mt-2\">Internship</button>";
+                                            }
+                                            if ($job['temporary'] == 1) {
+                                                echo "<button class=\"btn btn--transparent ms-2 mt-2\">Temporary</button>";
+                                            }
+                                            if ($job['freelance'] == 1) {
+                                                echo "<button class=\"btn btn--transparent ms-2 mt-2\">Freelance</button>";
+                                            }
+                                            if ($job['part_time'] == 1) {
+                                                echo "<button class=\"btn btn--transparent ms-2 mt-2\">Part time</button>";
+                                            }
+                                            ?>
                                         </h6>
                                         <ul class="d-flex mb-4 flex-column align-items-start jobs__item--icon">
                                             <li class="jobs__itemsub">

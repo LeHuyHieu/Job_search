@@ -292,10 +292,84 @@ $(document).ready(function () {
             }
         });
     });
+
+    $(document).on('click', '.btn--add.delete', function (event) {
+        Swal.fire({
+            title: 'Bạn có chắc muốn xóa?',
+            text: "Bạn không thể hoàn tác lại!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Xóa!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var link = $(this).parents('form').first().attr('action');
+                window.location.href = link;
+                Swal.fire(
+                    'Đã xóa!',
+                    'Bạn đã xóa thành công.',
+                    'success'
+                );
+                console.log(1);
+            } else {
+                Swal.fire(
+                    'Chưa Xóa',
+                    'Đã hủy.',
+                    'error'
+                );
+            }
+        });
+    });
+
+    // message ajax
+    $(document).on('click', '.user_detail.ajax_mess', function (event) {
+        event.preventDefault();
+        var _this = $(this).parents(".mess__box").first();
+        var link = $(this).attr('data-id');
+
+        $.ajax("get_user_id.php?id=" + link).done(function (data) {
+            $(_this).children().html(data);
+            $('#messageChat').focus();
+        });
+    });
+
+    setTimeout(function doSomething() {
+        if ($("#chatMessage").length && $("#chatMessage").attr('data-chat-id')) {
+            var chat_id = $("#chatMessage").attr('data-chat-id');
+            if ($('.body-candidate').length) {
+                $.ajax("ajax_candidate_chat.php?id=" + chat_id).done(function (data) {
+                    $(".scroll_mess").append(data);
+                });
+            } else {
+                $.ajax("ajax_employer_chat.php?id=" + chat_id).done(function (data) {
+                    $(".scroll_mess").append(data);
+                });
+            }
+        }
+        setTimeout(doSomething, 3000);
+    }, 3000);
+
+    $(document).on('click', '.btn-mess', function (event) {
+        event.preventDefault();
+        var form = $(this).parents('form').first();
+        var data = $(form).serialize();
+        var url = $(form).attr('action');
+        console.log(data);
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+        }).done(function (data) {
+            $('.scroll_mess').append(data);
+            $('#messageChat').val('');
+        });
+        return false;
+    });
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    console.log(1);
     var profileLinks = document.querySelectorAll(".list__profile .link__profile");
 
     profileLinks.forEach(function (link) {
@@ -303,7 +377,7 @@ document.addEventListener("DOMContentLoaded", function () {
             link.classList.add("color__green");
         }
     });
-    
+
 });
 
 $(document).ready(function () {
@@ -335,9 +409,7 @@ $(document).ready(function () {
             }
         });
     }
-});
 
-$(document).ready(function () {
     var typedElement = document.querySelector('.typed');
 
     if (typedElement) {
@@ -349,36 +421,38 @@ $(document).ready(function () {
             loop: true
         });
     }
-});
-
-$('.single-item').slick();
 
 
-$('.center').slick({
-    centerMode: true,
-    centerPadding: '0px',
-    slidesToShow: 3,
-    speed: 300,
-    responsive: [
-        {
-            breakpoint: 768,
-            settings: {
-                arrows: false,
-                centerMode: true,
-                centerPadding: '0px',
-                slidesToShow: 1
+    $('.single-item').slick();
+
+
+    $('.center').slick({
+        centerMode: true,
+        centerPadding: '0px',
+        slidesToShow: 3,
+        speed: 300,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '0px',
+                    slidesToShow: 1
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '0px',
+                    slidesToShow: 1
+                }
             }
-        },
-        {
-            breakpoint: 480,
-            settings: {
-                arrows: false,
-                centerMode: true,
-                centerPadding: '0px',
-                slidesToShow: 1
-            }
-        }
-    ]
+        ]
+    });
+
 });
 
 

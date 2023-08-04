@@ -316,3 +316,29 @@
     background-color: $green;
     color: $white;
 }
+
+.btn-mess {
+    padding: .5rem 3rem;
+    font-size: 1.4rem;
+    color: $white;
+    background-color: $green;
+    margin-left: 1rem;
+    border-radius: 100rem;
+    &:hover {
+        color: $white;
+    }
+    &:focus {
+        box-shadow: none;
+    }
+}
+.btn-mess.like {
+    background-color: transparent;
+    color: $green;
+    font-size: 2rem;
+    width: 45px;
+    height: 45px;
+    border: 1px solid $green;
+    text-align: center;
+    border-radius: 100rem;
+    padding: 0;
+}

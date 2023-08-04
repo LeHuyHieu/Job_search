@@ -793,3 +793,7 @@ body._bg_transparent {
         }
     }
 }
+
+.dn__after::after {
+    display: none;
+}

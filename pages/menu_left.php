@@ -4,7 +4,7 @@
             <h5 class="title__profile">Main</h5>
             <ul class="list__profile">
                 <li class="item__profile"><a href="#" class="link__profile"><i class="fas fa-chart-line"></i> Bảng Điều Khiển</a></li>
-                <li class="item__profile"><a href="#" class="link__profile"><i class="fas fa-comments"></i> Nhắn Tin </a></li>
+                <li class="item__profile"><a href="/pages/messager/mess.php" class="link__profile"><i class="fas fa-comments"></i> Nhắn Tin </a></li>
                 <li class="item__profile"><a href="/pages/bookmark.php" class="link__profile"><i class="fas fa-bookmark"></i> Đánh Dấu Trang</a></li>
             </ul>
         </div>

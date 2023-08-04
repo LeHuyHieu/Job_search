@@ -18,7 +18,7 @@ require_once('../../head.php');
     ?>
     <section class="content connect__profile">
         <?php require_once('../menu_left.php'); ?>
-        <div class="right">
+        <div class="right mh-100">
             <div class="container-fluid">
                 <div class="row p-5">
                     <h3 class="title__content__profile">Công ty của tôi</h3>
@@ -32,23 +32,24 @@ require_once('../../head.php');
                         <table class="table text__headline -size-15 m-0">
                             <thead class="table-dark">
                                 <tr>
+                                    <th width="10%"> Image</th>
                                     <th width="33%"> Tên công ty</th>
-                                    <th width="25%"> Trạng thái</th>
-                                    <th width="25%"> Ngày đăng</th>
+                                    <th width="20%"> Trạng thái</th>
+                                    <th width="20%"> Ngày đăng</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($companies as $company) { ?>
                                     <tr>
+                                        <td><img width="70px" src="<?php echo $company['images']; ?>" alt=""></td>
                                         <td>
                                             <a href="../detail_company.php?company_id=<?php echo $company['id']; ?>">
-                                                <img width="70px" src="<?php echo $company['images']; ?>" alt="">
                                                 <p class="me-3"><?php echo $company['name']; ?></p>
                                             </a>
                                         </td>
                                         <td>
-                                            <?php echo ($company['status'] == 0 || $company['status'] == '') ? "Chờ xem sét" : "Đã duyệt"; ?></td>
+                                            <?php echo ($company['status'] == 0 || $company['status'] == '') ? "Chờ duyệt" : "Đã duyệt"; ?></td>
                                         <td>
                                             <?php $dateTimeString = $company['created_at'];
                                             $dateTime = new DateTime($dateTimeString);

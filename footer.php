@@ -19,7 +19,11 @@
                     <i class="ln ln-icon-Management"></i>
                 </span>
                 <h6 class="bg__icon--text">
-                    <span class='numscroller text-white' data-min='1' data-max='1124' data-delay='5' data-increment='5'>1124</span>
+                    <?php 
+                    $sql = "SELECT COUNT(id) AS sum_job FROM jobs";
+                    $sum_job = getData($sql);
+                    ?>
+                    <span class='numscroller text-white' data-min='1' data-max='<?php echo $sum_job[0]['sum_job']; ?>' data-delay='5' data-increment='5'>1124</span>
                     <span>
                         Job Listings
                     </span>
@@ -30,7 +34,11 @@
                     <i class="ln ln-icon-Business-Man"></i>
                 </span>
                 <h6 class="bg__icon--text">
-                    <span class='numscroller text-white' data-min='1' data-max='421' data-delay='5' data-increment='5'>421</span>
+                <?php 
+                    $sql = "SELECT COUNT(id) AS sum_candidate FROM users where candidate = 1";
+                    $sum_candidate = getData($sql);
+                    ?>
+                    <span class='numscroller text-white' data-min='1' data-max='<?php echo $sum_candidate[0]['sum_candidate']; ?>' data-delay='5' data-increment='5'>421</span>
                     <span>
                         Resumes Posted
                     </span>
@@ -126,7 +134,7 @@
                             </a>
                         </li>
                         <li class="footer__list--item">
-                            <a href="#" class="footer__list--link">
+                            <a href="/pages/contact.php" class="footer__list--link">
                                 Contact
                             </a>
                         </li>

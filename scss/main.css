@@ -623,6 +623,10 @@ body._bg_transparent .header.bg-white .navbar .login--register .btn--login {
   box-shadow: 0px 5px 10px #ebebeb;
 }
 
+.dn__after::after {
+  display: none;
+}
+
 .footer .footer__block {
   background: url(../../images/banner-footer.jpg) no-repeat;
   background-size: cover;
@@ -1133,6 +1137,33 @@ body._bg_transparent .header.bg-white .navbar .login--register .btn--login {
 .btn--page.active {
   background-color: #26ae61;
   color: #fff;
+}
+
+.btn-mess {
+  padding: 0.5rem 3rem;
+  font-size: 1.4rem;
+  color: #fff;
+  background-color: #26ae61;
+  margin-left: 1rem;
+  border-radius: 100rem;
+}
+.btn-mess:hover {
+  color: #fff;
+}
+.btn-mess:focus {
+  box-shadow: none;
+}
+
+.btn-mess.like {
+  background-color: transparent;
+  color: #26ae61;
+  font-size: 2rem;
+  width: 45px;
+  height: 45px;
+  border: 1px solid #26ae61;
+  text-align: center;
+  border-radius: 100rem;
+  padding: 0;
 }
 
 .chosen-single {
@@ -2681,6 +2712,7 @@ body._bg_transparent .header.bg-white .navbar .login--register .btn--login {
 .content.connect__profile .right .profile_details .form__block .data__profile span {
   font-size: 1.5rem;
   font-weight: 500;
+  margin-bottom: 1rem;
 }
 .content.connect__profile .right .profile_details .form__block .data__profile input[type=file] {
   display: none;
@@ -2749,6 +2781,7 @@ body.position_header .header .navbar {
   display: inline-block;
   font-weight: 600;
   color: #222;
+  margin-bottom: 1rem;
 }
 .flex .data__profile .chosen-container {
   background-color: #f8f9fa;
@@ -2858,6 +2891,7 @@ body.position_header .header .navbar {
 }
 .experience-content .bg-white .experience-title {
   font-size: 1.35rem;
+  font-weight: 500;
   width: 40%;
 }
 .experience-content .bg-white .experience-name {
@@ -3085,6 +3119,123 @@ body.position_header .header .navbar {
   display: none;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                  messages                                  */
+/* -------------------------------------------------------------------------- */
+.mess__box .mess_detail .name_job {
+  margin-left: 1rem;
+  background-color: lightgray;
+  font-size: 1.2rem;
+  padding: 0.2rem 1rem;
+  border-radius: 0.25rem;
+}
+.mess__box .mess_detail .user_detail {
+  padding: 2rem 3rem;
+  width: 100%;
+  display: inline-block;
+  text-decoration: none;
+}
+.mess__box .mess_detail .user_detail:hover {
+  background-color: #f8f9fa;
+}
+.mess__box .mess_detail .user_detail .image_user {
+  width: 70px;
+  height: 70px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 100rem;
+  overflow: hidden;
+}
+.mess__box .mess_detail .user_detail .detail_user ._name {
+  padding-left: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.mess__box .mess_detail .user_detail .detail_user ._name .name_user {
+  font-size: 1.6rem;
+  color: #222;
+}
+.mess__box .mess_detail .user_detail .detail_user ._name .name_job {
+  color: #555555;
+  background-color: #ebebeb;
+  font-size: 1.2rem;
+  margin-left: 1rem;
+  padding: 0.3rem;
+  border-radius: 0.25rem;
+}
+.mess__box .mess_detail .user_detail .detail_user .mess_user {
+  padding-left: 2rem;
+}
+.mess__box .mess_detail .user_detail .detail_user .mess_user span {
+  font-size: 1.4rem;
+  color: #aaaaaa;
+}
+.mess__box .mess_detail .user_detail .date_mess {
+  margin-left: auto;
+  font-size: 1rem;
+  color: #555555;
+  display: inline-block;
+}
+.mess__box .mess_left {
+  overflow-y: scroll;
+  height: 70vh;
+}
+.mess__box .mess_left::-webkit-scrollbar {
+  width: 10px;
+}
+.mess__box .mess_left::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.mess__box .mess_left::-webkit-scrollbar-thumb {
+  background: #aaaaaa;
+  border-radius: 0.5rem;
+}
+.mess__box .mess_right {
+  position: relative;
+}
+.mess__box .mess_right .scroll_mess {
+  overflow-y: scroll;
+  height: 60vh;
+  padding-bottom: 3rem;
+}
+.mess__box .mess_right .scroll_mess::-webkit-scrollbar {
+  width: 10px;
+}
+.mess__box .mess_right .scroll_mess::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.mess__box .mess_right .scroll_mess::-webkit-scrollbar-thumb {
+  background: #aaaaaa;
+  border-radius: 0.5rem;
+}
+.mess__box .mess_right .form__block .icon_form_mess {
+  display: flex;
+  background-color: #fff;
+  padding: 1rem;
+}
+.mess__box .mess_right .form__block .icon_form_mess input[type=text] {
+  outline: none;
+  border: 1px solid #222;
+  border-radius: 100rem;
+  width: calc(100% - 6rem);
+  padding: 0.5rem 2rem;
+}
+.mess__box .mess_right .form__block .icon_form_mess input[type=text]:focus {
+  border-color: #26ae61;
+}
+.mess__box .mess_right .form__block .icon_form_mess input[type=text]:focus::-moz-placeholder {
+  color: #26ae61;
+}
+.mess__box .mess_right .form__block .icon_form_mess input[type=text]:focus::placeholder {
+  color: #26ae61;
+}
+
+.mh-100 {
+  min-height: 100vh;
+}
+
 .pb-7 {
   padding-bottom: 7rem;
 }
@@ -3175,6 +3326,35 @@ body.position_header .header .navbar {
 }
 .text__headline.-dark {
   color: #222;
+}
+
+.link {
+  text-decoration: none;
+  color: #222;
+  font-size: 1.5rem;
+  display: inline-block;
+  margin-bottom: 1rem;
+  transition: 0.3s;
+}
+.link:hover {
+  color: #26ae61;
+  letter-spacing: 0.5px;
+}
+
+.text_mess_out,
+.text_mess_in {
+  background-color: #26ae61;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: inline-block;
+  font-size: 1.4rem;
+  min-width: 80px;
+  border-radius: 0.2rem 2rem 0.5rem;
+  text-align: center;
+}
+
+.text_mess_in {
+  border-radius: 0.5rem 2rem 0.2rem;
 }
 
 .error__validate {

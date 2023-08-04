@@ -18,7 +18,7 @@ require_once('../head.php');
     ?>
     <section class="content connect__profile">
         <?php require_once('./menu_left.php'); ?>
-        <div class="right">
+        <div class="right mh-100">
             <div class="container-fluid">
                 <div class="row p-5">
                     <h3 class="title__content__profile">My BookMarks</h3>
@@ -27,21 +27,21 @@ require_once('../head.php');
                         <table class="table text__headline -size-15 m-0">
                             <thead class="table-dark">
                                 <tr>
-                                    <th><i class="fas fa-heart"></i> BookMark</th>
+                                    <th width="50%"><i class="fas fa-heart"></i> BookMark</th>
                                     <th><i class="fas fa-clipboard"></i> Ghi chú</th>
-                                    <th></th>
+                                    <th width="15%"></th>
                                 </tr>
                             </thead>
+                            <?php 
+                            $user_id = $_SESSION['user']['id'];
+                            $sql = "SELECT jobs.title, jobs.id, jobs.category_id, jobs.bookmark_note FROM jobs where jobs.bookmark = '$user_id'";
+                            $jobs = getData($sql);
+                            ?>
                             <tbody>
-                                <?php for ($i = 1; $i <= 4; $i++) { ?>
+                                <?php foreach ($jobs as $job) { ?>
                                     <tr>
-                                        <td><a href="#">Senior Health and Nutrition Advisor</a></td>
-                                        <td></td>
-                                        <td><a href="#"><i class="fas fa-times"></i> Xóa</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#">Social Media and Public Relation Executive</a></td>
-                                        <td>PARA ENVIARLE UN. TRACK CON BATERIA</td>
+                                        <td><a href="./page_detail.php?job_id=<?php echo $job['id'] ?>&category_id<?php echo $job['category_id']; ?>"><?php echo $job['title']; ?></a></td>
+                                        <td><?php echo $job['bookmark_note']; ?></td>
                                         <td><a href="#"><i class="fas fa-times"></i> Xóa</a></td>
                                     </tr>
                                 <?php } ?>

@@ -69,27 +69,61 @@
         }
     }
 }
+
+.link {
+    text-decoration: none;
+    color: $dark;
+    font-size: 1.5rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+    transition: .3s;
+
+    &:hover {
+        color: $green;
+        letter-spacing: .5px;
+    }
+}
+
+.text_mess_out,
+.text_mess_in {
+    background-color: $green;
+    color: $white;
+    padding: 1rem 2rem;
+    display: inline-block;
+    font-size: 1.4rem;
+    min-width: 80px;
+    border-radius: .2rem 2rem .5rem;
+    text-align: center;
+}
+.text_mess_in {
+    border-radius: .5rem 2rem .2rem;
+}
 .error__validate {
     color: $red;
     font-size: 1.2rem;
 }
+
 .success__validate {
     color: $green;
     font-size: 2rem;
     text-align: center;
 }
+
 .password__success {
     color: $green;
     font-size: 1.4rem;
 }
+
 .password__err {
     color: red;
     font-size: 1.4rem;
 }
+
 .err_validate {
     color: red;
     font-size: 1.2rem !important;
 }
+
 /* Icons Fix */
 .fa-calendar:before,
 .fa-calendar:before,
@@ -108,6 +142,7 @@
     position: relative;
     top: 2px;
 }
+
 .fa-map-marker:before,
 .fa-user:before,
 .fa-clock-o:before,
@@ -118,37 +153,46 @@
     position: relative;
     top: 1px;
 }
+
 .fa-calendar:before,
 .fa-calendar:before {
     content: "\e770";
 }
+
 .fa-map-marker:before,
 .fa-map-marker:before {
     content: "\ea9c";
 }
+
 .fa-user:before,
 .fa-user:before {
     content: "\e6fe";
 }
+
 .fa-clock-o:before,
 .fa-clock-o:before {
     content: "\ed51";
 }
+
 .fa-money:before,
 .fa-money:before {
     content: "\eac6";
 }
+
 .fa-briefcase:before,
 .fa-briefcase:before {
     content: "\ea95";
 }
+
 .fa-calendar:before,
 .fa-calendar:before {
     content: "\e770";
 }
+
 ul li.content__description--item--flex:first-child .content__description--icon .fa-calendar:before {
     content: "\e70b";
 }
+
 /* Icons Fix - End */
 .spinner {
     width: 40px;
