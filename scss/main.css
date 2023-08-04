@@ -2216,6 +2216,46 @@ body._bg_transparent .header.bg-white .navbar .login--register .btn--login {
   box-shadow: 5px 5px 10px #bbb;
 }
 
+.login_ad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.login_ad .login_admin {
+  width: 400px;
+  height: 70vh;
+  border: 1px solid;
+}
+.login_ad .login_admin .input_box {
+  display: block;
+}
+.login_ad .login_admin .input_box .input__box--item {
+  display: inline-block;
+  width: 100%;
+  outline: none;
+}
+.login_ad .login_admin .input_box input.input__box--item {
+  padding: 0.5rem 1rem;
+}
+.login_ad .login_admin .input_box #remember_me ~ label {
+  cursor: pointer;
+}
+.login_ad .login_admin .btn {
+  width: 100%;
+  background-color: #26ae61;
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 100rem;
+}
+.login_ad .login_admin .login_admin_footer a {
+  display: inline-block;
+  width: 100%;
+  font-size: 1.4rem;
+  color: #26ae61;
+  margin-top: 2rem;
+}
+
 .header .bg-white.navbar {
   border-color: #ebebeb;
   position: relative;

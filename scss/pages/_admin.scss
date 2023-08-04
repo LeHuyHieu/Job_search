@@ -188,3 +188,45 @@
     border-radius: 10px;
     box-shadow: 5px 5px 10px #bbb;
 }
+
+.login_ad {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    & .login_admin {
+        width: 400px;
+        height: 70vh;
+        border: 1px solid;
+        .input_box {
+            display: block;
+            & .input__box--item {
+                display: inline-block;
+                width: 100%;
+                outline: none;
+            }
+            & input.input__box--item {
+                padding: .5rem 1rem;
+            }
+            #remember_me ~ label {
+                cursor: pointer;
+            }
+        }
+        & .btn {
+            width: 100%;
+            background-color: $green;
+            color: $white;
+            padding: 1rem 2rem;
+            border-radius: 100rem;
+        }
+        .login_admin_footer {
+            a {
+                display: inline-block;
+                width: 100%;
+                font-size: 1.4rem;
+                color: $green;
+                margin-top: 2rem;
+            }
+        }
+    }
+}

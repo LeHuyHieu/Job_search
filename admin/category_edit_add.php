@@ -1,5 +1,9 @@
 <?php
+session_start();
 require_once('../lib/connect.php');
+if (!isset($_SESSION['user']['admin_login']) && $_SESSION['user']['admin_login'] != 1) {
+    header('location:/admin/login/login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
