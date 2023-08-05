@@ -32,20 +32,37 @@ require_once('../head.php');
                                     <th width="15%"></th>
                                 </tr>
                             </thead>
-                            <?php 
-                            $user_id = $_SESSION['user']['id'];
-                            $sql = "SELECT jobs.title, jobs.id, jobs.category_id, jobs.bookmark_note FROM jobs where jobs.bookmark = '$user_id'";
-                            $jobs = getData($sql);
-                            ?>
-                            <tbody>
-                                <?php foreach ($jobs as $job) { ?>
-                                    <tr>
-                                        <td><a href="./page_detail.php?job_id=<?php echo $job['id'] ?>&category_id<?php echo $job['category_id']; ?>"><?php echo $job['title']; ?></a></td>
-                                        <td><?php echo $job['bookmark_note']; ?></td>
-                                        <td><a href="#"><i class="fas fa-times"></i> Xóa</a></td>
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
+                            <?php if (isset($_SESSION['user']['candidate']) && $_SESSION['user']['candidate'] == 1) { ?>
+                                <?php
+                                $user_id = $_SESSION['user']['id'];
+                                $sql = "SELECT jobs.title, jobs.id, jobs.category_id, jobs.bookmark_note FROM jobs where jobs.bookmark = '$user_id'";
+                                $jobs = getData($sql);
+                                ?>
+                                <tbody>
+                                    <?php foreach ($jobs as $job) { ?>
+                                        <tr>
+                                            <td><a href="./page_detail.php?job_id=<?php echo $job['id'] ?>&category_id<?php echo $job['category_id']; ?>"><?php echo $job['title']; ?></a></td>
+                                            <td><?php echo $job['bookmark_note']; ?></td>
+                                            <td><a class="btn-delete delete text-white" href="#"><i class="fas fa-times"></i> Xóa</a></td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            <?php } else { ?>
+                                <?php
+                                $user_id = $_SESSION['user']['id'];
+                                $sql = "SELECT bookmark.*, users.name, users.id as candidate_id FROM bookmark LEFT JOIN users ON users.id = bookmark.candidate_id where employer_id = '$user_id'";
+                                $bookmarks = getData($sql);
+                                ?>
+                                <tbody>
+                                    <?php foreach ($bookmarks as $bookmark) { ?>
+                                        <tr>
+                                            <td><a href="./employer/view_resumer_candidate.php?user_id=<?php echo $bookmark['candidate_id']; ?>"><?php echo $bookmark['name']; ?></a></td>
+                                            <td><?php echo $bookmark['candidate_note']; ?></td>
+                                            <td><a class="btn-delete delete text-white" href="./delete_row_bookmark.php?delete=<?php echo $bookmark['id'];?>"><i class="fas fa-times"></i> Xóa</a></td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            <?php } ?>
                         </table>
                     </div>
                 </div>

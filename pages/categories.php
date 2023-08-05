@@ -45,7 +45,7 @@ if (isset($_GET['keyword'])) {
             $param .= '&keyword=' . $_GET['keyword'];
         }
         if (isset($_GET['city_id']) && strlen($_GET['city_id'])) {
-            $sql_conditions .= " AND city_id = " . $_GET['city_id'] . " ";
+            $sql_conditions .= " AND jobs.city_id = " . $_GET['city_id'] . " ";
             $param .= '&city_id=' . $_GET['city_id'];
         }
         if (isset($_GET['category_id']) && strlen($_GET['category_id'])) {
@@ -111,6 +111,11 @@ if (isset($_GET['keyword'])) {
         <div class="container -m -mt-5 -mb-5 categories__list">
             <div class="row">
                 <div class="col-md-8 col-ms-12 col-12 jobs">
+                    <?php
+                    if (count($jobs) < 1) {
+                        echo "<sapn class=\"text__headline -bold-400 -size-16 -gray ms-5\">Không tìm thấy kết quả phù hợp</sapn>";
+                    }
+                    ?>
                     <?php foreach ($jobs as $job) { ?>
                         <div class="jobs__item 
                             <?php
@@ -229,7 +234,11 @@ if (isset($_GET['keyword'])) {
                             <select class="form-select select__box chosen-select" name="city_id" id="" data-placeholder="Choose a country...">
                                 <option value="">All Location</option>
                                 <?php foreach ($city_table as $city) { ?>
-                                    <option value="<?php echo $city['id']; ?>" <?php if (isset($_GET['city_id'])) { if ($city_id == $city['id']) { echo $selected; } } ?>><?php echo $city['city_name']; ?></option>
+                                    <option value="<?php echo $city['id']; ?>" <?php if (isset($_GET['city_id'])) {
+                                                                                    if ($city_id == $city['id']) {
+                                                                                        echo $selected;
+                                                                                    }
+                                                                                } ?>><?php echo $city['city_name']; ?></option>
                                 <?php } ?>
                             </select>
                         </div>

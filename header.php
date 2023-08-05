@@ -40,7 +40,7 @@
                              </ul>
                          </li>
                          <li class="list__megamenu--item">
-                             <a href="#" class="list__megamenu--link">
+                             <a href="/pages/candidate/list_company.php" class="list__megamenu--link">
                                  Các công ty
                              </a>
                          </li>
@@ -69,7 +69,7 @@
                      </a>
                      <ul class="list__megamenu">
                          <li class="list__megamenu--item">
-                             <a href="#" class="list__megamenu--link">
+                             <a href="/pages/employer/search_candidate.php" class="list__megamenu--link">
                                  Tìm ứng viên
                              </a>
                          </li>

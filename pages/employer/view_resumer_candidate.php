@@ -14,9 +14,39 @@ $user = current($users);
 <?php require_once('../../head.php'); ?>
 
 <body>
+    <?php require_once('../../header.php'); ?>
     <div class="cv__block">
-        <div class="d-flex mb-5">
-            <a class="btn btn--green px-3" href="./list_candidate_apply.php"><i class="fa-solid fa-circle-plus pe-2"></i> Quay Lại Trang</a>
+        <div class="d-flex justify-content-end mb-5">
+            <a href="#" class="btn btn--green px-3"><i class="fas fa-comments"></i> Gửi tin nhắn</a>
+            <a href="#" class="btn btn--green px-3 ms-3" data-bs-toggle="modal" data-bs-target="#bookmarkCandidate"><i class="fas fa-star"></i> Lưu ứng viên</a>
+            <div class="modal fade" id="bookmarkCandidate" tabindex="-1" aria-labelledby="bookmarkCandidateLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-light p-5">
+                            <h5 class="modal-title" id="bookmarkCandidateLabel"><i class="fas fa-bookmark"></i> Ghi chú trang</h5>
+                            <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body p-5">
+                            <?php
+                            $sql_bookmark = "SELECT * FROM bookmark WHERE candidate_id = $user_id";
+                            $bookmark_candidate = getData($sql_bookmark);
+                            $bookmark = current($bookmark_candidate);
+                            ?>
+                            <form action="./bookmark_candidate.php" method="post" class="form__block">
+                                <div class="mb-4">
+                                    <label for="candidate_note">Ghi chú:</label>
+                                    <textarea id="candidate_note" rows="7" placeholder="Lưu ý cho ứng viên của bạn" class="form-control" name="candidate_note" ><?php echo (isset($bookmark['candidate_note'])) ? $bookmark['candidate_note'] : "";?></textarea>
+                                </div>
+                                <input type="hidden" name="candidate_id" value="<?php echo $user_id; ?>">
+                                <input type="hidden" name="id" value="<?php echo (isset($bookmark['id'])) ? $bookmark['id'] : ""; ?>">
+                                <input type="hidden" value="1" name="bookmark_candidate_save">
+                                <input type="hidden" name="employer_id" value="<?php echo $_SESSION['user']['id'];?>">
+                                <button class="btn--all w-50 btn--radius100 m-auto"><i class="fas fa-share-square pe-2"></i> Lưu</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="container p-0" id="exportContent">
             <div class="row bg-white">

@@ -278,22 +278,16 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 var link = $(this).attr('href');
                 window.location.href = link;
-                Swal.fire(
-                    'Đã xóa!',
-                    'Bạn đã xóa thành công.',
-                    'success'
-                );
             } else {
-                Swal.fire(
-                    'Chưa Xóa',
-                    'Bạn chưa chưa xóa thành công.',
-                    'error'
-                );
+                
             }
         });
     });
 
     $(document).on('click', '.btn--add.delete', function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+
         Swal.fire({
             title: 'Bạn có chắc muốn xóa?',
             text: "Bạn không thể hoàn tác lại!",

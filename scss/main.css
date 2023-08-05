@@ -1166,6 +1166,175 @@ body._bg_transparent .header.bg-white .navbar .login--register .btn--login {
   padding: 0;
 }
 
+.btn.btn--transparent.ft {
+  background-color: rgba(0, 0, 255, 0.2);
+  color: blue;
+  border: 1px solid;
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.btn.btn--transparent.it {
+  background-color: rgba(51, 188, 243, 0.2);
+  color: #33bcf3;
+  border: 1px solid;
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.btn.btn--transparent.tp {
+  background-color: rgba(184, 0, 0, 0.2);
+  color: #b80000;
+  border: 1px solid;
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.btn.btn--transparent.f {
+  background-color: rgba(214, 214, 0, 0.2);
+  color: #d6d600;
+  border: 1px solid;
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.btn.btn--transparent.pt {
+  background-color: rgba(38, 174, 97, 0.2);
+  color: #26ae61;
+  border: 1px solid;
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.btn-submit {
+  width: 100%;
+  border-radius: 100rem;
+  background-color: #26ae61;
+  color: #fff;
+  height: 45px;
+  max-width: 200px;
+  margin: 0 auto;
+  display: block;
+}
+.btn-submit:hover {
+  color: #fff;
+}
+
+.image_avatar {
+  width: 100px;
+  height: 100px;
+  max-width: 100px;
+  max-height: 100px;
+  overflow: hidden;
+}
+.image_avatar img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+.image_logo {
+  width: 100px;
+  max-width: 100px;
+  overflow: hidden;
+}
+.image_logo img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+.jobs__item {
+  font-size: 14px;
+}
+.jobs__item .jobs__item--text h6 a {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 400;
+  color: #222;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.jobs__item ul {
+  list-style: none;
+  padding: 0;
+}
+
+.review_item {
+  margin-top: 2rem;
+  height: 100%;
+  background-color: #f8f9fa;
+  border-radius: 0.3rem;
+  font-size: 14px;
+  border-radius: 5px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.review_item:hover {
+  transform: translate(5px, -10px);
+  box-shadow: 3px 6px 10px #aaaaaa;
+}
+.review_item .list_start {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+.review_item .list_start li {
+  margin-right: 0.5rem;
+}
+
+.review_comment {
+  background-color: #f8f9fa;
+  padding: 3rem;
+  border-radius: 5px;
+}
+.review_comment .form__block {
+  background-color: #fff;
+  border-radius: 5px;
+  margin: 0 auto;
+  max-width: 70%;
+  padding: 2rem;
+  transition: 0.3s;
+}
+.review_comment .form__block:hover {
+  box-shadow: 3px 6px 10px #aaaaaa;
+}
+.review_comment .box_item input, .review_comment .box_item textarea {
+  border: 1px solid #ebebeb;
+}
+.review_comment .box_item input:focus, .review_comment .box_item textarea:focus {
+  box-shadow: none;
+}
+.review_comment .box_item .rate {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  height: 45px;
+  align-items: center;
+  border: 1px solid #ebebeb;
+  border-radius: 0.25rem;
+}
+.review_comment .box_item .rate input[type=radio] {
+  display: none;
+}
+.review_comment .box_item .rate label {
+  color: #ebebeb;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+.review_comment .box_item .rate input:checked ~ label {
+  color: #ffff0d;
+}
+
 .chosen-single {
   border: none !important;
   background-image: none !important;
@@ -3366,6 +3535,9 @@ body.position_header .header .navbar {
 }
 .text__headline.-dark {
   color: #222;
+}
+.text__headline.-yellow {
+  color: yellow;
 }
 
 .link {
