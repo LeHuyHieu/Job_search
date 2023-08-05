@@ -16,7 +16,7 @@
                      Trang chủ
                  </a>
              </li>
-             <?php if (isset($_SESSION['user']) && $_SESSION['user']['candidate'] == 1) { ?>
+             <?php if (isset($_SESSION['user']) && $_SESSION['user']['candidate'] == 1 || !isset($_SESSION['user'])) { ?>
                  <li class="navbar__list--item">
                      <a href="javascript:void(0);" class="navbar__list--link">
                          Người ứng tuyển
@@ -62,7 +62,7 @@
                      </ul>
                  </li>
              <?php } ?>
-             <?php if (isset($_SESSION['user']) && $_SESSION['user']['employer'] == 1) { ?>
+             <?php if (isset($_SESSION['user']) && $_SESSION['user']['employer'] == 1 || !isset($_SESSION['user'])) { ?>
                  <li class="navbar__list--item">
                      <a href="javascript:void(0);" class="navbar__list--link">
                          Nhà tuyển dụng
@@ -91,11 +91,13 @@
                      </ul>
                  </li>
              <?php } ?>
-             <li class="navbar__list--item">
-                 <a href="/pages/page_detail.php" class="navbar__list--link dn__after">
-                     Chi tiết công việc
-                 </a>
-             </li>
+             <?php if (isset($_SESSION['user'])) { ?>
+                 <li class="navbar__list--item">
+                     <a href="/pages/page_detail.php" class="navbar__list--link dn__after">
+                         Chi tiết công việc
+                     </a>
+                 </li>
+             <?php } ?>
              <li class="navbar__list--item">
                  <a href="/pages/blog.php" class="navbar__list--link dn__after">
                      Blog
