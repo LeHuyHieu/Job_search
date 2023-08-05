@@ -97,7 +97,7 @@
                  </a>
              </li>
              <li class="navbar__list--item">
-                 <a href="javascript:void(0);" class="navbar__list--link dn__after">
+                 <a href="/pages/blog.php" class="navbar__list--link dn__after">
                      Blog
                  </a>
              </li>
