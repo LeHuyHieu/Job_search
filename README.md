@@ -1,59 +1,57 @@
-# Tên Dự Án: Việc Làm
-Mô tả về dự án: 
-Đây là website tìm việc cho các cá nhân tổ chức có thể tạo công việc
-ứng tuyển công việc theo nhu cầu của cá nhân và công ty.
-![image](https://github.com/LeHuyHieu/viec_lam/assets/126578220/7c27449c-6074-4908-943d-e17258392b42)
-![image](https://github.com/LeHuyHieu/viec_lam/assets/126578220/993e0618-2895-4e14-a170-a6dc88a3fc4c)
-![image](https://github.com/LeHuyHieu/viec_lam/assets/126578220/b02743c9-588e-450c-8b88-bf3f3f4c220f)
+# Website Tìm Việc sử dụng PHP
 
-## Features
-* Danh sách các tính năng:
-* Tính năng 1: đăng nhập, (đăng ký) bằng cách gửi về Email của người dùng, đăng xuất
-  ![image](https://github.com/LeHuyHieu/viec_lam/assets/126578220/318e6167-0454-484c-84c1-b09915d19c83)
-  ![image](https://github.com/LeHuyHieu/viec_lam/assets/126578220/2fd28074-d81a-427f-8042-2e4fe8858901)
-* Tính năng 2:
-  ![image](https://github.com/LeHuyHieu/viec_lam/assets/126578220/d5c49359-4820-42c1-8e95-769f41923266)
+## Giới thiệu
 
-  
-                - Profile  : + tạo Sơ yếu lý lịch để ứng tuyển,
-                             + cập nhật thông tin cá nhân như: mật khẩu, tên, ảnh đại diện, ...  
-                             + ứng tuyển vào công việc mong muốn,... vv
-  ![image](https://github.com/LeHuyHieu/viec_lam/assets/126578220/96511bd6-974d-41e5-801a-fe99301ebbe6)
-  ![image](https://github.com/LeHuyHieu/viec_lam/assets/126578220/fc09bfff-f2e7-4486-87db-17a39e010cf7)
+Đây là một dự án website Việc Làm đơn giản được xây dựng bằng ngôn ngữ lập trình PHP thuần, nhằm mục đích cung cấp một nền tảng để người tìm việc có thể tìm kiếm, xem và đăng các công việc tuyển dụng. Dự án này giúp người tìm việc dễ dàng tìm thấy các cơ hội việc làm phù hợp với mình và cho các nhà tuyển dụng có cơ hội đăng tải thông tin tuyển dụng.
 
-                             + và một số tính năng khác bạn có thể đăng nhạp để xem
-   ![image](https://github.com/LeHuyHieu/viec_lam/assets/126578220/64975b08-235c-4490-8754-26f576786abb)
-                - Employer : + đăng công việc cần tuyển thêm người, công ty, ...
-                             + quản lý công việc, công ty
-                             + gửi chi tiết công việc cho người ứng tuyển,...
-  ![image](https://github.com/LeHuyHieu/viec_lam/assets/126578220/360a3c89-9fff-4616-af18-b4602e20f5af)
+## Yêu cầu hệ thống
 
-                - Admin    : + quản lý duyệt các công việc được các công ty đăng
-                             + quản lý người sử dụng, ...
-* Bạn có thể xem thêm các tính năng khi vào website
+Trước khi bạn bắt đầu triển khai dự án, đảm bảo hệ thống của bạn đáp ứng các yêu cầu sau:
 
-## Cách sử dụng 
-tải xampp hoặc wampserver về và cài đặt để tạo sever ảo
-tiếp theo bạn xem các hướng dẫn chi tiết trên google
+- Máy chủ web: Apache hoặc Nginx
+- Phiên bản PHP: 7.0 trở lên
+- MySQL hoặc MariaDB để lưu trữ dữ liệu công việc và người dùng.
 
-tiếp theo bạn mở đường dẫn là: http://localhost/
-![image](https://github.com/LeHuyHieu/viec_lam/assets/126578220/58772706-0591-4835-b9dc-09ca7564ee1c)
-sẻ ra ảnh như thế này
-chỉ cần /đường dẫn đến forder của bạn
-ví dụ: http://localhost:8080/viec_lam/
-để đăng nhập bạn vào trang index.php để đăng nhập vào tài khoản Admin hoặc Candidate và Employer
-tên tài khoản và mật khẩu dưới đây để đăng nhập
+## Cài đặt
 
-tài khoản: 
-           
-           - Admin      : admin@gmail.com
-           - Mật khẩu   : 123123
-           
-           - Candidate  : le5745500@gmail.com
-           - mật khẩu   : 123123
+Hướng dẫn cài đặt dự án:
 
-           - Employer   : lehuyhieu.dev.fontend@gmail.com
-           - Mật khẩu   : 123123
+1. Sao chép dự án từ repository:
+   git clone https://github.com/ten-du-an.git
+2.Di chuyển vào thư mục dự án:
+   cd ten-du-an
+3,Cấu hình cơ sở dữ liệu: Mở file config.php và cập nhật thông tin kết nối đến cơ sở dữ liệu MySQL hoặc MariaDB.
 
+4.Import cơ sở dữ liệu: Sử dụng tệp SQL có sẵn để import cấu trúc dữ liệu và dữ liệu mẫu vào cơ sở dữ liệu.
 
+## Sử dụng
+Dự án này cung cấp các chức năng cơ bản sau:
 
+1.Xem danh sách công việc: Trang chính hiển thị danh sách các công việc hiện có, với thông tin cơ bản về công việc.
+
+2.Tìm kiếm công việc: Người tìm việc có thể tìm kiếm các công việc dựa trên từ khóa, vị trí, ngành nghề, v.v.
+
+3.Đăng công việc: Nhà tuyển dụng có thể đăng các công việc mới bằng cách cung cấp thông tin về công việc, yêu cầu ứng viên, v.v.
+
+4.Ứng tuyển công việc: Người tìm việc có thể ứng tuyển vào các công việc và gửi thông tin liên hệ đến nhà tuyển dụng.
+
+## Đóng góp
+Nếu bạn muốn đóng góp vào dự án, bạn có thể thực hiện các bước sau:
+
+1.Fork dự án trên GitHub.
+
+2.Clone repository từ tài khoản của bạn:
+  git clone https://github.com/ten-tai-khoan/ten-du-an.git
+3.Tạo một branch mới để làm việc:
+  git checkout -b feature/ten-chuc-nang
+4.Tiến hành sửa đổi và commit:
+  git add .
+  git commit -m "Thêm chức năng ABC"
+5.Push branch lên repository của bạn:
+  git push origin feature/ten-chuc-nang
+6.Tạo một Pull Request (PR) từ branch của bạn vào branch chính của dự án.
+
+## Vấn đề và Góp ý
+Nếu bạn gặp bất kỳ vấn đề hoặc có góp ý, vui lòng tạo một issue trên GitHub.
+
+© 2023 - Lê Huy Hiệu
