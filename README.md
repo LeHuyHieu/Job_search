@@ -23,7 +23,7 @@ Hướng dẫn cài đặt dự án:
    git clone https://github.com/ten-du-an.git
 2.Di chuyển vào thư mục dự án:
    cd ten-du-an
-3,Cấu hình cơ sở dữ liệu: Mở file config.php và cập nhật thông tin kết nối đến cơ sở dữ liệu MySQL hoặc MariaDB.
+3,Cấu hình cơ sở dữ liệu: Mở file lib/connect.php và cập nhật thông tin kết nối đến cơ sở dữ liệu MySQL
 
 4.Import cơ sở dữ liệu: Sử dụng tệp SQL có sẵn để import cấu trúc dữ liệu và dữ liệu mẫu vào cơ sở dữ liệu.
 
